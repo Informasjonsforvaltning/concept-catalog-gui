@@ -7,3 +7,6 @@
 
 # compilation targets
 node_modules
+
+# Dist
+dist

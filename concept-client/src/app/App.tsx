@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { Header } from '../components/app-header/app-header.component';
 import { Hello } from '../components/Hello';
 import { ConceptListPage } from '../pages/concept-list-page/concept-list-page';
 
@@ -15,6 +16,7 @@ import 'font-awesome/scss/font-awesome.scss';
 export const App: FunctionComponent = (): JSX.Element => (
   <Router>
     <div className="d-flex flex-column site">
+      <Header />
       <div className="site-content d-flex flex-column pt-5">
         <Link to="/list">Link</Link>
         <Switch>

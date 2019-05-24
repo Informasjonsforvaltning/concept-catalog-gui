@@ -15,6 +15,9 @@ GS: Changed port to 3111 to prevent crashing with fdk docker containers.
 * https://github.com/microsoft/TypeScript-React-Starter
 * https://hackernoon.com/react-with-typescript-and-webpack-654f93f34db6
 
+# npm
+## Remove npm packages not in use
+
 ## Build (to dist folder)
 npm run build
 
@@ -24,6 +27,9 @@ npm run dev
 ## Run (start.js)
 node start.js
 
+## Run (container)
+winpty docker-compose exec search sh -c "pm2 restart start
+
 ## npm
 npm i --save css-loader sass-loader node-sass
 
@@ -32,3 +38,9 @@ npm i @types/react @types/react-dom webpack webpack-cli ts-loader webpack-dev-mi
 
 ## npm global
 npm i webpack webpack-cli -g
+
+## 
+
+"url-loader": "^1.0.1",
+"file-loader": "^1.1.11",
+"font-awesome": "^4.7.0",

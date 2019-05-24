@@ -1,0 +1,40 @@
+@import '../../../node_modules/designsystemet/fdk-designsystem-bootstrap4/scss/colors.scss';
+
+.fdk-header-text_items {
+  white-space: nowrap;
+}
+
+.fdk-auth-link {
+  a {
+    color: $color1;
+    font-size: 1.4rem;
+  }
+}
+
+.dropdown-menu {
+  .dropdown-item {
+    &:focus,
+    &:active {
+      background-color: $color0;
+    }
+    a {
+      &:hover {
+        color: $color-cta2;
+      }
+    }
+  }
+}
+
+.fdk-breadcrumb {
+  color: $color1;
+  font-size: 1.4rem;
+  padding: 2em 2.4em;
+  margin-bottom: 2.4em;
+}
+
+div.fdk-header {
+  padding: 0.2em 1.2em;
+}
+img.fdk-logo {
+  height: 90px;
+}

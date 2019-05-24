@@ -1,4 +1,5 @@
 export const en = {
+  title: 'Concept Registration',
   draft: 'Draft',
   published: 'Published',
   new: 'New',

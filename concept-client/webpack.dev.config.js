@@ -1,5 +1,6 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path'),
+  webpack = require('webpack'),
+  HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -7,11 +8,13 @@ module.exports = {
   mode: 'development',
   devtool: 'cheap-module-source-map',
   context: path.join(__dirname),
-  entry: ['@babel/polyfill', 'whatwg-fetch', './src/index.jsx'],
+  entry: {
+    app: ['./src/app/App.tsx'],
+    vendor: ['react', 'react-dom']
+  },
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/static/'
+    path: path.resolve(__dirname, 'dist'),
+    filename: './[name].bundle.js'
   },
   module: {
     rules: [
@@ -33,21 +36,14 @@ module.exports = {
         loader: 'file-loader'
       },
       {
-        test: /\.(png|jpg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: { limit: 10000 } // Convert images < 10k to base64 strings
-          }
-        ]
-      }
+        test: /\.(ts|tsx)$/,
+        loader: 'ts-loader'
+      },
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
     ]
   },
   resolve: {
-    alias: {
-      react: path.resolve('./node_modules/react')
-    },
-    extensions: ['.js', '.jsx', '.webpack.js', '.web.js']
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
   },
   resolveLoader: {
     modules: [__dirname, 'node_modules']
@@ -57,12 +53,9 @@ module.exports = {
     minimize: false
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        REDUX_LOG: JSON.stringify(process.env.REDUX_LOG),
-        DISQUS_SHORTNAME: JSON.stringify(process.env.DISQUS_SHORTNAME)
-      }
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'src', 'app', 'index.html')
+      //template: './src/app/index.html',
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -70,7 +63,11 @@ module.exports = {
       filename: 'styles.css'
     }),
     new CopyWebpackPlugin(
-      [{ from: './src/static/img/*', to: './img', flatten: true }],
+      [
+        { from: './src/assets/css/bootstrap*', to: './', flatten: true },
+        { from: './src/assets/img/*', to: './img', flatten: true },
+        { from: './dist/*', to: './static/', flatten: true }
+      ],
       {
         copyUnmodified: true
       }

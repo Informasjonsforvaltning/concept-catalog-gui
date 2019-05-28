@@ -5,7 +5,21 @@
   "main": "start.js",
   "scripts": {
     "start": "node start.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --config webpack.dev.config.js",
+    "build": "webpack --config webpack.dev.config.js -p",
+    "lint": "eslint ./src/**/* --ext=js,jsx,ts,tsx,json,css,scss,md --fix"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "repository": {
     "type": "git",
@@ -25,14 +39,14 @@
     "dotenv": "^8.0.0",
     "ejs": "^2.6.1",
     "express": "^4.17.0",
+    "husky": "^2.3.0",
+    "lint-staged": "^8.1.7",
     "method-override": "^3.0.0",
     "mini-css-extract-plugin": "^0.6.0",
     "path": "^0.12.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "webpack": "^4.32.0",
-    "webpack-dev-middleware": "^3.7.0",
-    "webpack-hot-middleware": "^2.25.0",
+    "typescript": "^3.4.5",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
@@ -40,7 +54,18 @@
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
+    "@types/react": "^16.8.18",
+    "@types/react-dom": "^16.8.4",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
     "babel-loader": "^8.0.6",
-    "webpack-cli": "^3.3.2"
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.17.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-middleware": "^3.7.0",
+    "webpack-hot-middleware": "^2.25.0"
   }
 }

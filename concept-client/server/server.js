@@ -23,7 +23,7 @@ module.exports = {
     app.use(bodyParser.json());
     app.use(methodOverride());
 
-    const port = Number(process.env.PORT || 3000);
+    const port = Number(process.env.PORT || 3111);
     app.set('port', port);
 
     if (!env.production) {

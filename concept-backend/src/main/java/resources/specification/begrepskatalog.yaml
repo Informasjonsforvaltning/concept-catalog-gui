@@ -37,6 +37,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Begrep'
+        '409':
+          description: Ulovlig verdier i begrep
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Feilmelding"
     get:
       tags:
         - begrepskatalog
@@ -96,6 +102,13 @@ paths:
           required: true
           schema:
             type: string
+        - name: validate
+          in: query
+          description: Om begrepet skal valideres
+          required: false
+          default: true
+          schema:
+            type: boolean
       responses:
         '200':
           description: OK
@@ -103,6 +116,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Begrep"
+        '409':
+          description: Ulovlig verdier i begrep
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Feilmelding"
       requestBody:
         required: true
         content:
@@ -184,3 +203,10 @@ components:
       - utkast
       - godkjent
       - publisert
+    Feilmelding:
+      type: object
+      required:
+      - melding
+      properties:
+        melding:
+          type: string

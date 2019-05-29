@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config webpack.dev.config.js",
     "build": "webpack --config webpack.dev.config.js -p",
-    "lint": "eslint ./src/**/* --ext=js,jsx,ts,tsx,json,css,scss,md --fix"
+    "lint": "eslint ./ --ext=js,jsx,ts,tsx --fix"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [

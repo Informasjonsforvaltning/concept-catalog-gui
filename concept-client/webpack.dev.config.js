@@ -1,6 +1,5 @@
-const path = require('path'),
-  webpack = require('webpack'),
-  HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -9,12 +8,13 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   context: path.join(__dirname),
   entry: {
-    app: ['./src/app/App.tsx'],
+    app: ['./src/index.tsx'],
     vendor: ['react', 'react-dom']
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: './[name].bundle.js'
+    path: path.join(__dirname, 'dist'),
+    filename: './bundle.js',
+    publicPath: '/static/'
   },
   module: {
     rules: [
@@ -43,7 +43,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
+    alias: {
+      react: path.resolve('./node_modules/react')
+    },
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.webpack.js', '.web.js']
   },
   resolveLoader: {
     modules: [__dirname, 'node_modules']
@@ -53,9 +56,11 @@ module.exports = {
     minimize: false
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'app', 'index.html')
-      //template: './src/app/index.html',
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        REDUX_LOG: JSON.stringify(process.env.REDUX_LOG)
+      }
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -63,11 +68,7 @@ module.exports = {
       filename: 'styles.css'
     }),
     new CopyWebpackPlugin(
-      [
-        { from: './src/assets/css/bootstrap*', to: './', flatten: true },
-        { from: './src/assets/img/*', to: './img', flatten: true },
-        { from: './dist/*', to: './static/', flatten: true }
-      ],
+      [{ from: './src/static/img/*', to: './img', flatten: true }],
       {
         copyUnmodified: true
       }

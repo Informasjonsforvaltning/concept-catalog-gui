@@ -31,18 +31,18 @@ paths:
               schema:
                 type: string
               description: url til det nye begrepet
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Begrep'
         '409':
           description: Ulovlig verdier i begrep
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Feilmelding"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Begrep'
     get:
       tags:
         - begrepskatalog
@@ -106,9 +106,9 @@ paths:
           in: query
           description: Om begrepet skal valideres
           required: false
-          default: true
           schema:
             type: boolean
+            default: true            
       responses:
         '200':
           description: OK

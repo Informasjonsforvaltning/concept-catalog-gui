@@ -50,6 +50,7 @@
     "popper.js": "^1.15.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-localization": "^0.1.4",
     "react-router-dom": "^5.0.0",
     "typescript": "^3.4.5",
     "url-loader": "^1.1.2",

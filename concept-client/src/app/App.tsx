@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FunctionComponent } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { Hello } from '../components/Hello';
 
@@ -11,7 +11,7 @@ import 'designsystemet/fdk-designsystem-bootstrap4/scss/animations.scss';
 import 'designsystemet/fdk-designsystem-bootstrap4/scss/register.scss';
 import 'font-awesome/scss/font-awesome.scss';
 
-export const App = () => (
+export const App: FunctionComponent = (): JSX.Element => (
   <Router>
     <div className="d-flex flex-column site">
       <div className="site-content d-flex flex-column pt-5">

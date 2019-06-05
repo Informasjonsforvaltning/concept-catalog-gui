@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { Hello } from '../components/Hello';
+import { ConceptListPage } from '../pages/concept-list-page/concept-list-page';
 
 import '../assets/style/bootstrap-override.scss';
 import 'designsystemet/fdk-designsystem-bootstrap4/scss/helper.scss';
@@ -18,7 +19,7 @@ export const App: FunctionComponent = (): JSX.Element => (
         <Link to="/list">Link</Link>
         <Switch>
           <Route path="/" component={Hello} exact={true} />
-          <Route path="/list" component={Hello} exact={true} />
+          <Route path="/list" component={ConceptListPage} exact={true} />
         </Switch>
       </div>
     </div>

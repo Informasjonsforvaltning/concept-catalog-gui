@@ -1,0 +1,10 @@
+@import '../../../../../node_modules/designsystemet/fdk-designsystem-bootstrap4/scss/colors.scss';
+
+.fdk-list-item {
+  background-color: $color-white;
+  color: $color-dark-1;
+  margin-bottom: 0.25em;
+  border-radius: 3px;
+  padding: 0.5em 1em;
+  text-decoration: none;
+}

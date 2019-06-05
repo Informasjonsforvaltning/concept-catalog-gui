@@ -1,0 +1,13 @@
+@import '../../../../node_modules/designsystemet/fdk-designsystem-bootstrap4/scss/colors.scss';
+
+.fdk-list-header {
+  background-color: $color3;
+  color: $color0;
+  margin-bottom: 0.25em;
+  border-radius: 3px;
+  padding: 0.5em 1em;
+
+  .header-item {
+    font-weight: 500;
+  }
+}

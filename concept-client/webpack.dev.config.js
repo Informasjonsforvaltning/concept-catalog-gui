@@ -1,10 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebPackPlugin = require('copy-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
+  devServer: {
+    inline:true,
+    port: 8083
+  },
   devtool: 'cheap-module-source-map',
   context: path.join(__dirname),
   entry: {
@@ -14,7 +19,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: './bundle.js',
-    publicPath: '/static/'
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -62,12 +67,18 @@ module.exports = {
         REDUX_LOG: JSON.stringify(process.env.REDUX_LOG)
       }
     }),
+
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new HtmlWebPackPlugin({
+      template: path.resolve('./server/views/', 'index.ejs'),
+      filename: 'index.html',
+      hash: true
+    }),
     new MiniCssExtractPlugin({
       filename: 'styles.css'
     }),
-    new CopyWebpackPlugin(
+    new CopyWebPackPlugin(
       [
         { from: './src/assets/css/bootstrap*', to: './', flatten: true },
         { from: './src/assets/img/*', to: './img', flatten: true },

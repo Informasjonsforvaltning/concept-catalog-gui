@@ -1,0 +1,87 @@
+{
+  "name": "concept-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "start.js",
+  "scripts": {
+    "start": "node start.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --config webpack.dev.config.js",
+    "build": "webpack --config webpack.dev.config.js -p",
+    "lint": "eslint ./ --ext=js,jsx,ts,tsx --fix"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Informasjonsforvaltning/begrepskatalog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Informasjonsforvaltning/begrepskatalog/issues"
+  },
+  "homepage": "https://github.com/Informasjonsforvaltning/begrepskatalog#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.3.1",
+    "compression": "^1.7.4",
+    "config": "^3.1.0",
+    "copy-webpack-plugin": "^5.0.3",
+    "designsystemet": "git+https://github.com/Informasjonsforvaltning/designsystemet.git#1.4.13",
+    "dotenv": "^8.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.17.0",
+    "husky": "^2.3.0",
+    "jquery": "^1.9.1",
+    "lint-staged": "^8.1.7",
+    "method-override": "^3.0.0",
+    "mini-css-extract-plugin": "^0.6.0",
+    "path": "^0.12.7",
+    "popper.js": "^1.15.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-localization": "^0.1.4",
+    "react-router-dom": "^5.0.0",
+    "typescript": "^3.4.5",
+    "url-loader": "^1.1.2",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "@types/react": "^16.8.18",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-router-dom": "^4.3.3",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "file-loader": "^1.1.11",
+    "font-awesome": "^4.7.0",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.17.1",
+    "sass-loader": "^7.1.0",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.0.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-middleware": "^3.7.0",
+    "webpack-hot-middleware": "^2.25.0"
+  }
+}

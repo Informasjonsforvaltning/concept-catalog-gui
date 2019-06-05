@@ -1,0 +1,12 @@
+.envrc
+
+# IDE files
+*.iml
+.DS_Store
+.idea
+
+# compilation targets
+node_modules
+
+# Dist
+dist

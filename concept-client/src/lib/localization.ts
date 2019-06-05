@@ -10,3 +10,5 @@ export const localization: LocaleStrings = new LocalizedStrings({
   nb,
   en
 });
+
+localization.setLanguage('nb');

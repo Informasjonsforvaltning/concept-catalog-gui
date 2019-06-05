@@ -13,13 +13,16 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   context: path.join(__dirname),
   entry: {
-    app: ['./src/index.tsx'],
-    vendor: ['react', 'react-dom']
+    app: ['./src/index.tsx']
   },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: './bundle.js',
     publicPath: '/'
+  },
+  devServer: {
+    port: 8083,
+    historyApiFallback: true
   },
   module: {
     rules: [
@@ -67,9 +70,6 @@ module.exports = {
         REDUX_LOG: JSON.stringify(process.env.REDUX_LOG)
       }
     }),
-
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebPackPlugin({
       template: path.resolve('./server/views/', 'index.ejs'),
       filename: 'index.html',

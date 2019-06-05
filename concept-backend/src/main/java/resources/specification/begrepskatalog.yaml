@@ -46,13 +46,13 @@ paths:
     get:
       tags:
         - begrepskatalog
-      description: Returnerer en samling begreper
+      description: Returnerer en samling begreper for en gitt virksomhet
       operationId: getBegrep
       parameters:
         - name: orgNummer
           in: query
           description: Virksomhetens organisasjonsnummer
-          required: false
+          required: true
           schema:
             type: string
         - name: status

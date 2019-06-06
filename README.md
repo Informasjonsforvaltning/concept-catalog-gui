@@ -1,4 +1,4 @@
-# Concept-catalogue
+# Concept-catalogue-gui
 A React (Typescript) application using webpack.
 
 ## Known Issues

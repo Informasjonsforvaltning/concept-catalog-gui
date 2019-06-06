@@ -1,4 +1,4 @@
-# Begrepskatalog
+# Concept-catalogue
 A React (Typescript) application using webpack.
 
 ## Known Issues

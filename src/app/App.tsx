@@ -20,9 +20,8 @@ export const App: FunctionComponent = (): JSX.Element => (
     <div className="d-flex flex-column site">
       <Header />
       <div className="site-content d-flex flex-column pt-5">
-        <Link to="/list">Link</Link>
         <Switch>
-          <Route path="/" component={Hello} exact={true} />
+          <Route path="/" component={ConceptListPage} exact={true} />
           <Route path="/list" component={ConceptListPage} exact={true} />
         </Switch>
       </div>

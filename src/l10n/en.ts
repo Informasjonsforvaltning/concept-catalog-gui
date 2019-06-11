@@ -6,5 +6,11 @@ export const en = {
   preferredTerm: 'Preferred term',
   fieldOfStudy: 'Field of study',
   validity: 'Validity',
-  status: 'Status'
+  status: 'Status',
+  organisationNumber: 'Organization number:',
+  information: 'Information',
+  informationText: 'This is a collaborative project between Brønnøysundregistrene, Difi and SKATE government agencies.',
+  mail: 'fellesdatakatalog@brreg.no',
+  privacy: ' and privacy',
+  emailAddress: 'Mailaddress'
 };

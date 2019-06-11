@@ -44,3 +44,5 @@ npm i webpack webpack-cli -g
 "url-loader": "^1.0.1",
 "file-loader": "^1.1.11",
 "font-awesome": "^4.7.0",
+
+##

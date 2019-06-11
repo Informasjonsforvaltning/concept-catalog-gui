@@ -6,10 +6,6 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  devServer: {
-    inline:true,
-    port: 8083
-  },
   devtool: 'cheap-module-source-map',
   context: path.join(__dirname),
   entry: {
@@ -21,6 +17,7 @@ module.exports = {
     publicPath: '/'
   },
   devServer: {
+    inline:true,
     port: 8083,
     historyApiFallback: true
   },

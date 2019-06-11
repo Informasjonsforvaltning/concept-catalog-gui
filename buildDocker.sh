@@ -9,8 +9,8 @@ npm install
 echo "SECONDS"
 echo $SECONDS
 
-echo "Run tests"
-npm test
+# echo "Run tests"
+# npm test
 
 echo "SECONDS"
 echo $SECONDS

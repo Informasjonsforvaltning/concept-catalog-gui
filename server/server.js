@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -25,6 +26,15 @@ module.exports = {
 
     const port = Number(process.env.PORT || 3111);
     app.set('port', port);
+
+    app.use('/env.json', (req, res) => {
+      const vars = [
+        'CONCEPT_REGISTRATION_API'
+      ];
+      const values = vars.map(varName => process.env[varName]);
+      const envObj = _.zipObject(vars, values);
+      res.json(envObj);
+    });
 
     if (!env.production) {
       const compiler = webpack(config);

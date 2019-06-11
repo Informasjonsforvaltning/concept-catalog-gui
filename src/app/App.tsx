@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { Header } from '../components/app-header/app-header.component';
+import { Footer } from '../components/app-footer/app-footer.component';
+
 import { Hello } from '../components/Hello';
 import { ConceptListPage } from '../pages/concept-list-page/concept-list-page';
 
@@ -24,6 +26,7 @@ export const App: FunctionComponent = (): JSX.Element => (
           <Route path="/list" component={ConceptListPage} exact={true} />
         </Switch>
       </div>
+      <Footer />
     </div>
   </Router>
 );

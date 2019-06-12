@@ -1,0 +1,37 @@
+{
+  "testURL": "http://localhost/",
+  "testMatch": ["**/?(*.)(test).ts?(x)"],
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "<rootDir>/src/setupTest.ts",
+    "/target/"
+  ],
+  "setupFiles": [
+    "raf/polyfill",
+    "<rootDir>/src/setupTest.ts"
+  ],
+  "snapshotSerializers": [
+    "enzyme-to-json/serializer"
+  ],
+  "testEnvironment": "node",
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "json",
+    "node"
+  ],
+  "moduleNameMapper": {
+    "^.+\\.(css|less|scss)$": "identity-obj-proxy"
+  }
+}
+
+
+
+
+
+

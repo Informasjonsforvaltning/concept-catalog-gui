@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  ### external modules
+  postgres:
+    image: postgres:11.2
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    expose:
+      - "5432"
+
+
+  concept-registration:
+    image: dcatno/concept-registration:latest
+    expose:
+      - "8080"
+    depends_on:
+      - postgres
+
+  concept-client:
+    image: dcatno/concept-client:latest

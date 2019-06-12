@@ -11,7 +11,6 @@ GS: Could not get local file system (file:///C:/github/begrepskatalog/concept-cl
 ### Port in use
 GS: Changed port to 3111 to prevent crashing with fdk docker containers.
 
-
 ## Ref
 * https://github.com/microsoft/TypeScript-React-Starter
 * https://hackernoon.com/react-with-typescript-and-webpack-654f93f34db6

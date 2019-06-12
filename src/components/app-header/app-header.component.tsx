@@ -36,6 +36,7 @@ export const HeaderPure: FunctionComponent = (): JSX.Element => (
   </header>
 );
 
+
 //export default ReactHeader;
 
 export const Header = HeaderPure;

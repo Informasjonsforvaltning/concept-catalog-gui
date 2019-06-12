@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  ### external modules
+
+  postgres:
+    restart: always
+    volumes:
+      - /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+
+  ### java modules
+
+  concept-registration:
+    ports:
+      - "8100:8080"
+    environment:
+      - JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom -Xmx256M -Dspring.profiles.active=docker
+      - FDK_SQL_JDBC_CONNECTION=jdbc:postgresql://postgres:5432/postgres?currentSchema=conceptRegistration
+      - FDK_SQL_USERNAME=postgres
+      - FDK_SQL_PASSWORD=password
+
+  ### nodejs modules
+
+  concept-client:
+    build: ./
+    command: npm start
+    ports:
+      - "8083:3111"
+    volumes:
+      - ./src:/usr/src/app/src
+    environment:
+      - CONCEPT_REGISTRATION_API=http://localhost:8083/

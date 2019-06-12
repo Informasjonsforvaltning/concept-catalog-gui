@@ -8,9 +8,10 @@ module.exports = {
   mode: 'development',
   devtool: 'cheap-module-source-map',
   context: path.join(__dirname),
-  entry: {
-    app: ['./src/index.tsx']
-  },
+  entry: [
+    './src/index.tsx',
+    'webpack-hot-middleware/client?reload=true'
+  ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: './bundle.js',
@@ -56,6 +57,9 @@ module.exports = {
     minimize: false
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    // Use NoErrorsPlugin for webpack 1.x
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),

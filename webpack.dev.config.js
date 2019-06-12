@@ -62,11 +62,6 @@ module.exports = {
         REDUX_LOG: JSON.stringify(process.env.REDUX_LOG)
       }
     }),
-    new HtmlWebPackPlugin({
-      template: path.resolve('./server/views/', 'index.ejs'),
-      filename: 'index.html',
-      hash: true
-    }),
     new MiniCssExtractPlugin({
       filename: 'styles.css'
     }),

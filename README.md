@@ -1,50 +1,31 @@
-# Concept-catalogue-gui
+# concept-catalog-gui
 A React (Typescript) application using webpack.
 
-## Known Issues
-### Local file system
-GS: Could not get local file system (file:///C:/github/begrepskatalog/concept-client/dist/index.html) working with this on in index.html.
-```
-<!-- base href="/" /-->
-```
+# Run with docker
+## backend (oncept-catalogue)
+git clone https://github.com/Informasjonsforvaltning/concept-catalogue
+cd concept-catalogue
+mvn clean instal
 
-### Port in use
-GS: Changed port to 3111 to prevent crashing with fdk docker containers.
+## frontend (oncept-catalogue-gui)
+git clone https://github.com/Informasjonsforvaltning/concept-catalogue-gui
+cd concept-catalogue-gui
+docker-compose up -d
 
+
+# Run with node (TODO)
+SOME_VAR=https://backed npm start
+
+# Build for prod (creating dist folder)
+npm run build
+
+# Help
 ## Ref
 * https://github.com/microsoft/TypeScript-React-Starter
 * https://hackernoon.com/react-with-typescript-and-webpack-654f93f34db6
 
-# npm
-## Remove npm packages not in use
+## Enter container
+docker-compose exec concept-client sh
 
-## Build (to dist folder)
-npm run build
-
-## Run (webpack dev server)
-npm run dev
-
-## Run (start.js)
-node start.js
-
-## Run (container)
-winpty docker-compose exec search sh -c "pm2 restart start
-
-## npm
-npm i --save css-loader sass-loader node-sass
-
-## npm dev
-npm i @types/react @types/react-dom webpack webpack-cli ts-loader webpack-dev-middleware webpack-hot-middleware html-webpack-plugin source-map-loader -D
-
-## npm global
-npm i webpack webpack-cli -g
-
-## 
-
-"url-loader": "^1.0.1",
-"file-loader": "^1.1.11",
-"font-awesome": "^4.7.0",
-
-##
-
-##
+## Run command in container
+docker-compose exec concept-client sh -c "pm2 restart stop

@@ -10,7 +10,7 @@ echo "SECONDS"
 echo $SECONDS
 
 # echo "Run tests"
-# npm test
+npm test
 
 echo "SECONDS"
 echo $SECONDS

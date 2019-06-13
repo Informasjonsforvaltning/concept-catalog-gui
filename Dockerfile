@@ -22,6 +22,7 @@ RUN npm install --only=production --loglevel=warn
 
 COPY server /usr/src/app/server
 COPY start.js /usr/src/app/
+COPY tsconfig.json /usr/src/app/tsconfig.json
 COPY webpack.* /usr/src/app/
 
 # most volatile directory latest, in order to reuse layers.

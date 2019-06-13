@@ -29,3 +29,9 @@ docker-compose exec concept-client sh
 
 ## Run command in container
 docker-compose exec concept-client sh -c "pm2 restart stop
+
+## Editing server/view/index.ejs
+For changes to take effect you need to delete the concept-client image and restart it.
+Find image id with: docker image ls
+Delete image with: docker rmi <IMAGEID>
+Run again: docker-compose up -d

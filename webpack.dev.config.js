@@ -2,11 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebPackPlugin = require('copy-webpack-plugin');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  devtool: 'cheap-module-source-map',
+  devtool: 'cheap-module-eval-source-map',
   context: path.join(__dirname),
   entry: [
     './src/index.tsx',
@@ -16,11 +15,6 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: './bundle.js',
     publicPath: '/'
-  },
-  devServer: {
-    inline:true,
-    port: 8083,
-    historyApiFallback: true
   },
   module: {
     rules: [
@@ -37,10 +31,18 @@ module.exports = {
         loader: 'file-loader'
       },
       {
+        test: /\.(png|jpg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: { limit: 10000 } // Convert images < 10k to base64 strings
+          }
+        ]
+      },
+      {
         test: /\.(ts|tsx)$/,
         loader: 'ts-loader'
-      },
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+      }
     ]
   },
   resolve: {

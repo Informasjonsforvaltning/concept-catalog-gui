@@ -39,15 +39,16 @@ const renderListItems = (items, sortField, sortDirection): JSX.Element | null =>
   if (!items) {
     return null;
   }
+  // TODO use translator lib
   return _.orderBy(items, sortField, [sortDirection]).map(
     (item, index): JSX.Element => {
       return (
         <ListItem
-          key={`${_.get(item, 'title')}-${index}`}
-          col1={_.get(item, 'title')}
-          col2={_.get(item, 'theme')}
-          col3={_.get(item, 'valid')}
-          status={_.get(item, 'status')}
+          key={`${_.get(item, 'uri')}-${index}`}
+          col1={_.get(item, ['prefLabel', 'nb'])}
+          col2=""
+          col3=""
+          status="DRAFT"
           path="/tester"
         />
       );

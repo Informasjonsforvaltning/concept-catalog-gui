@@ -36,6 +36,11 @@ module.exports = {
       res.json(envObj);
     });
 
+    app.use('/mock.json', (req, res) => {
+      let jsonObj = require('../src/mock/concepts.json');
+      res.json(jsonObj);
+    });
+
     if (!env.production) {
       const compiler = webpack(config);
       app.use(

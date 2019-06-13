@@ -32,4 +32,4 @@ services:
     volumes:
       - ./src:/usr/src/app/src
     environment:
-      - CONCEPT_REGISTRATION_API=http://localhost:8083/
+      - CONCEPT_REGISTRATION_API=/

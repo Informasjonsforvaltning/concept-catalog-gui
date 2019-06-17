@@ -6,9 +6,9 @@ import { localization } from '../../../../lib/localization';
 import './list-item.scss';
 
 interface Props {
-  col1: string;
-  col2: string;
-  col3: string;
+  col1: string | null;
+  col2: string | null;
+  col3: string | null;
   status: string;
   path: string;
 }

@@ -5,6 +5,7 @@ import { Header } from '../components/app-header/app-header.component';
 import { Footer } from '../components/app-footer/app-footer.component';
 
 import { routeConfig } from './routeConfig';
+import { Breadcrumbs } from './breadcrumbs/breadcrumbs.component';
 import { Hello } from '../components/Hello';
 
 import '../assets/style/bootstrap-override.scss';
@@ -20,6 +21,7 @@ export const App: FunctionComponent = (): JSX.Element => (
   <Router>
     <div className="d-flex flex-column site">
       <Header />
+      <Breadcrumbs />
       <div className="site-content d-flex flex-column pt-5">
         <Switch>
           {routeConfig.map((route, i) => (

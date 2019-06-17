@@ -12,5 +12,8 @@ export const en = {
   informationText: 'This is a collaborative project between Brønnøysundregistrene, Difi and SKATE government agencies.',
   mail: 'fellesdatakatalog@brreg.no',
   privacy: ' and privacy',
-  emailAddress: 'Mailaddress'
+  emailAddress: 'Mailaddress',
+  breadCrumbsAllCatalogs: 'All catalogs',
+  breadCrumbsBackToCatalog: 'Back to registration',
+  breadCrumbsPublisherList: "{0}'s descriptions"
 };

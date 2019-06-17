@@ -1,34 +1,13 @@
-import React, { FunctionComponent } from 'react';
+import _ from 'lodash';
+import { compose, withProps } from 'recompose';
 
-import { ConceptList } from './concept-list/concept-list.component';
+import { ConceptListPagePure } from './concept-list-page-pure';
+import { conceptListResolver } from './concept-list-resolver';
 
-const mockData = [
-  {
-    title: 'adressenummerx',
-    theme: 'Økonomi',
-    valid: 'Gyldig',
-    status: 'DRAFT'
-  },
-  {
-    title: 'ansatt',
-    theme: 'HR',
-    valid: 'Gyldig',
-    status: 'PUBLISH'
-  },
-  {
-    title: 'arkiv',
-    theme: 'IKT',
-    valid: 'Gyldig',
-    status: 'DRAFT'
-  }
-];
+const mapRouteParams = withProps(({ match: { params } }) => _.pick(params, 'catalogId'));
 
-export const ConceptListPage: FunctionComponent = (): JSX.Element => {
-  return (
-    <div className="container">
-      <div className="row mb-2">
-        <ConceptList items={mockData} />
-      </div>
-    </div>
-  );
-};
+const enhance = compose(
+  mapRouteParams,
+  conceptListResolver
+);
+export const ConceptListPage = enhance(ConceptListPagePure);

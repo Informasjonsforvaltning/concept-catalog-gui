@@ -1,10 +1,11 @@
 import React, { FunctionComponent } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import _ from 'lodash';
 import { Header } from '../components/app-header/app-header.component';
 import { Footer } from '../components/app-footer/app-footer.component';
 
+import { routeConfig } from './routeConfig';
 import { Hello } from '../components/Hello';
-import { ConceptListPage } from '../pages/concept-list-page/concept-list-page';
 
 import '../assets/style/bootstrap-override.scss';
 import 'designsystemet/fdk-designsystem-bootstrap4/scss/helper.scss';
@@ -21,8 +22,9 @@ export const App: FunctionComponent = (): JSX.Element => (
       <Header />
       <div className="site-content d-flex flex-column pt-5">
         <Switch>
-          <Route path="/" component={ConceptListPage} exact={true} />
-          <Route path="/list" component={ConceptListPage} exact={true} />
+          {routeConfig.map((route, i) => (
+            <Route key={`${i}-${_.get(route, 'path', '')}`} {...route} />
+          ))}
         </Switch>
       </div>
       <Footer />

@@ -31,5 +31,3 @@ services:
       - "8083:3111"
     volumes:
       - ./src:/usr/src/app/src
-    environment:
-      - CONCEPT_REGISTRATION_API=/

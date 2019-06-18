@@ -4,7 +4,7 @@ import { ConceptList } from './concept-list/concept-list.component';
 
 const mockData = [
   {
-    title: 'adressenummer',
+    title: 'adressenummerx',
     theme: 'Økonomi',
     valid: 'Gyldig',
     status: 'DRAFT'

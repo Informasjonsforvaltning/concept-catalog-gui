@@ -2,7 +2,7 @@
 
 i=0
 
-docker_apps="concept-client"
+docker_apps="concept-catalogue-gui"
 
 for docker_app in $docker_apps; do
     i=$((i+1))

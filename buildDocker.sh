@@ -25,7 +25,7 @@ echo "SECONDS"
 echo $SECONDS
 
 echo "Start build in docker image";
-docker build -t dcatno/concept-client:latest .
+docker build -t dcatno/concept-catalogue-gui:latest .
 
 echo "SECONDS"
 echo $SECONDS

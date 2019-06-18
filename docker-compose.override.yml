@@ -13,7 +13,7 @@ services:
 
   ### java modules
 
-  concept-registration:
+  concept-catalogue:
     ports:
       - "8100:8080"
     environment:
@@ -24,7 +24,7 @@ services:
 
   ### nodejs modules
 
-  concept-client:
+  concept-catalogue-gui:
     build: ./
     command: npm start
     ports:

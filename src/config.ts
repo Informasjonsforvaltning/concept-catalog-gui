@@ -7,6 +7,9 @@ export interface Config {
   publisherApi: {
     host: string;
   };
+  registrationHost: {
+    hostname: string;
+  };
 }
 
 const createConfig = (env): Config => {
@@ -16,6 +19,9 @@ const createConfig = (env): Config => {
     },
     publisherApi: {
       host: env.PUBLISHER_API || '/'
+    },
+    registrationHost: {
+      hostname: env.REGISTRATION_HOSTNAME || 'registrering.fellesdatakatalog.brreg.no'
     }
   };
 };

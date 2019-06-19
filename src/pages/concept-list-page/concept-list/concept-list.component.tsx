@@ -8,6 +8,7 @@ import { ListItem } from './list-item/list-item.component';
 import { SortButtons } from '../../../components/sort-button/sort-button.component';
 import './concept-list.scss';
 
+
 interface Props {
   items: ListItemInterface[];
 }

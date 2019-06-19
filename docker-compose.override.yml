@@ -32,4 +32,5 @@ services:
     volumes:
       - ./src:/usr/src/app/src
     environment:
-      - PUBLISHER_API=https://www.fellesdatakatalog.brreg.no
+      - PUBLISHER_API=https://www.ut1.fellesdatakatalog.brreg.no
+      - PUBLISHER_DATA_AUTHORIZATION=Basic ZmRrOkJSUkVH

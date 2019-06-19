@@ -31,6 +31,7 @@ module.exports = {
       const vars = [
         'CONCEPT_REGISTRATION_API',
         'PUBLISHER_API',
+        'PUBLISHER_DATA_AUTHORIZATION',
         'REGISTRATION_HOSTNAME'
       ];
       const values = vars.map(varName => process.env[varName]);

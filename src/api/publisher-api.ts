@@ -1,7 +1,10 @@
 import url from 'url';
 
 const publisherApiConfig = {
-  host: ''
+  host: '',
+  headers: {
+    authorization: ''
+  }
 };
 
 export const configurePublisherApi = newRegistrationApiConfig =>
@@ -22,6 +25,14 @@ export const publisherApi = (method, path, jsonBody?) => {
   if (jsonBody) {
     Object.assign(headers, { 'Content-Type': 'application/json' });
   }
+
+  const {
+    headers: { authorization }
+  } = publisherApiConfig;
+  if (authorization) {
+    Object.assign(headers, { authorization });
+  }
+
   const body = jsonBody && JSON.stringify(jsonBody);
   return fetch(resolveUrl(path), { method, headers, body }).then(validateResponse);
 };

@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ListItem with status DRAFT 1`] = `
+<Link
+  className="row fdk-list-item"
+  to="/tester"
+>
+  <span
+    className="col-3"
+  >
+    column1
+  </span>
+  <span
+    className="col-3"
+  >
+    column2
+  </span>
+  <span
+    className="col-3"
+  >
+    column3
+  </span>
+  <span
+    className="col-3"
+  >
+    <i
+      className="fa fa-circle mr-2 d-none d-sm-inline fdk-color3"
+    />
+    <span>
+      Utkast
+    </span>
+  </span>
+</Link>
+`;
+
+exports[`should render ListItem with status PUBLISH 1`] = `
+<Link
+  className="row fdk-list-item"
+  to="/tester"
+>
+  <span
+    className="col-3"
+  >
+    column1
+  </span>
+  <span
+    className="col-3"
+  >
+    column2
+  </span>
+  <span
+    className="col-3"
+  >
+    column3
+  </span>
+  <span
+    className="col-3"
+  >
+    <i
+      className="fa fa-circle mr-2 d-none d-sm-inline fdk-color-cta"
+    />
+    <span>
+      Published
+    </span>
+  </span>
+</Link>
+`;

@@ -1,4 +1,5 @@
 export const nb = {
+  addNewConcept: 'Legg til nytt begrep',
   title: 'Registrering av begreper',
   draft: 'Utkast',
   published: 'Published',

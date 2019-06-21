@@ -2,4 +2,24 @@
   background-color: transparent;
   border: 0;
   padding: 0 0.5em;
+  height: 1rem;
+  i {
+    line-height: 20%;
+    position: relative;
+    &:before {
+      position: absolute;
+    }
+  }
+  .fa-sort-up {
+    line-height: 20%;
+    position: relative;
+    &:before {
+      top: 0;
+    }
+  }
+  .fa-sort-down {
+    &:before {
+      bottom: 0;
+    }
+  }
 }

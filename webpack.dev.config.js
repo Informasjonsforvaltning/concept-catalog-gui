@@ -27,7 +27,7 @@ module.exports = {
         loader: 'url-loader?limit=10000&mimetype=application/font-woff'
       },
       {
-        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader'
       },
       {
@@ -42,6 +42,17 @@ module.exports = {
       {
         test: /\.(ts|tsx)$/,
         loader: 'ts-loader'
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        issuer: {
+          test: /\.tsx?$/
+        },
+        use: ['babel-loader', '@svgr/webpack', 'url-loader']
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader'
       }
     ]
   },

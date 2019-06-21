@@ -24,11 +24,20 @@ npm run build
 * https://github.com/microsoft/TypeScript-React-Starter
 * https://hackernoon.com/react-with-typescript-and-webpack-654f93f34db6
 
-## Enter container
-docker-compose exec concept-client sh
+## exec/run container
+* docker-compose exec concept-catalogue-gui sh
+* docker-compose exec concept-catalogue-gui sh
+
+## Log from container
+docker-compose logs -f concept-catalogue-gui
+
+## Build in container
+docker-compose down ; 
+docker-compose build concept-catalogue-gui ; 
+docker-compose up -d
 
 ## Run command in container
-docker-compose exec concept-client sh -c "pm2 restart stop
+docker-compose exec concept-catalogue-gui sh -c "pm2 restart stop
 
 ## Editing server/view/index.ejs
 For changes to take effect you need to delete the concept-client image and restart it.

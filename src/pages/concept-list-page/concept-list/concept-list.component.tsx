@@ -3,13 +3,12 @@ import _ from 'lodash';
 
 import { localization } from '../../../lib/localization';
 import { getTranslateText } from '../../../lib/translateText';
-import { ListItem as ListItemInterface } from '../../../domain/ListItem';
 import { ListItem } from './list-item/list-item.component';
 import { SortButtons } from '../../../components/sort-button/sort-button.component';
 import './concept-list.scss';
 
 interface Props {
-  items: ListItemInterface[];
+  items: any;
 }
 
 const renderListHeader = (sortField, sortDirection, onSortField): JSX.Element => (

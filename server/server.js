@@ -39,7 +39,7 @@ module.exports = {
       res.json(envObj);
     });
 
-    app.use('/mock.json', (req, res) => {
+    app.use('/begreper', (req, res) => {
       let jsonObj = require('../src/mock/concepts.json');
       res.json(jsonObj);
     });

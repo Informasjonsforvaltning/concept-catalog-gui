@@ -1,431 +1,429 @@
-{
-  "concepts": [
-    {
-      "id": "75b8cede-953e-44ea-8b56-d7a1c62e4536",
-      "uri": "https://fellesdatakatalog.brreg.no/api/concepts/75b8cede-953e-44ea-8b56-d7a1c62e4536",
-      "identifier": "http://begrepskatalogen/begrep/5e20d184-07df-11e7-9a7f-005056821322",
-      "definition": {
-        "text": {
-          "nb": "manglende oppfyllelse av et krav"
-        },
-        "source": {
-          "prefLabel": {
-            "nb": "NS-EN ISO 9000:2015"
-          }
-        }
+[
+  {
+    "id": "75b8cede-953e-44ea-8b56-d7a1c62e4536",
+    "uri": "https://fellesdatakatalog.brreg.no/api/concepts/75b8cede-953e-44ea-8b56-d7a1c62e4536",
+    "identifier": "http://begrepskatalogen/begrep/5e20d184-07df-11e7-9a7f-005056821322",
+    "definition": {
+      "text": {
+        "nb": "manglende oppfyllelse av et krav"
       },
-      "subject": {
-        "nb": "Kvalitetsstyring"
-      },
-      "prefLabel": {
-        "nb": "avvik"
-      },
-      "altLabel": [],
-      "hiddenLabel": [],
-      "contactPoint": {
-        "email": "begrepskatalogen@skatteetaten.no"
-      },
-      "publisher": {
-        "uri": "http://data.brreg.no/enhetsregisteret/enhet/974761076",
-        "name": "SKATTEETATEN",
-        "orgPath": "/STAT/972417807/974761076",
+      "source": {
         "prefLabel": {
-          "no": "SKATTEETATEN"
+          "nb": "NS-EN ISO 9000:2015"
         }
-      },
-      "harvest": {
-        "firstHarvested": "2019-04-29T12:17:24.083+0000",
-        "lastHarvested": "2019-05-08T22:00:24.441+0000"
       }
     },
-    {
-      "id": "8d641622-9bb9-4316-b2ab-b27e083f893f",
-      "uri": "https://fellesdatakatalog.brreg.no/api/concepts/8d641622-9bb9-4316-b2ab-b27e083f893f",
-      "identifier": "http://data.brreg.no/begrep/28296",
-      "definition": {
-        "text": {
-          "nb": "organisatorisk enhet eller person som danner arkiv som ledd i sin virksomhet"
-        },
-        "remark": {
-          "nb": "En arkivskaper som er en organisatorisk enhet, kan være et offentlig organ, en bedrift, en institusjon, en stiftelse og så videre eller en del av en slik enhet. En organisatorisk enhet kan være én arkivskaper og dermed ha ett arkiv (sentralarkiv), eller den kan ha flere arkivskapere (avdelinger, etater og så videre) som skaper hver sitt arkiv (underarkiver). "
-        },
-        "source": {
-          "prefLabel": {
-            "nb": "Arkivverket (2016) Noark5-standarden [Internett]. Versjon 4.0 Standard for elektronisk arkiv. Tilgjengelig fra https://www.arkivverket.no/ [Lest 10. januar 2018]"
-          }
-        }
-      },
-      "subject": {
-        "nb": "Arkiv"
-      },
+    "subject": {
+      "nb": "Kvalitetsstyring"
+    },
+    "prefLabel": {
+      "nb": "avvik"
+    },
+    "altLabel": [],
+    "hiddenLabel": [],
+    "contactPoint": {
+      "email": "begrepskatalogen@skatteetaten.no"
+    },
+    "publisher": {
+      "uri": "http://data.brreg.no/enhetsregisteret/enhet/974761076",
+      "name": "SKATTEETATEN",
+      "orgPath": "/STAT/972417807/974761076",
       "prefLabel": {
-        "nb": "arkivskaper"
-      },
-      "altLabel": [],
-      "hiddenLabel": [],
-      "contactPoint": {
-        "email": "informasjonsforvaltning@brreg.no",
-        "telephone": "+4775007500"
-      },
-      "example": {
-        "no": "Brønnøysundregistrene er et eksempel på en arkivskaper."
-      },
-      "publisher": {
-        "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
-        "name": "REGISTERENHETEN I BRØNNØYSUND",
-        "orgPath": "/STAT/912660680/974760673",
-        "prefLabel": {
-          "no": "Brønnøysundregistrene"
-        }
-      },
-      "harvest": {
-        "firstHarvested": "2019-04-02T10:00:03.159+0000",
-        "lastHarvested": "2019-06-13T10:00:00.939+0000"
+        "no": "SKATTEETATEN"
       }
     },
-    {
-      "id": "18701034-85f7-4cb2-accf-5b4d285e5440",
-      "uri": "https://fellesdatakatalog.brreg.no/api/concepts/18701034-85f7-4cb2-accf-5b4d285e5440",
-      "identifier": "http://data.brreg.no/begrep/53615",
-      "definition": {
-        "text": {
-          "nb": "løpende nummer for hver registrering i Løsøreregisteret"
-        },
-        "remark": {
-          "nb": "Et dokumentnummer består av årstall og automatisk tildelt løpenummer. "
-        },
-        "source": {
-          "prefLabel": {
-            "nb": "Forskrift om tinglysing § 11 tredje ledd og § 16 annet ledd bokstav e). _Forskrift 3. november 1995 nr. 875 om tinglysing_ https://lovdata.no/forskrift/1995-11-03-875"
-          }
-        }
-      },
-      "subject": {
-        "nb": "Tinglysing"
-      },
-      "prefLabel": {
-        "nb": "dokumentnummer"
-      },
-      "altLabel": [
-        {
-          "nb": "dagboknummer"
-        }
-      ],
-      "hiddenLabel": [],
-      "contactPoint": {
-        "email": "informasjonsforvaltning@brreg.no",
-        "telephone": "+4775007500"
-      },
-      "example": {
-        "no": "2018000068."
-      },
-      "publisher": {
-        "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
-        "name": "REGISTERENHETEN I BRØNNØYSUND",
-        "orgPath": "/STAT/912660680/974760673",
-        "prefLabel": {
-          "no": "Brønnøysundregistrene"
-        }
-      },
-      "harvest": {
-        "firstHarvested": "2019-04-02T10:00:03.159+0000",
-        "lastHarvested": "2019-06-13T10:00:00.823+0000"
-      }
-    },
-    {
-      "id": "0c5d72fe-1c08-4e2f-9772-825f20921ab0",
-      "uri": "https://fellesdatakatalog.brreg.no/api/concepts/0c5d72fe-1c08-4e2f-9772-825f20921ab0",
-      "identifier": "http://data.brreg.no/begrep/54078",
-      "definition": {
-        "text": {
-          "nb": "gruppering av produkt som indikerer hva som er formålet med produktet."
-        },
-        "remark": {
-          "nb": "De ulike produktene har ulike formål. Noen skal brukes for å bekrefte opplysninger som er registrert, andre skal bare informere om noe osv."
-        },
-        "source": {
-          "prefLabel": {
-            "nb": "Egendefinert"
-          }
-        }
-      },
-      "subject": {
-        "nb": "Tilgjengeliggjøring"
-      },
-      "prefLabel": {
-        "nb": "produkttype"
-      },
-      "altLabel": [],
-      "hiddenLabel": [],
-      "contactPoint": {
-        "email": "informasjonsforvaltning@brreg.no",
-        "telephone": "+4775007500"
-      },
-      "example": {
-        "no": "Attester, vedtaksbrev, informasjonsbrev, bekreftelse, kopi, datasett "
-      },
-      "publisher": {
-        "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
-        "name": "REGISTERENHETEN I BRØNNØYSUND",
-        "orgPath": "/STAT/912660680/974760673",
-        "prefLabel": {
-          "no": "Brønnøysundregistrene"
-        }
-      },
-      "harvest": {
-        "firstHarvested": "2019-04-02T10:00:03.159+0000",
-        "lastHarvested": "2019-06-13T10:00:00.838+0000"
-      }
-    },
-    {
-      "id": "13dbd4a3-4aff-498c-abdd-61d8f7d6fc40",
-      "uri": "https://fellesdatakatalog.brreg.no/api/concepts/13dbd4a3-4aff-498c-abdd-61d8f7d6fc40",
-      "identifier": "http://data.brreg.no/begrep/48786",
-      "definition": {
-        "text": {
-          "nb": "ethvert dokument som gir uttrykk for en panterett, stiftet ved avtale"
-        },
-        "remark": {
-          "nb": "Pantedokumentet kan være et gjeldsbrev som i så fall er undertegnet av den som har lånt kapitalen, skyldneren, og er en sikkerhet for at den som har lånt ut kapitalen, panthaveren, skal få tilbake kapitalen. I Løsøreregisteret tinglyses det pantedokumenter med pant i driftstilbehør, jernbanemateriell, varelager, fiskeredskaper, motorvogn og anleggsmaskiner og redskaper, besetning, avling mv. i landbruksnæring."
-        },
-        "source": {
-          "prefLabel": {
-            "nb": "Tinglysingsloven § 36. _Lov 7. juni 1935 nr. 2 om tinglysing_ https://lovdata.no/NL/lov/1935-06-07-2/ [Lest: 25.05.2018]"
-          }
-        }
-      },
-      "subject": {
-        "nb": "Tinglysing"
-      },
-      "prefLabel": {
-        "nb": "pantedokument"
-      },
-      "altLabel": [],
-      "hiddenLabel": [],
-      "contactPoint": {
-        "email": "informasjonsforvaltning@brreg.no",
-        "telephone": "+4775007500"
-      },
-      "publisher": {
-        "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
-        "name": "REGISTERENHETEN I BRØNNØYSUND",
-        "orgPath": "/STAT/912660680/974760673",
-        "prefLabel": {
-          "no": "Brønnøysundregistrene"
-        }
-      },
-      "harvest": {
-        "firstHarvested": "2019-04-02T10:00:03.159+0000",
-        "lastHarvested": "2019-06-13T10:00:00.556+0000"
-      }
-    },
-    {
-      "id": "d45424f6-deb1-4768-8bfe-864b71b25b0b",
-      "uri": "https://fellesdatakatalog.brreg.no/api/concepts/d45424f6-deb1-4768-8bfe-864b71b25b0b",
-      "identifier": "http://data.brreg.no/begrep/51736",
-      "definition": {
-        "text": {
-          "nb": "en bokstav og fire siffer som entydig identifiserer den enkelte bruksenheten innenfor en adresserbar bygning eller bygningsdel"
-        },
-        "remark": {
-          "nb": "Alle leiligheter skal ha sin egen adresse, på lik linje med eneboliger."
-        },
-        "source": {
-          "prefLabel": {
-            "nb": "Direktoratet for forvaltning og IKT. _Adresse - felles informasjonsmodell_. Oppdatert 6. desember 2017. Tilgjengelig fra: https://www.difi.no/fagomrader-og-tjenester/digitalisering-og-samordning/nasjonal-arkitektur/informasjonsforvaltning/adresse-felles-informasjonsmodell"
-          }
-        }
-      },
-      "subject": {
-        "nb": "Adresse"
-      },
-      "prefLabel": {
-        "nb": "bruksenhetsnummer"
-      },
-      "altLabel": [
-        {
-          "nb": "bolignummer"
-        }
-      ],
-      "hiddenLabel": [],
-      "contactPoint": {
-        "email": "informasjonsforvaltning@brreg.no",
-        "telephone": "+4775007500"
-      },
-      "publisher": {
-        "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
-        "name": "REGISTERENHETEN I BRØNNØYSUND",
-        "orgPath": "/STAT/912660680/974760673",
-        "prefLabel": {
-          "no": "Brønnøysundregistrene"
-        }
-      },
-      "harvest": {
-        "firstHarvested": "2019-04-02T10:00:03.159+0000",
-        "lastHarvested": "2019-06-13T10:00:00.616+0000"
-      }
-    },
-    {
-      "id": "8906d79d-8814-4eab-bd4a-ee8cf8f67ad5",
-      "uri": "https://fellesdatakatalog.brreg.no/api/concepts/8906d79d-8814-4eab-bd4a-ee8cf8f67ad5",
-      "identifier": "http://data.brreg.no/begrep/55559",
-      "definition": {
-        "text": {
-          "nb": "nedjustering av pantebeløp"
-        },
-        "source": {
-          "prefLabel": {
-            "nb": "Egendefinert"
-          }
-        }
-      },
-      "subject": {
-        "nb": "Tinglysing"
-      },
-      "prefLabel": {
-        "nb": "nedkvittering"
-      },
-      "altLabel": [],
-      "hiddenLabel": [],
-      "contactPoint": {
-        "email": "informasjonsforvaltning@brreg.no",
-        "telephone": "+4775007500"
-      },
-      "example": {
-        "no": "I praksis skjer dette ved at man for eksempel nedbetaler et billån. Rettighetshaver kan da sende inn en endring til Løsøreregisteret  om at pantebeløpet skal nedkvitteres. "
-      },
-      "publisher": {
-        "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
-        "name": "REGISTERENHETEN I BRØNNØYSUND",
-        "orgPath": "/STAT/912660680/974760673",
-        "prefLabel": {
-          "no": "Brønnøysundregistrene"
-        }
-      },
-      "harvest": {
-        "firstHarvested": "2019-04-02T10:00:03.159+0000",
-        "lastHarvested": "2019-06-13T10:00:00.713+0000"
-      }
-    },
-    {
-      "id": "de5b25ad-521f-4fbd-af51-7486129c6a6f",
-      "uri": "https://fellesdatakatalog.brreg.no/api/concepts/de5b25ad-521f-4fbd-af51-7486129c6a6f",
-      "identifier": "http://data.brreg.no/begrep/43615",
-      "definition": {
-        "text": {
-          "nb": "informasjon som en avsender trenger for å kommunisere med en mottaker "
-        },
-        "source": {
-          "prefLabel": {
-            "nb": "Egendefinert"
-          }
-        }
-      },
-      "subject": {
-        "nb": "Enhetsregisteret"
-      },
-      "prefLabel": {
-        "nb": "kontaktinformasjon"
-      },
-      "altLabel": [],
-      "hiddenLabel": [],
-      "contactPoint": {
-        "email": "informasjonsforvaltning@brreg.no",
-        "telephone": "+4775007500"
-      },
-      "publisher": {
-        "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
-        "name": "REGISTERENHETEN I BRØNNØYSUND",
-        "orgPath": "/STAT/912660680/974760673",
-        "prefLabel": {
-          "no": "Brønnøysundregistrene"
-        }
-      },
-      "harvest": {
-        "firstHarvested": "2019-05-22T16:00:00.593+0000",
-        "lastHarvested": "2019-06-13T10:00:00.598+0000"
-      }
-    },
-    {
-      "id": "95d61746-73c5-41f3-a72d-ce4b583609c1",
-      "uri": "https://fellesdatakatalog.brreg.no/api/concepts/95d61746-73c5-41f3-a72d-ce4b583609c1",
-      "identifier": "http://data.brreg.no/begrep/71971",
-      "definition": {
-        "text": {
-          "nb": "det året en person er født"
-        },
-        "source": {
-          "prefLabel": {
-            "nb": "Egendefinert"
-          }
-        }
-      },
-      "subject": {
-        "nb": "Person"
-      },
-      "prefLabel": {
-        "nb": "fødselsår"
-      },
-      "altLabel": [],
-      "hiddenLabel": [],
-      "contactPoint": {
-        "email": "informasjonsforvaltning@brreg.no",
-        "telephone": "+4775007500"
-      },
-      "publisher": {
-        "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
-        "name": "REGISTERENHETEN I BRØNNØYSUND",
-        "orgPath": "/STAT/912660680/974760673",
-        "prefLabel": {
-          "no": "Brønnøysundregistrene"
-        }
-      },
-      "harvest": {
-        "firstHarvested": "2019-05-26T22:00:00.573+0000",
-        "lastHarvested": "2019-06-13T10:00:00.633+0000"
-      }
-    },
-    {
-      "id": "1c770979-34b0-439c-a7cb-adacb3619927",
-      "uri": "https://fellesdatakatalog.brreg.no/api/concepts/1c770979-34b0-439c-a7cb-adacb3619927",
-      "identifier": "http://data.brreg.no/begrep/41236",
-      "definition": {
-        "text": {
-          "nb": "den som sender et brev, en pakke, en e-post, en elektronisk melding, en SMS eller lignende"
-        },
-        "remark": {
-          "nb": "I Brønnøysundregistrenes felles arkiv (Public 360) er det som regel foretaket eller personen som har «signert» meldingen vi mottar, vi legger til grunn for å fastsette avsender. Dersom slike opplysninger mangler, kan e-postadressen føres opp som avsender."
-        },
-        "source": {
-          "prefLabel": {
-            "nb": "Arkivverket (2016) Noark5-standarden [Internett]. Versjon 4.0 Standard for elektronisk arkiv. Tilgjengelig fra https://www.arkivverket.no/ [Lest 10. januar 2018]"
-          }
-        }
-      },
-      "subject": {
-        "nb": "Arkiv"
-      },
-      "prefLabel": {
-        "nb": "avsender"
-      },
-      "altLabel": [],
-      "hiddenLabel": [],
-      "contactPoint": {
-        "email": "informasjonsforvaltning@brreg.no",
-        "telephone": "+4775007500"
-      },
-      "publisher": {
-        "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
-        "name": "REGISTERENHETEN I BRØNNØYSUND",
-        "orgPath": "/STAT/912660680/974760673",
-        "prefLabel": {
-          "no": "Brønnøysundregistrene"
-        }
-      },
-      "harvest": {
-        "firstHarvested": "2019-04-02T10:00:03.159+0000",
-        "lastHarvested": "2019-06-13T10:00:01.207+0000"
-      }
+    "harvest": {
+      "firstHarvested": "2019-04-29T12:17:24.083+0000",
+      "lastHarvested": "2019-05-08T22:00:24.441+0000"
     }
-  ]
-}
+  },
+  {
+    "id": "8d641622-9bb9-4316-b2ab-b27e083f893f",
+    "uri": "https://fellesdatakatalog.brreg.no/api/concepts/8d641622-9bb9-4316-b2ab-b27e083f893f",
+    "identifier": "http://data.brreg.no/begrep/28296",
+    "definition": {
+      "text": {
+        "nb": "organisatorisk enhet eller person som danner arkiv som ledd i sin virksomhet"
+      },
+      "remark": {
+        "nb": "En arkivskaper som er en organisatorisk enhet, kan være et offentlig organ, en bedrift, en institusjon, en stiftelse og så videre eller en del av en slik enhet. En organisatorisk enhet kan være én arkivskaper og dermed ha ett arkiv (sentralarkiv), eller den kan ha flere arkivskapere (avdelinger, etater og så videre) som skaper hver sitt arkiv (underarkiver). "
+      },
+      "source": {
+        "prefLabel": {
+          "nb": "Arkivverket (2016) Noark5-standarden [Internett]. Versjon 4.0 Standard for elektronisk arkiv. Tilgjengelig fra https://www.arkivverket.no/ [Lest 10. januar 2018]"
+        }
+      }
+    },
+    "subject": {
+      "nb": "Arkiv"
+    },
+    "prefLabel": {
+      "nb": "arkivskaper"
+    },
+    "altLabel": [],
+    "hiddenLabel": [],
+    "contactPoint": {
+      "email": "informasjonsforvaltning@brreg.no",
+      "telephone": "+4775007500"
+    },
+    "example": {
+      "no": "Brønnøysundregistrene er et eksempel på en arkivskaper."
+    },
+    "publisher": {
+      "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
+      "name": "REGISTERENHETEN I BRØNNØYSUND",
+      "orgPath": "/STAT/912660680/974760673",
+      "prefLabel": {
+        "no": "Brønnøysundregistrene"
+      }
+    },
+    "harvest": {
+      "firstHarvested": "2019-04-02T10:00:03.159+0000",
+      "lastHarvested": "2019-06-13T10:00:00.939+0000"
+    }
+  },
+  {
+    "id": "18701034-85f7-4cb2-accf-5b4d285e5440",
+    "uri": "https://fellesdatakatalog.brreg.no/api/concepts/18701034-85f7-4cb2-accf-5b4d285e5440",
+    "identifier": "http://data.brreg.no/begrep/53615",
+    "definition": {
+      "text": {
+        "nb": "løpende nummer for hver registrering i Løsøreregisteret"
+      },
+      "remark": {
+        "nb": "Et dokumentnummer består av årstall og automatisk tildelt løpenummer. "
+      },
+      "source": {
+        "prefLabel": {
+          "nb": "Forskrift om tinglysing § 11 tredje ledd og § 16 annet ledd bokstav e). _Forskrift 3. november 1995 nr. 875 om tinglysing_ https://lovdata.no/forskrift/1995-11-03-875"
+        }
+      }
+    },
+    "subject": {
+      "nb": "Tinglysing"
+    },
+    "prefLabel": {
+      "nb": "dokumentnummer"
+    },
+    "altLabel": [
+      {
+        "nb": "dagboknummer"
+      }
+    ],
+    "hiddenLabel": [],
+    "contactPoint": {
+      "email": "informasjonsforvaltning@brreg.no",
+      "telephone": "+4775007500"
+    },
+    "example": {
+      "no": "2018000068."
+    },
+    "publisher": {
+      "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
+      "name": "REGISTERENHETEN I BRØNNØYSUND",
+      "orgPath": "/STAT/912660680/974760673",
+      "prefLabel": {
+        "no": "Brønnøysundregistrene"
+      }
+    },
+    "harvest": {
+      "firstHarvested": "2019-04-02T10:00:03.159+0000",
+      "lastHarvested": "2019-06-13T10:00:00.823+0000"
+    }
+  },
+  {
+    "id": "0c5d72fe-1c08-4e2f-9772-825f20921ab0",
+    "uri": "https://fellesdatakatalog.brreg.no/api/concepts/0c5d72fe-1c08-4e2f-9772-825f20921ab0",
+    "identifier": "http://data.brreg.no/begrep/54078",
+    "definition": {
+      "text": {
+        "nb": "gruppering av produkt som indikerer hva som er formålet med produktet."
+      },
+      "remark": {
+        "nb": "De ulike produktene har ulike formål. Noen skal brukes for å bekrefte opplysninger som er registrert, andre skal bare informere om noe osv."
+      },
+      "source": {
+        "prefLabel": {
+          "nb": "Egendefinert"
+        }
+      }
+    },
+    "subject": {
+      "nb": "Tilgjengeliggjøring"
+    },
+    "prefLabel": {
+      "nb": "produkttype"
+    },
+    "altLabel": [],
+    "hiddenLabel": [],
+    "contactPoint": {
+      "email": "informasjonsforvaltning@brreg.no",
+      "telephone": "+4775007500"
+    },
+    "example": {
+      "no": "Attester, vedtaksbrev, informasjonsbrev, bekreftelse, kopi, datasett "
+    },
+    "publisher": {
+      "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
+      "name": "REGISTERENHETEN I BRØNNØYSUND",
+      "orgPath": "/STAT/912660680/974760673",
+      "prefLabel": {
+        "no": "Brønnøysundregistrene"
+      }
+    },
+    "harvest": {
+      "firstHarvested": "2019-04-02T10:00:03.159+0000",
+      "lastHarvested": "2019-06-13T10:00:00.838+0000"
+    }
+  },
+  {
+    "id": "13dbd4a3-4aff-498c-abdd-61d8f7d6fc40",
+    "uri": "https://fellesdatakatalog.brreg.no/api/concepts/13dbd4a3-4aff-498c-abdd-61d8f7d6fc40",
+    "identifier": "http://data.brreg.no/begrep/48786",
+    "definition": {
+      "text": {
+        "nb": "ethvert dokument som gir uttrykk for en panterett, stiftet ved avtale"
+      },
+      "remark": {
+        "nb": "Pantedokumentet kan være et gjeldsbrev som i så fall er undertegnet av den som har lånt kapitalen, skyldneren, og er en sikkerhet for at den som har lånt ut kapitalen, panthaveren, skal få tilbake kapitalen. I Løsøreregisteret tinglyses det pantedokumenter med pant i driftstilbehør, jernbanemateriell, varelager, fiskeredskaper, motorvogn og anleggsmaskiner og redskaper, besetning, avling mv. i landbruksnæring."
+      },
+      "source": {
+        "prefLabel": {
+          "nb": "Tinglysingsloven § 36. _Lov 7. juni 1935 nr. 2 om tinglysing_ https://lovdata.no/NL/lov/1935-06-07-2/ [Lest: 25.05.2018]"
+        }
+      }
+    },
+    "subject": {
+      "nb": "Tinglysing"
+    },
+    "prefLabel": {
+      "nb": "pantedokument"
+    },
+    "altLabel": [],
+    "hiddenLabel": [],
+    "contactPoint": {
+      "email": "informasjonsforvaltning@brreg.no",
+      "telephone": "+4775007500"
+    },
+    "publisher": {
+      "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
+      "name": "REGISTERENHETEN I BRØNNØYSUND",
+      "orgPath": "/STAT/912660680/974760673",
+      "prefLabel": {
+        "no": "Brønnøysundregistrene"
+      }
+    },
+    "harvest": {
+      "firstHarvested": "2019-04-02T10:00:03.159+0000",
+      "lastHarvested": "2019-06-13T10:00:00.556+0000"
+    }
+  },
+  {
+    "id": "d45424f6-deb1-4768-8bfe-864b71b25b0b",
+    "uri": "https://fellesdatakatalog.brreg.no/api/concepts/d45424f6-deb1-4768-8bfe-864b71b25b0b",
+    "identifier": "http://data.brreg.no/begrep/51736",
+    "definition": {
+      "text": {
+        "nb": "en bokstav og fire siffer som entydig identifiserer den enkelte bruksenheten innenfor en adresserbar bygning eller bygningsdel"
+      },
+      "remark": {
+        "nb": "Alle leiligheter skal ha sin egen adresse, på lik linje med eneboliger."
+      },
+      "source": {
+        "prefLabel": {
+          "nb": "Direktoratet for forvaltning og IKT. _Adresse - felles informasjonsmodell_. Oppdatert 6. desember 2017. Tilgjengelig fra: https://www.difi.no/fagomrader-og-tjenester/digitalisering-og-samordning/nasjonal-arkitektur/informasjonsforvaltning/adresse-felles-informasjonsmodell"
+        }
+      }
+    },
+    "subject": {
+      "nb": "Adresse"
+    },
+    "prefLabel": {
+      "nb": "bruksenhetsnummer"
+    },
+    "altLabel": [
+      {
+        "nb": "bolignummer"
+      }
+    ],
+    "hiddenLabel": [],
+    "contactPoint": {
+      "email": "informasjonsforvaltning@brreg.no",
+      "telephone": "+4775007500"
+    },
+    "publisher": {
+      "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
+      "name": "REGISTERENHETEN I BRØNNØYSUND",
+      "orgPath": "/STAT/912660680/974760673",
+      "prefLabel": {
+        "no": "Brønnøysundregistrene"
+      }
+    },
+    "harvest": {
+      "firstHarvested": "2019-04-02T10:00:03.159+0000",
+      "lastHarvested": "2019-06-13T10:00:00.616+0000"
+    }
+  },
+  {
+    "id": "8906d79d-8814-4eab-bd4a-ee8cf8f67ad5",
+    "uri": "https://fellesdatakatalog.brreg.no/api/concepts/8906d79d-8814-4eab-bd4a-ee8cf8f67ad5",
+    "identifier": "http://data.brreg.no/begrep/55559",
+    "definition": {
+      "text": {
+        "nb": "nedjustering av pantebeløp"
+      },
+      "source": {
+        "prefLabel": {
+          "nb": "Egendefinert"
+        }
+      }
+    },
+    "subject": {
+      "nb": "Tinglysing"
+    },
+    "prefLabel": {
+      "nb": "nedkvittering"
+    },
+    "altLabel": [],
+    "hiddenLabel": [],
+    "contactPoint": {
+      "email": "informasjonsforvaltning@brreg.no",
+      "telephone": "+4775007500"
+    },
+    "example": {
+      "no": "I praksis skjer dette ved at man for eksempel nedbetaler et billån. Rettighetshaver kan da sende inn en endring til Løsøreregisteret  om at pantebeløpet skal nedkvitteres. "
+    },
+    "publisher": {
+      "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
+      "name": "REGISTERENHETEN I BRØNNØYSUND",
+      "orgPath": "/STAT/912660680/974760673",
+      "prefLabel": {
+        "no": "Brønnøysundregistrene"
+      }
+    },
+    "harvest": {
+      "firstHarvested": "2019-04-02T10:00:03.159+0000",
+      "lastHarvested": "2019-06-13T10:00:00.713+0000"
+    }
+  },
+  {
+    "id": "de5b25ad-521f-4fbd-af51-7486129c6a6f",
+    "uri": "https://fellesdatakatalog.brreg.no/api/concepts/de5b25ad-521f-4fbd-af51-7486129c6a6f",
+    "identifier": "http://data.brreg.no/begrep/43615",
+    "definition": {
+      "text": {
+        "nb": "informasjon som en avsender trenger for å kommunisere med en mottaker "
+      },
+      "source": {
+        "prefLabel": {
+          "nb": "Egendefinert"
+        }
+      }
+    },
+    "subject": {
+      "nb": "Enhetsregisteret"
+    },
+    "prefLabel": {
+      "nb": "kontaktinformasjon"
+    },
+    "altLabel": [],
+    "hiddenLabel": [],
+    "contactPoint": {
+      "email": "informasjonsforvaltning@brreg.no",
+      "telephone": "+4775007500"
+    },
+    "publisher": {
+      "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
+      "name": "REGISTERENHETEN I BRØNNØYSUND",
+      "orgPath": "/STAT/912660680/974760673",
+      "prefLabel": {
+        "no": "Brønnøysundregistrene"
+      }
+    },
+    "harvest": {
+      "firstHarvested": "2019-05-22T16:00:00.593+0000",
+      "lastHarvested": "2019-06-13T10:00:00.598+0000"
+    }
+  },
+  {
+    "id": "95d61746-73c5-41f3-a72d-ce4b583609c1",
+    "uri": "https://fellesdatakatalog.brreg.no/api/concepts/95d61746-73c5-41f3-a72d-ce4b583609c1",
+    "identifier": "http://data.brreg.no/begrep/71971",
+    "definition": {
+      "text": {
+        "nb": "det året en person er født"
+      },
+      "source": {
+        "prefLabel": {
+          "nb": "Egendefinert"
+        }
+      }
+    },
+    "subject": {
+      "nb": "Person"
+    },
+    "prefLabel": {
+      "nb": "fødselsår"
+    },
+    "altLabel": [],
+    "hiddenLabel": [],
+    "contactPoint": {
+      "email": "informasjonsforvaltning@brreg.no",
+      "telephone": "+4775007500"
+    },
+    "publisher": {
+      "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
+      "name": "REGISTERENHETEN I BRØNNØYSUND",
+      "orgPath": "/STAT/912660680/974760673",
+      "prefLabel": {
+        "no": "Brønnøysundregistrene"
+      }
+    },
+    "harvest": {
+      "firstHarvested": "2019-05-26T22:00:00.573+0000",
+      "lastHarvested": "2019-06-13T10:00:00.633+0000"
+    }
+  },
+  {
+    "id": "1c770979-34b0-439c-a7cb-adacb3619927",
+    "uri": "https://fellesdatakatalog.brreg.no/api/concepts/1c770979-34b0-439c-a7cb-adacb3619927",
+    "identifier": "http://data.brreg.no/begrep/41236",
+    "definition": {
+      "text": {
+        "nb": "den som sender et brev, en pakke, en e-post, en elektronisk melding, en SMS eller lignende"
+      },
+      "remark": {
+        "nb": "I Brønnøysundregistrenes felles arkiv (Public 360) er det som regel foretaket eller personen som har «signert» meldingen vi mottar, vi legger til grunn for å fastsette avsender. Dersom slike opplysninger mangler, kan e-postadressen føres opp som avsender."
+      },
+      "source": {
+        "prefLabel": {
+          "nb": "Arkivverket (2016) Noark5-standarden [Internett]. Versjon 4.0 Standard for elektronisk arkiv. Tilgjengelig fra https://www.arkivverket.no/ [Lest 10. januar 2018]"
+        }
+      }
+    },
+    "subject": {
+      "nb": "Arkiv"
+    },
+    "prefLabel": {
+      "nb": "avsender"
+    },
+    "altLabel": [],
+    "hiddenLabel": [],
+    "contactPoint": {
+      "email": "informasjonsforvaltning@brreg.no",
+      "telephone": "+4775007500"
+    },
+    "publisher": {
+      "uri": "http://data.brreg.no/enhetsregisteret/enhet/974760673",
+      "name": "REGISTERENHETEN I BRØNNØYSUND",
+      "orgPath": "/STAT/912660680/974760673",
+      "prefLabel": {
+        "no": "Brønnøysundregistrene"
+      }
+    },
+    "harvest": {
+      "firstHarvested": "2019-04-02T10:00:03.159+0000",
+      "lastHarvested": "2019-06-13T10:00:01.207+0000"
+    }
+  }
+]

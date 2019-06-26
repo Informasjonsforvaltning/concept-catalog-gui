@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import _ from 'lodash';
 import { getTranslateText } from '../../lib/translateText';
 import { ConceptList } from './concept-list/concept-list.component';
@@ -20,7 +20,7 @@ export const ConceptListPagePure = ({ concepts, publisher }: Props): JSX.Element
         <NewConceptButton />
       </div>
       <div className="mb-2">
-        <ConceptList items={_.get(concepts, 'concepts')} />
+        <ConceptList items={concepts} />
       </div>
     </div>
   );

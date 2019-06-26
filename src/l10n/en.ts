@@ -16,5 +16,8 @@ export const en = {
   emailAddress: 'Mailaddress',
   breadCrumbsAllCatalogs: 'All catalogs',
   breadCrumbsBackToCatalog: 'Back to registration',
-  breadCrumbsPublisherList: "{0}'s descriptions"
+  breadCrumbsPublisherList: "{0}'s descriptions",
+  breadCrumbRegisterNewConcept: 'Registrere ny begrepsbeskrivelse',
+  required: 'Required',
+  formTerm: 'Term, definition and source'
 };

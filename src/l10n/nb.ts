@@ -16,5 +16,8 @@ export const nb = {
   emailAddress: 'Mailadresse',
   breadCrumbsAllCatalogs: 'Alle kataloger',
   breadCrumbsBackToCatalog: 'Til oversikten',
-  breadCrumbsPublisherList: '{0} sine begrepsbeskrivelser'
+  breadCrumbsPublisherList: '{0} sine begrepsbeskrivelser',
+  breadCrumbRegisterNewConcept: 'Registrere ny begrepsbeskrivelse',
+  required: 'Obligatorisk',
+  formTerm: 'Term, definisjon og kilde'
 };

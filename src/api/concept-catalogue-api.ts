@@ -27,3 +27,5 @@ export const registrationApi = (method, path, jsonBody?) => {
 };
 
 export const registrationApiGet = path => registrationApi('GET', path);
+
+export const registrationApiPatch = (path, body) => registrationApi('PATCH', path, body);

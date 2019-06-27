@@ -17,7 +17,9 @@ export const nb = {
   breadCrumbsAllCatalogs: 'Alle kataloger',
   breadCrumbsBackToCatalog: 'Til oversikten',
   breadCrumbsPublisherList: '{0} sine omgrep',
-  breadCrumbRegisterNewConcept: 'Registrere ny begrepsbeskrivelse',
+  breadCrumbRegisterNewConcept: 'Registrere ny omgrepsskildring',
   required: 'Obligatorisk',
-  formTerm: 'Term, definisjon og kilde'
+  formTerm: 'Term, definisjon og kjelde',
+  validationMin2: 'Feltet må ha minimum to teikn.',
+  validationRequired: 'Feltet er obligatorisk.'
 };

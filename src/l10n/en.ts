@@ -19,5 +19,7 @@ export const en = {
   breadCrumbsPublisherList: "{0}'s descriptions",
   breadCrumbRegisterNewConcept: 'Registrere ny begrepsbeskrivelse',
   required: 'Required',
-  formTerm: 'Term, definition and source'
+  formTerm: 'Term, definition and source',
+  validationMin2: 'Field must have minimum two characters.',
+  validationRequired: 'Required field.'
 };

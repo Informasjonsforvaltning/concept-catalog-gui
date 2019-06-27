@@ -44,6 +44,12 @@ module.exports = {
       res.json(jsonObj);
     });
 
+    app.use('/begrep/:id', (req, res) => {
+      let jsonObj = require('../src/mock/concepts.json');
+
+      res.json(_.find(jsonObj, {id: req.params.id}));
+    });
+
     if (!env.production) {
       const compiler = webpack(config);
       app.use(

@@ -40,8 +40,8 @@ const renderListItems = (items, catalogId, sortField, sortDirection): JSX.Elemen
   if (!items) {
     return null;
   }
-  // TODO fix status, validity and path when ready from api
-  return _.orderBy(items, sortField, [sortDirection]).map(
+  // TODO fix validity
+  return _.orderBy(items, [item => _.get(item, sortField, '').toLowerCase()], [sortDirection]).map(
     (item, index): JSX.Element => {
       return (
         <ListItem

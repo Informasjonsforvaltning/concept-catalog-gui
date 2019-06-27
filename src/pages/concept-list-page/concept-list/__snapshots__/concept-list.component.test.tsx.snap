@@ -16,7 +16,7 @@ exports[`should render ConceptList 1`] = `
         Anbefalt term
       </span>
       <Component
-        field="prefLabel.nb"
+        field="anbefaltTerm"
         onSortField={[Function]}
         sortType="asc"
       />
@@ -30,7 +30,7 @@ exports[`should render ConceptList 1`] = `
         Fagområde
       </span>
       <Component
-        field="subject.nb"
+        field="fagområde"
         onSortField={[Function]}
         sortType="asc"
       />

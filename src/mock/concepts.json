@@ -427,7 +427,7 @@
     }
   },
   {
-    "id": "1c770979-34b0-439c-a7cb-adacb3619927",
+    "id": "1c770979-34b0-439c-a7cb-adacb3619929999",
     "status": "publisert",
     "anbefaltTerm": "avsender",
     "definisjon": "den som sender et brev, en pakke, en e-post, en elektronisk melding, en SMS eller lignende",
@@ -446,6 +446,28 @@
     "verdiområde": "Verdiområde lorem ipsum",
     "kontaktpunkt": "informasjonsforvaltning@brreg.no",
     "gyldigFom": "2015-03-30",
+    "forholdTilKilde": "ForholdTilKilde lorem ipsum"
+  },
+  {
+    "id": "6d770978-34b0-439c-a7cb-adacb361222888888",
+    "status": "utkast",
+    "anbefaltTerm": "dokumentnummer",
+    "definisjon": "løpende nummer for hver registrering i Løsøreregisterete",
+    "kilde": "Forskrift om tinglysing § 11 tredje ledd og § 16 annet ledd bokstav e). _Forskrift 3. november 1995 nr. 875 om tinglysing_ https://lovdata.no/forskrift/1995-11-03-875",
+    "merknad": "Lorem",
+    "ansvarligVirksomhet": {
+      "uri": "http://data.brreg.no/enhetsregisteret/enhet/910244132",
+      "id": "910244132",
+      "navn": "RAMSUND OG ROGNAN REVISJON",
+      "orgPath": "/ANNET/910244132",
+      "prefLabel": "Brønnøysundregistrene"
+    },
+    "eksempel": "Eksempel lorem ipsum.",
+    "fagområde": "Dokument",
+    "bruksområde": "Bruksområde lorem ipsum",
+    "verdiområde": "Verdiområde lorem ipsum",
+    "kontaktpunkt": "informasjonsforvaltning@brreg.no",
+    "gyldigFom": "2019-03-30",
     "forholdTilKilde": "ForholdTilKilde lorem ipsum"
   }
 ]

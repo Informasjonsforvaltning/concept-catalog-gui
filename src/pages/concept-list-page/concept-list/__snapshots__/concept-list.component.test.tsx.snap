@@ -138,9 +138,17 @@ exports[`should render ConceptList 1`] = `
     col1="avsender"
     col2="Arkiv"
     col3=""
-    key="1c770979-34b0-439c-a7cb-adacb3619927-10"
-    path="986105174/1c770979-34b0-439c-a7cb-adacb3619927"
+    key="1c770979-34b0-439c-a7cb-adacb3619929999-10"
+    path="986105174/1c770979-34b0-439c-a7cb-adacb3619929999"
     status="publisert"
+  />
+  <Component
+    col1="dokumentnummer"
+    col2="Dokument"
+    col3=""
+    key="6d770978-34b0-439c-a7cb-adacb361222888888-11"
+    path="986105174/6d770978-34b0-439c-a7cb-adacb361222888888"
+    status="utkast"
   />
 </div>
 `;

@@ -65,84 +65,82 @@ exports[`should render ConceptList 1`] = `
     </div>
   </div>
   <Component
-    col1="avvik"
-    col2="Kvalitetsstyring"
+    col1=""
+    col2=""
     col3=""
-    key="https://fellesdatakatalog.brreg.no/api/concepts/75b8cede-953e-44ea-8b56-d7a1c62e4536-0"
-    path="/75b8cede-953e-44ea-8b56-d7a1c62e4536"
-    status="DRAFT"
+    key="75b8cede-953e-44ea-8b56-d7a1c62e4536-0"
+    path="986105174/75b8cede-953e-44ea-8b56-d7a1c62e4536"
   />
   <Component
-    col1="arkivskaper"
-    col2="Arkiv"
+    col1=""
+    col2=""
     col3=""
-    key="https://fellesdatakatalog.brreg.no/api/concepts/8d641622-9bb9-4316-b2ab-b27e083f893f-1"
-    path="/8d641622-9bb9-4316-b2ab-b27e083f893f"
-    status="DRAFT"
+    key="8d641622-9bb9-4316-b2ab-b27e083f893f-1"
+    path="986105174/8d641622-9bb9-4316-b2ab-b27e083f893f"
   />
   <Component
-    col1="dokumentnummer"
-    col2="Tinglysing"
+    col1=""
+    col2=""
     col3=""
-    key="https://fellesdatakatalog.brreg.no/api/concepts/18701034-85f7-4cb2-accf-5b4d285e5440-2"
-    path="/18701034-85f7-4cb2-accf-5b4d285e5440"
-    status="DRAFT"
+    key="18701034-85f7-4cb2-accf-5b4d285e5440-2"
+    path="986105174/18701034-85f7-4cb2-accf-5b4d285e5440"
   />
   <Component
-    col1="produkttype"
-    col2="Tilgjengeliggjøring"
+    col1=""
+    col2=""
     col3=""
-    key="https://fellesdatakatalog.brreg.no/api/concepts/0c5d72fe-1c08-4e2f-9772-825f20921ab0-3"
-    path="/0c5d72fe-1c08-4e2f-9772-825f20921ab0"
-    status="DRAFT"
+    key="0c5d72fe-1c08-4e2f-9772-825f20921ab0-3"
+    path="986105174/0c5d72fe-1c08-4e2f-9772-825f20921ab0"
   />
   <Component
-    col1="pantedokument"
-    col2="Tinglysing"
+    col1=""
+    col2=""
     col3=""
-    key="https://fellesdatakatalog.brreg.no/api/concepts/13dbd4a3-4aff-498c-abdd-61d8f7d6fc40-4"
-    path="/13dbd4a3-4aff-498c-abdd-61d8f7d6fc40"
-    status="DRAFT"
+    key="13dbd4a3-4aff-498c-abdd-61d8f7d6fc40-4"
+    path="986105174/13dbd4a3-4aff-498c-abdd-61d8f7d6fc40"
   />
   <Component
-    col1="bruksenhetsnummer"
-    col2="Adresse"
+    col1=""
+    col2=""
     col3=""
-    key="https://fellesdatakatalog.brreg.no/api/concepts/d45424f6-deb1-4768-8bfe-864b71b25b0b-5"
-    path="/d45424f6-deb1-4768-8bfe-864b71b25b0b"
-    status="DRAFT"
+    key="d45424f6-deb1-4768-8bfe-864b71b25b0b-5"
+    path="986105174/d45424f6-deb1-4768-8bfe-864b71b25b0b"
   />
   <Component
-    col1="nedkvittering"
-    col2="Tinglysing"
+    col1=""
+    col2=""
     col3=""
-    key="https://fellesdatakatalog.brreg.no/api/concepts/8906d79d-8814-4eab-bd4a-ee8cf8f67ad5-6"
-    path="/8906d79d-8814-4eab-bd4a-ee8cf8f67ad5"
-    status="DRAFT"
+    key="8906d79d-8814-4eab-bd4a-ee8cf8f67ad5-6"
+    path="986105174/8906d79d-8814-4eab-bd4a-ee8cf8f67ad5"
   />
   <Component
-    col1="kontaktinformasjon"
-    col2="Enhetsregisteret"
+    col1=""
+    col2=""
     col3=""
-    key="https://fellesdatakatalog.brreg.no/api/concepts/de5b25ad-521f-4fbd-af51-7486129c6a6f-7"
-    path="/de5b25ad-521f-4fbd-af51-7486129c6a6f"
-    status="DRAFT"
+    key="de5b25ad-521f-4fbd-af51-7486129c6a6f-7"
+    path="986105174/de5b25ad-521f-4fbd-af51-7486129c6a6f"
   />
   <Component
-    col1="fødselsår"
-    col2="Person"
+    col1=""
+    col2=""
     col3=""
-    key="https://fellesdatakatalog.brreg.no/api/concepts/95d61746-73c5-41f3-a72d-ce4b583609c1-8"
-    path="/95d61746-73c5-41f3-a72d-ce4b583609c1"
-    status="DRAFT"
+    key="95d61746-73c5-41f3-a72d-ce4b583609c1-8"
+    path="986105174/95d61746-73c5-41f3-a72d-ce4b583609c1"
+  />
+  <Component
+    col1=""
+    col2=""
+    col3=""
+    key="1c770979-34b0-439c-a7cb-adacb3619927-9"
+    path="986105174/1c770979-34b0-439c-a7cb-adacb3619927"
   />
   <Component
     col1="avsender"
     col2="Arkiv"
     col3=""
-    key="https://fellesdatakatalog.brreg.no/api/concepts/1c770979-34b0-439c-a7cb-adacb3619927-9"
-    path="/1c770979-34b0-439c-a7cb-adacb3619927"
-    status="DRAFT"
+    key="1c770979-34b0-439c-a7cb-adacb3619927-10"
+    path="986105174/1c770979-34b0-439c-a7cb-adacb3619927"
+    status="publisert"
   />
 </div>
 `;

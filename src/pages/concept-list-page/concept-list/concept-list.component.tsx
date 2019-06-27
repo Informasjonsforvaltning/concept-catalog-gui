@@ -9,6 +9,7 @@ import './concept-list.scss';
 
 interface Props {
   items: any;
+  catalogId: string;
 }
 
 const renderListHeader = (sortField, sortDirection, onSortField): JSX.Element => (
@@ -45,7 +46,7 @@ const renderListHeader = (sortField, sortDirection, onSortField): JSX.Element =>
   </div>
 );
 
-const renderListItems = (items, sortField, sortDirection): JSX.Element | null => {
+const renderListItems = (items, catalogId, sortField, sortDirection): JSX.Element | null => {
   if (!items) {
     return null;
   }
@@ -54,19 +55,19 @@ const renderListItems = (items, sortField, sortDirection): JSX.Element | null =>
     (item, index): JSX.Element => {
       return (
         <ListItem
-          key={`${_.get(item, 'uri')}-${index}`}
-          col1={getTranslateText(_.get(item, 'prefLabel'))}
-          col2={getTranslateText(_.get(item, 'subject'))}
+          key={`${_.get(item, 'id')}-${index}`}
+          col1={getTranslateText(_.get(item, 'anbefaltTerm'))}
+          col2={getTranslateText(_.get(item, 'fagområde'))}
           col3=""
-          status="DRAFT"
-          path={`/${_.get(item, 'id')}`}
+          status={_.get(item, 'status')}
+          path={`${catalogId}/${_.get(item, 'id')}`}
         />
       );
     }
   );
 };
 
-export const ConceptList = ({ items }: Props): JSX.Element | null => {
+export const ConceptList = ({ items, catalogId }: Props): JSX.Element | null => {
   const [sortField, setSortField] = useState();
   const [sortDirection, setSortDirection] = useState<string>('asc');
 
@@ -78,7 +79,7 @@ export const ConceptList = ({ items }: Props): JSX.Element | null => {
   return (
     <div className="d-flex flex-column flex-fill">
       {renderListHeader(sortField, sortDirection, onSortField)}
-      {renderListItems(items, sortField, sortDirection)}
+      {renderListItems(items, catalogId, sortField, sortDirection)}
     </div>
   );
 };

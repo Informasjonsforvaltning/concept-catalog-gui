@@ -19,8 +19,8 @@ export const ListItem = ({ col1, col2, col3, status, path }: Props): JSX.Element
   }
 
   const statusClass = cx('fa', 'fa-circle', 'mr-2', 'd-none', 'd-sm-inline', {
-    'fdk-color-cta': status === 'PUBLISH',
-    'fdk-color3': status === 'DRAFT'
+    'fdk-color-cta': status === 'publisert',
+    'fdk-color3': status === 'utkast'
   });
 
   return (
@@ -30,8 +30,8 @@ export const ListItem = ({ col1, col2, col3, status, path }: Props): JSX.Element
       <span className="col-3">{col3}</span>
       <span className="col-3">
         <i className={statusClass} />
-        {status === 'PUBLISH' && <span>{localization['published']}</span>}
-        {status === 'DRAFT' && <span>{localization['draft']}</span>}
+        {status === 'publisert' && <span>{localization['published']}</span>}
+        {status === 'utkast' && <span>{localization['draft']}</span>}
       </span>
     </Link>
   );

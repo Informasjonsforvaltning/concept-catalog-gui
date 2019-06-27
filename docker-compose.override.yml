@@ -32,5 +32,6 @@ services:
     volumes:
       - ./src:/usr/src/app/src
     environment:
+      - CONCEPT_REGISTRATION_API=http://localhost:8100
       - PUBLISHER_API=https://www.ut1.fellesdatakatalog.brreg.no
       - PUBLISHER_DATA_AUTHORIZATION=Basic ZmRrOkJSUkVH

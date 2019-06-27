@@ -24,11 +24,8 @@ exports[`should render ListItem with status DRAFT 1`] = `
     className="col-3"
   >
     <i
-      className="fa fa-circle mr-2 d-none d-sm-inline fdk-color3"
+      className="fa fa-circle mr-2 d-none d-sm-inline"
     />
-    <span>
-      Utkast
-    </span>
   </span>
 </Link>
 `;
@@ -57,11 +54,8 @@ exports[`should render ListItem with status PUBLISH 1`] = `
     className="col-3"
   >
     <i
-      className="fa fa-circle mr-2 d-none d-sm-inline fdk-color-cta"
+      className="fa fa-circle mr-2 d-none d-sm-inline"
     />
-    <span>
-      Published
-    </span>
   </span>
 </Link>
 `;

@@ -425,5 +425,27 @@
       "firstHarvested": "2019-04-02T10:00:03.159+0000",
       "lastHarvested": "2019-06-13T10:00:01.207+0000"
     }
+  },
+  {
+    "id": "1c770979-34b0-439c-a7cb-adacb3619927",
+    "status": "publisert",
+    "anbefaltTerm": "avsender",
+    "definisjon": "den som sender et brev, en pakke, en e-post, en elektronisk melding, en SMS eller lignende",
+    "kilde": "Arkivverket (2016) Noark5-standarden [Internett]. Versjon 4.0 Standard for elektronisk arkiv. Tilgjengelig fra https://www.arkivverket.no/ [Lest 10. januar 2018]",
+    "merknad": "I Brønnøysundregistrenes felles arkiv (Public 360) er det som regel foretaket eller personen som har «signert» meldingen vi mottar, vi legger til grunn for å fastsette avsender. Dersom slike opplysninger mangler, kan e-postadressen føres opp som avsender.",
+    "ansvarligVirksomhet": {
+      "uri": "http://data.brreg.no/enhetsregisteret/enhet/910244132",
+      "id": "910244132",
+      "navn": "RAMSUND OG ROGNAN REVISJON",
+      "orgPath": "/ANNET/910244132",
+      "prefLabel": "Brønnøysundregistrene"
+    },
+    "eksempel": "Eksempel lorem ipsum.",
+    "fagområde": "Arkiv",
+    "bruksområde": "Bruksområde lorem ipsum",
+    "verdiområde": "Verdiområde lorem ipsum",
+    "kontaktpunkt": "informasjonsforvaltning@brreg.no",
+    "gyldigFom": "2015-03-30",
+    "forholdTilKilde": "ForholdTilKilde lorem ipsum"
   }
 ]

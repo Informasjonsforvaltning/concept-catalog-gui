@@ -8,9 +8,10 @@ import { NewConceptButton } from '../../components/new-concept-button/new-concep
 interface Props {
   concepts: object;
   publisher: object;
+  catalogId: string;
 }
 
-export const ConceptListPagePure = ({ concepts, publisher }: Props): JSX.Element => {
+export const ConceptListPagePure = ({ concepts, publisher, catalogId }: Props): JSX.Element => {
   return (
     <div className="container">
       <div className="row mb-2">
@@ -20,7 +21,7 @@ export const ConceptListPagePure = ({ concepts, publisher }: Props): JSX.Element
         <NewConceptButton />
       </div>
       <div className="mb-2">
-        <ConceptList items={concepts} />
+        <ConceptList items={concepts} catalogId={catalogId} />
       </div>
     </div>
   );

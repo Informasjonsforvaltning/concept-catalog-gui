@@ -19,5 +19,7 @@ export const nb = {
   breadCrumbsPublisherList: '{0} sine begrepsbeskrivelser',
   breadCrumbRegisterNewConcept: 'Registrere ny begrepsbeskrivelse',
   required: 'Obligatorisk',
-  formTerm: 'Term, definisjon og kilde'
+  formTerm: 'Term, definisjon og kilde',
+  validationMin2: 'Feltet må ha minimum to tegn.',
+  validationRequired: 'Feltet er obligatorisk.'
 };

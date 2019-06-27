@@ -16,22 +16,12 @@ const renderListHeader = (sortField, sortDirection, onSortField): JSX.Element =>
   <div className="row fdk-list-header">
     <div className="col-3 d-flex align-items-center">
       <span className="header-item mr-1">{localization['preferredTerm']}</span>
-      <SortButtons
-        field={`prefLabel.${localization.getLanguage()}`}
-        sortField={sortField}
-        sortType={sortDirection}
-        onSortField={onSortField}
-      />
+      <SortButtons field="anbefaltTerm" sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
     </div>
 
     <div className="col-3 d-flex align-items-center">
       <span className="header-item mr-1">{localization['fieldOfStudy']}</span>
-      <SortButtons
-        field={`subject.${localization.getLanguage()}`}
-        sortField={sortField}
-        sortType={sortDirection}
-        onSortField={onSortField}
-      />
+      <SortButtons field="fagområde" sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
     </div>
 
     <div className="col-3 d-flex align-items-center">

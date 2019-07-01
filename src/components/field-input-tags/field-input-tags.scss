@@ -1,0 +1,53 @@
+@import '../../../node_modules/designsystemet/fdk-designsystem-bootstrap4/scss/colors.scss';
+
+.fdk-reg-input-tags {
+  width: 100%;
+  padding: 0.05rem 0.75rem;
+  border: 1px solid #ced4da;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  span {
+    .react-tagsinput-input {
+      input[type='text'] {
+        border: none;
+        outline: none;
+        min-width: 100%;
+      }
+    }
+  }
+
+  .react-tagsinput--focused {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  .react-tagsinput-tag {
+    background-color: $color-grey-3;
+    border-radius: 2px;
+    display: inline-block;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 1px 5px;
+  }
+
+  .react-tagsinput-remove {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .react-tagsinput-tag a::before {
+    font: normal normal normal 14px/1 FontAwesome;
+    content: '\f00d';
+    margin-left: 5px;
+  }
+
+  .react-tagsinput-input {
+    background: transparent;
+    border: 0;
+    margin-top: 1px;
+    outline: none;
+    padding: 5px;
+    width: 100px;
+  }
+}

@@ -20,6 +20,11 @@ export const en = {
   breadCrumbRegisterNewConcept: 'Registrere ny begrepsbeskrivelse',
   required: 'Required',
   formTerm: 'Term, definition and source',
+  formContactPoint: 'Contact information',
   validationMin2: 'Field must have minimum two characters.',
-  validationRequired: 'Required field.'
+  validationRequired: 'Required field.',
+  validationEmail: 'Field is not a valid email.',
+  validationPhone: 'Field is not a valid phone.',
+  email: 'Email',
+  phone: 'Phone'
 };

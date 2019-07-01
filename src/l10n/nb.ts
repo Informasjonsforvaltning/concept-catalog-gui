@@ -20,6 +20,7 @@ export const nb = {
   breadCrumbRegisterNewConcept: 'Registrere ny begrepsbeskrivelse',
   required: 'Obligatorisk',
   formTerm: 'Term, definisjon og kilde',
+  formAllowedAndDiscouraged: 'Tillatt og frarådet term',
   formContactPoint: 'Kontaktinformasjon',
   validationMin2: 'Feltet må ha minimum to tegn.',
   validationRequired: 'Feltet er obligatorisk.',

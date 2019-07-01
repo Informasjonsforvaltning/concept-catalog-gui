@@ -20,6 +20,11 @@ export const nb = {
   breadCrumbRegisterNewConcept: 'Registrere ny omgrepsskildring',
   required: 'Obligatorisk',
   formTerm: 'Term, definisjon og kjelde',
+  formContactPoint: 'Kontaktinformasjon',
   validationMin2: 'Feltet må ha minimum to teikn.',
-  validationRequired: 'Feltet er obligatorisk.'
+  validationRequired: 'Feltet er obligatorisk.',
+  validationEmail: 'Feltet er ikkje ei gyldig adresse.',
+  validationPhone: 'Feltet er ikkje et gyldig telefonnummer.',
+  email: 'E-post',
+  phone: 'Telefon'
 };

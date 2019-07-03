@@ -21,11 +21,15 @@ export const nb = {
   required: 'Obligatorisk',
   formTerm: 'Term, definisjon og kjelde',
   formAllowedAndDiscouraged: 'Tillaten og frarådd term',
+  formUseOfConcept: 'Bruk av omgrepet',
   formContactPoint: 'Kontaktinformasjon',
   validationMin2: 'Feltet må ha minimum to teikn.',
   validationRequired: 'Feltet er obligatorisk.',
   validationEmail: 'Ugyldig adresse.',
   validationPhone: 'Ugyldig telefonnummer.',
+  validationUrl: 'Ugyldig URL',
   email: 'E-post',
-  phone: 'Telefon'
+  phone: 'Telefon',
+  titleScope: 'Tittel på omfang',
+  linkScope: 'Lenke til omfang'
 };

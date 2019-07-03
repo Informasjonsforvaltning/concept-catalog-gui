@@ -23,8 +23,8 @@ export const nb = {
   formContactPoint: 'Kontaktinformasjon',
   validationMin2: 'Feltet må ha minimum to tegn.',
   validationRequired: 'Feltet er obligatorisk.',
-  validationEmail: 'Feltet er ikke en gyldig adresse.',
-  validationPhone: 'Feltet er ikke et gyldig telefonnummer.',
+  validationEmail: 'Ugyldig adresse.',
+  validationPhone: 'Ugyldig telefonnummer.',
   email: 'E-post',
   phone: 'Telefon'
 };

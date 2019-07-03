@@ -21,11 +21,15 @@ export const en = {
   required: 'Required',
   formTerm: 'Term, definition and source',
   formAllowedAndDiscouraged: 'Allowed and discouraged term',
+  formUseOfConcept: 'Use of concept',
   formContactPoint: 'Contact information',
   validationMin2: 'Field must have minimum two characters.',
   validationRequired: 'Required field.',
   validationEmail: 'Invalid email address.',
   validationPhone: 'Invalid phone number.',
+  validationUrl: 'Invalid URL',
   email: 'Email',
-  phone: 'Phone'
+  phone: 'Phone',
+  titleScope: 'Title of scope',
+  linkScope: 'Link to scope'
 };

@@ -44,3 +44,30 @@ For changes to take effect you need to delete the concept-client image and resta
 Find image id with: docker image ls
 Delete image with: docker rmi <IMAGEID>
 Run again: docker-compose up -d
+
+# curl - add concept
+curl -H "Content-Type: application/json" -X POST -d '
+{
+   "id": "6d770978-34b0-439c-a7cb-adacb3612220000",
+   "status": "utkast",
+   "anbefaltTerm": "dokumentnummer",
+   "definisjon": "lorem ipsum",
+   "kilde": "Forskrift om tinglysing § 11 tredje ledd og § 16 annet ledd bokstav e). _Forskrift 3. november 1995 nr. 875 om tinglysing_ https://lovdata.no/forskrift/1995-11-03-875",
+   "merknad": "Lorem",
+   "ansvarligVirksomhet": {
+     "uri": "http://data.brreg.no/enhetsregisteret/enhet/910244132",
+     "id": "910244132",
+     "navn": "RAMSUND OG ROGNAN REVISJON",
+     "orgPath": "/ANNET/910244132",
+     "prefLabel": "Brønnøysundregistrene"
+   },
+   "eksempel": "Eksempel lorem ipsum.",
+   "fagområde": "Dokument",
+   "bruksområde": "Bruksområde lorem ipsum",
+   "verdiområde": "Verdiområde lorem ipsum",
+   "kontaktpunkt": "informasjonsforvaltning@brreg.no",
+   "gyldigFom": "2019-03-30",
+   "forholdTilKilde": "ForholdTilKilde lorem ipsum",
+   "tillattTerm": ["Tillatt term", "Et annet tillatt term"],
+   "frarådetTerm": ["Frarådet term", "Særs frarådet"]
+ }' http://localhost:8100/begreper

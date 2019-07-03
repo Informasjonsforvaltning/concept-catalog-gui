@@ -11,7 +11,7 @@ export interface Config {
     };
   };
   registrationHost: {
-    hostname: string;
+    host: string;
   };
 }
 
@@ -27,7 +27,7 @@ const createConfig = (env): Config => {
       }
     },
     registrationHost: {
-      hostname: env.REGISTRATION_HOSTNAME || 'registrering.fellesdatakatalog.brreg.no'
+      host: env.REGISTRATION_HOST || undefined
     }
   };
 };

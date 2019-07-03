@@ -30,9 +30,9 @@ module.exports = {
     app.use('/env.json', (req, res) => {
       const vars = [
         'CONCEPT_REGISTRATION_API',
+        'REGISTRATION_HOST',
         'PUBLISHER_API',
-        'PUBLISHER_DATA_AUTHORIZATION',
-        'REGISTRATION_HOSTNAME'
+        'PUBLISHER_DATA_AUTHORIZATION'
       ];
       const values = vars.map(varName => process.env[varName]);
       const envObj = _.zipObject(vars, values);

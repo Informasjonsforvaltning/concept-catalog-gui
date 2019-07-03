@@ -23,8 +23,8 @@ export const en = {
   formContactPoint: 'Contact information',
   validationMin2: 'Field must have minimum two characters.',
   validationRequired: 'Required field.',
-  validationEmail: 'Field is not a valid email.',
-  validationPhone: 'Field is not a valid phone.',
+  validationEmail: 'Invalid email address.',
+  validationPhone: 'Invalid phone number.',
   email: 'Email',
   phone: 'Phone'
 };

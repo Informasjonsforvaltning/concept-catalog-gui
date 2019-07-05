@@ -1,0 +1,15 @@
+@import '../../assets/style/bootstrap-override.scss';
+
+.fdk-reg-helptext {
+  background-color: $color-grey-3;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  strong {
+    font-size: 1.8rem;
+  }
+  .fdk-reg-helptext-more {
+    text-decoration: underline;
+    white-space: nowrap;
+    color: $color-blue-dark;
+  }
+}

@@ -31,5 +31,6 @@ export const en = {
   email: 'Email',
   phone: 'Phone',
   titleScope: 'Title of scope',
-  linkScope: 'Link to scope'
+  linkScope: 'Link to scope',
+  help: 'Help'
 };

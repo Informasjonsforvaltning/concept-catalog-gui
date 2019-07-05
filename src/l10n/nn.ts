@@ -31,5 +31,6 @@ export const nb = {
   email: 'E-post',
   phone: 'Telefon',
   titleScope: 'Tittel på omfang',
-  linkScope: 'Lenke til omfang'
+  linkScope: 'Lenke til omfang',
+  help: 'Hjelp'
 };

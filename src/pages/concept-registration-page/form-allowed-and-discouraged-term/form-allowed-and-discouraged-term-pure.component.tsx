@@ -9,14 +9,14 @@ export const FormAllowedAndDiscouragedPure = (): JSX.Element => (
     <div className="form-group">
       <HelpText
         title={localization.tillattTermTitle}
-        required={true}
+        required={false}
         helpTextAbstract={localization.tillattTermAbstract}
         helpTextDescription={localization.tillattTermDescription}
       />
       <Field name="tillattTerm" component={InputTagsField} />
       <HelpText
         title={localization.fraraadetTermTitle}
-        required={true}
+        required={false}
         helpTextAbstract={localization.fraraadetTermAbstract}
         helpTextDescription={localization.fraraadetTermDescription}
       />

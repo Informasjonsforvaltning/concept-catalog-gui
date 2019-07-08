@@ -40,5 +40,54 @@ Et annet eksempel på frarådet term er den historiske betegnelsen selvangivelse
 
 Et annet eksempel på frarådet term er pappapermisjon, som ikke blir brukt av Nav, som har fedrekvote som anbefalte term.  
 
-Se mer om ‘frarådet term’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#_5_3_frar%C3%A5det_term)`
+Se mer om ‘frarådet term’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#_5_3_frar%C3%A5det_term)`,
+  eksempelTitle: 'Eksempel',
+  eksempelAbstract: 'Her kan du legge til noen eksempler på begrepet.',
+  eksempelDescription: `Liste over noen konkrete tilfeller som omfattes av begrepet 
+
+Dette kan for eksempel være av pedagogiske hensyn eller for å illustrere begrepet.
+
+Eksempler på ‘løsøre’ kan være:tankskip, motorkjøretøy, vaffeljern, sementsekk, konvolutt, eple, men ikke så lenge eplet henger på treet
+
+Dersom listen av eksempler er komplett, skal feltet ‘omfang’ benyttes.
+
+Se mer om ‘eksempel’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#omfang)`,
+  fagomraadeTitle: 'Fagområde',
+  fagomraadeAbstract: 'Her fører du opp hvilket fagområde begrepet tilhører.',
+  fagomraadeDescription: `Et fagområde er et spesialisert kunnskapsområde som et begrep tilhører, f.eks. ‘Helse’ for begrepet ‘helsetilstand’.
+
+Du kan bare registrere ett fagområde til et begrep.
+
+Dersom et begrep blir brukt innenfor flere faglige sammenhenger, skal du heller benytte feltet ‘bruksområde’. Et fagområde er gjerne mer overordnet enn bruksområdene.
+
+Se mer om ‘fagområde’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#_10_fagomr%C3%A5de_og_bruksomr%C3%A5de)`,
+  bruksomraadeTitle: 'Bruksområde(r)',
+  bruksomraadeAbstract: 'Her fører du opp et eller flere bruksområder der begrepet er i bruk. ',
+  bruksomraadeDescription: `Et bruksområde er en faglig eller juridisk sammenheng der begrepet blir brukt, f.eks. (hos Nav) hjelpemidler, trygdeytelser, arbeidsmarkedstiltak
+
+For eksempel har begrepet helsetilstand ‘helse’ som fagområde og ‘hjelpemidler’, ‘trygdeytelser’, ‘arbeidsmarkedstiltak’ som bruksområder.
+
+Se mer om ‘bruksområde’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#_10_fagomr%C3%A5de_og_bruksomr%C3%A5de)`,
+  omfangTitle: 'Omfang',
+  omfangAbstract: 'Her fører du opp verdiområde, for eksempel alle kategoriene  som er gyldige for begrepet',
+  omfangDescription: `Omfang i denne sammenheng betyr lovlige kategorier eller verdiområder for begrepet.
+
+Eksempel på kategorier: Standard for sivilstand spesifiserer hva som er lovlige kategorier for begrepet ‘sivilstand’, f.eks. ugift, gift og skilt.
+
+Eksempel på verdiområde: For begrepet ‘alder’ kan verdiområdet beskrives som “alle positive tall”.
+
+Dette feltet skal ikke brukes for å oppgi eksempler.  
+
+Se mer om ‘omfang’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#omfang)`,
+  kontaktinformasjonTitle: 'Kontaktinformasjon',
+  kontaktinformasjonAbstract: 'Her fører du opp kontaktinformasjon hos ansvarlig virksomhet for begrepet.',
+  kontaktinformasjonDescription: `Du kan gjerne oppgi en organisatorisk underenhet, men du skal  ikke bruke kontaktpunkter ned til enkeltpersoner i en virksomhet.
+
+Eksempel på kontaktinformasjon kan være: 
+
+Epost: informasjonsforvaltning@brreg.no
+
+Telefon: +4775007500
+
+Se mer om ‘kontaktinformasjon’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#_12_ansvarlig_virksomhet_og_kontaktpunkt)`
 };

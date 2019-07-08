@@ -17,7 +17,12 @@ export const FormTermPure = (): JSX.Element => (
       <Field name="anbefaltTerm" component={InputField} />
     </div>
     <div className="form-group">
-      <HelpText title={localization.definisjonTitle} required={true} />
+      <HelpText
+        title={localization.definisjonTitle}
+        required={true}
+        helpTextAbstract={localization.definisjonAbstract}
+        helpTextDescription={localization.definisjonDescription}
+      />
       <Field name="definisjon" component={TextAreaField} />
     </div>
   </Form>

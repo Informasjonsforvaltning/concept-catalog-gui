@@ -21,6 +21,14 @@ Et eksempel er bonus i arbeidsforhold, som av Skatteetaten blir definert som ‘
 Fagområder vil også sette begrensninger i hvilken sammenheng begrepet og definisjonen skal forstås.
 
 Se mer om ‘definisjon’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#definisjon)`,
+  merknadTitle: 'Merknad',
+  merknadAbstract:
+    'Her registrerer du tilleggsopplysninger om begrepets betydning som ikke hører hjemme i definisjonsfeltet.',
+  merknadDescription: `En merknad til definisjonen er en eller flere utdypende forklaringer til definisjon eller alternativ formulering 
+
+Et eksempel er merknaden ‘kjæledyr vert ikkje rekna som husdyr’, som kommer i tillegg til definisjonen av husdyr.
+
+Se mer om ‘merknad’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
   tillattTermTitle: 'Tillat term',
   tillattTermAbstract: 'Her registrerer du et tillatt synonym som kommer i tillegg til den anbefalte termen. ',
   tillattTermDescription: `Term som blir sett på som egnet for begrepet, og som blir brukt i tillegg til en anbefalt term. Det kan være nødvendig hvis flere termer er i bruk for begreper, eller om det er nødvendig å føre opp enkle, brukerrettede termer for allmennheten i tillegg til anbefalt term.

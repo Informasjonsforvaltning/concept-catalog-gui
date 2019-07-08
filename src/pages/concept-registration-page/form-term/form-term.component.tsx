@@ -17,7 +17,8 @@ interface FormProps {
 const config = {
   mapPropsToValues: ({ concept }: FormProps) => ({
     anbefaltTerm: _.get(concept, 'anbefaltTerm') || '',
-    definisjon: _.get(concept, 'definisjon') || ''
+    definisjon: _.get(concept, 'definisjon') || '',
+    merknad: _.get(concept, 'merknad') || ''
   }),
   validationSchema: schema,
   validate: _.throttle(patchConceptFromForm, 250),

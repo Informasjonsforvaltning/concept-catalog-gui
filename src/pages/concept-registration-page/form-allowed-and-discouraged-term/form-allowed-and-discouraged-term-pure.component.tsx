@@ -7,7 +7,19 @@ import { localization } from '../../../lib/localization';
 export const FormAllowedAndDiscouragedPure = (): JSX.Element => (
   <Form>
     <div className="form-group">
+      <HelpText
+        title={localization.tillattTermTitle}
+        required={true}
+        helpTextAbstract={localization.tillattTermAbstract}
+        helpTextDescription={localization.tillattTermDescription}
+      />
       <Field name="tillattTerm" component={InputTagsField} />
+      <HelpText
+        title={localization.fraraadetTermTitle}
+        required={true}
+        helpTextAbstract={localization.fraraadetTermAbstract}
+        helpTextDescription={localization.fraraadetTermDescription}
+      />
       <Field name="frarådetTerm" component={InputTagsField} />
     </div>
   </Form>

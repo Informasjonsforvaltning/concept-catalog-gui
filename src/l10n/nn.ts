@@ -1,5 +1,6 @@
 export const nn = {
   addNewConcept: 'Legg til nytt begrep',
+  addNewSource: 'Legg til ny kilde',
   title: 'Registrering av begreper',
   draft: 'Utkast',
   published: 'Published',

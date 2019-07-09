@@ -4,6 +4,7 @@ import { InputField } from '../../../components/field-input/field-input.componen
 import { TextAreaField } from '../../../components/field-textarea/field-textarea.component';
 import { HelpText } from '../../../components/help-text/help-text.component';
 import { localization } from '../../../lib/localization';
+import { FormSource } from '../../../components/form-source/form-source.component';
 
 export const FormTermPure = (): JSX.Element => (
   <Form>
@@ -24,6 +25,15 @@ export const FormTermPure = (): JSX.Element => (
         helpTextDescription={localization.definisjonDescription}
       />
       <Field name="definisjon" component={TextAreaField} />
+    </div>
+    <div className="form-group">
+      <HelpText
+        title={localization.kildeTitle}
+        required={false}
+        helpTextAbstract={localization.kildeAbstract}
+        helpTextDescription={localization.kildeDescription}
+      />
+      <Field name="kilde" component={FormSource} />
     </div>
     <div className="form-group">
       <HelpText

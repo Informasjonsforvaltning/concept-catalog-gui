@@ -1,5 +1,6 @@
 export const en = {
   addNewConcept: 'Add new concept',
+  addNewSource: 'Add new source',
   title: 'Concept Registration',
   draft: 'Draft',
   published: 'Published',

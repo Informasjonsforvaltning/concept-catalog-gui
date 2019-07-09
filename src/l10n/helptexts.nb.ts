@@ -21,6 +21,19 @@ Et eksempel er bonus i arbeidsforhold, som av Skatteetaten blir definert som ‘
 Fagområder vil også sette begrensninger i hvilken sammenheng begrepet og definisjonen skal forstås.
 
 Se mer om ‘definisjon’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#definisjon)`,
+  kildeTitle: 'Kilde til definisjon',
+  kildeAbstract: 'Her registrerer du hvor du har hentet definisjonen fra. ',
+  kildeDescription: `Her kan du legge til én eller flere kilder til definisjonen. 
+
+Kilden til definisjonen kan være enten lov eller forskrift, et leksikon, en ordbok e.l.  Har virksomheten definert begrepet selv, kan du huke av i boksen  "egendefinert".
+
+Har du en oppslagsbar ressurs kan du lenke til denne.
+
+Om definisjonen er hentet ordrett fra en kilden, velger du ‘sitat fra kilde’.
+
+Om definisjonen består av egne ordvalg basert på en kilde, velger du ‘basert på kilde’.
+
+Se mer om ‘kildebeskrivelse’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
   merknadTitle: 'Merknad',
   merknadAbstract:
     'Her registrerer du tilleggsopplysninger om begrepets betydning som ikke hører hjemme i definisjonsfeltet.',

@@ -32,7 +32,7 @@ export const FormTermPure = (): JSX.Element => (
         helpTextAbstract={localization.merknadAbstract}
         helpTextDescription={localization.merknadDescription}
       />
-      <Field name="merknad" component={TextAreaField} />
+      <Field name="merknad" rows="5" component={TextAreaField} />
     </div>
   </Form>
 );

@@ -15,7 +15,6 @@ export const en = {
   privacy: ' and privacy',
   emailAddress: 'Mailaddress',
   breadCrumbsAllCatalogs: 'All catalogs',
-  breadCrumbsBackToCatalog: 'Back to registration',
   breadCrumbsPublisherList: "{0}'s descriptions",
   breadCrumbRegisterNewConcept: 'Registrere ny begrepsbeskrivelse',
   required: 'Required',

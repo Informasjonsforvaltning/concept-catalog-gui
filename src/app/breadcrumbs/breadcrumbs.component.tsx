@@ -36,12 +36,6 @@ const PureBreadcrumbs = ({ breadcrumbs }) => {
                 </span>
               ))}
             </p>
-            <p>
-              <a className="" href={getConfig().registrationHost.host}>
-                <i className="fa fa-arrow-left mr-2" />
-                {localization.breadCrumbsBackToCatalog}
-              </a>
-            </p>
           </div>
         </div>
       </div>

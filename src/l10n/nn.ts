@@ -15,7 +15,6 @@ export const nb = {
   privacy: ' og personvern',
   emailAddress: 'Mailadresse',
   breadCrumbsAllCatalogs: 'Alle kataloger',
-  breadCrumbsBackToCatalog: 'Til oversikten',
   breadCrumbsPublisherList: '{0} sine omgrep',
   breadCrumbRegisterNewConcept: 'Registrere ny omgrepsskildring',
   required: 'Obligatorisk',

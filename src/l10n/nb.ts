@@ -15,7 +15,6 @@ export const nb = {
   privacy: ' og personvern',
   emailAddress: 'Mailadresse',
   breadCrumbsAllCatalogs: 'Alle kataloger',
-  breadCrumbsBackToCatalog: 'Til oversikten',
   breadCrumbsPublisherList: '{0} sine begrepsbeskrivelser',
   breadCrumbRegisterNewConcept: 'Registrere ny begrepsbeskrivelse',
   required: 'Obligatorisk',

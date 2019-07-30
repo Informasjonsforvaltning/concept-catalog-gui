@@ -7,7 +7,8 @@ const memoizedRegistrationApiGet = _.memoize(registrationApiGet);
 const memoizedPublisherApiGetByOrgNr = _.memoize(publisherApiGet);
 
 const mapProps = {
-  concepts: () => memoizedRegistrationApiGet('begreper'),
+  concepts: props =>
+    memoizedRegistrationApiGet(`/begreper?orgNummer=${_.get(props, ['match', 'params', 'catalogId'])}`),
   publisher: props => memoizedPublisherApiGetByOrgNr(`/publishers/${_.get(props, ['match', 'params', 'catalogId'])}`)
 };
 

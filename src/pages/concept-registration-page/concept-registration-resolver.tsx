@@ -7,7 +7,7 @@ const memoizedGetConcept = _.memoize(getConcept);
 const mapProps = {
   concept: async props => {
     const conceptId = _.get(props, ['match', 'params', 'conceptId']);
-    const concepts = await Promise.resolve(memoizedGetConcept(''));
+    const concepts = await Promise.resolve(memoizedGetConcept(`?orgNummer=${conceptId}`));
     return _.find(concepts, { id: conceptId });
   }
 };

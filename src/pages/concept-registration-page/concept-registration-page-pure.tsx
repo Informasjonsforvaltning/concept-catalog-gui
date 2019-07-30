@@ -15,8 +15,7 @@ export const ConceptRegistrationPagePure = ({ concept }: Props): JSX.Element => 
   return (
     <div className="container">
       <div className="row mb-2">
-        <div className="col-md-2" />
-        <div className="col-md-8">
+        <div className="col-12">
           <FormTemplate title={localization.formTerm} required={true}>
             <FormTerm concept={concept} />
           </FormTemplate>

@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 interface Props {
   field: {
@@ -27,6 +28,8 @@ export const InputField = ({
         <input {...field} type={type} className="form-control" autoComplete="off" />
       </label>
     </div>
-    {touched[field.name] && errors[field.name] && <div className="alert alert-danger mt-3">{errors[field.name]}</div>}
+    {_.get(touched, field.name) && _.get(errors, field.name) && (
+      <div className="alert alert-danger mt-3">{_.get(errors, field.name)}</div>
+    )}
   </div>
 );

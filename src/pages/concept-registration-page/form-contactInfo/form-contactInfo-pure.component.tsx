@@ -14,10 +14,10 @@ export const FormContactInfoPure = (): JSX.Element => (
     />
     <div className="form-group d-flex">
       <div className="w-50">
-        <Field name="email" component={InputField} label={localization.email} showLabel={true} />
+        <Field name="kontaktpunkt.harEpost" component={InputField} label={localization.email} showLabel={true} />
       </div>
       <div className="w-50">
-        <Field name="hasTelephone" component={InputField} label={localization.phone} showLabel={true} />
+        <Field name="kontaktpunkt.harTelefon" component={InputField} label={localization.phone} showLabel={true} />
       </div>
     </div>
   </Form>

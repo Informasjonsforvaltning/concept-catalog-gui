@@ -6,8 +6,10 @@ import { patchConceptFromForm } from '../../../lib/patchConceptForm';
 import { FormContactInfoPure } from './form-contactInfo-pure.component';
 
 export interface FormValues {
-  email: string;
-  hasTelephone: string;
+  kontaktpunkt: {
+    harEpost: string;
+    harTelefon: string;
+  };
 }
 
 interface FormProps {
@@ -16,8 +18,7 @@ interface FormProps {
 
 const config = {
   mapPropsToValues: ({ concept }: FormProps) => ({
-    email: _.get(concept, 'email') || '',
-    hasTelephone: _.get(concept, 'hasTelephone') || ''
+    kontaktpunkt: _.get(concept, 'kontaktpunkt') || { harEpost: '', harTelefon: '' }
   }),
   validationSchema: schema,
   validate: _.throttle(patchConceptFromForm, 250),

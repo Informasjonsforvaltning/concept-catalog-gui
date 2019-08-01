@@ -15,12 +15,7 @@ const validateResponse = (method, response) => {
     throw new Error(`Fetch error: ${response.status} ${response.statusText}`);
   }
 
-  // TODO: POST Request returns "{}" that can`t be parsed with .json()
-  if (method == 'POST') {
-    return response;
-  }
-
-  return response.json();
+  return response.json().catch(() => response);
 };
 
 export const registrationApi = (method, path, jsonBody?) => {

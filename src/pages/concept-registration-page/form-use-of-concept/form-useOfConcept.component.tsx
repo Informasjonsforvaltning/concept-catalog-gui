@@ -13,8 +13,10 @@ export interface FormValues {
   eksempel: string;
   fagområde: string;
   bruksområde: Bruksomraade;
-  omfangTittel: string;
-  omfangLenke: string;
+  omfang: {
+    tekst: string;
+    uri: string;
+  };
 }
 
 interface FormProps {
@@ -26,8 +28,7 @@ const config = {
     eksempel: _.get(concept, 'eksempel') || '',
     fagområde: _.get(concept, 'fagområde') || '',
     bruksområde: _.get(concept, 'bruksområde') || '',
-    omfangTittel: _.get(concept, 'omfangTittel') || '',
-    omfangLenke: _.get(concept, 'omfangLenke') || ''
+    omfang: _.get(concept, 'omfang') || { tekst: '', uri: '' }
   }),
   validationSchema: schema,
   validate: _.throttle(patchConceptFromForm, 250),

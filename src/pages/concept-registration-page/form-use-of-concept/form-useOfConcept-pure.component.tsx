@@ -37,10 +37,10 @@ export const FormUseOfTermPure = (): JSX.Element => (
       />
       <div className="d-flex">
         <div className="w-50">
-          <Field name="omfangTittel" component={InputField} label={localization.titleScope} showLabel={true} />
+          <Field name="omfang.tekst" component={InputField} label={localization.titleScope} showLabel={true} />
         </div>
         <div className="w-50">
-          <Field name="omfangLenke" component={InputField} label={localization.linkScope} showLabel={true} />
+          <Field name="omfang.uri" component={InputField} label={localization.linkScope} showLabel={true} />
         </div>
       </div>
     </div>

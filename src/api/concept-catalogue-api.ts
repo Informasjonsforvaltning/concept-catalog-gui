@@ -26,7 +26,6 @@ export const registrationApi = (method, path, jsonBody?) => {
   const body = jsonBody && JSON.stringify(jsonBody);
 
   return fetch(resolveUrl(path), { method, headers, body }).then(response => {
-    var myHeaders = response.headers;
     return validateResponse(method, response);
   });
 };

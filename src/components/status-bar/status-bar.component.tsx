@@ -69,6 +69,7 @@ export const StatusBar = ({ concept, history, catalogId }: Props): JSX.Element =
   const justPublishedOrUnPublished = _.get(statusBarState, [conceptId, 'justPublishedOrUnPublished']);
   const isSaving = _.get(statusBarState, [conceptId, 'isSaving'], false);
   const error = _.get(statusBarState, [conceptId, 'error']);
+  const validationError = _.get(statusBarState, [conceptId, 'validationError'], false);
 
   let messageClass;
   let message;
@@ -118,6 +119,7 @@ export const StatusBar = ({ concept, history, catalogId }: Props): JSX.Element =
               id="dataset-setPublish-button"
               className="fdk-button mr-3"
               color="primary"
+              disabled={validationError}
               onClick={() => patchConceptFromForm({ status: CONCEPT_STATUS_PUBLISHED }, { concept, dispatch })}
             >
               {localization.publish}

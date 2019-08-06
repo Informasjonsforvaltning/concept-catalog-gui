@@ -5,6 +5,7 @@ import { schema } from './form-contactInfo.schema';
 import { patchConceptFromForm } from '../../../lib/patchConceptForm';
 import { FormContactInfoPure } from './form-contactInfo-pure.component';
 import { Concept } from '../../../domain/Concept';
+import { validateConceptForm } from '../../../lib/validateConceptForm';
 
 interface FormProps {
   concept: Concept;
@@ -18,7 +19,9 @@ const config = {
     kontaktpunkt
   }),
   validationSchema: schema,
-  validate: _.throttle(patchConceptFromForm, 250),
+  validate: _.throttle((values, { concept, dispatch }) => {
+    validateConceptForm(values, schema, concept, dispatch);
+  }, 250),
   handleSubmit() {}
 };
 

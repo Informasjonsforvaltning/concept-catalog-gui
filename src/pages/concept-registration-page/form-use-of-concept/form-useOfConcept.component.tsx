@@ -4,6 +4,7 @@ import { FormUseOfTermPure } from './form-useOfConcept-pure.component';
 import { schema } from './form-useOfConcept.schema';
 import { patchConceptFromForm } from '../../../lib/patchConceptForm';
 import { Concept } from '../../../domain/Concept';
+import { validateConceptForm } from '../../../lib/validateConceptForm';
 
 interface FormProps {
   concept: Concept;
@@ -20,7 +21,9 @@ const config = {
     omfang
   }),
   validationSchema: schema,
-  validate: _.throttle(patchConceptFromForm, 250),
+  validate: _.throttle((values, { concept, dispatch }) => {
+    validateConceptForm(values, schema, concept, dispatch);
+  }, 250),
   handleSubmit() {}
 };
 

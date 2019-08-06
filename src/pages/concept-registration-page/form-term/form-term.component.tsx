@@ -2,8 +2,8 @@ import _ from 'lodash';
 import { withFormik } from 'formik';
 import { FormTermPure } from './form-term-pure.component';
 import { schema } from './form-term.schema';
-import { patchConceptFromForm } from '../../../lib/patchConceptForm';
 import { Concept } from '../../../domain/Concept';
+import { validateConceptForm } from '../../../lib/validateConceptForm';
 
 interface FormProps {
   concept: Concept;
@@ -31,7 +31,7 @@ const preProcessValues = origValues => {
 
 const patchWithPreProcess = (values, { concept, dispatch }) => {
   const processedValues = preProcessValues(values);
-  return patchConceptFromForm(processedValues, { concept, dispatch });
+  return validateConceptForm(processedValues, schema, concept, dispatch);
 };
 
 const config = {

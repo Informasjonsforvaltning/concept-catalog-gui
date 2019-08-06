@@ -6,6 +6,6 @@ export const conceptPath = (conceptId): string => `${conceptListPath()}/${concep
 
 export const getConcept = (catalogId): Promise<void> => registrationApiGet(conceptPath(catalogId));
 
-export const postConcept = (body): Promise<void> => registrationApiPost(conceptListPath, body);
+export const postConcept = (body): Promise<void> => registrationApiPost(conceptListPath(), body);
 
 export const patchConcept = (conceptId, patch): Promise<void> => registrationApiPatch(conceptPath(conceptId), patch);

@@ -1,4 +1,9 @@
-import { registrationApiGet, registrationApiPost, registrationApiPatch } from './concept-catalogue-api';
+import {
+  registrationApiGet,
+  registrationApiPost,
+  registrationApiPatch,
+  registrationApiDelete
+} from './concept-catalogue-api';
 
 export const conceptListPath = (): string => 'begreper';
 
@@ -9,3 +14,5 @@ export const getConcept = (catalogId): Promise<void> => registrationApiGet(conce
 export const postConcept = (body): Promise<void> => registrationApiPost(conceptListPath(), body);
 
 export const patchConcept = (conceptId, patch): Promise<void> => registrationApiPatch(conceptPath(conceptId), patch);
+
+export const deleteConcept = (conceptId: string): Promise<void> => registrationApiDelete(conceptPath(conceptId));

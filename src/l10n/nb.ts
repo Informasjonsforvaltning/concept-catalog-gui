@@ -31,5 +31,21 @@ export const nb = {
   phone: 'Telefon',
   titleScope: 'Tittel på omfang',
   linkScope: 'Lenke til omfang',
-  help: 'Hjelp'
+  help: 'Hjelp',
+  confirmDeleteMessage: 'Bekreft slette begrep',
+  cancelDelete: 'Avbryt',
+  requiredFieldsMissing: 'Obligatoriske felt mangler',
+  concept: 'Begrep',
+  isSaving: 'Lagrer',
+  changesUpdated: 'Endringer er oppdatert',
+  savedAsDraft: 'Lagret som utkast',
+  publish: 'Publiser begrepsbeskrivelsen',
+  unPublish: 'Avpubliser begrepsbeskrivelsen',
+  delete: 'Slett',
+  errorSaving: 'Kunne ikke lagre endring',
+  lastSaved: 'Sist endret',
+  confirmDeleted: 'ble slettet',
+  confirmDelete: 'Ja, slett',
+  conceptPublished: 'Begrepet er publisert.',
+  conceptUnPublished: 'Begrepet er avpublisert.'
 };

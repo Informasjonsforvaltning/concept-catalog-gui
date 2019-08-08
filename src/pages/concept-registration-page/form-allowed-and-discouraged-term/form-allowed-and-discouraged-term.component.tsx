@@ -20,12 +20,14 @@ export interface FormValues {
 
 interface FormProps {
   concept: object;
+  dispatch: Function;
 }
 
 const config = {
-  mapPropsToValues: ({ concept }: FormProps) => ({
+  mapPropsToValues: ({ concept, dispatch }: FormProps) => ({
     tillattTerm: _.get(concept, 'tillattTerm') || [],
-    frarådetTerm: _.get(concept, 'frarådetTerm') || []
+    frarådetTerm: _.get(concept, 'frarådetTerm') || [],
+    dispatch: dispatch
   }),
   validationSchema: schema,
   validate: _.throttle(patchConceptFromForm, 250),

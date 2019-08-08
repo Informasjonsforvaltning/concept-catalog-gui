@@ -1,4 +1,4 @@
-export const nb = {
+export const nn = {
   addNewConcept: 'Legg til nytt begrep',
   title: 'Registrering av begreper',
   draft: 'Utkast',
@@ -31,5 +31,21 @@ export const nb = {
   phone: 'Telefon',
   titleScope: 'Tittel på omfang',
   linkScope: 'Lenke til omfang',
-  help: 'Hjelp'
+  help: 'Hjelp',
+  confirmDeleteMessage: 'Bekreft slette omgrep',
+  cancelDelete: 'Avbryt',
+  requiredFieldsMissing: 'Obligatoriske felt manglar',
+  concept: 'Omgrep',
+  isSaving: 'Lagrar',
+  changesUpdated: 'Endringer er oppdatert',
+  savedAsDraft: 'Lagra som utkast',
+  publish: 'Publiser omgrepsskildring',
+  unPublish: 'Avpubliser omgrepsskildring',
+  delete: 'Slett',
+  errorSaving: 'Kunne ikkje lagre endring',
+  lastSaved: 'Sist endra',
+  confirmDeleted: 'blei sletta',
+  confirmDelete: 'Ja, slett',
+  conceptPublished: 'Omgrepet er publisert.',
+  conceptUnPublished: 'Omgrepet er avpublisert.'
 };

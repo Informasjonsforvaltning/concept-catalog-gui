@@ -35,3 +35,5 @@ export const registrationApiPost = (path, body) => registrationApi('POST', path,
 export const registrationApiGet = path => registrationApi('GET', path);
 
 export const registrationApiPatch = (path, body) => registrationApi('PATCH', path, body);
+
+export const registrationApiDelete = path => registrationApi('DELETE', path);

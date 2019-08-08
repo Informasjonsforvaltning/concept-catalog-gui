@@ -21,14 +21,16 @@ export interface FormValues {
 
 interface FormProps {
   concept: object;
+  dispatch: Function;
 }
 
 const config = {
-  mapPropsToValues: ({ concept }: FormProps) => ({
+  mapPropsToValues: ({ concept, dispatch }: FormProps) => ({
     eksempel: _.get(concept, 'eksempel') || '',
     fagområde: _.get(concept, 'fagområde') || '',
     bruksområde: _.get(concept, 'bruksområde') || '',
-    omfang: _.get(concept, 'omfang') || { tekst: '', uri: '' }
+    omfang: _.get(concept, 'omfang') || { tekst: '', uri: '' },
+    dispatch: dispatch
   }),
   validationSchema: schema,
   validate: _.throttle(patchConceptFromForm, 250),

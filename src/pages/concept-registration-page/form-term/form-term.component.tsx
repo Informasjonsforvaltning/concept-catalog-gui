@@ -12,13 +12,15 @@ export interface FormValues {
 
 interface FormProps {
   concept: object;
+  dispatch: Function;
 }
 
 const config = {
-  mapPropsToValues: ({ concept }: FormProps) => ({
+  mapPropsToValues: ({ concept, dispatch }: FormProps) => ({
     anbefaltTerm: _.get(concept, 'anbefaltTerm') || '',
     definisjon: _.get(concept, 'definisjon') || '',
-    merknad: _.get(concept, 'merknad') || ''
+    merknad: _.get(concept, 'merknad') || '',
+    dispatch: dispatch
   }),
   validationSchema: schema,
   validate: _.throttle(patchConceptFromForm, 250),

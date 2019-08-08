@@ -31,5 +31,21 @@ export const en = {
   phone: 'Phone',
   titleScope: 'Title of scope',
   linkScope: 'Link to scope',
-  help: 'Help'
+  help: 'Help',
+  confirmDeleteMessage: 'Confirm delete concept',
+  cancelDelete: 'Cancel',
+  requiredFieldsMissing: 'Required fields missing',
+  concept: 'Concept',
+  isSaving: 'Saving',
+  changesUpdated: 'Changes are updated',
+  savedAsDraft: 'Saved as draft',
+  publish: 'Publish concept',
+  unPublish: 'Unpublish concept',
+  delete: 'Delete',
+  errorSaving: 'Could not save changes',
+  lastSaved: 'Last modified',
+  confirmDeleted: 'was deleted',
+  confirmDelete: 'Yes, delete',
+  conceptPublished: 'Concept is published.',
+  conceptUnPublished: 'Concept is unpublished.'
 };

@@ -14,11 +14,13 @@ export interface FormValues {
 
 interface FormProps {
   concept: object;
+  dispatch: Function;
 }
 
 const config = {
-  mapPropsToValues: ({ concept }: FormProps) => ({
-    kontaktpunkt: _.get(concept, 'kontaktpunkt') || { harEpost: '', harTelefon: '' }
+  mapPropsToValues: ({ concept, dispatch }: FormProps) => ({
+    kontaktpunkt: _.get(concept, 'kontaktpunkt') || { harEpost: '', harTelefon: '' },
+    dispatch: dispatch
   }),
   validationSchema: schema,
   validate: _.throttle(patchConceptFromForm, 250),

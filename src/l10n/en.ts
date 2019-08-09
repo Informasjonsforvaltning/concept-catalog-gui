@@ -32,6 +32,8 @@ export const en = {
   titleScope: 'Title of scope',
   linkScope: 'Link to scope',
   help: 'Help',
+  moreRecomendations: 'More recomendations',
+  lessRecomendations: 'Less recomendations',
   confirmDeleteMessage: 'Confirm delete concept',
   cancelDelete: 'Cancel',
   requiredFieldsMissing: 'Required fields missing',

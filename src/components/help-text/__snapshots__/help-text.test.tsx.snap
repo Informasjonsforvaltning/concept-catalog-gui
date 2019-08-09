@@ -30,7 +30,7 @@ exports[`should render HelpText 1`] = `
       <i
         className="fa fdk-fa-left fa-angle-double-down"
       />
-      Hjelp
+      Flere anbefalinger
     </button>
   </div>
   <Collapse

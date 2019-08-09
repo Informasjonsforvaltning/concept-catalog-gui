@@ -32,6 +32,8 @@ export const nb = {
   titleScope: 'Tittel på omfang',
   linkScope: 'Lenke til omfang',
   help: 'Hjelp',
+  moreRecomendations: 'Flere anbefalinger',
+  lessRecomendations: 'Færre anbefalinger',
   confirmDeleteMessage: 'Bekreft slette begrep',
   cancelDelete: 'Avbryt',
   requiredFieldsMissing: 'Obligatoriske felt mangler',

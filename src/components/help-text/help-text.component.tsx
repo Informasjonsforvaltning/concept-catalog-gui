@@ -47,7 +47,7 @@ export const HelpText = ({ title, helpTextAbstract, helpTextDescription, require
             onClick={toggle}
           >
             <i className={collapseClass} />
-            {collapse ? localization.help : localization.help}
+            {collapse ? localization.lessRecomendations : localization.moreRecomendations}
           </button>
         )}
       </div>

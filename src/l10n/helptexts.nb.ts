@@ -2,23 +2,23 @@ export const helptextsNb = {
   anbefaltTermTitle: 'Anbefalt term',
   anbefaltTermAbstract:
     'Termen som blir sett på som best egnet for begrepet.',
-  anbefaltTermDescription: `Registrer den anbefalte termen (begrepets navn) som du mener bør brukes for begrepet. 
+  anbefaltTermDescription: `Registrer den anbefalte termen (begrepets navn) som du mener bør brukes for begrepet.    
 Har du behov for synonymer eller forkortelser, legg dem inn som [tillatt term](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#_5_2_tillatt_term).    
-Merk at du ikke bør registrere egennavn (f.eks. produktnavn), fordi disse ikke regnes som termer.
+Merk at du ikke bør registrere egennavn (f.eks. produktnavn), fordi disse ikke regnes som termer.    
 Se mer om ‘anbefalt term’ ’i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#anbefalt)`,
   definisjonTitle: 'Definisjon',
   definisjonAbstract: 'En definisjon skal være en kort forklaring som tydelig avgrenser til andre, nærliggende begrep, eventuelt tydeliggjør forskjellen mellom dette begrepet og andre nærliggende begrep.',
-  definisjonDescription: `Registrer meningsinnholdet til begrepet uttrykt gjennom en setning. 
-En definisjon er en beskrivelse som avgrenser begrepet mot beslektede begrep. Definisjonen er altså begrepet forklart med ord.
-Definisjonen skal ikke være en utfyllende innføring i begrepet. 
-Et eksempel er bonus i arbeidsforhold, som av Skatteetaten blir definert som ‘godtgjørelse som kan knyttes direkte til innsats eller resultater i en virksomhet’.
-Fagområder vil også sette begrensninger i hvilken sammenheng begrepet og definisjonen skal forstås.
+  definisjonDescription: `Registrer meningsinnholdet til begrepet uttrykt gjennom en setning.    
+En definisjon er en beskrivelse som avgrenser begrepet mot beslektede begrep. Definisjonen er altså begrepet forklart med ord.    
+Definisjonen skal ikke være en utfyllende innføring i begrepet.    
+Et eksempel er bonus i arbeidsforhold, som av Skatteetaten blir definert som ‘godtgjørelse som kan knyttes direkte til innsats eller resultater i en virksomhet’.    
+Fagområder vil også sette begrensninger i hvilken sammenheng begrepet og definisjonen skal forstås.    
 Se mer om ‘definisjon’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#definisjon)`,
   merknadTitle: 'Merknad',
   merknadAbstract:
     'Tilleggsopplysninger om begrepets betydning som ikke hører hjemme i definisjonsfeltet.',
-  merknadDescription: `En merknad til definisjonen er en eller flere utdypende forklaringer til definisjon eller alternativ formulering 
-Et eksempel er merknaden ‘kjæledyr vert ikkje rekna som husdyr’, som kommer i tillegg til definisjonen av husdyr.Se mer om ‘merknad’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
+  merknadDescription: `En merknad til definisjonen er en eller flere utdypende forklaringer til definisjon eller alternativ formulering.    
+ Et eksempel er merknaden ‘kjæledyr vert ikkje rekna som husdyr’, som kommer i tillegg til definisjonen av husdyr.Se mer om ‘merknad’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
   tillattTermTitle: 'Tillat term',
   tillattTermAbstract: 'Term som blir sett på som egnet for begrepet, og som blir brukt i tillegg til en anbefalt term. ',
   tillattTermDescription: `En tillatt term er et synonym som kommer i tillegg til den anbefalte termen. Det kan være nødvendig hvis flere termer er i bruk for begrepet, eller om det er nødvendig å føre opp enkle, brukerrettede termer for allmennheten i tillegg til anbefalt term.

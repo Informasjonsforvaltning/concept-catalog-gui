@@ -22,7 +22,7 @@ export const FormTemplate = ({ title, required = false, children }: Props): JSX.
     'fdk-reg_collapse_open': collapse
   });
 
-  const collapseIconClass = cx('fa', 'fa-2x', 'ml-auto', 'fdk-color-blue-dark', {
+  const collapseIconClass = cx('fa', 'fa-2x', 'ml-auto', 'fdk-color-link-dark', {
     'fa-angle-down': !collapse,
     'fa-angle-up': collapse
   });

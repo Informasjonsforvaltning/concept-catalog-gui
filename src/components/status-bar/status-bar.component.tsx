@@ -41,7 +41,7 @@ const renderConfirmDeleteOverlayDialog = ({
       </Button>
       <button
         type="button"
-        className="btn bg-transparent fdk-color-blue-dark"
+        className="btn bg-transparent fdk-color-link-dark"
         onClick={() => toggleShowConfirmDelete()}
       >
         {localization.cancelDelete}
@@ -125,7 +125,7 @@ export const StatusBar = ({ concept, history, catalogId }: Props): JSX.Element =
 
             <button
               type="button"
-              className="btn bg-transparent fdk-color-blue-dark"
+              className="btn bg-transparent fdk-color-link-dark"
               disabled={isSaving}
               onClick={toggleShowConfirmDelete}
             >

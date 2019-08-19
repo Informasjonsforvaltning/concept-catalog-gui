@@ -1,0 +1,10 @@
+@import '../../../node_modules/designsystemet/fdk-designsystem-bootstrap4/scss/colors.scss';
+
+svg {
+  width: 1em;
+  height: 1em;
+}
+
+.remove path {
+  fill: $color-danger;
+}

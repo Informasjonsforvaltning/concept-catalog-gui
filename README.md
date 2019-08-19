@@ -2,19 +2,20 @@
 A React (Typescript) application using webpack.
 
 # Run with docker
-## backend (oncept-catalogue)
+## backend (concept-catalogue)
 git clone https://github.com/Informasjonsforvaltning/concept-catalogue
 cd concept-catalogue
-mvn clean instal
+mvn clean install
 
-## frontend (oncept-catalogue-gui)
+## frontend (concept-catalogue-gui)
 git clone https://github.com/Informasjonsforvaltning/concept-catalogue-gui
 cd concept-catalogue-gui
-docker-compose up -d
+docker-compose up -d --build
 
+Open browser localhost:8083 
 
 # Run with node (TODO)
-SOME_VAR=https://backed npm start
+SOME_VAR=https://backend npm start
 
 # Build for prod (creating dist folder)
 npm run build

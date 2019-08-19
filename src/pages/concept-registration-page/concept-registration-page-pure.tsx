@@ -10,8 +10,20 @@ import { StatusBar } from '../../components/status-bar/status-bar.component';
 import { StatusBarProvider } from '../../context/statusBarContext';
 import { statusBarReducer } from '../../reducers/statusBarReducer';
 
+interface Kilde {
+  uri: string;
+  tekst: string;
+}
+
+interface Concept {
+  kildebeskrivelse: {
+    forholdTilKilde: string;
+    kilde: Kilde[];
+  };
+}
+
 interface Props {
-  concept: object;
+  concept: Concept;
   history: object;
   catalogId: string;
 }

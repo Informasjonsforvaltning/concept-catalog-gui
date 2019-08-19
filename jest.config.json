@@ -26,7 +26,7 @@
     "node"
   ],
   "moduleNameMapper": {
-    "^.+\\.(css|less|scss)$": "identity-obj-proxy"
+    "^.+\\.(svg|css|less|scss)$": "identity-obj-proxy"
   }
 }
 

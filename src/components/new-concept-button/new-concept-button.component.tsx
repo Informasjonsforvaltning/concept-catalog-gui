@@ -15,8 +15,8 @@ export const NewConceptButton = ({ parentOnClick }): JSX.Element | null => (
         <defs />
         <title>icon-add-cicle-sm</title>
         <g id="outline">
-          <circle className="cls-1" cx="8" cy="8" r="7" />
-          <path className="cls-2" d="M11,7H9V5A1,1,0,0,0,7,5V7H5A1,1,0,0,0,5,9H7v2a1,1,0,0,0,2,0V9h2a1,1,0,0,0,0-2Z" />
+          <circle className="circle" cx="8" cy="8" r="7" />
+          <path className="path" d="M11,7H9V5A1,1,0,0,0,7,5V7H5A1,1,0,0,0,5,9H7v2a1,1,0,0,0,2,0V9h2a1,1,0,0,0,0-2Z" />
         </g>
       </svg>
       {localization['addNewConcept']}

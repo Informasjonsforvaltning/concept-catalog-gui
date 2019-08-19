@@ -1,12 +1,14 @@
+@import '../../../node_modules/designsystemet/fdk-designsystem-bootstrap4/scss/colors.scss';
+
 .fdk-icon-add {
   width: 1em;
   height: 1em;
 }
 
 circle {
-  fill: #fff;
+  fill: $color-link;
 }
 
 path {
-  fill: #0069a5;
+  fill: #fff;
 }

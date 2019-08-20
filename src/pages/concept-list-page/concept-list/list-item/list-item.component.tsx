@@ -19,8 +19,8 @@ export const ListItem = ({ col1, col2, col3, status, path }: Props): JSX.Element
   }
 
   const statusClass = cx('fa', 'fa-circle', 'mr-2', 'd-none', 'd-sm-inline', {
-    'fdk-color-cta': status === 'publisert',
-    'fdk-color3': status === 'utkast'
+    'fdk-color-primary': status === 'publisert',
+    'fdk-color-neutral-dark': status === 'utkast'
   });
 
   return (

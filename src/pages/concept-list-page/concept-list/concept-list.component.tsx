@@ -41,7 +41,7 @@ const renderListItems = (items, catalogId, sortField, sortDirection): JSX.Elemen
     return null;
   }
   // TODO fix validity
-  return _.orderBy(items, [item => _.get(item, sortField, '').toLowerCase()], [sortDirection]).map(
+  return _.orderBy(items, [item => (item[sortField] && item[sortField].toLowerCase()) || ''], [sortDirection]).map(
     (item, index): JSX.Element => {
       return (
         <ListItem

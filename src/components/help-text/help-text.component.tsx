@@ -28,7 +28,9 @@ export const HelpText = ({ title, helpTextAbstract, helpTextDescription, require
     <div className="fdk-reg-helptext mb-3 p-3">
       <div className="d-flex align-items-center">
         <h3>{title}</h3>
-        {required && <span className="fdk-badge badge fdk-bg-color-yellow-2 ml-2">{localization.required}</span>}
+        {required && (
+          <span className="fdk-badge badge fdk-bg-color-warning-lightest ml-2">{localization.required}</span>
+        )}
       </div>
 
       <div className="d-md-flex">

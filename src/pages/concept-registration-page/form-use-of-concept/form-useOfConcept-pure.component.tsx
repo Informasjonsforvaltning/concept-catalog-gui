@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Field } from 'formik';
 import { InputField } from '../../../components/field-input/field-input.component';
+import { InputTagsField } from '../../../components/field-input-tags/field-input-tags.component';
 import { TextAreaField } from '../../../components/field-textarea/field-textarea.component';
 import { HelpText } from '../../../components/help-text/help-text.component';
 import { localization } from '../../../lib/localization';
@@ -28,7 +29,7 @@ export const FormUseOfTermPure = (): JSX.Element => (
         helpTextAbstract={localization.bruksomraadeAbstract}
         helpTextDescription={localization.bruksomraadeDescription}
       />
-      <Field name="bruksområde" component={InputField} />
+      <Field name="bruksområde" component={InputTagsField} />
       <HelpText
         title={localization.omfangTitle}
         required={false}

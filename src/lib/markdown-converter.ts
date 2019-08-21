@@ -15,7 +15,7 @@ export function convertToSanitizedHtml(markdownContent) {
   }
   const unsanitizedHtml = showDownConverter.makeHtml(markdownContent);
 
-  const unsanitizedHtmlWithRenamedLinkForOpenInNewTab = unsanitizedHtml.replace('<a ', "<a target='_blank' ");
+  const unsanitizedHtmlWithRenamedLinkForOpenInNewTab = unsanitizedHtml.replace(/<a /g, "<a target='_blank' ");
 
   return sanitizeHtml(unsanitizedHtmlWithRenamedLinkForOpenInNewTab, sanitizerConfig);
 }

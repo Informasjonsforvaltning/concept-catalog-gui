@@ -8,3 +8,11 @@ svg {
 .remove path {
   fill: $color-danger;
 }
+
+.add path {
+  fill: white !important;
+}
+
+.add circle {
+  fill: $color-link !important;
+}

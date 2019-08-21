@@ -19,7 +19,7 @@ export const ButtonSource = ({ title, handleClick, remove, add }: Props): JSX.El
     onClick={handleClick}
   >
     {remove && <IconRemove className="remove mr-2" />}
-    {add && <IconAdd className="add mr-2" />}
+    {add && <IconAdd className="fdk-color-link2 add mr-2" />}
 
     <span className={`${add ? 'fdk-color-link' : 'fdk-color-danger'}`}>{title}</span>
   </button>

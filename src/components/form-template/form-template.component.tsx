@@ -32,11 +32,14 @@ export const FormTemplate = ({ title, required = false, children }: Props): JSX.
       <button type="button" className="fdk-collapseButton fdk-btn-no-border w-100 p-0" onClick={toggle}>
         <div className="d-flex align-items-center">
           <h2 className="mb-0 text-ellipsis">{title}</h2>
-          {required && <span className="fdk-badge badge fdk-bg-color-yellow-2 ml-2">{localization.required}</span>}
+          {required && (
+            <span className="fdk-badge badge fdk-bg-color-warning-lightest ml-2">{localization.required}</span>
+          )}
           <i className={collapseIconClass} />
         </div>
       </button>
       <Collapse className="mt-3" isOpen={collapse}>
+        <hr />
         {children}
       </Collapse>
     </div>

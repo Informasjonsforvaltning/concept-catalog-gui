@@ -23,7 +23,7 @@ export const FieldArraySource = (props): JSX.Element => {
             className="fdk-after-element col-sm-5"
             name={`kildebeskrivelse.forholdTilKilde`}
             component={SelectField}
-            label={localization['removeSource']}
+            label={localization['relationToSource']}
             showLabel={true}
             options={options}
           />

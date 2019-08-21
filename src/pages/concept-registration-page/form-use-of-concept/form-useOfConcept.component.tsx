@@ -28,7 +28,7 @@ const config = {
   mapPropsToValues: ({ concept, dispatch }: FormProps) => ({
     eksempel: _.get(concept, 'eksempel') || '',
     fagområde: _.get(concept, 'fagområde') || '',
-    bruksområde: _.get(concept, 'bruksområde') || '',
+    bruksområde: _.get(concept, 'bruksområde') || [],
     omfang: _.get(concept, 'omfang') || { tekst: '', uri: '' },
     dispatch: dispatch
   }),

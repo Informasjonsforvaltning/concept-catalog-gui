@@ -9,7 +9,7 @@ import { FormContactInfo } from './form-contactInfo/form-contactInfo.component';
 import { StatusBar } from '../../components/status-bar/status-bar.component';
 import { StatusBarProvider } from '../../context/statusBarContext';
 import { statusBarReducer } from '../../reducers/statusBarReducer';
-
+import './concept-registration-page-pure.scss';
 interface Kilde {
   uri: string;
   tekst: string;

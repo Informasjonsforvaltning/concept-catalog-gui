@@ -15,7 +15,7 @@ services:
 
   concept-catalogue:
     ports:
-      - "8100:8080"
+      - "8200:8080"
     environment:
       - JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom -Xmx256M -Dspring.profiles.active=docker
       - FDK_SQL_JDBC_CONNECTION=jdbc:postgresql://postgres:5432/postgres?currentSchema=conceptRegistration
@@ -28,11 +28,11 @@ services:
     build: ./
     command: npm start
     ports:
-      - "8083:3111"
+      - "8202:3111"
     volumes:
       - ./src:/usr/src/app/src
     environment:
-      - CONCEPT_REGISTRATION_API=http://localhost:8100
+      - CONCEPT_REGISTRATION_API=http://localhost:8200
       - REGISTRATION_HOST=https://localhost:8098
       - PUBLISHER_API=https://www.ut1.fellesdatakatalog.brreg.no
       - PUBLISHER_DATA_AUTHORIZATION=Basic ZmRrOkJSUkVH

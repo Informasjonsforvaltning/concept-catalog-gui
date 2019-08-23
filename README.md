@@ -71,4 +71,4 @@ curl -H "Content-Type: application/json" -X POST -d '
    "forholdTilKilde": "ForholdTilKilde lorem ipsum",
    "tillattTerm": ["Tillatt term", "Et annet tillatt term"],
    "frarådetTerm": ["Frarådet term", "Særs frarådet"]
- }' http://localhost:8100/begreper
+ }' http://localhost:8200/begreper

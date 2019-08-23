@@ -17,3 +17,19 @@
 .help-text p {
   margin-bottom: 0;
 }
+
+.help-text {
+  a {
+    color: $color-link;
+  }
+
+  a:after {
+    content: ' ';
+    background-image: url('../../assets/img/icon-external-link-xs.svg');
+    position: relative;
+    width: 1.4em;
+    height: 1.4em;
+    top: +0.3em;
+    display: inline-flex;
+  }
+}

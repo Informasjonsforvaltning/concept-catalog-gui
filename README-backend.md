@@ -2,7 +2,7 @@
 
 ## curl - POST
 curl -X POST \
- http://localhost:8100/begreper/ \
+ http://localhost:8200/begreper/ \
  -H 'cache-control: no-cache' \
  -H 'content-type: application/json' \
  -d ' {
@@ -15,7 +15,7 @@ curl -X POST \
 
 ## curl - PATCH
 curl -X PATCH \
- http://localhost:8100/begreper/a98a795d-d702-46d6-ad36-ed108645ca85 \
+ http://localhost:8200/begreper/a98a795d-d702-46d6-ad36-ed108645ca85 \
  -H 'cache-control: no-cache' \
  -H 'content-type: application/json' \
  -d ' {
@@ -28,7 +28,7 @@ curl -X PATCH \
 
 ## curl - PATCH (2)
 curl -X PATCH \
- http://localhost:8100/begreper/a98a795d-d702-46d6-ad36-ed108645ca85 \
+ http://localhost:8200/begreper/a98a795d-d702-46d6-ad36-ed108645ca85 \
  -H 'cache-control: no-cache' \
  -H 'content-type: application/json' \
  -d ' {
@@ -46,7 +46,7 @@ curl -X PATCH \
 
 ## curl - PATCH (3)
 curl -X PATCH \
- http://localhost:8100/begreper/a98a795d-d702-46d6-ad36-ed108645ca85 \
+ http://localhost:8200/begreper/a98a795d-d702-46d6-ad36-ed108645ca85 \
  -H 'cache-control: no-cache' \
  -H 'content-type: application/json' \
  -d ' {
@@ -71,7 +71,7 @@ curl -X PATCH \
 
 ## curl - PATCH (3)
 curl -X PATCH \
- http://localhost:8100/begreper/a98a795d-d702-46d6-ad36-ed108645ca85 \
+ http://localhost:8200/begreper/a98a795d-d702-46d6-ad36-ed108645ca85 \
  -H 'cache-control: no-cache' \
  -H 'content-type: application/json' \
  -d ' {
@@ -80,14 +80,14 @@ curl -X PATCH \
 
 
 ## curl - GET
-curl http://localhost:8100/begreper/a98a795d-d702-46d6-ad36-ed108645ca85 \
+curl http://localhost:8200/begreper/a98a795d-d702-46d6-ad36-ed108645ca85 \
  -H 'cache-control: no-cache' \
  -H 'content-type: application/json' | jq
 
-curl 'http://localhost:8100/begreper/a98a795d-d702-46d6-ad36-ed108645ca85' | jq
-curl "http://localhost:8100/begreper/a98a795d-d702-46d6-ad36-ed108645ca85" | jq
+curl 'http://localhost:8200/begreper/a98a795d-d702-46d6-ad36-ed108645ca85' | jq
+curl "http://localhost:8200/begreper/a98a795d-d702-46d6-ad36-ed108645ca85" | jq
 
-curl http://localhost:8100/begreper/a98a795d-d702-46d6-ad36-ed108645ca85 -H 'content-type: application/json' | jq
+curl http://localhost:8200/begreper/a98a795d-d702-46d6-ad36-ed108645ca85 -H 'content-type: application/json' | jq
 
 
 
@@ -99,4 +99,4 @@ var myJson = {
         id: '910244132'
     }
 };
-fetch("http://localhost:8100/begreper/", myJson);
+fetch("http://localhost:8200/begreper/", myJson);

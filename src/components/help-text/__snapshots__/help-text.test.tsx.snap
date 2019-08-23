@@ -7,7 +7,9 @@ exports[`should render HelpText 1`] = `
   <div
     className="d-flex align-items-center"
   >
-    <h3>
+    <h3
+      className="help-text"
+    >
       Title
     </h3>
   </div>
@@ -15,7 +17,7 @@ exports[`should render HelpText 1`] = `
     className="d-md-flex"
   >
     <p
-      className="m-0"
+      className="help-text m-0"
       dangerouslySetInnerHTML={
         Object {
           "__html": "<p>Abstract</p>",
@@ -52,6 +54,7 @@ exports[`should render HelpText 1`] = `
     unmountOnExit={false}
   >
     <p
+      className="help-text"
       dangerouslySetInnerHTML={
         Object {
           "__html": "<p>Description</p>",

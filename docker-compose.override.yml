@@ -25,8 +25,8 @@ services:
   ### nodejs modules
 
   concept-catalogue-gui:
-    build: ./
-    command: npm start
+    #interestingly, if multiple docker-compose files are combined, then "." gets wrong value
+    build: ../concept-catalogue-gui
     ports:
       - "8202:3111"
     volumes:

@@ -18,7 +18,7 @@ Se mer om ‘definisjon’ i [veileder for begrepsbeskrivelser](https://doc.difi
   kildeAbstract: 'Her registrerer du hvor du har hentet definisjonen fra. ',
   kildeDescription: `Her kan du legge til én eller flere kilder til definisjonen. 
 
-Kilden til definisjonen kan være enten lov eller forskrift, et leksikon, en ordbok e.l.  Har virksomheten definert begrepet selv, kan du huke av i boksen  "egendefinert".
+Kilden til definisjonen kan være enten lov eller forskrift, et leksikon, en ordbok e.l.  Har virksomheten definert begrepet selv, velger du "Egendefinert".
 
 Har du en oppslagsbar ressurs kan du lenke til denne.
 

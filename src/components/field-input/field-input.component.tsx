@@ -21,7 +21,7 @@ export const InputField = ({
   label,
   type
 }: Props): JSX.Element => (
-  <div className="pl-2">
+  <div className="px-2">
     <div className="d-flex align-items-center">
       <label className="fdk-form-label w-100 fdk-text-strong" htmlFor={field.name}>
         {showLabel ? label : null}
@@ -29,7 +29,7 @@ export const InputField = ({
       </label>
     </div>
     {_.get(touched, field.name) && _.get(errors, field.name) && (
-      <div className="alert alert-danger mt-3">{_.get(errors, field.name)}</div>
+      <div className="alert alert-danger mt-2">{_.get(errors, field.name)}</div>
     )}
   </div>
 );

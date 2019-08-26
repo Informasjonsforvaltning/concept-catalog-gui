@@ -16,6 +16,8 @@ export const FormUseOfTermPure = (): JSX.Element => (
         helpTextDescription={localization.eksempelDescription}
       />
       <Field name="eksempel" component={TextAreaField} />
+    </div>
+    <div className="form-group">
       <HelpText
         title={localization.fagomraadeTitle}
         required={false}
@@ -23,6 +25,8 @@ export const FormUseOfTermPure = (): JSX.Element => (
         helpTextDescription={localization.fagomraadeDescription}
       />
       <Field name="fagområde" component={InputField} />
+    </div>
+    <div className="form-group">
       <HelpText
         title={localization.bruksomraadeTitle}
         required={false}
@@ -30,6 +34,8 @@ export const FormUseOfTermPure = (): JSX.Element => (
         helpTextDescription={localization.bruksomraadeDescription}
       />
       <Field name="bruksområde" component={InputTagsField} />
+    </div>
+    <div className="form-group">
       <HelpText
         title={localization.omfangTitle}
         required={false}

@@ -18,7 +18,7 @@ export const FormTemplate = ({ title, required = false, children }: Props): JSX.
     collapse ? setCollapse(false) : setCollapse(true);
   };
 
-  const collapseClass = cx('fdk-reg_collapse', 'fdk-bg-color-white', 'py-4', 'px-5', {
+  const collapseClass = cx('fdk-reg_collapse', 'fdk-bg-color-white', 'p-5', {
     'fdk-reg_collapse_open': collapse
   });
 
@@ -38,7 +38,7 @@ export const FormTemplate = ({ title, required = false, children }: Props): JSX.
           <i className={collapseIconClass} />
         </div>
       </button>
-      <Collapse className="mt-3" isOpen={collapse}>
+      <Collapse isOpen={collapse}>
         <hr />
         {children}
       </Collapse>

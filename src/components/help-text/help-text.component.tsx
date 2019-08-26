@@ -27,7 +27,7 @@ export const HelpText = ({ title, helpTextAbstract, helpTextDescription, require
   return (
     <div className="fdk-reg-helptext mb-3 p-3">
       <div className="d-flex align-items-center">
-        <h3 className="help-text">{title}</h3>
+        <h3 className="help-text mb-0">{title}</h3>
         {required && (
           <span className="fdk-badge badge fdk-bg-color-warning-lightest ml-2">{localization.required}</span>
         )}
@@ -36,7 +36,7 @@ export const HelpText = ({ title, helpTextAbstract, helpTextDescription, require
       <div className="d-md-flex">
         {helpTextAbstract && (
           <p
-            className="help-text m-0"
+            className="help-text mb-0"
             dangerouslySetInnerHTML={{
               __html: convertToSanitizedHtml(helpTextAbstract)
             }}
@@ -57,7 +57,7 @@ export const HelpText = ({ title, helpTextAbstract, helpTextDescription, require
       {helpTextDescription && (
         <Collapse className="mt-3" isOpen={collapse}>
           <p
-            className="help-text"
+            className="help-text mb-0"
             dangerouslySetInnerHTML={{
               __html: convertToSanitizedHtml(helpTextDescription)
             }}

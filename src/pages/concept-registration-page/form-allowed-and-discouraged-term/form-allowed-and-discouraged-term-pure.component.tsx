@@ -14,6 +14,8 @@ export const FormAllowedAndDiscouragedPure = (): JSX.Element => (
         helpTextDescription={localization.tillattTermDescription}
       />
       <Field name="tillattTerm" component={InputTagsField} />
+    </div>
+    <div className="form-group">
       <HelpText
         title={localization.fraraadetTermTitle}
         required={false}

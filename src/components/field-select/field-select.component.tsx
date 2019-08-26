@@ -19,7 +19,7 @@ export const SelectField = ({
   form
 }: Props): JSX.Element => {
   return (
-    <div className="pl-2">
+    <div className="px-2">
       <div className="d-flex align-items-center">
         <label className="fdk-form-label w-100 fdk-text-strong" htmlFor={field.name}>
           {showLabel ? label : null}
@@ -33,7 +33,7 @@ export const SelectField = ({
           />
         </label>
       </div>
-      {touched[field.name] && errors[field.name] && <div className="alert alert-danger mt-3">{errors[field.name]}</div>}
+      {touched[field.name] && errors[field.name] && <div className="alert alert-danger mt-2">{errors[field.name]}</div>}
     </div>
   );
 };

@@ -21,7 +21,7 @@ interface Props {
 export const InputTagsField = ({ field, showLabel, label, form: { setFieldValue } }: Props): JSX.Element => {
   const tagNodes = _.get(field, 'value', []).map(item => item);
   return (
-    <div className="pl-2">
+    <div className="px-2">
       <label className="fdk-form-label w-100" htmlFor={field.name}>
         {showLabel ? label : null}
         <div className="d-flex align-items-center">

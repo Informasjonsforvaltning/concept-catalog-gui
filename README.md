@@ -64,11 +64,14 @@ curl -H "Content-Type: application/json" -X POST -d '
    },
    "eksempel": "Eksempel lorem ipsum.",
    "fagområde": "Dokument",
-   "bruksområde": "Bruksområde lorem ipsum",
+   "bruksområde": ["Bruksområde lorem ipsum"],
    "verdiområde": "Verdiområde lorem ipsum",
-   "kontaktpunkt": "informasjonsforvaltning@brreg.no",
+   "kontaktpunkt": {"epost":"informasjonsforvaltning@brreg.no"},
    "gyldigFom": "2019-03-30",
    "forholdTilKilde": "ForholdTilKilde lorem ipsum",
    "tillattTerm": ["Tillatt term", "Et annet tillatt term"],
    "frarådetTerm": ["Frarådet term", "Særs frarådet"]
  }' http://localhost:8200/begreper
+
+# get the concept just inserted
+curl http://localhost:8200/begreper?orgNummer=910244132

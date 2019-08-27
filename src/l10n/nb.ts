@@ -57,5 +57,6 @@ export const nb = {
   confirmDeleted: 'ble slettet',
   confirmDelete: 'Ja, slett',
   conceptPublished: 'Begrepet er publisert.',
-  conceptUnPublished: 'Begrepet er avpublisert.'
+  conceptUnPublished: 'Begrepet er avpublisert.',
+  select: 'Velg'
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import { localization } from '../../lib/localization';
 
 interface Props {
   field: any;
@@ -8,7 +9,16 @@ interface Props {
   showLabel: boolean;
   label: string;
   type: string;
+  onClear: () => {};
 }
+
+const onChangeField = (fieldName, option, form, onClear) => {
+  if (option == null) {
+    onClear(form);
+  } else {
+    form.setFieldValue(fieldName, option.value);
+  }
+};
 
 export const SelectField = ({
   field, // { name, value, onChange, onBlur }
@@ -16,7 +26,8 @@ export const SelectField = ({
   form: { touched, errors }, // also values, dirty, isValid, status, etc.
   showLabel,
   label,
-  form
+  form,
+  onClear
 }: Props): JSX.Element => {
   return (
     <div className="px-2">
@@ -26,9 +37,11 @@ export const SelectField = ({
 
           <Select
             options={options}
+            isClearable={true}
+            placeholder={localization['select']}
             name={field.name}
-            value={options ? options.find(option => option.value === field.value) : ''}
-            onChange={option => form.setFieldValue(field.name, option.value)}
+            value={options ? options.find(option => option.value === field.value) : null}
+            onChange={option => onChangeField(field.name, option, form, onClear)}
             onBlur={field.onBlur}
           />
         </label>

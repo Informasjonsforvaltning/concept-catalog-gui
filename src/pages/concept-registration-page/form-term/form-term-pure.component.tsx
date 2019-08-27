@@ -36,7 +36,7 @@ export const FormTermPure = (props): JSX.Element => (
         helpTextAbstract={localization.kildeAbstract}
         helpTextDescription={localization.kildeDescription}
       />
-      <FieldArray name="kildebeskrivelse.kilde" component={FieldArraySource} />
+      <FieldArray name="kildebeskrivelse" component={FieldArraySource} />
     </div>
     <div className="form-group">
       <HelpText

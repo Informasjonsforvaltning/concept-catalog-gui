@@ -14,7 +14,13 @@ const options = [
   { value: 'sitatFraKilde', label: localization['quoteFromSource'] }
 ];
 
+const handleClearKildebeskrivelse = form => {
+  form.setFieldValue('kildebeskrivelse', null);
+};
+
 export const FieldArraySource = (props): JSX.Element => {
+  const forholdTilKilde = _.get(props, 'form.values.kildebeskrivelse.forholdTilKilde');
+
   return (
     <div>
       <div className="row d-flex fdk-after-element">
@@ -26,14 +32,15 @@ export const FieldArraySource = (props): JSX.Element => {
             label={localization['relationToSource']}
             showLabel={true}
             options={options}
+            onClear={handleClearKildebeskrivelse}
           />
         </div>
         <div className="col-sm-7" />
       </div>
 
-      {_.get(props, 'form.values.kildebeskrivelse.forholdTilKilde') != 'egendefinert' && (
+      {forholdTilKilde && forholdTilKilde !== 'egendefinert' && (
         <div>
-          {_.get(props, 'form.values.kildebeskrivelse.kilde', []).map((kilde, index) => {
+          {_.get(props, ['form', 'values', 'kildebeskrivelse', 'kilde'], []).map((kilde, index) => {
             return (
               <div key={kilde.id} className="row d-flex fdk-after-element">
                 <div className="col-sm-5">

@@ -57,5 +57,6 @@ export const en = {
   confirmDeleted: 'was deleted',
   confirmDelete: 'Yes, delete',
   conceptPublished: 'Concept is published.',
-  conceptUnPublished: 'Concept is unpublished.'
+  conceptUnPublished: 'Concept is unpublished.',
+  select: 'Select'
 };

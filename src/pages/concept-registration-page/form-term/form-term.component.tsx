@@ -25,7 +25,7 @@ const config = {
   mapPropsToValues: ({ concept, dispatch }: FormProps) => ({
     anbefaltTerm: _.get(concept, 'anbefaltTerm') || '',
     definisjon: _.get(concept, 'definisjon') || '',
-    kildebeskrivelse: concept.kildebeskrivelse || {},
+    kildebeskrivelse: concept.kildebeskrivelse || null,
     merknad: _.get(concept, 'merknad') || '',
     dispatch: dispatch
   }),

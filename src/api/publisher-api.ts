@@ -1,16 +1,7 @@
 import url from 'url';
+import { getConfig } from '../config';
 
-const publisherApiConfig = {
-  host: '',
-  headers: {
-    authorization: ''
-  }
-};
-
-export const configurePublisherApi = newRegistrationApiConfig =>
-  Object.assign(publisherApiConfig, newRegistrationApiConfig);
-
-const getRootUrl = () => publisherApiConfig.host;
+const getRootUrl = () => getConfig().publisherApi.host;
 const resolveUrl = path => url.resolve(getRootUrl(), path);
 
 const validateResponse = response => {
@@ -26,15 +17,12 @@ export const publisherApi = (method, path, jsonBody?) => {
     Object.assign(headers, { 'Content-Type': 'application/json' });
   }
 
-  const {
-    headers: { authorization }
-  } = publisherApiConfig;
-  if (authorization) {
-    Object.assign(headers, { authorization });
-  }
-
   const body = jsonBody && JSON.stringify(jsonBody);
-  return fetch(resolveUrl(path), { method, headers, body }).then(validateResponse);
+  return fetch(resolveUrl(path), {
+    method,
+    headers: { authorization: getConfig().publisherApi.authorization },
+    body
+  }).then(validateResponse);
 };
 
 export const publisherApiGet = path => publisherApi('GET', path);

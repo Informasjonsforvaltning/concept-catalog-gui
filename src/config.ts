@@ -6,9 +6,7 @@ export interface Config {
   };
   publisherApi: {
     host: string;
-    headers: {
-      authorization: string;
-    };
+    authorization: string;
   };
   registrationHost: {
     host: string;
@@ -22,9 +20,7 @@ const createConfig = (env): Config => {
     },
     publisherApi: {
       host: env.PUBLISHER_API || '/',
-      headers: {
-        authorization: env.PUBLISHER_DATA_AUTHORIZATION || undefined
-      }
+      authorization: env.PUBLISHER_DATA_AUTHORIZATION || undefined
     },
     registrationHost: {
       host: env.REGISTRATION_HOST || undefined

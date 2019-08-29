@@ -1,13 +1,7 @@
 import url from 'url';
+import { getConfig } from '../config';
 
-const conceptCatalogueApiConfig = {
-  host: ''
-};
-
-export const configureRegistrationApi = newRegistrationApiConfig =>
-  Object.assign(conceptCatalogueApiConfig, newRegistrationApiConfig);
-
-const getRootUrl = () => conceptCatalogueApiConfig.host;
+const getRootUrl = () => getConfig().conceptRegistrationApi.host;
 const resolveUrl = path => url.resolve(getRootUrl(), path);
 
 const validateResponse = (method, response) => {
@@ -25,7 +19,7 @@ export const registrationApi = (method, path, jsonBody?) => {
   }
   const body = jsonBody && JSON.stringify(jsonBody);
 
-  return fetch(resolveUrl(path), { method, headers, body }).then(response => {
+  return fetch(resolveUrl(path), { method, body }).then(response => {
     return validateResponse(method, response);
   });
 };

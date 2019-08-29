@@ -22,3 +22,5 @@ export function initAuth() {
     refreshToken
   });
 }
+
+export const getUserName = () => kc.tokenParsed && (kc.tokenParsed as any).name;

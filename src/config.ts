@@ -16,7 +16,7 @@ export interface Config {
 const createConfig = (env): Config => {
   return {
     conceptRegistrationApi: {
-      host: env.CONCEPT_REGISTRATION_API || '/'
+      host: env.CONCEPT_REGISTRATION_API || ''
     },
     publisherApi: {
       host: env.PUBLISHER_API || '',

@@ -23,7 +23,7 @@ module.exports = {
           PUBLISHER_API:'http://localhost:8080',
           // PUBLISHER_API:'https://www.ut1.fellesdatakatalog.brreg.no'
           // PUBLISHER_DATA_AUTHORIZATION:'Basic ZmRrOkJSUkVH' // for ut1 and st1
-          // SSO_HOST: 'http://localhost:8084' // coming soon
+          SSO_HOST: 'http://localhost:8084'
         })
       )
   },

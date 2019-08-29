@@ -32,7 +32,8 @@ module.exports = {
         'CONCEPT_REGISTRATION_API',
         'REGISTRATION_HOST',
         'PUBLISHER_API',
-        'PUBLISHER_DATA_AUTHORIZATION'
+        'PUBLISHER_DATA_AUTHORIZATION',
+        'SSO_HOST'
       ];
       const values = vars.map(varName => process.env[varName]);
       const envObj = _.zipObject(vars, values);

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getConfig } from '../config';
 
-export const registrationApi = (method, path, data?) =>
+export const conceptCatalogueApi = (method, path, data?) =>
   axios({
     url: `${getConfig().conceptRegistrationApi.host}${path}`,
     method,
@@ -12,10 +12,10 @@ export const registrationApi = (method, path, data?) =>
     // }
   }).then(r => r.data);
 
-export const registrationApiPost = (path, body) => registrationApi('POST', path, body);
+export const conceptCatalogueApiPost = (path, body) => conceptCatalogueApi('POST', path, body);
 
-export const registrationApiGet = path => registrationApi('GET', path);
+export const conceptCatalogueApiGet = path => conceptCatalogueApi('GET', path);
 
-export const registrationApiPatch = (path, body) => registrationApi('PATCH', path, body);
+export const conceptCatalogueApiPatch = (path, body) => conceptCatalogueApi('PATCH', path, body);
 
-export const registrationApiDelete = path => registrationApi('DELETE', path);
+export const conceptCatalogueApiDelete = path => conceptCatalogueApi('DELETE', path);

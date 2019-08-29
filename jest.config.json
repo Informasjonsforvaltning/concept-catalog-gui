@@ -13,9 +13,9 @@
   "snapshotSerializers": [
     "enzyme-to-json/serializer"
   ],
-  "testEnvironment": "node",
+  "testEnvironment": "jsdom",
   "transform": {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.[jt]sx?$": "ts-jest"
   },
   "moduleFileExtensions": [
     "ts",

@@ -24,3 +24,8 @@ export function initAuth() {
 }
 
 export const getUserName = () => kc.tokenParsed && (kc.tokenParsed as any).name;
+
+export function logout() {
+  removeTokens();
+  return kc.logout();
+}

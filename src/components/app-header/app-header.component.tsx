@@ -3,7 +3,7 @@ import './app-header.scss';
 import { localization } from '../../lib/localization';
 import { DropdownToggle, DropdownItem, DropdownMenu, UncontrolledDropdown } from 'reactstrap';
 import { getConfig } from '../../config';
-import { getUserName } from '../../auth/auth-service';
+import { getUserName, logout } from '../../auth/auth-service';
 
 export const HeaderPure: FunctionComponent = (): JSX.Element => (
   <header>
@@ -65,7 +65,7 @@ export const HeaderPure: FunctionComponent = (): JSX.Element => (
                 {getUserName()}
               </DropdownToggle>
               <DropdownMenu right className="fdk-dropdownmenu">
-                <DropdownItem>Logg ut</DropdownItem>
+                <DropdownItem onClick={logout}>Logg ut</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </div>

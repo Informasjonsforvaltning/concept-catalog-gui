@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import './app-header.scss';
 import { localization } from '../../lib/localization';
-import { DropdownToggle, DropdownItem, DropdownMenu, UncontrolledDropdown, Nav, NavItem } from 'reactstrap';
+import { DropdownToggle, DropdownItem, DropdownMenu, UncontrolledDropdown } from 'reactstrap';
 import { getConfig } from '../../config';
 
 export const HeaderPure: FunctionComponent = (): JSX.Element => (
@@ -18,7 +18,7 @@ export const HeaderPure: FunctionComponent = (): JSX.Element => (
       <div className="container">
         <div className="row">
           <div className="col-6 col-lg-4">
-            <a title="Link til Felles datakatalog" href={getConfig().registrationHost.host}>
+            <a title="Link til Felles datakatalog" href={getConfig().registrationHost}>
               <span className="uu-invisible" aria-hidden="false" />
               <img className="fdk-logo" src="./img/logo-registrering.svg" alt="Logo for Felles datakatalog" />
             </a>

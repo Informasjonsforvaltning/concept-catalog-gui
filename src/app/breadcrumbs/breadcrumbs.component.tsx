@@ -21,7 +21,7 @@ const PureBreadcrumbs = ({ breadcrumbs }) => {
         <div className="row">
           <div className="col-12 px-0">
             <p className="fdk-p-path">
-              <a href={getConfig().registrationHost.host}>{localization.breadCrumbsAllCatalogs}</a>
+              <a href={getConfig().registrationHost}>{localization.breadCrumbsAllCatalogs}</a>
               <i className="fa fa-angle-right mx-3" />
 
               {breadcrumbs.map((breadcrumb, index) => (

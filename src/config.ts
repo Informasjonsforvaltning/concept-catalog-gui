@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export interface Config {
+  keycloak: any;
   registrationHost: string;
   conceptRegistrationApi: {
     host: string;
@@ -13,6 +14,12 @@ export interface Config {
 
 const createConfig = (env): Config => {
   return {
+    keycloak: {
+      realm: 'fdk',
+      url: `${env.SSO_HOST}/auth`,
+      clientId: 'concept-catalogue-gui'
+    },
+
     // frontend hosts
     registrationHost: env.REGISTRATION_HOST || 'https://registrering.fellesdatakatalog.brreg.no/',
 

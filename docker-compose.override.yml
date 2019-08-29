@@ -36,3 +36,4 @@ services:
       - REGISTRATION_HOST=https://localhost:8098
       - PUBLISHER_API=https://www.ut1.fellesdatakatalog.brreg.no
       - PUBLISHER_DATA_AUTHORIZATION=Basic ZmRrOkJSUkVH
+      - SSO_HOST=http://localhost:8084

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export interface Config {
+  registrationHost: string;
   conceptRegistrationApi: {
     host: string;
   };
@@ -8,22 +9,20 @@ export interface Config {
     host: string;
     authorization: string;
   };
-  registrationHost: {
-    host: string;
-  };
 }
 
 const createConfig = (env): Config => {
   return {
+    // frontend hosts
+    registrationHost: env.REGISTRATION_HOST || 'https://registrering.fellesdatakatalog.brreg.no/',
+
+    // api modules
     conceptRegistrationApi: {
-      host: env.CONCEPT_REGISTRATION_API || ''
+      host: env.CONCEPT_REGISTRATION_API || 'https://begrep-registrering.fellesdatakatalog.brreg.no'
     },
     publisherApi: {
       host: env.PUBLISHER_API || '',
       authorization: env.PUBLISHER_DATA_AUTHORIZATION || undefined
-    },
-    registrationHost: {
-      host: env.REGISTRATION_HOST || undefined
     }
   };
 };

@@ -1,15 +1,15 @@
 import axios from 'axios';
 import { getConfig } from '../config';
+import { getToken } from '../auth/auth-service';
 
-export const conceptCatalogueApi = (method, path, data?) =>
+export const conceptCatalogueApi = async (method, path, data?) =>
   axios({
     url: `${getConfig().conceptRegistrationApi.host}${path}`,
     method,
-    data
-    // todo very soon
-    // headers: {
-    //   Authorization: `Bearer ${await getToken()}`
-    // }
+    data,
+    headers: {
+      Authorization: `Bearer ${await getToken()}`
+    }
   }).then(r => r.data);
 
 export const conceptCatalogueApiPost = (path, body) => conceptCatalogueApi('POST', path, body);

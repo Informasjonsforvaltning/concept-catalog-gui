@@ -29,3 +29,8 @@ export function logout() {
   removeTokens();
   return kc.logout();
 }
+
+export const getToken = async () => {
+  await kc.updateToken(5);
+  return kc.token;
+};

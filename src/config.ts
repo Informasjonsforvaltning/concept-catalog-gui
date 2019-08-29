@@ -19,7 +19,7 @@ const createConfig = (env): Config => {
       host: env.CONCEPT_REGISTRATION_API || '/'
     },
     publisherApi: {
-      host: env.PUBLISHER_API || '/',
+      host: env.PUBLISHER_API || '',
       authorization: env.PUBLISHER_DATA_AUTHORIZATION || undefined
     },
     registrationHost: {

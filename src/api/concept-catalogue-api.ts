@@ -1,28 +1,16 @@
-import url from 'url';
+import axios from 'axios';
 import { getConfig } from '../config';
 
-const getRootUrl = () => getConfig().conceptRegistrationApi.host;
-const resolveUrl = path => url.resolve(getRootUrl(), path);
-
-const validateResponse = (method, response) => {
-  if (!response.ok) {
-    throw new Error(`Fetch error: ${response.status} ${response.statusText}`);
-  }
-
-  return response.json().catch(() => response);
-};
-
-export const registrationApi = (method, path, jsonBody?) => {
-  const headers = { Accept: 'application/json' }; // required for cors
-  if (jsonBody) {
-    Object.assign(headers, { 'Content-Type': 'application/json' });
-  }
-  const body = jsonBody && JSON.stringify(jsonBody);
-
-  return fetch(resolveUrl(path), { method, body }).then(response => {
-    return validateResponse(method, response);
-  });
-};
+export const registrationApi = (method, path, data?) =>
+  axios({
+    url: `${getConfig().conceptRegistrationApi.host}${path}`,
+    method,
+    data
+    // todo very soon
+    // headers: {
+    //   Authorization: `Bearer ${await getToken()}`
+    // }
+  }).then(r => r.data);
 
 export const registrationApiPost = (path, body) => registrationApi('POST', path, body);
 

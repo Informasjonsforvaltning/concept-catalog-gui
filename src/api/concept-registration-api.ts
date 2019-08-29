@@ -5,7 +5,7 @@ import {
   registrationApiDelete
 } from './concept-catalogue-api';
 
-export const conceptListPath = (): string => 'begreper';
+export const conceptListPath = (): string => '/begreper';
 
 export const conceptPath = (conceptId): string => `${conceptListPath()}/${conceptId}`;
 

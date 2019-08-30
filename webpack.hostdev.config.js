@@ -18,9 +18,9 @@ module.exports = {
     before: app =>
       app.get('/env.json', (_, res) =>
         res.json({
-          CONCEPT_REGISTRATION_API:'http://localhost:8200',
-          REGISTRATION_HOST:'https://localhost:8098',
-          PUBLISHER_API:'http://localhost:8080',
+          CONCEPT_REGISTRATION_API: 'http://localhost:8200',
+          REGISTRATION_HOST: 'https://localhost:8098',
+          PUBLISHER_API: 'http://localhost:8080',
           // PUBLISHER_API:'https://www.ut1.fellesdatakatalog.brreg.no'
           // PUBLISHER_DATA_AUTHORIZATION:'Basic ZmRrOkJSUkVH' // for ut1 and st1
           SSO_HOST: 'http://localhost:8084'
@@ -88,11 +88,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'styles.css'
     }),
-    new CopyWebpackPlugin(
-      [{ from: './src/assets/img/*', to: './img', flatten: true }],
-      {
-        copyUnmodified: true
-      }
-    )
+    new CopyWebpackPlugin([{ from: './src/assets/img/*', to: './img', flatten: true }], {
+      copyUnmodified: true
+    })
   ]
 };

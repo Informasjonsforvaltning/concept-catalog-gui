@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { getConfig } from '../config';
 import { getToken } from '../auth/auth-service';
+import get from 'lodash/get';
 
-export const conceptCatalogueApi = async (method, path, data?) =>
+export const conceptCatalogueApiRaw = async (method, path, data?) =>
   axios({
     url: `${getConfig().conceptRegistrationApi.host}${path}`,
     method,
@@ -10,12 +11,21 @@ export const conceptCatalogueApi = async (method, path, data?) =>
     headers: {
       Authorization: `Bearer ${await getToken()}`
     }
-  }).then(r => r.data);
+  });
 
-export const conceptCatalogueApiPost = (path, body) => conceptCatalogueApi('POST', path, body);
+const extractResourseId = response =>
+  get(response, 'headers.location')
+    .split('/')
+    .pop();
 
-export const conceptCatalogueApiGet = path => conceptCatalogueApi('GET', path);
+const extractJsonBody = response => response.data;
 
-export const conceptCatalogueApiPatch = (path, body) => conceptCatalogueApi('PATCH', path, body);
+export const conceptCatalogueApiPost = (path, body) =>
+  conceptCatalogueApiRaw('POST', path, body).then(extractResourseId);
 
-export const conceptCatalogueApiDelete = path => conceptCatalogueApi('DELETE', path);
+export const conceptCatalogueApiGet = path => conceptCatalogueApiRaw('GET', path).then(extractJsonBody);
+
+export const conceptCatalogueApiPatch = (path, body) =>
+  conceptCatalogueApiRaw('PATCH', path, body).then(extractJsonBody);
+
+export const conceptCatalogueApiDelete = path => conceptCatalogueApiRaw('DELETE', path).then(() => {});

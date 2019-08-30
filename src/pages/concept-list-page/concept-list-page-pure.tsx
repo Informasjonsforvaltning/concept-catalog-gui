@@ -23,14 +23,7 @@ const createConcept = catalogId => ({
 });
 
 const createNewConceptAndNavigate = ({ history, catalogId }) =>
-  postConcept(createConcept(catalogId)).then(response => {
-    // Get conceptId from response
-    const location = _.get(response, 'headers').get('Location');
-    const conceptId = location.split('/').pop();
-
-    // Redirect
-    history.push(`/${catalogId}/${conceptId}`);
-  });
+  postConcept(createConcept(catalogId)).then(resourceId => history.push(`/${catalogId}/${resourceId}`));
 
 export const ConceptListPagePure = ({ history, concepts, publisher, catalogId }: Props): JSX.Element => (
   <div className="container">

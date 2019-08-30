@@ -14,33 +14,33 @@ interface Props {
   catalogId: string;
 }
 
-export const ConceptListPagePure = ({ history, concepts, publisher, catalogId }: Props): JSX.Element => {
-  const createNewConceptAndNavigate = () => {
-    const body = {
-      anbefaltTerm: '',
-      status: 'utkast',
-      ansvarligVirksomhet: {
-        id: catalogId
-      }
-    };
-
-    postConcept(body).then(response => {
-      // Get conceptId from response
-      const location = _.get(response, 'headers').get('Location');
-      const conceptId = location.split('/').pop();
-
-      // Redirect
-      history.push(`/${catalogId}/${conceptId}`);
-    });
+const createNewConceptAndNavigate = ({ history, catalogId }) => {
+  const body = {
+    anbefaltTerm: '',
+    status: 'utkast',
+    ansvarligVirksomhet: {
+      id: catalogId
+    }
   };
 
+  postConcept(body).then(response => {
+    // Get conceptId from response
+    const location = _.get(response, 'headers').get('Location');
+    const conceptId = location.split('/').pop();
+
+    // Redirect
+    history.push(`/${catalogId}/${conceptId}`);
+  });
+};
+
+export const ConceptListPagePure = ({ history, concepts, publisher, catalogId }: Props): JSX.Element => {
   return (
     <div className="container">
       <div className="row mb-2">
         <ConceptTitle title={getTranslateText(_.get(publisher, 'prefLabel'))} />
       </div>
       <div className="mb-2">
-        <NewConceptButton parentOnClick={createNewConceptAndNavigate} />
+        <NewConceptButton parentOnClick={() => createNewConceptAndNavigate({ history, catalogId })} />
       </div>
       <div className="mb-2">
         <ConceptList items={concepts} catalogId={catalogId} />

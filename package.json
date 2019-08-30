@@ -87,7 +87,6 @@
     "webpack-cli": "^3.3.4",
     "webpack-dev-middleware": "^3.7.0",
     "webpack-hot-middleware": "^2.25.0",
-    "whatwg-fetch": "^3.0.0",
     "yup": "^0.27.0"
   },
   "devDependencies": {

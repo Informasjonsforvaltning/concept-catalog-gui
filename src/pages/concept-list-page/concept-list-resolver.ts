@@ -6,8 +6,8 @@ import { publisherApiGet } from '../../api/publisher-api';
 const memoizedPublisherApiGetByOrgNr = _.memoize(publisherApiGet);
 
 const mapProps = {
-  concepts: props => conceptCatalogueApiGet(`/begreper?orgNummer=${_.get(props, ['match', 'params', 'catalogId'])}`),
-  publisher: props => memoizedPublisherApiGetByOrgNr(`/publishers/${_.get(props, ['match', 'params', 'catalogId'])}`)
+  concepts: ({ catalogId }) => conceptCatalogueApiGet(`/begreper?orgNummer=${catalogId}`),
+  publisher: ({ catalogId }) => memoizedPublisherApiGetByOrgNr(`/publishers/${catalogId}`)
 };
 
 export const conceptListResolver = resolve(mapProps);

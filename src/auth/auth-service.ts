@@ -2,6 +2,7 @@
 import Keycloak, { KeycloakInstance } from 'keycloak-js';
 import { getConfig } from '../config';
 import { loadTokens, removeTokens, storeTokens } from './token-store';
+import get from 'lodash/get';
 
 let kc: KeycloakInstance;
 
@@ -23,7 +24,7 @@ export function initAuth() {
   });
 }
 
-export const getUserName = () => kc.tokenParsed && (kc.tokenParsed as any).name;
+export const getUserName = () => get(kc.tokenParsed, 'name');
 
 export function logout() {
   removeTokens();

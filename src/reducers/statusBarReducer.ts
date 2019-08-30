@@ -4,12 +4,12 @@ export const CONCEPT_STATUS_PATCH_SUCCESS = 'CONCEPT_STATUS_PATCH_SUCCESS';
 export const CONCEPT_STATUS_IS_SAVING = 'CONCEPT_STATUS_IS_SAVING';
 export const CONCEPT_STATUS_SAVE_ERROR = 'CONCEPT_STATUS_SAVE_ERROR';
 
-export const conceptPatchSuccessAction = (conceptId, patch, response) => ({
+export const conceptPatchSuccessAction = (conceptId, patch, concept) => ({
   type: CONCEPT_STATUS_PATCH_SUCCESS,
   payload: {
     conceptId: conceptId,
     patch: patch,
-    concept: response
+    concept
   }
 });
 

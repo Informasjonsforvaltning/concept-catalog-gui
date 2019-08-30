@@ -6,7 +6,6 @@ import { Footer } from '../components/app-footer/app-footer.component';
 
 import { routeConfig } from './routeConfig';
 import { Breadcrumbs } from './breadcrumbs/breadcrumbs.component';
-import { Hello } from '../components/Hello';
 
 import '../assets/style/bootstrap-override.scss';
 import 'designsystemet/fdk-designsystem-bootstrap4/scss/helper.scss';

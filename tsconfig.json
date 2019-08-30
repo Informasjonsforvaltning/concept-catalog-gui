@@ -24,9 +24,5 @@
   "include": [
     "./images.d.ts",
     "./src/**/**/*"
-  ],
-  "exclude": [
-    "./src/setupTest.ts",
-    "./src/**/*.test.tsx"
   ]
 }

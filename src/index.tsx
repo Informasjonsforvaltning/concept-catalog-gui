@@ -16,5 +16,5 @@ const render = () =>
 
 loadConfig()
   .then(initAuth)
-  .then(render)
+  .then(authenticated => authenticated && render())
   .catch(console.error);

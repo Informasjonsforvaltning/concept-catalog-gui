@@ -6,4 +6,4 @@ const mapProps = {
     (await getConcept(`?orgNummer=${catalogId}`)).find(concept => concept.id === conceptId)
 };
 
-export const ConceptRegistrationResolver = resolve(mapProps);
+export const conceptRegistrationResolver = resolve(mapProps);

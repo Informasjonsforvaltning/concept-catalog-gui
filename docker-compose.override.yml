@@ -21,6 +21,8 @@ services:
       - FDK_SQL_JDBC_CONNECTION=jdbc:postgresql://postgres:5432/postgres?currentSchema=conceptRegistration
       - FDK_SQL_USERNAME=postgres
       - FDK_SQL_PASSWORD=password
+      - SSO_HOST
+
 
   ### nodejs modules
 

@@ -5,7 +5,7 @@
   "main": "server/start.js",
   "scripts": {
     "start": "echo 'feature removed temporarily, run in container instead'",
-    "test": "jest --config=jest.config.json",
+    "test": "jest --runInBand --config=jest.config.json",
     "dev": "webpack-dev-server  --hot --inline --config webpack.hostdev.config.js",
     "build": "webpack --config webpack.prod.config.js -p",
     "lint": "tsc --noEmit && eslint ./ --ext=js,jsx,ts,tsx --fix"
@@ -52,6 +52,7 @@
     "dotenv": "^8.0.0",
     "ejs": "^2.6.1",
     "express": "^4.17.0",
+    "fast-json-patch": "^3.0.0-0",
     "file-loader": "^4.0.0",
     "font-awesome": "^4.7.0",
     "formik": "^1.5.7",

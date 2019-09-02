@@ -1,5 +1,5 @@
-import { Field, FieldArray } from 'formik';
-import * as React from 'react';
+import React from 'react';
+import { Field } from 'formik';
 import { localization } from '../../lib/localization';
 import { InputField } from '../../components/field-input/field-input.component';
 import { ButtonSource } from '../../components/button-source/button-source.component';
@@ -17,6 +17,24 @@ const options = [
 const handleClearKildebeskrivelse = form => {
   form.setFieldValue('kildebeskrivelse', null);
 };
+
+const handleAddKilde = form => {
+  if (!Array.isArray(form.values.kildebeskrivelse.kilde)) {
+    form.values.kildebeskrivelse.kilde = [];
+  }
+  form.values.kildebeskrivelse.kilde.push({ id: v4(), tekst: '', uri: '' });
+  form.setFieldValue('kildebeskrivelse', form.values.kildebeskrivelse);
+};
+
+const handleRemoveKilde = (form, index) => {
+  const { kilde } = form.values.kildebeskrivelse;
+  if (Array.isArray(kilde)) {
+    kilde.splice(index, 1);
+    form.setFieldValue('kildebeskrivelse', form.values.kildebeskrivelse);
+  }
+};
+
+const getKilde = props => _.get(props, ['form', 'values', 'kildebeskrivelse', 'kilde'], []);
 
 export const FieldArraySource = (props): JSX.Element => {
   const forholdTilKilde = _.get(props, 'form.values.kildebeskrivelse.forholdTilKilde');
@@ -40,7 +58,7 @@ export const FieldArraySource = (props): JSX.Element => {
 
       {forholdTilKilde && forholdTilKilde !== 'egendefinert' && (
         <div>
-          {_.get(props, ['form', 'values', 'kildebeskrivelse', 'kilde'], []).map((kilde, index) => {
+          {getKilde(props).map((kilde, index) => {
             return (
               <div key={kilde.id} className="row d-flex fdk-after-element">
                 <div className="col-sm-5">
@@ -63,19 +81,17 @@ export const FieldArraySource = (props): JSX.Element => {
                 </div>
 
                 <div className="fdk-source col-sm-2">
-                  <ButtonSource remove title={localization['removeSource']} handleClick={() => props.remove(index)} />
+                  <ButtonSource
+                    remove
+                    title={localization['removeSource']}
+                    handleClick={() => handleRemoveKilde(props.form, index)}
+                  />
                 </div>
               </div>
             );
           })}
 
-          <ButtonSource
-            add
-            title={localization['addNewSource']}
-            handleClick={() => {
-              props.push({ id: v4(), tekst: '', uri: '' });
-            }}
-          />
+          <ButtonSource add title={localization['addNewSource']} handleClick={() => handleAddKilde(props.form)} />
         </div>
       )}
     </div>

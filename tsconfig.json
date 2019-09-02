@@ -21,8 +21,6 @@
     "isolatedModules": true
     //"noEmit": true
   },
-  "include": [
-    "./images.d.ts",
-    "./src/**/**/*"
-  ]
+  "include": ["./images.d.ts", "./src/**/**/*"],
+  "exclude": ["node_modules", "./src/setupTest.ts", "./src/**/*.test.tsx"]
 }

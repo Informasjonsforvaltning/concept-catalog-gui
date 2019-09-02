@@ -5,29 +5,21 @@ import { schema } from './form-term.schema';
 import { patchConceptFromForm } from '../../../lib/patchConceptForm';
 import { Concept } from '../../../domain/Concept';
 
-export interface FormValues {
-  anbefaltTerm: string;
-  definisjon: string;
-}
-
 interface FormProps {
   concept: Concept;
   dispatch: Function;
 }
 
-const json = {
-  kildebeskrivelse: {
-    forholdTilKilde: 'custom',
-    kilde: []
-  }
-};
+type FormValues = Pick<Concept, 'anbefaltTerm' | 'definisjon' | 'kildebeskrivelse' | 'merknad'>;
+
 const config = {
-  mapPropsToValues: ({ concept, dispatch }: FormProps) => ({
-    anbefaltTerm: _.get(concept, 'anbefaltTerm') || '',
-    definisjon: _.get(concept, 'definisjon') || '',
-    kildebeskrivelse: concept.kildebeskrivelse || null,
-    merknad: _.get(concept, 'merknad') || '',
-    dispatch: dispatch
+  mapPropsToValues: ({
+    concept: { anbefaltTerm = '', definisjon = '', kildebeskrivelse = null, merknad = '' }
+  }: FormProps) => ({
+    anbefaltTerm,
+    definisjon,
+    kildebeskrivelse,
+    merknad
   }),
   validationSchema: schema,
   validate: _.throttle(patchConceptFromForm, 250),

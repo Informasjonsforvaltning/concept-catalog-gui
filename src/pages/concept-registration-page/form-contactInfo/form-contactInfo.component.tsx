@@ -4,23 +4,18 @@ import { withFormik } from 'formik';
 import { schema } from './form-contactInfo.schema';
 import { patchConceptFromForm } from '../../../lib/patchConceptForm';
 import { FormContactInfoPure } from './form-contactInfo-pure.component';
-
-export interface FormValues {
-  kontaktpunkt: {
-    harEpost: string;
-    harTelefon: string;
-  };
-}
+import { Concept } from '../../../domain/Concept';
 
 interface FormProps {
-  concept: object;
+  concept: Concept;
   dispatch: Function;
 }
 
+type FormValues = Pick<Concept, 'kontaktpunkt'>;
+
 const config = {
-  mapPropsToValues: ({ concept, dispatch }: FormProps) => ({
-    kontaktpunkt: _.get(concept, 'kontaktpunkt') || { harEpost: '', harTelefon: '' },
-    dispatch: dispatch
+  mapPropsToValues: ({ concept: { kontaktpunkt = null } }: FormProps) => ({
+    kontaktpunkt
   }),
   validationSchema: schema,
   validate: _.throttle(patchConceptFromForm, 250),

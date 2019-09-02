@@ -1,36 +1,23 @@
 import _ from 'lodash';
 import { withFormik } from 'formik';
-
 import { FormUseOfTermPure } from './form-useOfConcept-pure.component';
 import { schema } from './form-useOfConcept.schema';
 import { patchConceptFromForm } from '../../../lib/patchConceptForm';
-
-interface Bruksomraade {
-  [index: number]: string;
-}
-
-export interface FormValues {
-  eksempel: string;
-  fagområde: string;
-  bruksområde: Bruksomraade;
-  omfang: {
-    tekst: string;
-    uri: string;
-  };
-}
+import { Concept } from '../../../domain/Concept';
 
 interface FormProps {
-  concept: object;
+  concept: Concept;
   dispatch: Function;
 }
 
+type FormValues = Pick<Concept, 'eksempel' | 'fagområde' | 'bruksområde' | 'omfang'>;
+
 const config = {
-  mapPropsToValues: ({ concept, dispatch }: FormProps) => ({
-    eksempel: _.get(concept, 'eksempel') || '',
-    fagområde: _.get(concept, 'fagområde') || '',
-    bruksområde: _.get(concept, 'bruksområde') || [],
-    omfang: _.get(concept, 'omfang') || { tekst: '', uri: '' },
-    dispatch: dispatch
+  mapPropsToValues: ({ concept: { eksempel = '', fagområde = '', bruksområde = [], omfang = null } }: FormProps) => ({
+    eksempel,
+    fagområde,
+    bruksområde,
+    omfang
   }),
   validationSchema: schema,
   validate: _.throttle(patchConceptFromForm, 250),

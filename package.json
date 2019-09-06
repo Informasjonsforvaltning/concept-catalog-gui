@@ -1,10 +1,11 @@
 {
   "name": "concept-client",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "server/start.js",
   "scripts": {
     "start": "echo 'feature removed temporarily, run in container instead'",
+    "release": "standard-version --no-verify",
     "test": "jest --runInBand --config=jest.config.json",
     "dev": "webpack-dev-server  --hot --inline --config webpack.hostdev.config.js",
     "build": "webpack --config webpack.prod.config.js -p",
@@ -107,6 +108,7 @@
     "prettier": "^1.17.1",
     "react-test-renderer": "^16.8.6",
     "source-map-loader": "^0.2.4",
+    "standard-version": "^7.0.0",
     "ts-jest": "^24.0.2",
     "webpack-dev-server": "^3.8.0"
   }

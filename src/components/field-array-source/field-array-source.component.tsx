@@ -15,7 +15,24 @@ const options = [
 ];
 
 const handleClearKildebeskrivelse = form => {
-  form.setFieldValue('kildebeskrivelse', null);
+  form.values.kildebeskrivelse = null;
+  form.setFieldValue('kildebeskrivelse', form.values.kildebeskrivelse);
+};
+
+const handleChangeForholdTilKilde = (form, fieldName, option) => {
+  if (fieldName === 'kildebeskrivelse.forholdTilKilde' && option != null) {
+    // Create default kildebeskrivelse if null
+    if (!_.get(form, 'values.kildebeskrivelse')) {
+      form.values.kildebeskrivelse = {};
+      form.values.kildebeskrivelse.kilde = [];
+    }
+
+    // Create a default kilde-row for the user if its empty
+    if (_.get(form, 'values.kildebeskrivelse.kilde', []).length < 1) {
+      form.values.kildebeskrivelse.kilde.push({ id: v4(), tekst: '', uri: '' });
+      form.setFieldValue('kildebeskrivelse', form.values.kildebeskrivelse);
+    }
+  }
 };
 
 const handleAddKilde = form => {
@@ -51,11 +68,11 @@ export const FieldArraySource = (props): JSX.Element => {
             showLabel={true}
             options={options}
             onClear={handleClearKildebeskrivelse}
+            onChange={handleChangeForholdTilKilde}
           />
         </div>
         <div className="col-sm-7" />
       </div>
-
       {forholdTilKilde && forholdTilKilde !== 'egendefinert' && (
         <div>
           {getKilde(props).map((kilde, index) => {
@@ -90,7 +107,6 @@ export const FieldArraySource = (props): JSX.Element => {
               </div>
             );
           })}
-
           <ButtonSource add title={localization['addNewSource']} handleClick={() => handleAddKilde(props.form)} />
         </div>
       )}

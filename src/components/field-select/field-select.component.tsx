@@ -10,9 +10,11 @@ interface Props {
   label: string;
   type: string;
   onClear: () => {};
+  onChange: () => {};
 }
 
-const onChangeField = (fieldName, option, form, onClear) => {
+const onChangeField = (fieldName, option, form, onClear, onChange) => {
+  onChange(form, fieldName, option);
   if (option == null) {
     onClear(form);
   } else {
@@ -27,7 +29,8 @@ export const SelectField = ({
   showLabel,
   label,
   form,
-  onClear
+  onClear,
+  onChange
 }: Props): JSX.Element => {
   return (
     <div className="px-2">
@@ -41,7 +44,7 @@ export const SelectField = ({
             placeholder={localization['select']}
             name={field.name}
             value={options ? options.find(option => option.value === field.value) : null}
-            onChange={option => onChangeField(field.name, option, form, onClear)}
+            onChange={option => onChangeField(field.name, option, form, onClear, onChange)}
             onBlur={field.onBlur}
           />
         </label>

@@ -32,7 +32,7 @@ Se mer om ‘kildebeskrivelse’ i [standard for begrepsbeskrivelser](https://do
   merknadDescription: `En merknad til definisjonen er en eller flere utdypende forklaringer til definisjon eller alternativ formulering.    
  Et eksempel er merknaden ‘kjæledyr vert ikkje rekna som husdyr’, som kommer i tillegg til definisjonen av husdyr.    
 Se mer om ‘merknad’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
-  tillattTermTitle: 'Tillat term',
+  tillattTermTitle: 'Tillatt term',
   tillattTermAbstract:
     'Term som blir sett på som egnet for begrepet, og som blir brukt i tillegg til en anbefalt term. ',
   tillattTermDescription: `En tillatt term er et synonym som kommer i tillegg til den anbefalte termen. Det kan være nødvendig hvis flere termer er i bruk for begrepet, eller om det er nødvendig å føre opp enkle, brukerrettede termer for allmennheten i tillegg til anbefalt term.    

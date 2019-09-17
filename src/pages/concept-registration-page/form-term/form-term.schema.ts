@@ -3,9 +3,11 @@ import { localization } from '../../../lib/localization';
 
 export const schema = Yup.object().shape({
   anbefaltTerm: Yup.string()
+    .nullable()
     .min(2, localization.validationMin2)
     .required(localization.validationRequired),
   definisjon: Yup.string()
+    .nullable()
     .min(2, localization.validationMin2)
     .required(localization.validationRequired),
   kildebeskrivelse: Yup.object().shape({

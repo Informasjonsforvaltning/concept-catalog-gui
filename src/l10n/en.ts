@@ -58,5 +58,6 @@ export const en = {
   confirmDelete: 'Yes, delete',
   conceptPublished: 'Concept is published.',
   conceptUnPublished: 'Concept is unpublished.',
-  select: 'Select'
+  select: 'Select',
+  timeStampPattern: 'DDDD at HH:mm'
 };

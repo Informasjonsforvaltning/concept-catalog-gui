@@ -58,5 +58,6 @@ export const nb = {
   confirmDelete: 'Ja, slett',
   conceptPublished: 'Begrepet er publisert.',
   conceptUnPublished: 'Begrepet er avpublisert.',
-  select: 'Velg'
+  select: 'Velg',
+  timeStampPattern: 'DDDD kl. HH:mm'
 };

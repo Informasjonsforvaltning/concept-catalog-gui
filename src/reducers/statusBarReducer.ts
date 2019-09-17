@@ -53,13 +53,15 @@ export const statusBarReducer = (state, action): object => {
       const { conceptId, patch, concept } = action.payload;
       const justPublishedOrUnPublished = !!_.get(patch, 'status');
       const status = _.get(concept, 'status');
+      const endringstidspunkt = _.get(concept, ['endringslogelement', 'endringstidspunkt']);
       return {
         ...state,
         [conceptId]: {
           ..._.get(state, [conceptId]),
           isSaving: false,
           status,
-          justPublishedOrUnPublished
+          justPublishedOrUnPublished,
+          endringstidspunkt
         }
       };
     }

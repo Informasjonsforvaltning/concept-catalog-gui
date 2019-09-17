@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import cx from 'classnames';
 import _ from 'lodash';
 import { Button } from 'reactstrap';
+import { DateTime } from 'luxon';
 
 import { localization } from '../../lib/localization';
 import { StatusBarContext } from '../../context/statusBarContext';
@@ -56,6 +57,15 @@ interface Props {
   catalogId: string;
 }
 
+const lastSavedTime = (endringstidspunkt): string => {
+  if (!endringstidspunkt) {
+    return '';
+  }
+  return DateTime.fromISO(endringstidspunkt, { locale: localization.getLanguage() }).toFormat(
+    localization.timeStampPattern
+  );
+};
+
 export const StatusBar = ({ concept, history, catalogId }: Props): JSX.Element => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const toggleShowConfirmDelete = (): void => setShowConfirmDelete(!showConfirmDelete);
@@ -70,6 +80,7 @@ export const StatusBar = ({ concept, history, catalogId }: Props): JSX.Element =
   const isSaving = _.get(statusBarState, [conceptId, 'isSaving'], false);
   const error = _.get(statusBarState, [conceptId, 'error']);
   const validationError = _.get(statusBarState, [conceptId, 'validationError'], false);
+  const endringstidspunkt = _.get(statusBarState, [conceptId, 'endringstidspunkt']);
 
   let messageClass;
   let message;
@@ -82,9 +93,13 @@ export const StatusBar = ({ concept, history, catalogId }: Props): JSX.Element =
     if (isSaving) {
       message = `${localization.isSaving}...`;
     } else if (published || status === CONCEPT_STATUS_PUBLISHED) {
-      message = `${localization.changesUpdated}.`;
+      message = `${localization.changesUpdated} ${lastSavedTime(
+        endringstidspunkt || _.get(concept, ['endringslogelement', 'endringstidspunkt'])
+      )}.`;
     } else {
-      message = `${localization.savedAsDraft}.`;
+      message = `${localization.savedAsDraft} ${lastSavedTime(
+        endringstidspunkt || _.get(concept, ['endringslogelement', 'endringstidspunkt'])
+      )}.`;
     }
   }
 

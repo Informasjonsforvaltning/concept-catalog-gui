@@ -1,11 +1,11 @@
 import React from 'react';
-import { Form, Field } from 'formik';
+import { Field } from 'formik';
 import { localization } from '../../../lib/localization';
 import { InputField } from '../../../components/field-input/field-input.component';
 import { HelpText } from '../../../components/help-text/help-text.component';
 
 export const FormContactInfoPure = (): JSX.Element => (
-  <Form>
+  <div>
     <div className="form-group">
       <HelpText
         title={localization.kontaktinformasjonTitle}
@@ -22,5 +22,5 @@ export const FormContactInfoPure = (): JSX.Element => (
         </div>
       </div>
     </div>
-  </Form>
+  </div>
 );

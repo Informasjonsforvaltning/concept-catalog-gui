@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, FieldArray, Form } from 'formik';
+import { Field, FieldArray } from 'formik';
 
 import { InputField } from '../../../components/field-input/field-input.component';
 import { TextAreaField } from '../../../components/field-textarea/field-textarea.component';
@@ -10,7 +10,7 @@ import { localization } from '../../../lib/localization';
 import { FieldArraySource } from '../../../components/field-array-source/field-array-source.component';
 
 export const FormTermPure = (props): JSX.Element => (
-  <Form>
+  <div>
     <div className="form-group">
       <HelpText
         title={localization.anbefaltTermTitle}
@@ -47,5 +47,5 @@ export const FormTermPure = (props): JSX.Element => (
       />
       <Field name="merknad" rows="5" component={TextAreaField} />
     </div>
-  </Form>
+  </div>
 );

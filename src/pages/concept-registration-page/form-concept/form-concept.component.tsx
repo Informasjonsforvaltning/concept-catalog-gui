@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { withFormik } from 'formik';
-import { FormTermPure } from './form-term-pure.component';
-import { schema } from './form-term.schema';
+import { FormConceptPure } from './form-concept-pure.component';
+import { schema } from './form-concept.schema';
 import { Concept } from '../../../domain/Concept';
 import { validateConceptForm } from '../../../lib/validateConceptForm';
 
@@ -10,7 +10,20 @@ interface FormProps {
   dispatch: Function;
 }
 
-type FormValues = Pick<Concept, 'anbefaltTerm' | 'definisjon' | 'kildebeskrivelse' | 'merknad'>;
+type FormValues = Pick<
+  Concept,
+  | 'anbefaltTerm'
+  | 'definisjon'
+  | 'kildebeskrivelse'
+  | 'merknad'
+  | 'tillattTerm'
+  | 'frarådetTerm'
+  | 'eksempel'
+  | 'fagområde'
+  | 'bruksområde'
+  | 'omfang'
+  | 'kontaktpunkt'
+>;
 
 // Remove all empty occurenses of kilde on Egendefinert
 const preProcessValues = origValues => {
@@ -36,16 +49,35 @@ const patchWithPreProcess = (values, { concept, dispatch }) => {
 
 const config = {
   mapPropsToValues: ({
-    concept: { anbefaltTerm = '', definisjon = '', kildebeskrivelse = null, merknad = '' }
+    concept: {
+      anbefaltTerm = '',
+      definisjon = '',
+      kildebeskrivelse = null,
+      merknad = '',
+      tillattTerm = [],
+      frarådetTerm = [],
+      eksempel = '',
+      fagområde = '',
+      bruksområde = [],
+      omfang = null,
+      kontaktpunkt = null
+    }
   }: FormProps) => ({
     anbefaltTerm,
     definisjon,
     kildebeskrivelse,
-    merknad
+    merknad,
+    tillattTerm,
+    frarådetTerm,
+    eksempel,
+    fagområde,
+    bruksområde,
+    omfang,
+    kontaktpunkt
   }),
   validationSchema: schema,
   validate: _.throttle(patchWithPreProcess, 250),
   handleSubmit() {}
 };
 
-export const FormTerm = withFormik<FormProps, FormValues>(config)(FormTermPure);
+export const FormConcept = withFormik<FormProps, FormValues>(config)(FormConceptPure);

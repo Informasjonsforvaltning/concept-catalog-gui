@@ -1,8 +1,8 @@
 import React from 'react';
 import { Field } from 'formik';
-import { localization } from '../../../lib/localization';
-import { InputField } from '../../../components/field-input/field-input.component';
-import { HelpText } from '../../../components/help-text/help-text.component';
+import { localization } from '../../../../lib/localization';
+import { InputField } from '../../../../components/field-input/field-input.component';
+import { HelpText } from '../../../../components/help-text/help-text.component';
 
 export const FormContactInfoPure = (): JSX.Element => (
   <div>

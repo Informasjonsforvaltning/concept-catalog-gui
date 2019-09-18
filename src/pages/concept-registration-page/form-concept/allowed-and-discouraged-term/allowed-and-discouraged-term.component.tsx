@@ -4,7 +4,7 @@ import { InputTagsField } from '../../../../components/field-input-tags/field-in
 import { HelpText } from '../../../../components/help-text/help-text.component';
 import { localization } from '../../../../lib/localization';
 
-export const FormAllowedAndDiscouragedPure = (): JSX.Element => (
+export const AllowedAndDiscouraged = (): JSX.Element => (
   <div>
     <div className="form-group">
       <HelpText

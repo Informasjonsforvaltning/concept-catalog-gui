@@ -9,7 +9,7 @@ import { localization } from '../../../../lib/localization';
 
 import { FieldArraySource } from '../../../../components/field-array-source/field-array-source.component';
 
-export const FormTermPure = (props): JSX.Element => (
+export const Term = (props): JSX.Element => (
   <div>
     <div className="form-group">
       <HelpText

@@ -4,7 +4,7 @@ import { localization } from '../../../../lib/localization';
 import { InputField } from '../../../../components/field-input/field-input.component';
 import { HelpText } from '../../../../components/help-text/help-text.component';
 
-export const FormContactInfoPure = (): JSX.Element => (
+export const ContactInfo = (): JSX.Element => (
   <div>
     <div className="form-group">
       <HelpText

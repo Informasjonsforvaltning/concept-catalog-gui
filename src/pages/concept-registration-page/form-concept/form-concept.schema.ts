@@ -10,14 +10,16 @@ export const schema = Yup.object().shape({
     .nullable()
     .min(2, localization.validationMin2)
     .required(localization.validationRequired),
-  kildebeskrivelse: Yup.object().shape({
-    kilde: Yup.array().of(
-      Yup.object().shape({
-        tekst: Yup.string().min(2, localization.validationMin2),
-        uri: Yup.string().url(localization.validationUrl)
-      })
-    )
-  }),
+  kildebeskrivelse: Yup.object()
+    .nullable()
+    .shape({
+      kilde: Yup.array().of(
+        Yup.object().shape({
+          tekst: Yup.string().min(2, localization.validationMin2),
+          uri: Yup.string().url(localization.validationUrl)
+        })
+      )
+    }),
   eksempel: Yup.string()
     .min(2, localization.validationMin2)
     .nullable(),

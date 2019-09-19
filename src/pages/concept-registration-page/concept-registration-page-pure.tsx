@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
 
-import { StatusBar } from '../../components/status-bar/status-bar.component';
 import { StatusBarProvider } from '../../context/statusBarContext';
 import { statusBarReducer } from '../../reducers/statusBarReducer';
 import './concept-registration-page-pure.scss';
@@ -23,17 +22,16 @@ interface Props {
   catalogId: string;
 }
 
-export const ConceptRegistrationPagePure = ({ concept, history, catalogId }: Props) => {
+export const ConceptRegistrationPagePure = ({ concept }: Props) => {
   const [statusBarState, dispatch] = useReducer(statusBarReducer, [{}]);
   const value = { statusBarState, dispatch };
   return (
     <div className="container">
       <div className="col-12">
-        <FormConcept concept={concept} dispatch={dispatch} />
+        <StatusBarProvider value={value}>
+          <FormConcept concept={concept} dispatch={dispatch} />
+        </StatusBarProvider>
       </div>
-      <StatusBarProvider value={value}>
-        <StatusBar concept={concept} history={history} catalogId={catalogId} />
-      </StatusBarProvider>
     </div>
   );
 };

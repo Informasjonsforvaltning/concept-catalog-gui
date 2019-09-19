@@ -55,6 +55,7 @@ interface Props {
   concept: object;
   history: any;
   catalogId: string;
+  isInitialInValidForm: boolean;
 }
 
 const lastSavedTime = (endringstidspunkt): string => {
@@ -66,7 +67,7 @@ const lastSavedTime = (endringstidspunkt): string => {
   );
 };
 
-export const StatusBar = ({ concept, history, catalogId }: Props): JSX.Element => {
+export const StatusBar = ({ concept, history, catalogId, isInitialInValidForm }: Props): JSX.Element => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const toggleShowConfirmDelete = (): void => setShowConfirmDelete(!showConfirmDelete);
 
@@ -79,7 +80,7 @@ export const StatusBar = ({ concept, history, catalogId }: Props): JSX.Element =
   const justPublishedOrUnPublished = _.get(statusBarState, [conceptId, 'justPublishedOrUnPublished']);
   const isSaving = _.get(statusBarState, [conceptId, 'isSaving'], false);
   const error = _.get(statusBarState, [conceptId, 'error']);
-  const validationError = _.get(statusBarState, [conceptId, 'validationError'], false);
+  const validationError = _.get(statusBarState, [conceptId, 'validationError'], isInitialInValidForm);
   const endringstidspunkt = _.get(statusBarState, [conceptId, 'endringstidspunkt']);
 
   let messageClass;

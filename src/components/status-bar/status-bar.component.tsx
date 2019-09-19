@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import cx from 'classnames';
 import _ from 'lodash';
 import { Button } from 'reactstrap';
@@ -53,10 +54,10 @@ const renderConfirmDeleteOverlayDialog = ({
 
 interface Props {
   concept: object;
-  history: any;
-  catalogId: string;
   isInitialInValidForm: boolean;
 }
+
+type EnhancedProps = Props & RouteComponentProps;
 
 const lastSavedTime = (endringstidspunkt): string => {
   if (!endringstidspunkt) {
@@ -67,10 +68,11 @@ const lastSavedTime = (endringstidspunkt): string => {
   );
 };
 
-export const StatusBar = ({ concept, history, catalogId, isInitialInValidForm }: Props): JSX.Element => {
+export const StatusBarPure = ({ concept, isInitialInValidForm, history, match: { params } }: EnhancedProps) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const toggleShowConfirmDelete = (): void => setShowConfirmDelete(!showConfirmDelete);
 
+  const catalogId = _.get(params, 'catalogId');
   const conceptId = _.get(concept, 'id');
   const published = _.get(concept, 'status') === CONCEPT_STATUS_PUBLISHED;
 
@@ -155,3 +157,5 @@ export const StatusBar = ({ concept, history, catalogId, isInitialInValidForm }:
     </>
   );
 };
+
+export const StatusBar = withRouter(StatusBarPure);

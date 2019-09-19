@@ -19,7 +19,6 @@ interface Concept {
 interface Props {
   concept: Concept;
   history: object;
-  catalogId: string;
 }
 
 export const ConceptRegistrationPagePure = ({ concept }: Props) => {

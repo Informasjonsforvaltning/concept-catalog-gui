@@ -10,7 +10,6 @@ import { StatusBar } from '../../../components/status-bar/status-bar.component';
 
 export const FormConceptPure = (props): JSX.Element => {
   const { concept, isValid } = props;
-  const catalogId = concept.catalogId;
   return (
     <Form>
       <FormTemplate title={localization.formTerm} required={true}>
@@ -25,7 +24,7 @@ export const FormConceptPure = (props): JSX.Element => {
       <FormTemplate title={localization.formContactPoint}>
         <ContactInfo />
       </FormTemplate>
-      <StatusBar concept={concept} history={history} catalogId={catalogId} isInitialInValidForm={!isValid} />
+      <StatusBar concept={concept} isInitialInValidForm={!isValid} />
     </Form>
   );
 };

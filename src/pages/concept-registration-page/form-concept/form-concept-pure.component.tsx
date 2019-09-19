@@ -9,7 +9,7 @@ import { FormTemplate } from '../../../components/form-template/form-template.co
 import { StatusBar } from '../../../components/status-bar/status-bar.component';
 
 export const FormConceptPure = (props): JSX.Element => {
-  const { concept } = props;
+  const { concept, isValid } = props;
   const catalogId = concept.catalogId;
   return (
     <Form>
@@ -25,7 +25,7 @@ export const FormConceptPure = (props): JSX.Element => {
       <FormTemplate title={localization.formContactPoint}>
         <ContactInfo />
       </FormTemplate>
-      <StatusBar concept={concept} history={history} catalogId={catalogId} />
+      <StatusBar concept={concept} history={history} catalogId={catalogId} isInitialInValidForm={!isValid} />
     </Form>
   );
 };

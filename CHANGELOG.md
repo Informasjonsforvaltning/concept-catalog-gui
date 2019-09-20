@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/Informasjonsforvaltning/begrepskatalog/compare/v1.1.0...v1.1.1) (2019-09-20)
+
+
+### Bug Fixes
+
+* Added an empty kilde as default. ([09bdcc9](https://github.com/Informasjonsforvaltning/begrepskatalog/commit/09bdcc9))
+* Added nullable to anbefaltTerm and definisjon to remove validation error on init. ([fd3bd8c](https://github.com/Informasjonsforvaltning/begrepskatalog/commit/fd3bd8c))
+* Added webpack.hostdev.config.js to .eslintignore ([2a89f7e](https://github.com/Informasjonsforvaltning/begrepskatalog/commit/2a89f7e))
+* Allowed null on eksempel and fagområde on validation. ([42775dd](https://github.com/Informasjonsforvaltning/begrepskatalog/commit/42775dd))
+* change validation scheme, kildebeskrivelse nullable ([a25bea8](https://github.com/Informasjonsforvaltning/begrepskatalog/commit/a25bea8))
+
 ## 1.1.0 (2019-09-06)
 
 

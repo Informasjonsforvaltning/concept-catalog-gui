@@ -18,7 +18,7 @@ import 'font-awesome/scss/font-awesome.scss';
 
 export const App: FunctionComponent = (): JSX.Element => (
   <Router>
-    <div className="d-flex flex-column site">
+    <div className="d-flex flex-column site theme-fdk">
       <Header />
       <Breadcrumbs />
       <div className="site-content d-flex flex-column pt-5">

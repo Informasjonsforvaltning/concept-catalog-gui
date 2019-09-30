@@ -8,7 +8,7 @@ export const routeConfig = [
     path: '/:catalogId',
     component: ConceptListPage,
     exact: true,
-    breadcrumb: props => PublisherBreadcrumb({ ...props, breadCrumbLabel: 'breadCrumbsPublisherList' })
+    breadcrumb: localization.breadCrumbsConceptCatalog
   },
   {
     path: '/list',

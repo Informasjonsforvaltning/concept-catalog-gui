@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/Informasjonsforvaltning/begrepskatalog/compare/v1.1.2...v1.2.0) (2019-10-01)
+
+
+### Bug Fixes
+
+* add fdk-theme class and upgrade designsystemet to v1.4.23 ([691df9b](https://github.com/Informasjonsforvaltning/begrepskatalog/commit/691df9b))
+
+
+### Features
+
+* [#2034](https://github.com/Informasjonsforvaltning/begrepskatalog/issues/2034) change breadcrumb text and update design to v1.4.24 ([4573bf6](https://github.com/Informasjonsforvaltning/begrepskatalog/commit/4573bf6))
+
 ### [1.1.2](https://github.com/Informasjonsforvaltning/begrepskatalog/compare/v1.1.1...v1.1.2) (2019-09-20)
 
 ### [1.1.1](https://github.com/Informasjonsforvaltning/begrepskatalog/compare/v1.1.0...v1.1.1) (2019-09-20)

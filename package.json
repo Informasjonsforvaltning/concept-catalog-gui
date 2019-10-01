@@ -1,6 +1,6 @@
 {
   "name": "concept-client",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "",
   "main": "server/start.js",
   "scripts": {

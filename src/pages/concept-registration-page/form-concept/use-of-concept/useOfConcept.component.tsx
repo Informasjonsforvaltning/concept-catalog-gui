@@ -1,8 +1,8 @@
 import React from 'react';
 import { Field } from 'formik';
-import { InputField } from '../../../../components/field-input/field-input.component';
-import { InputTagsField } from '../../../../components/field-input-tags/field-input-tags.component';
-import { TextAreaField } from '../../../../components/field-textarea/field-textarea.component';
+import { InputField } from '../../../../components/fields/field-input/field-input.component';
+import { InputTagsField } from '../../../../components/fields/field-input-tags/field-input-tags.component';
+import { TextAreaField } from '../../../../components/fields/field-textarea/field-textarea.component';
 import { HelpText } from '../../../../components/help-text/help-text.component';
 import { localization } from '../../../../lib/localization';
 

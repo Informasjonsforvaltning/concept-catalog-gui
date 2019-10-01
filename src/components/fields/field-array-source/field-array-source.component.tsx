@@ -1,9 +1,9 @@
 import React from 'react';
 import { Field } from 'formik';
-import { localization } from '../../lib/localization';
-import { InputField } from '../../components/field-input/field-input.component';
-import { ButtonSource } from '../../components/button-source/button-source.component';
-import { SelectField } from '../../components/field-select/field-select.component';
+import { localization } from '../../../lib/localization';
+import { InputField } from '../field-input/field-input.component';
+import { ButtonSource } from '../../button-source/button-source.component';
+import { SelectField } from '../field-select/field-select.component';
 import { v4 } from 'uuid';
 import _ from 'lodash';
 import './field-array-source.scss';

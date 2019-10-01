@@ -22,7 +22,7 @@ const extractResourseId = response =>
 const extractJsonBody = response => response.data;
 
 // TODO: remove this when translatable fields are supported
-const normalizeToString = input => (typeof input === 'string' ? input : input.nb);
+const normalizeToString = input => (typeof input === 'string' ? input : get(input, 'nb'));
 
 // TODO: remove this when translatable fields are supported
 const normalizeConcept = ({ anbefaltTerm, definisjon, ...rest }: Concept) => ({

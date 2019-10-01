@@ -3,7 +3,7 @@ import axios from 'axios';
 export interface Config {
   keycloak: any;
   registrationHost: string;
-  conceptRegistrationApi: {
+  conceptCatalogueApi: {
     host: string;
   };
   publisherApi: {
@@ -24,7 +24,7 @@ const createConfig = (env): Config => {
     registrationHost: env.REGISTRATION_HOST || 'https://registrering.fellesdatakatalog.brreg.no/',
 
     // api modules
-    conceptRegistrationApi: {
+    conceptCatalogueApi: {
       host: env.CONCEPT_REGISTRATION_API || 'https://begrep-registrering.fellesdatakatalog.brreg.no'
     },
     publisherApi: {

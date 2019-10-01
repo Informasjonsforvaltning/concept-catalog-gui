@@ -10,9 +10,13 @@ export interface ContactDetails {
   harTelefon: string;
 }
 
+export interface TranslatableField {
+  [key: string]: string;
+}
+
 export interface Concept {
-  anbefaltTerm?: string;
-  definisjon?: string;
+  anbefaltTerm?: TranslatableField | string;
+  definisjon?: TranslatableField | string;
   kildebeskrivelse?: {
     forholdTilKilde: string;
     kilde: Kilde[];

@@ -4,12 +4,13 @@ import {
   conceptCatalogueApiPatch,
   conceptCatalogueApiDelete
 } from './concept-catalogue-api';
+import { Concept } from '../domain/Concept';
 
 export const conceptListPath = (): string => '/begreper';
 
 export const conceptPath = (conceptId): string => `${conceptListPath()}/${conceptId}`;
 
-export const getConcept = (catalogId): Promise<any[]> => conceptCatalogueApiGet(conceptPath(catalogId));
+export const getConcept = (catalogId): Promise<Concept[] | Concept> => conceptCatalogueApiGet(conceptPath(catalogId));
 
 export const postConcept = (body): Promise<void> => conceptCatalogueApiPost(conceptListPath(), body);
 

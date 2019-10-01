@@ -4,7 +4,7 @@ import { getTranslateText } from '../../lib/translateText';
 import { ConceptList } from './concept-list/concept-list.component';
 import { ConceptTitle } from './concept-title/concept-title.component';
 import { NewConceptButton } from '../../components/new-concept-button/new-concept-button.component';
-import { postConcept } from '../../api/concept-registration-api';
+import { postConcept } from '../../api/concept-catalogue-api';
 
 interface Props {
   myProp: any;

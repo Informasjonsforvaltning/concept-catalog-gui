@@ -53,7 +53,7 @@ export const HeaderPure: FunctionComponent = (): JSX.Element => (
 
               <DropdownMenu right className="fdk-dropdownmenu">
                 <DropdownItem>Konto</DropdownItem>
-                <DropdownItem>Logg ut</DropdownItem>
+                <DropdownItem onClick={logout}>Logg ut</DropdownItem>
                 <DropdownItem>Norsk</DropdownItem>
                 <DropdownItem>Nynorsk</DropdownItem>
                 <DropdownItem>English</DropdownItem>

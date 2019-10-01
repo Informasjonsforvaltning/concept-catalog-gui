@@ -1,5 +1,5 @@
 import { resolve } from 'react-resolver';
-import { getConcept } from '../../api/concept-registration-api';
+import { getConcept } from '../../api/concept-catalogue-api';
 
 const mapProps = {
   concept: async ({ conceptId }) => await getConcept(conceptId)

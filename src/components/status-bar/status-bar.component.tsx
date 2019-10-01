@@ -8,7 +8,7 @@ import { DateTime } from 'luxon';
 import { localization } from '../../lib/localization';
 import { StatusBarContext } from '../../context/statusBarContext';
 import { patchConceptFromForm } from '../../lib/patchConceptForm';
-import { deleteConcept } from '../../api/concept-registration-api';
+import { deleteConcept } from '../../api/concept-catalogue-api';
 import './status-bar.scss';
 
 const CONCEPT_STATUS_PUBLISHED = 'publisert';

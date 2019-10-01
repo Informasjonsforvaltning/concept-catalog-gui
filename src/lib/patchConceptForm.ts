@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { compare } from 'fast-json-patch';
-import { patchConcept } from '../api/concept-registration-api';
+import { patchConcept } from '../api/concept-catalogue-api';
 import {
   conceptPatchSuccessAction,
   conceptPatchErrorAction,

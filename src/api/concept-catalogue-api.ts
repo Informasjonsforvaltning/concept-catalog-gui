@@ -1,12 +1,13 @@
 import axios from 'axios';
+import get from 'lodash/get';
+
+import { Concept } from '../domain/Concept';
 import { getConfig } from '../config';
 import { getToken } from '../auth/auth-service';
-import get from 'lodash/get';
-import { Concept } from '../domain/Concept';
 
 export const conceptCatalogueApiRaw = async (method, path, data?) =>
   axios({
-    url: `${getConfig().conceptRegistrationApi.host}${path}`,
+    url: `${getConfig().conceptCatalogueApi.host}${path}`,
     method,
     data,
     headers: {
@@ -46,3 +47,16 @@ export const conceptCatalogueApiPatch = (path, body) =>
   conceptCatalogueApiRaw('PATCH', path, body).then(extractJsonBody);
 
 export const conceptCatalogueApiDelete = path => conceptCatalogueApiRaw('DELETE', path).then(() => {});
+
+export const conceptListPath = (): string => '/begreper';
+
+export const conceptPath = (conceptId): string => `${conceptListPath()}/${conceptId}`;
+
+export const getConcept = (catalogId): Promise<Concept[] | Concept> => conceptCatalogueApiGet(conceptPath(catalogId));
+
+export const postConcept = (body): Promise<void> => conceptCatalogueApiPost(conceptListPath(), body);
+
+export const patchConcept = (conceptId, patch): Promise<void> =>
+  conceptCatalogueApiPatch(conceptPath(conceptId), patch);
+
+export const deleteConcept = (conceptId: string): Promise<void> => conceptCatalogueApiDelete(conceptPath(conceptId));

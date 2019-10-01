@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field } from 'formik';
 import { localization } from '../../../../lib/localization';
-import { InputField } from '../../../../components/field-input/field-input.component';
+import { InputField } from '../../../../components/fields/field-input/field-input.component';
 import { HelpText } from '../../../../components/help-text/help-text.component';
 
 export const ContactInfo = (): JSX.Element => (

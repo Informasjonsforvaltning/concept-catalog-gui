@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import { localization } from '../../lib/localization';
+import { localization } from '../../../lib/localization';
 
 interface Props {
   field: any;

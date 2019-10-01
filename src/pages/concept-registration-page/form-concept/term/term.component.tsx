@@ -1,13 +1,13 @@
 import React from 'react';
 import { Field, FieldArray } from 'formik';
 
-import { InputField } from '../../../../components/field-input/field-input.component';
-import { TextAreaField } from '../../../../components/field-textarea/field-textarea.component';
+import { InputField } from '../../../../components/fields/field-input/field-input.component';
+import { TextAreaField } from '../../../../components/fields/field-textarea/field-textarea.component';
 
 import { HelpText } from '../../../../components/help-text/help-text.component';
 import { localization } from '../../../../lib/localization';
 
-import { FieldArraySource } from '../../../../components/field-array-source/field-array-source.component';
+import { FieldArraySource } from '../../../../components/fields/field-array-source/field-array-source.component';
 
 export const Term = (props): JSX.Element => (
   <div>

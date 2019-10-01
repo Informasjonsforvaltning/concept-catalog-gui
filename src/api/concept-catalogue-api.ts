@@ -24,9 +24,6 @@ const normalizeConcept = ({ anbefaltTerm, definisjon, ...rest }: Concept) => ({
   ...rest
 });
 
-const normalizeData = (data): Concept | Concept[] =>
-  Array.isArray(data) ? data.map(normalizeConcept) : normalizeConcept(data);
-
 /* low level api */
 const conceptCatalogueApiRaw = async (method, path, data?) =>
   axios({
@@ -40,10 +37,7 @@ const conceptCatalogueApiRaw = async (method, path, data?) =>
 
 const conceptCatalogueApiPost = (path, body) => conceptCatalogueApiRaw('POST', path, body).then(extractResourseId);
 
-export const conceptCatalogueApiGet = path =>
-  conceptCatalogueApiRaw('GET', path)
-    .then(extractJsonBody)
-    .then(normalizeData);
+const conceptCatalogueApiGet = path => conceptCatalogueApiRaw('GET', path).then(extractJsonBody);
 
 const conceptCatalogueApiPatch = (path, body) => conceptCatalogueApiRaw('PATCH', path, body).then(extractJsonBody);
 
@@ -55,7 +49,13 @@ const conceptPath = (conceptId): string => `${conceptListPath}/${conceptId}`;
 
 /* high level api */
 
-export const getConcept = (catalogId): Promise<Concept[] | Concept> => conceptCatalogueApiGet(conceptPath(catalogId));
+export const getConcept = (catalogId): Promise<Concept> =>
+  conceptCatalogueApiGet(conceptPath(catalogId)).then(normalizeConcept);
+
+export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
+  (conceptCatalogueApiGet(`${conceptListPath}?orgNummer=${catalogId}`) as Promise<Concept[]>).then(concepts =>
+    concepts.map(normalizeConcept)
+  );
 
 export const postConcept = (body): Promise<void> => conceptCatalogueApiPost(conceptListPath, body);
 

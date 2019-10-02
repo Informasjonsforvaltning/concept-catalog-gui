@@ -1,3 +1,25 @@
 .form-group {
   margin-top: 3rem;
+
+  .language-indicator {
+    position: absolute;
+    top: 9px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    z-index: 1;
+
+    + input,
+    + textarea,
+    + .fdk-reg-input-tags {
+      padding-left: 40px;
+    }
+
+    + textarea {
+      min-height: 41px;
+    }
+
+    &.language-indicator-text-area {
+      top: 7px;
+    }
+  }
 }

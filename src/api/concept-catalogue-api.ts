@@ -5,15 +5,7 @@ import { Concept } from '../domain/Concept';
 import { getConfig } from '../config';
 import { getToken } from '../auth/auth-service';
 
-export const conceptCatalogueApiRaw = async (method, path, data?) =>
-  axios({
-    url: `${getConfig().conceptCatalogueApi.host}${path}`,
-    method,
-    data,
-    headers: {
-      Authorization: `Bearer ${await getToken()}`
-    }
-  });
+/* utility functions */
 
 const extractResourseId = response =>
   get(response, 'headers.location')
@@ -35,26 +27,37 @@ const normalizeConcept = ({ anbefaltTerm, definisjon, ...rest }: Concept) => ({
 const normalizeData = (data): Concept | Concept[] =>
   Array.isArray(data) ? data.map(normalizeConcept) : normalizeConcept(data);
 
-export const conceptCatalogueApiPost = (path, body) =>
-  conceptCatalogueApiRaw('POST', path, body).then(extractResourseId);
+/* low level api */
+const conceptCatalogueApiRaw = async (method, path, data?) =>
+  axios({
+    url: `${getConfig().conceptCatalogueApi.host}${path}`,
+    method,
+    data,
+    headers: {
+      Authorization: `Bearer ${await getToken()}`
+    }
+  });
+
+const conceptCatalogueApiPost = (path, body) => conceptCatalogueApiRaw('POST', path, body).then(extractResourseId);
 
 export const conceptCatalogueApiGet = path =>
   conceptCatalogueApiRaw('GET', path)
     .then(extractJsonBody)
     .then(normalizeData);
 
-export const conceptCatalogueApiPatch = (path, body) =>
-  conceptCatalogueApiRaw('PATCH', path, body).then(extractJsonBody);
+const conceptCatalogueApiPatch = (path, body) => conceptCatalogueApiRaw('PATCH', path, body).then(extractJsonBody);
 
-export const conceptCatalogueApiDelete = path => conceptCatalogueApiRaw('DELETE', path).then(() => {});
+const conceptCatalogueApiDelete = path => conceptCatalogueApiRaw('DELETE', path).then(() => {});
 
-export const conceptListPath = (): string => '/begreper';
+const conceptListPath = '/begreper';
 
-export const conceptPath = (conceptId): string => `${conceptListPath()}/${conceptId}`;
+const conceptPath = (conceptId): string => `${conceptListPath}/${conceptId}`;
+
+/* high level api */
 
 export const getConcept = (catalogId): Promise<Concept[] | Concept> => conceptCatalogueApiGet(conceptPath(catalogId));
 
-export const postConcept = (body): Promise<void> => conceptCatalogueApiPost(conceptListPath(), body);
+export const postConcept = (body): Promise<void> => conceptCatalogueApiPost(conceptListPath, body);
 
 export const patchConcept = (conceptId, patch): Promise<void> =>
   conceptCatalogueApiPatch(conceptPath(conceptId), patch);

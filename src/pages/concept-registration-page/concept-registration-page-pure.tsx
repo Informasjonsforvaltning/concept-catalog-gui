@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 
-import { StatusBarProvider } from '../../context/statusBarContext';
-import { statusBarReducer } from '../../reducers/statusBarReducer';
+import { StatusBarProvider } from '../../components/status-bar/context/statusBarContext';
+import { statusBarReducer } from '../../components/status-bar/reducers/statusBarReducer';
 import './concept-registration-page-pure.scss';
 import { FormConcept } from './form-concept/form-concept.component';
 interface Kilde {

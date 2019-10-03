@@ -61,5 +61,9 @@ export const en = {
   conceptPublished: 'Concept is published.',
   conceptUnPublished: 'Concept is unpublished.',
   select: 'Select',
-  timeStampPattern: 'DDDD at HH:mm'
+  timeStampPattern: 'DDDD at HH:mm',
+  langChoose: 'Choose language',
+  ENG: 'English (EN)',
+  NO_NB: 'Norwegian bokmål (NB)',
+  NO_NN: 'Norwegian nynorsk (NN)'
 };

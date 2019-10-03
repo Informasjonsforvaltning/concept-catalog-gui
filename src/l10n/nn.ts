@@ -61,5 +61,9 @@ export const nn = {
   conceptPublished: 'Omgrepet er publisert.',
   conceptUnPublished: 'Omgrepet er avpublisert.',
   select: 'Velg',
-  timeStampPattern: 'DDDD kl. HH:mm'
+  timeStampPattern: 'DDDD kl. HH:mm',
+  langChoose: 'Velg språk',
+  ENG: 'Engelsk (EN)',
+  NO_NB: 'Norsk bokmål (NB)',
+  NO_NN: 'Norsk nynorsk (NN)'
 };

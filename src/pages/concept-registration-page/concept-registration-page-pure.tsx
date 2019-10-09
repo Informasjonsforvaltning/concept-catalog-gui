@@ -1,7 +1,6 @@
-import React, { useReducer } from 'react';
+import React, { useContext } from 'react';
 
-import { StatusBarProvider } from '../../components/status-bar/context/statusBarContext';
-import { statusBarReducer } from '../../components/status-bar/reducers/statusBarReducer';
+import { StatusBarContext } from '../../app/context/statusBarContext';
 import './concept-registration-page-pure.scss';
 import { FormConcept } from './form-concept/form-concept.component';
 interface Kilde {
@@ -22,14 +21,11 @@ interface Props {
 }
 
 export const ConceptRegistrationPagePure = ({ concept }: Props) => {
-  const [statusBarState, dispatch] = useReducer(statusBarReducer, [{}]);
-  const value = { statusBarState, dispatch };
+  const { dispatch } = useContext(StatusBarContext);
   return (
     <div className="container">
       <div className="col-12">
-        <StatusBarProvider value={value}>
-          <FormConcept concept={concept} dispatch={dispatch} />
-        </StatusBarProvider>
+        <FormConcept concept={concept} dispatch={dispatch} />
       </div>
     </div>
   );

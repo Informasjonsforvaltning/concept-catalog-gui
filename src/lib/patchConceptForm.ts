@@ -5,7 +5,7 @@ import {
   conceptPatchSuccessAction,
   conceptPatchErrorAction,
   conceptPatchIsSavingAction
-} from '../components/status-bar/reducers/statusBarReducer';
+} from '../app/reducers/statusBarReducer';
 
 export const patchConceptFromForm = (values, { concept, dispatch }): void => {
   const diff = compare({}, values);

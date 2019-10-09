@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { validateYupSchema } from 'formik';
-import { conceptValidationErrorAction } from '../components/status-bar/reducers/statusBarReducer';
+import { conceptValidationErrorAction } from '../app/reducers/statusBarReducer';
 import { patchConceptFromForm } from './patchConceptForm';
 
 export const validateConceptForm = (values, schema, concept, dispatch): void => {

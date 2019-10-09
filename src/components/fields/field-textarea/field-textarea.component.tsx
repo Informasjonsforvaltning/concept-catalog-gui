@@ -1,4 +1,5 @@
 import React from 'react';
+import get from 'lodash/get';
 
 interface Props {
   rows: number;
@@ -32,6 +33,8 @@ export const TextAreaField = ({
       )}
       <textarea {...field} rows={rows} className="form-control" />
     </label>
-    {touched[field.name] && errors[field.name] && <div className="alert alert-danger mt-2">{errors[field.name]}</div>}
+    {get(touched, field.name) && get(errors, field.name) && (
+      <div className="alert alert-danger mt-2">{get(errors, field.name)}</div>
+    )}
   </div>
 );

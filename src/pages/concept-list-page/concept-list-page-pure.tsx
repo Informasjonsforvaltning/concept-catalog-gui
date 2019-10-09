@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import _ from 'lodash';
 import { getTranslateText } from '../../lib/translateText';
 import { ConceptList } from './concept-list/concept-list.component';
@@ -25,16 +25,21 @@ const createConcept = catalogId => ({
 const createNewConceptAndNavigate = ({ history, catalogId }) =>
   postConcept(createConcept(catalogId)).then(resourceId => history.push(`/${catalogId}/${resourceId}`));
 
-export const ConceptListPagePure = ({ history, concepts, publisher, catalogId }: Props): JSX.Element => (
-  <div className="container">
-    <div className="row mb-2">
-      <ConceptTitle title={getTranslateText(_.get(publisher, 'prefLabel'))} />
-    </div>
-    <div className="mb-2">
-      <NewConceptButton parentOnClick={() => createNewConceptAndNavigate({ history, catalogId })} />
-    </div>
-    <div className="mb-2">
-      <ConceptList items={concepts} catalogId={catalogId} />
-    </div>
-  </div>
-);
+export class ConceptListPagePure extends PureComponent<Props> {
+  public render(): JSX.Element {
+    const { history, concepts, publisher, catalogId } = this.props;
+    return (
+      <div className="container">
+        <div className="row mb-2">
+          <ConceptTitle title={getTranslateText(_.get(publisher, 'prefLabel'))} />
+        </div>
+        <div className="mb-2">
+          <NewConceptButton parentOnClick={() => createNewConceptAndNavigate({ history, catalogId })} />
+        </div>
+        <div className="mb-2">
+          <ConceptList items={concepts} catalogId={catalogId} />
+        </div>
+      </div>
+    );
+  }
+}

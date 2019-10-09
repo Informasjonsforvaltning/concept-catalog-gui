@@ -4,8 +4,9 @@ import { patchConcept } from '../api/concept-catalogue-api';
 import {
   conceptPatchSuccessAction,
   conceptPatchErrorAction,
-  conceptPatchIsSavingAction
-} from '../app/reducers/statusBarReducer';
+  conceptPatchIsSavingAction,
+  stateReducer
+} from '../app/reducers/stateReducer';
 
 export const patchConceptFromForm = (values, { concept, dispatch }): void => {
   const diff = compare({}, values);

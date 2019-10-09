@@ -15,15 +15,15 @@ import 'designsystemet/fdk-designsystem-bootstrap4/scss/common.scss';
 import 'designsystemet/fdk-designsystem-bootstrap4/scss/animations.scss';
 import 'designsystemet/fdk-designsystem-bootstrap4/scss/register.scss';
 import 'font-awesome/scss/font-awesome.scss';
-import { statusBarReducer } from './reducers/statusBarReducer';
-import { StatusBarProvider } from './context/statusBarContext';
+import { stateReducer } from './reducers/stateReducer';
+import { StateProvider } from './context/stateContext';
 
 export const App: FunctionComponent = (): JSX.Element => {
-  const [statusBarState, dispatch] = useReducer(statusBarReducer, [{}]);
+  const [statusBarState, dispatch] = useReducer(stateReducer, [{}]);
   const value = { statusBarState, dispatch };
   return (
     <Router>
-      <StatusBarProvider value={value}>
+      <StateProvider value={value}>
         <div className="d-flex flex-column site theme-fdk">
           <Header />
           <Breadcrumbs />
@@ -36,7 +36,7 @@ export const App: FunctionComponent = (): JSX.Element => {
           </div>
           <Footer />
         </div>
-      </StatusBarProvider>
+      </StateProvider>
     </Router>
   );
 };

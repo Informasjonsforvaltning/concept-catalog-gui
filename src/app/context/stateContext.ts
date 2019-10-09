@@ -5,5 +5,5 @@ interface ContextProps {
   dispatch: Dispatch<{ type: string; payload: object }>;
 }
 
-export const StatusBarContext = createContext(({} as any) as ContextProps);
-export const StatusBarProvider = StatusBarContext.Provider;
+export const StateContext = createContext(({} as any) as ContextProps);
+export const StateProvider = StateContext.Provider;

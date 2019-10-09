@@ -7,3 +7,4 @@ interface ContextProps {
 
 export const StateContext = createContext(({} as any) as ContextProps);
 export const StateProvider = StateContext.Provider;
+export const StateConsumer = StateContext.Consumer;

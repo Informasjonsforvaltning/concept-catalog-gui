@@ -10,6 +10,7 @@ export const nb = {
   draft: 'Utkast',
   published: 'Publisert',
   new: 'Ny',
+  newConcept: 'Nytt begrep',
   preferredTerm: 'Anbefalt term',
   fieldOfStudy: 'Fagområde',
   validity: 'Gyldighet',

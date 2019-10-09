@@ -5,7 +5,7 @@ export const CONCEPT_STATUS_IS_SAVING = 'CONCEPT_STATUS_IS_SAVING';
 export const CONCEPT_STATUS_SAVE_ERROR = 'CONCEPT_STATUS_SAVE_ERROR';
 export const CONCEPT_STATUS_VALIDATION_ERROR = 'CONCEPT_STATUS_VALIDATION_ERROR';
 
-export const conceptPatchSuccessAction = (conceptId, patch, concept): object => ({
+export const conceptPatchSuccessAction = (conceptId, patch, concept) => ({
   type: CONCEPT_STATUS_PATCH_SUCCESS,
   payload: {
     conceptId: conceptId,
@@ -14,7 +14,7 @@ export const conceptPatchSuccessAction = (conceptId, patch, concept): object => 
   }
 });
 
-export const conceptPatchIsSavingAction = (conceptId): object => ({
+export const conceptPatchIsSavingAction = conceptId => ({
   type: CONCEPT_STATUS_IS_SAVING,
   payload: {
     conceptId
@@ -54,6 +54,7 @@ export const stateReducer = (state, action): object => {
       const justPublishedOrUnPublished = !!_.get(patch, 'status');
       const status = _.get(concept, 'status');
       const endringstidspunkt = _.get(concept, ['endringslogelement', 'endringstidspunkt']);
+      const anbefaltTerm = _.get(concept, 'anbefaltTerm');
       return {
         ...state,
         [conceptId]: {
@@ -61,7 +62,8 @@ export const stateReducer = (state, action): object => {
           isSaving: false,
           status,
           justPublishedOrUnPublished,
-          endringstidspunkt
+          endringstidspunkt,
+          anbefaltTerm
         }
       };
     }

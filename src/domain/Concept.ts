@@ -15,6 +15,7 @@ export interface TranslatableField {
 }
 
 export interface Concept {
+  id: string;
   anbefaltTerm?: TranslatableField | string;
   definisjon?: TranslatableField | string;
   kildebeskrivelse?: {

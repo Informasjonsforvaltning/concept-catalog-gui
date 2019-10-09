@@ -1,6 +1,7 @@
 import { ConceptListPage } from '../pages/concept-list-page/concept-list-page';
 import { ConceptRegistrationPage } from '../pages/concept-registration-page/concept-registration-page';
 import { localization } from '../lib/localization';
+import { ConceptBreadcrumb } from '../app/breadcrumbs/concept-breadcrumb/concept-breadcrumb.component';
 
 export const routeConfig = [
   {
@@ -13,6 +14,6 @@ export const routeConfig = [
     path: '/:catalogId/:conceptId',
     component: ConceptRegistrationPage,
     exact: true,
-    breadcrumb: () => localization.breadCrumbRegisterNewConcept
+    breadcrumb: ConceptBreadcrumb
   }
 ];

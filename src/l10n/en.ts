@@ -10,6 +10,7 @@ export const en = {
   draft: 'Draft',
   published: 'Published',
   new: 'New',
+  newConcept: 'New concept',
   preferredTerm: 'Preferred term',
   fieldOfStudy: 'Field of study',
   validity: 'Validity',

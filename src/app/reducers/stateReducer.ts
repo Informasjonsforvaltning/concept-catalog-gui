@@ -37,7 +37,7 @@ export const conceptValidationErrorAction = (conceptId, error): object => ({
   }
 });
 
-export const statusBarReducer = (state, action): object => {
+export const stateReducer = (state, action): object => {
   switch (action.type) {
     case CONCEPT_STATUS_IS_SAVING: {
       const { conceptId } = action.payload;

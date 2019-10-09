@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 import { DateTime } from 'luxon';
 
 import { localization } from '../../lib/localization';
-import { StatusBarContext } from '../../app/context/statusBarContext';
+import { StateContext } from '../../app/context/stateContext';
 import { patchConceptFromForm } from '../../lib/patchConceptForm';
 import { deleteConcept } from '../../api/concept-catalogue-api';
 import './status-bar.scss';
@@ -76,7 +76,7 @@ export const StatusBarPure = ({ concept, isInitialInValidForm, history, match: {
   const conceptId = _.get(concept, 'id');
   const published = _.get(concept, 'status') === CONCEPT_STATUS_PUBLISHED;
 
-  const { statusBarState, dispatch } = useContext(StatusBarContext);
+  const { statusBarState, dispatch } = useContext(StateContext);
 
   const status = _.get(statusBarState, [conceptId, 'status']);
   const justPublishedOrUnPublished = _.get(statusBarState, [conceptId, 'justPublishedOrUnPublished']);

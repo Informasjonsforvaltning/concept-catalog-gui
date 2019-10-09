@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { StatusBarContext } from '../../app/context/statusBarContext';
+import { StateContext } from '../../app/context/stateContext';
 import './concept-registration-page-pure.scss';
 import { FormConcept } from './form-concept/form-concept.component';
 interface Kilde {
@@ -21,7 +21,7 @@ interface Props {
 }
 
 export const ConceptRegistrationPagePure = ({ concept }: Props) => {
-  const { dispatch } = useContext(StatusBarContext);
+  const { dispatch } = useContext(StateContext);
   return (
     <div className="container">
       <div className="col-12">

@@ -42,7 +42,12 @@ export async function logout(): Promise<void> {
 }
 
 export const getToken: () => Promise<string | undefined> = async () => {
-  await kc.updateToken(5);
+  await new Promise((resolve, reject) =>
+    kc
+      .updateToken(30)
+      .success(resolve)
+      .error(reject)
+  );
   return kc.token;
 };
 

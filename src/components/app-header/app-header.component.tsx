@@ -61,7 +61,7 @@ export const HeaderPure: FunctionComponent = (): JSX.Element => (
             </UncontrolledDropdown>
 
             <UncontrolledDropdown className="d-none d-lg-inline fdk-user-button">
-              <DropdownToggle className="fdk-button-account fdk-user" caret>
+              <DropdownToggle className="fdk-button-account fdk-user" color="link" caret>
                 {getUserName()}
               </DropdownToggle>
               <DropdownMenu right className="fdk-dropdownmenu">

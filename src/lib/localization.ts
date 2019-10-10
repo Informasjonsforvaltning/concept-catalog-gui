@@ -3,6 +3,7 @@ import { nb } from '../l10n/nb';
 import { en } from '../l10n/en';
 
 import { helptextsNb } from '../l10n/helptexts.nb';
+import { helptextsEn } from '../l10n/helptexts.en';
 
 interface LocaleStrings extends LocalizedStringsMethods {
   [key: string]: any;
@@ -10,7 +11,7 @@ interface LocaleStrings extends LocalizedStringsMethods {
 
 export const localization: LocaleStrings = new LocalizedStrings({
   nb: { ...nb, ...helptextsNb },
-  en
+  en: { ...en, ...helptextsEn }
 });
 
 localization.setLanguage('nb');

@@ -4,10 +4,9 @@
   "description": "",
   "main": "server/start.js",
   "scripts": {
-    "start": "echo 'feature removed temporarily, run in container instead'",
+    "start": "webpack-dev-server  --hot --inline --config webpack.hostdev.config.js",
     "release": "standard-version --no-verify",
     "test": "jest --runInBand --config=jest.config.json",
-    "dev": "webpack-dev-server  --hot --inline --config webpack.hostdev.config.js",
     "build": "webpack --config webpack.prod.config.js -p",
     "lint": "tsc --noEmit && eslint ./ --ext=js,jsx,ts,tsx --fix"
   },

@@ -42,7 +42,7 @@ export class ErrorBoundary extends React.Component<ErrorMessageProps> {
 
     return (
       <ErrorMessage
-        label="Something went wrong"
+        label='Something went wrong'
         errorMessage={errorObj && errorObj.toString()}
         details={errorInfo && errorInfo.componentStack}
       />

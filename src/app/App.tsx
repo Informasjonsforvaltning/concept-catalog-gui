@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useReducer } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import _ from 'lodash';
 import { Header } from '../components/app-header/app-header.component';
 import { Footer } from '../components/app-footer/app-footer.component';
@@ -24,10 +24,10 @@ export const App: FunctionComponent = (): JSX.Element => {
   return (
     <Router>
       <StateProvider value={value}>
-        <div className="d-flex flex-column site theme-fdk">
+        <div className='d-flex flex-column site theme-fdk'>
           <Header />
           <Breadcrumbs />
-          <div className="site-content d-flex flex-column pt-5">
+          <div className='site-content d-flex flex-column pt-5'>
             <Switch>
               {routeConfig.map((route, i) => (
                 <Route key={`${i}-${_.get(route, 'path', '')}`} {...route} />

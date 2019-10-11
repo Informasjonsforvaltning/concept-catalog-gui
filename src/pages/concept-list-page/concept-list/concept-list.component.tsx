@@ -13,25 +13,25 @@ interface Props {
 }
 
 const renderListHeader = (sortField, sortDirection, onSortField): JSX.Element => (
-  <div className="row fdk-list-header">
-    <div className="col-3 d-flex align-items-center">
-      <span className="header-item mr-1">{localization['preferredTerm']}</span>
-      <SortButtons field="anbefaltTerm" sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
+  <div className='row fdk-list-header'>
+    <div className='col-3 d-flex align-items-center'>
+      <span className='header-item mr-1'>{localization.preferredTerm}</span>
+      <SortButtons field='anbefaltTerm' sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
     </div>
 
-    <div className="col-3 d-flex align-items-center">
-      <span className="header-item mr-1">{localization['fieldOfStudy']}</span>
-      <SortButtons field="fagområde" sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
+    <div className='col-3 d-flex align-items-center'>
+      <span className='header-item mr-1'>{localization.fieldOfStudy}</span>
+      <SortButtons field='fagområde' sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
     </div>
 
-    <div className="col-3 d-flex align-items-center">
-      <span className="header-item mr-1">{localization['validity']}</span>
-      <SortButtons field="valid" sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
+    <div className='col-3 d-flex align-items-center'>
+      <span className='header-item mr-1'>{localization.validity}</span>
+      <SortButtons field='valid' sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
     </div>
 
-    <div className="col-3 d-flex align-items-center">
-      <span className="header-item mr-1">{localization['status']}</span>
-      <SortButtons field="status" sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
+    <div className='col-3 d-flex align-items-center'>
+      <span className='header-item mr-1'>{localization.status}</span>
+      <SortButtons field='status' sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
     </div>
   </div>
 );
@@ -48,7 +48,7 @@ const renderListItems = (items, catalogId, sortField, sortDirection): JSX.Elemen
           key={`${_.get(item, 'id')}-${index}`}
           col1={getTranslateText(_.get(item, 'anbefaltTerm'))}
           col2={getTranslateText(_.get(item, 'fagområde'))}
-          col3=""
+          col3=''
           status={_.get(item, 'status')}
           path={`${catalogId}/${_.get(item, 'id')}`}
         />
@@ -67,7 +67,7 @@ export const ConceptList = ({ items, catalogId }: Props): JSX.Element | null => 
   };
 
   return (
-    <div className="d-flex flex-column flex-fill">
+    <div className='d-flex flex-column flex-fill'>
       {renderListHeader(sortField, sortDirection, onSortField)}
       {renderListItems(items, catalogId, sortField, sortDirection)}
     </div>

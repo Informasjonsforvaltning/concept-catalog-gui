@@ -6,23 +6,23 @@ import { localization } from '../../../../lib/localization';
 
 export const AllowedAndDiscouraged = (): JSX.Element => (
   <div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.tillattTermTitle}
         required={false}
         helpTextAbstract={localization.tillattTermAbstract}
         helpTextDescription={localization.tillattTermDescription}
       />
-      <Field name="tillattTerm" component={InputTagsField} />
+      <Field name='tillattTerm' component={InputTagsField} />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.fraraadetTermTitle}
         required={false}
         helpTextAbstract={localization.fraraadetTermAbstract}
         helpTextDescription={localization.fraraadetTermDescription}
       />
-      <Field name="frarådetTerm" component={InputTagsField} />
+      <Field name='frarådetTerm' component={InputTagsField} />
     </div>
   </div>
 );

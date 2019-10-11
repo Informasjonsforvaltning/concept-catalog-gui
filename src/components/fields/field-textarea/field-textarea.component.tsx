@@ -24,14 +24,14 @@ export const TextAreaField = ({
   language,
   isOnlyOneSelectedLanguage
 }: Props): JSX.Element => (
-  <div className="px-2">
-    <label className="fdk-form-label w-100 fdk-text-strong position-relative" htmlFor={field.name}>
+  <div className='px-2'>
+    <label className='fdk-form-label w-100 fdk-text-strong position-relative' htmlFor={field.name}>
       {showLabel ? label : null}
       {!!language && !isOnlyOneSelectedLanguage && (
-        <span className="language-indicator language-indicator-text-area">{language}</span>
+        <span className='language-indicator language-indicator-text-area'>{language}</span>
       )}
-      <textarea {...field} rows={rows} className="form-control" />
+      <textarea {...field} rows={rows} className='form-control' />
     </label>
-    {touched[field.name] && errors[field.name] && <div className="alert alert-danger mt-2">{errors[field.name]}</div>}
+    {touched[field.name] && errors[field.name] && <div className='alert alert-danger mt-2'>{errors[field.name]}</div>}
   </div>
 );

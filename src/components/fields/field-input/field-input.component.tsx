@@ -24,14 +24,14 @@ export const InputField = ({
   language,
   isOnlyOneSelectedLanguage
 }: Props): JSX.Element => (
-  <div className="px-2">
-    <div className="d-flex align-items-center">
-      <label className="fdk-form-label w-100 fdk-text-strong position-relative" htmlFor={field.name}>
+  <div className='px-2'>
+    <div className='d-flex align-items-center'>
+      <label className='fdk-form-label w-100 fdk-text-strong position-relative' htmlFor={field.name}>
         {showLabel ? label : null}
-        {!!language && !isOnlyOneSelectedLanguage && <span className="language-indicator">{language}</span>}
-        <input {...field} type={type} className="form-control" autoComplete="off" />
+        {!!language && !isOnlyOneSelectedLanguage && <span className='language-indicator'>{language}</span>}
+        <input {...field} type={type} className='form-control' autoComplete='off' />
       </label>
     </div>
-    {touched[field.name] && errors[field.name] && <div className="alert alert-danger mt-2">{errors[field.name]}</div>}
+    {touched[field.name] && errors[field.name] && <div className='alert alert-danger mt-2'>{errors[field.name]}</div>}
   </div>
 );

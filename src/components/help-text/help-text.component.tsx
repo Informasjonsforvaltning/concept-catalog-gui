@@ -25,18 +25,18 @@ export const HelpText = ({ title, helpTextAbstract, helpTextDescription, require
   };
 
   return (
-    <div className="fdk-reg-helptext mb-3 p-3">
-      <div className="d-flex align-items-center">
-        <h3 className="help-text mb-0">{title}</h3>
+    <div className='fdk-reg-helptext mb-3 p-3'>
+      <div className='d-flex align-items-center'>
+        <h3 className='help-text mb-0'>{title}</h3>
         {required && (
-          <span className="fdk-badge badge fdk-bg-color-warning-lightest ml-2">{localization.required}</span>
+          <span className='fdk-badge badge fdk-bg-color-warning-lightest ml-2'>{localization.required}</span>
         )}
       </div>
 
-      <div className="d-md-flex">
+      <div className='d-md-flex'>
         {helpTextAbstract && (
           <p
-            className="help-text mb-0"
+            className='help-text mb-0'
             dangerouslySetInnerHTML={{
               __html: convertToSanitizedHtml(helpTextAbstract)
             }}
@@ -44,8 +44,8 @@ export const HelpText = ({ title, helpTextAbstract, helpTextDescription, require
         )}
         {helpTextDescription && (
           <button
-            type="button"
-            className="fdk-btn-no-border text-left p-0 ml-1 fdk-reg-helptext-more align-self-start"
+            type='button'
+            className='fdk-btn-no-border text-left p-0 ml-1 fdk-reg-helptext-more align-self-start'
             onClick={toggle}
           >
             <i className={collapseClass} />
@@ -55,9 +55,9 @@ export const HelpText = ({ title, helpTextAbstract, helpTextDescription, require
       </div>
 
       {helpTextDescription && (
-        <Collapse className="mt-3" isOpen={collapse}>
+        <Collapse className='mt-3' isOpen={collapse}>
           <p
-            className="help-text mb-0"
+            className='help-text mb-0'
             dangerouslySetInnerHTML={{
               __html: convertToSanitizedHtml(helpTextDescription)
             }}

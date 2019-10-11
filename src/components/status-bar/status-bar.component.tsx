@@ -19,7 +19,7 @@ interface ErrorOverlayProps {
 }
 
 const renderErrorOverlay = ({ error }: ErrorOverlayProps): JSX.Element => (
-  <div className="form-status-bar-overlay d-flex align-items-center justify-content-between alert-warning">
+  <div className='form-status-bar-overlay d-flex align-items-center justify-content-between alert-warning'>
     {`${localization.errorSaving} - ${error}`}
   </div>
 );
@@ -33,17 +33,17 @@ const renderConfirmDeleteOverlayDialog = ({
   deleteConceptAndNavigate,
   toggleShowConfirmDelete
 }: ConfirmDeleteOverlayProps): JSX.Element => (
-  <div className="form-status-bar-overlay d-flex align-items-center justify-content-between alert-danger">
+  <div className='form-status-bar-overlay d-flex align-items-center justify-content-between alert-danger'>
     <div>
       <span>{localization.confirmDeleteMessage}</span>
     </div>
     <div>
-      <Button className="fdk-button mr-3" color="primary" onClick={deleteConceptAndNavigate}>
+      <Button className='fdk-button mr-3' color='primary' onClick={deleteConceptAndNavigate}>
         {localization.confirmDelete}
       </Button>
       <button
-        type="button"
-        className="btn bg-transparent fdk-color-link-dark"
+        type='button'
+        className='btn bg-transparent fdk-color-link-dark'
         onClick={() => toggleShowConfirmDelete()}
       >
         {localization.cancelDelete}
@@ -129,14 +129,14 @@ export const StatusBarPure = ({ concept, isInitialInValidForm, history, match: {
           messageClass
         )}
       >
-        {<div>{message}</div>}
+        <div>{message}</div>
 
         {!published && (!status || status === CONCEPT_STATUS_DRAFT) && (
-          <div className="d-flex">
+          <div className='d-flex'>
             <Button
-              id="dataset-setPublish-button"
-              className="fdk-button mr-3"
-              color="primary"
+              id='dataset-setPublish-button'
+              className='fdk-button mr-3'
+              color='primary'
               disabled={validationError}
               onClick={() => patchConceptFromForm({ status: CONCEPT_STATUS_PUBLISHED }, { concept, dispatch })}
             >
@@ -144,8 +144,8 @@ export const StatusBarPure = ({ concept, isInitialInValidForm, history, match: {
             </Button>
 
             <button
-              type="button"
-              className="btn bg-transparent fdk-color-link-dark"
+              type='button'
+              className='btn bg-transparent fdk-color-link-dark'
               disabled={isSaving}
               onClick={toggleShowConfirmDelete}
             >

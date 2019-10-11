@@ -12,7 +12,7 @@ export const FormConceptPure = (props): JSX.Element => {
   const { concept, isValid } = props;
   return (
     <Form>
-      <FormTemplate title={localization.formTerm} required={true}>
+      <FormTemplate title={localization.formTerm} required>
         <Term />
       </FormTemplate>
       <FormTemplate title={localization.formAllowedAndDiscouraged}>

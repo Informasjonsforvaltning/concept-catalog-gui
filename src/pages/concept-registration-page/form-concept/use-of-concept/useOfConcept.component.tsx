@@ -8,46 +8,46 @@ import { localization } from '../../../../lib/localization';
 
 export const UseOfTerm = (): JSX.Element => (
   <div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.eksempelTitle}
         required={false}
         helpTextAbstract={localization.eksempelAbstract}
         helpTextDescription={localization.eksempelDescription}
       />
-      <Field name="eksempel" component={TextAreaField} />
+      <Field name='eksempel' component={TextAreaField} />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.fagomraadeTitle}
         required={false}
         helpTextAbstract={localization.fagomraadeAbstract}
         helpTextDescription={localization.fagomraadeDescription}
       />
-      <Field name="fagområde" component={InputField} />
+      <Field name='fagområde' component={InputField} />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.bruksomraadeTitle}
         required={false}
         helpTextAbstract={localization.bruksomraadeAbstract}
         helpTextDescription={localization.bruksomraadeDescription}
       />
-      <Field name="bruksområde" component={InputTagsField} />
+      <Field name='bruksområde' component={InputTagsField} />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.omfangTitle}
         required={false}
         helpTextAbstract={localization.omfangAbstract}
         helpTextDescription={localization.omfangDescription}
       />
-      <div className="d-flex">
-        <div className="w-50">
-          <Field name="omfang.tekst" component={InputField} label={localization.titleScope} showLabel={true} />
+      <div className='d-flex'>
+        <div className='w-50'>
+          <Field name='omfang.tekst' component={InputField} label={localization.titleScope} showLabel />
         </div>
-        <div className="w-50">
-          <Field name="omfang.uri" component={InputField} label={localization.linkScope} showLabel={true} />
+        <div className='w-50'>
+          <Field name='omfang.uri' component={InputField} label={localization.linkScope} showLabel />
         </div>
       </div>
     </div>

@@ -9,43 +9,43 @@ import { localization } from '../../../../lib/localization';
 
 import { FieldArraySource } from '../../../../components/fields/field-array-source/field-array-source.component';
 
-export const Term = (props): JSX.Element => (
+export const Term = (): JSX.Element => (
   <div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.anbefaltTermTitle}
-        required={true}
+        required
         helpTextAbstract={localization.anbefaltTermAbstract}
         helpTextDescription={localization.anbefaltTermDescription}
       />
-      <Field name="anbefaltTerm" component={InputField} />
+      <Field name='anbefaltTerm' component={InputField} />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.definisjonTitle}
-        required={true}
+        required
         helpTextAbstract={localization.definisjonAbstract}
         helpTextDescription={localization.definisjonDescription}
       />
-      <Field name="definisjon" component={TextAreaField} />
+      <Field name='definisjon' component={TextAreaField} />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.kildeTitle}
         required={false}
         helpTextAbstract={localization.kildeAbstract}
         helpTextDescription={localization.kildeDescription}
       />
-      <FieldArray name="kildebeskrivelse" component={FieldArraySource} />
+      <FieldArray name='kildebeskrivelse' component={FieldArraySource} />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.merknadTitle}
         required={false}
         helpTextAbstract={localization.merknadAbstract}
         helpTextDescription={localization.merknadDescription}
       />
-      <Field name="merknad" rows="5" component={TextAreaField} />
+      <Field name='merknad' rows='5' component={TextAreaField} />
     </div>
   </div>
 );

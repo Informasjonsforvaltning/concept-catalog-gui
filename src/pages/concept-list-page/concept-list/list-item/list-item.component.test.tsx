@@ -14,11 +14,11 @@ beforeEach(() => {
 });
 
 test('should render ListItem with status DRAFT', (): void => {
-  const wrapper = shallow(<ListItem {...defaultProps} status="DRAFT" />);
+  const wrapper = shallow(<ListItem {...defaultProps} status='DRAFT' />);
   expect(wrapper).toMatchSnapshot();
 });
 
 test('should render ListItem with status PUBLISH', (): void => {
-  const wrapper = shallow(<ListItem {...defaultProps} status="PUBLISH" />);
+  const wrapper = shallow(<ListItem {...defaultProps} status='PUBLISH' />);
   expect(wrapper).toMatchSnapshot();
 });

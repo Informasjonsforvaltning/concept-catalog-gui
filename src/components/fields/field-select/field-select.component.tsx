@@ -33,15 +33,15 @@ export const SelectField = ({
   onChange
 }: Props): JSX.Element => {
   return (
-    <div className="px-2">
-      <div className="d-flex align-items-center">
-        <label className="fdk-form-label w-100 fdk-text-strong" htmlFor={field.name}>
+    <div className='px-2'>
+      <div className='d-flex align-items-center'>
+        <label className='fdk-form-label w-100 fdk-text-strong' htmlFor={field.name}>
           {showLabel ? label : null}
 
           <Select
             options={options}
-            isClearable={true}
-            placeholder={localization['select']}
+            isClearable
+            placeholder={localization.select}
             name={field.name}
             value={options ? options.find(option => option.value === field.value) : null}
             onChange={option => onChangeField(field.name, option, form, onClear, onChange)}
@@ -49,7 +49,7 @@ export const SelectField = ({
           />
         </label>
       </div>
-      {touched[field.name] && errors[field.name] && <div className="alert alert-danger mt-2">{errors[field.name]}</div>}
+      {touched[field.name] && errors[field.name] && <div className='alert alert-danger mt-2'>{errors[field.name]}</div>}
     </div>
   );
 };

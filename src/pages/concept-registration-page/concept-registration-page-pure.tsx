@@ -6,11 +6,6 @@ import { FormConcept } from './form-concept/form-concept.component';
 import { conceptPatchSuccessAction } from '../../app/reducers/stateReducer';
 import { Concept } from '../../domain/Concept';
 
-interface Kilde {
-  uri: string;
-  tekst: string;
-}
-
 interface Props {
   concept: Concept;
   history: object;
@@ -24,8 +19,8 @@ export const ConceptRegistrationPagePure = ({ concept }: Props) => {
   }, []);
 
   return (
-    <div className="container">
-      <div className="col-12">
+    <div className='container'>
+      <div className='col-12'>
         <FormConcept concept={concept} dispatch={dispatch} />
       </div>
     </div>

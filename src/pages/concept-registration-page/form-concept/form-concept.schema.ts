@@ -27,20 +27,22 @@ export const schema = Yup.object().shape({
     .min(2, localization.validationMin2)
     .nullable(),
   bruksområde: Yup.array().of(Yup.string().min(2, localization.validationMin2)),
-  omfang: Yup.object().shape({
-    tekst: Yup.string()
-      .nullable()
-      .min(2, localization.validationMin2),
-    uri: Yup.string()
-      .nullable()
-      .url(localization.validationUrl)
-  }),
-  kontaktpunkt: Yup.object().shape({
-    harEpost: Yup.string()
-      .nullable()
-      .email(localization.validationEmail),
-    harTelefon: Yup.string()
-      .nullable()
-      .matches(/^\+?(?:[0-9\s]){6,14}[0-9]$/i, { message: localization.validationPhone, excludeEmptyString: true })
-  })
+  omfang: Yup.object()
+    .nullable()
+    .shape({
+      tekst: Yup.string().nullable(),
+      uri: Yup.string()
+        .nullable()
+        .url(localization.validationUrl)
+    }),
+  kontaktpunkt: Yup.object()
+    .nullable()
+    .shape({
+      harEpost: Yup.string()
+        .nullable()
+        .email(localization.validationEmail),
+      harTelefon: Yup.string()
+        .nullable()
+        .matches(/^\+?(?:[0-9\s]){6,14}[0-9]$/i, { message: localization.validationPhone, excludeEmptyString: true })
+    })
 });

@@ -10,7 +10,8 @@
     "dev": "webpack-dev-server  --hot --inline --config webpack.hostdev.config.js",
     "build": "webpack --config webpack.prod.config.js -p",
     "lint:project": "eslint --ext tsx,ts,jsx,js ./",
-    "lint:project:fix": "eslint --ext tsx,ts,jsx,js ./ --fix"
+    "lint:project:fix": "eslint --ext tsx,ts,jsx,js ./ --fix",
+    "lint:staged:fix": "eslint --ext tsx,ts,jsx,js --fix"
   },
   "repository": {
     "type": "git",

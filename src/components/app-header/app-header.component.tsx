@@ -1,14 +1,16 @@
 import React, { FunctionComponent } from 'react';
 import './app-header.scss';
-import { localization } from '../../lib/localization';
 import { DropdownToggle, DropdownItem, DropdownMenu, UncontrolledDropdown } from 'reactstrap';
+import { localization } from '../../lib/localization';
 import { getConfig } from '../../config';
 import { getUserName, logout } from '../../auth/auth-service';
 
 export const HeaderPure: FunctionComponent = (): JSX.Element => (
   <header>
     <div>
-      <a id="focus-element" className="uu-invisible" href={`${'location.pathname'}#content`} aria-hidden="true" />
+      <a id="focus-element" className="uu-invisible" href={`${'location.pathname'}#content`} aria-hidden="true">
+        focus-element
+      </a>
     </div>
     <div id="skip-link-wrap">
       <a id="skip-link" href={`${location.pathname}#content`}>
@@ -27,7 +29,7 @@ export const HeaderPure: FunctionComponent = (): JSX.Element => (
 
           <div className="col-4 d-none d-lg-block my-auto">
             <span>
-              <div className="fdk-title-header">{localization['title']}</div>
+              <div className="fdk-title-header">{localization.title}</div>
             </span>
           </div>
 

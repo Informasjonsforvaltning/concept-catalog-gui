@@ -1,17 +1,17 @@
 import React from 'react';
 import { Field } from 'formik';
+import { v4 } from 'uuid';
+import _ from 'lodash';
 import { localization } from '../../../lib/localization';
 import { InputField } from '../field-input/field-input.component';
 import { ButtonSource } from '../../button-source/button-source.component';
 import { SelectField } from '../field-select/field-select.component';
-import { v4 } from 'uuid';
-import _ from 'lodash';
 import './field-array-source.scss';
 
 const options = [
-  { value: 'egendefinert', label: localization['custom'] },
-  { value: 'basertPaaKilde', label: localization['basedOnSource'] },
-  { value: 'sitatFraKilde', label: localization['quoteFromSource'] }
+  { value: 'egendefinert', label: localization.custom },
+  { value: 'basertPaaKilde', label: localization.basedOnSource },
+  { value: 'sitatFraKilde', label: localization.quoteFromSource }
 ];
 
 const handleClearKildebeskrivelse = form => {
@@ -62,10 +62,10 @@ export const FieldArraySource = (props): JSX.Element => {
         <div className="col-sm-5">
           <Field
             className="fdk-after-element col-sm-5"
-            name={`kildebeskrivelse.forholdTilKilde`}
+            name="kildebeskrivelse.forholdTilKilde"
             component={SelectField}
-            label={localization['relationToSource']}
-            showLabel={true}
+            label={localization.relationToSource}
+            showLabel
             options={options}
             onClear={handleClearKildebeskrivelse}
             onChange={handleChangeForholdTilKilde}
@@ -83,7 +83,7 @@ export const FieldArraySource = (props): JSX.Element => {
                     name={`kildebeskrivelse.kilde[${index}].tekst`}
                     component={InputField}
                     label={localization.titleSource}
-                    showLabel={true}
+                    showLabel
                   />
                 </div>
 
@@ -93,21 +93,21 @@ export const FieldArraySource = (props): JSX.Element => {
                     name={`kildebeskrivelse.kilde[${index}].uri`}
                     component={InputField}
                     label={localization.linkSource}
-                    showLabel={true}
+                    showLabel
                   />
                 </div>
 
                 <div className="fdk-source col-sm-2">
                   <ButtonSource
                     remove
-                    title={localization['removeSource']}
+                    title={localization.removeSource}
                     handleClick={() => handleRemoveKilde(props.form, index)}
                   />
                 </div>
               </div>
             );
           })}
-          <ButtonSource add title={localization['addNewSource']} handleClick={() => handleAddKilde(props.form)} />
+          <ButtonSource add title={localization.addNewSource} handleClick={() => handleAddKilde(props.form)} />
         </div>
       )}
     </div>

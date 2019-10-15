@@ -129,7 +129,7 @@ export const StatusBarPure = ({ concept, isInitialInValidForm, history, match: {
           messageClass
         )}
       >
-        {<div>{message}</div>}
+        <div>{message}</div>
 
         {!published && (!status || status === CONCEPT_STATUS_DRAFT) && (
           <div className="d-flex">

@@ -40,8 +40,8 @@ export const SelectField = ({
 
           <Select
             options={options}
-            isClearable={true}
-            placeholder={localization['select']}
+            isClearable
+            placeholder={localization.select}
             name={field.name}
             value={options ? options.find(option => option.value === field.value) : null}
             onChange={option => onChangeField(field.name, option, form, onClear, onChange)}

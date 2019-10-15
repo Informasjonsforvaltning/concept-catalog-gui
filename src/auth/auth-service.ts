@@ -1,10 +1,9 @@
 /* Facade for keycloak */
-import Keycloak, { KeycloakInstance, KeycloakTokenParsed } from 'keycloak-js';
-import { getConfig } from '../config';
-import { loadTokens, removeTokens, storeTokens } from './token-store';
+import Keycloak, { KeycloakInstance } from 'keycloak-js';
 import get from 'lodash/get';
 import find from 'lodash/find';
-import { boolean } from 'yup';
+import { loadTokens, removeTokens, storeTokens } from './token-store';
+import { getConfig } from '../config';
 
 let kc: KeycloakInstance;
 

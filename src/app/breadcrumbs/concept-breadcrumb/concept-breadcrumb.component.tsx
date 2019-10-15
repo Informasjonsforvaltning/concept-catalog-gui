@@ -14,7 +14,7 @@ export const ConceptBreadcrumb: React.FC<ConceptBreadcrumbProps> = ({ match }) =
     <StateConsumer>
       {value => {
         const anbefaltTerm = get(value, ['statusBarState', conceptId, 'anbefaltTerm']);
-        return anbefaltTerm ? anbefaltTerm : localization['newConcept'];
+        return anbefaltTerm || localization.newConcept;
       }}
     </StateConsumer>
   );

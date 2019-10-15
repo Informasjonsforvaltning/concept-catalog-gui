@@ -11,6 +11,7 @@ interface Props {
 export const SortButtons = ({ field, sortField, sortType, onSortField }: Props): JSX.Element | null => (
   <div className="d-flex flex-column">
     <button
+      type="button"
       name={`${field}asc`}
       className={`d-flex sortButton ${sortField === `${field}` && sortType === 'asc' ? 'visibilityHidden' : ''}`}
       onClick={(): void => onSortField(`${field}`, 'asc')}
@@ -19,6 +20,7 @@ export const SortButtons = ({ field, sortField, sortType, onSortField }: Props):
       <i className="fa fa-sort-up fdk-color-white" />
     </button>
     <button
+      type="button"
       name={`${field}desc`}
       className={`d-flex sortButton ${sortField === `${field}` && sortType === 'desc' ? 'visibilityHidden' : ''}`}
       onClick={(): void => onSortField(`${field}`, 'desc')}

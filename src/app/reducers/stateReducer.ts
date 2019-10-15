@@ -8,8 +8,8 @@ export const CONCEPT_STATUS_VALIDATION_ERROR = 'CONCEPT_STATUS_VALIDATION_ERROR'
 export const conceptPatchSuccessAction = (conceptId, patch, concept) => ({
   type: CONCEPT_STATUS_PATCH_SUCCESS,
   payload: {
-    conceptId: conceptId,
-    patch: patch,
+    conceptId,
+    patch,
     concept
   }
 });

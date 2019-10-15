@@ -17,7 +17,7 @@ export const MultilingualField = ({ name, component, languages, label, showLabel
       </label>
     )}
     {languages.map(({ code, selected }) => {
-      const isOnlyOneSelectedLanguage = languages.filter(({ selected }) => selected).length === 1;
+      const isOnlyOneSelectedLanguage = languages.filter({ selected }).length === 1;
 
       return (
         selected && (

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useReducer } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import _ from 'lodash';
 import { Header } from '../components/app-header/app-header.component';
 import { Footer } from '../components/app-footer/app-footer.component';

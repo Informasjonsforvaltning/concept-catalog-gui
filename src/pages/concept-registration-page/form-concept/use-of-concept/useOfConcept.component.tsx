@@ -44,10 +44,10 @@ export const UseOfTerm = (): JSX.Element => (
       />
       <div className="d-flex">
         <div className="w-50">
-          <Field name="omfang.tekst" component={InputField} label={localization.titleScope} showLabel={true} />
+          <Field name="omfang.tekst" component={InputField} label={localization.titleScope} showLabel />
         </div>
         <div className="w-50">
-          <Field name="omfang.uri" component={InputField} label={localization.linkScope} showLabel={true} />
+          <Field name="omfang.uri" component={InputField} label={localization.linkScope} showLabel />
         </div>
       </div>
     </div>

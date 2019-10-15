@@ -9,8 +9,8 @@ export const FooterPure: FunctionComponent = (): JSX.Element => (
         <div className="col-md-4">
           <p className="fdk-p-footer">
             <a href="https://www.brreg.no/personvernerklaering/" className="align-items-center d-flex">
-              {localization['information']}
-              {localization['privacy']}
+              {localization.information}
+              {localization.privacy}
               <i className="d-flex fdk-external-link ml-2" />
             </a>
           </p>
@@ -19,7 +19,7 @@ export const FooterPure: FunctionComponent = (): JSX.Element => (
           <span className="uu-invisible" aria-hidden="false">
             Felles Datakatalog.
           </span>
-          <p className="fdk-p-footer">{localization['informationText']}</p>
+          <p className="fdk-p-footer">{localization.informationText}</p>
         </div>
         <div className="col-md-4 text-right">
           <p className="fdk-p-footer">
@@ -27,7 +27,7 @@ export const FooterPure: FunctionComponent = (): JSX.Element => (
               <span className="uu-invisible" aria-hidden="false">
                 Mailadresse.
               </span>
-              {localization['mail']}
+              {localization.mail}
             </a>
           </p>
         </div>

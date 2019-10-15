@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import { HelpText } from './help-text.component';
 
 test('should render HelpText', (): void => {
-  const onSortField = jest.fn();
   const defaultProps = {
     title: 'Title',
     helpTextAbstract: 'Abstract',

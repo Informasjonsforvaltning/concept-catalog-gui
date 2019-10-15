@@ -9,12 +9,12 @@ import { localization } from '../../../../lib/localization';
 
 import { FieldArraySource } from '../../../../components/fields/field-array-source/field-array-source.component';
 
-export const Term = (props): JSX.Element => (
+export const Term = (): JSX.Element => (
   <div>
     <div className="form-group">
       <HelpText
         title={localization.anbefaltTermTitle}
-        required={true}
+        required
         helpTextAbstract={localization.anbefaltTermAbstract}
         helpTextDescription={localization.anbefaltTermDescription}
       />
@@ -23,7 +23,7 @@ export const Term = (props): JSX.Element => (
     <div className="form-group">
       <HelpText
         title={localization.definisjonTitle}
-        required={true}
+        required
         helpTextAbstract={localization.definisjonAbstract}
         helpTextDescription={localization.definisjonDescription}
       />

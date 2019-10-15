@@ -30,8 +30,8 @@ export const ListItem = ({ col1, col2, col3, status, path }: Props): JSX.Element
       <span className="col-3">{col3}</span>
       <span className="col-3">
         <i className={statusClass} />
-        {status === 'publisert' && <span>{localization['published']}</span>}
-        {status === 'utkast' && <span>{localization['draft']}</span>}
+        {status === 'publisert' && <span>{localization.published}</span>}
+        {status === 'utkast' && <span>{localization.draft}</span>}
       </span>
     </Link>
   );

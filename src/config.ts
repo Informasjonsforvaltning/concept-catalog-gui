@@ -44,11 +44,11 @@ export const loadConfig = async (): Promise<void> => {
 
   // override all env variables to ut1
   // Object.assign(env, {
-  //   REGISTRATION_HOST:'https://registrering.ut1.fellesdatakatalog.brreg.no',
-  //   CONCEPT_REGISTRATION_API:'https://registrering-begrep-api.ut1.fellesdatakatalog.brreg.no',
-  //   SSO_HOST:'https://sso.ut1.fellesdatakatalog.brreg.no',
-  //   PUBLISHER_API:'https://www.ut1.fellesdatakatalog.brreg.no',
-  //   PUBLISHER_DATA_AUTHORIZATION:'Basic ZmRrOkJSUkVH'
+  //   REGISTRATION_HOST: 'https://registrering.ut1.fellesdatakatalog.brreg.no',
+  //   CONCEPT_REGISTRATION_API: 'https://registrering-begrep-api.ut1.fellesdatakatalog.brreg.no',
+  //   SSO_HOST: 'https://sso.ut1.fellesdatakatalog.brreg.no',
+  //   PUBLISHER_API: 'https://www.ut1.fellesdatakatalog.brreg.no',
+  //   PUBLISHER_DATA_AUTHORIZATION: 'Basic ZmRrOkJSUkVH'
   // });
 
   // override all env variables to local docker

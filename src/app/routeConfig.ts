@@ -1,7 +1,7 @@
 import { ConceptListPage } from '../pages/concept-list-page/concept-list-page';
 import { ConceptRegistrationPage } from '../pages/concept-registration-page/concept-registration-page';
 import { localization } from '../lib/localization';
-import { ConceptBreadcrumb } from '../app/breadcrumbs/concept-breadcrumb/concept-breadcrumb.component';
+import { ConceptBreadcrumb } from './breadcrumbs/concept-breadcrumb/concept-breadcrumb.component';
 
 export const routeConfig = [
   {

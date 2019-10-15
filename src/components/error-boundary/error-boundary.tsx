@@ -15,6 +15,7 @@ interface ErrorMessageProps {
   };
 }
 
+/* eslint-disable */
 export class ErrorBoundary extends React.Component<ErrorMessageProps> {
   state: ErrorMessageProps = {
     hasError: false,
@@ -49,3 +50,4 @@ export class ErrorBoundary extends React.Component<ErrorMessageProps> {
     );
   }
 }
+/* eslint-enable */

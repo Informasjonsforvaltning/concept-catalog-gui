@@ -15,10 +15,10 @@ export const ContactInfo = (): JSX.Element => (
       />
       <div className="d-flex">
         <div className="w-50">
-          <Field name="kontaktpunkt.harEpost" component={InputField} label={localization.email} showLabel={true} />
+          <Field name="kontaktpunkt.harEpost" component={InputField} label={localization.email} showLabel />
         </div>
         <div className="w-50">
-          <Field name="kontaktpunkt.harTelefon" component={InputField} label={localization.phone} showLabel={true} />
+          <Field name="kontaktpunkt.harTelefon" component={InputField} label={localization.phone} showLabel />
         </div>
       </div>
     </div>

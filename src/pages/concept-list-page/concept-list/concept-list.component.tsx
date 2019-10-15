@@ -15,22 +15,22 @@ interface Props {
 const renderListHeader = (sortField, sortDirection, onSortField): JSX.Element => (
   <div className="row fdk-list-header">
     <div className="col-3 d-flex align-items-center">
-      <span className="header-item mr-1">{localization['preferredTerm']}</span>
+      <span className="header-item mr-1">{localization.preferredTerm}</span>
       <SortButtons field="anbefaltTerm" sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
     </div>
 
     <div className="col-3 d-flex align-items-center">
-      <span className="header-item mr-1">{localization['fieldOfStudy']}</span>
+      <span className="header-item mr-1">{localization.fieldOfStudy}</span>
       <SortButtons field="fagområde" sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
     </div>
 
     <div className="col-3 d-flex align-items-center">
-      <span className="header-item mr-1">{localization['validity']}</span>
+      <span className="header-item mr-1">{localization.validity}</span>
       <SortButtons field="valid" sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
     </div>
 
     <div className="col-3 d-flex align-items-center">
-      <span className="header-item mr-1">{localization['status']}</span>
+      <span className="header-item mr-1">{localization.status}</span>
       <SortButtons field="status" sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
     </div>
   </div>
@@ -61,9 +61,9 @@ export const ConceptList = ({ items, catalogId }: Props): JSX.Element | null => 
   const [sortField, setSortField] = useState();
   const [sortDirection, setSortDirection] = useState<string>('asc');
 
-  const onSortField = (field, sortDirection): void => {
+  const onSortField = (field, updatedSortDirection): void => {
     setSortField(field);
-    setSortDirection(sortDirection);
+    setSortDirection(updatedSortDirection);
   };
 
   return (

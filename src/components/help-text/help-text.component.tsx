@@ -11,7 +11,7 @@ interface Props {
   helpTextDescription?: string;
   required: boolean;
 }
-
+/* eslint-disable react/no-danger */
 export const HelpText = ({ title, helpTextAbstract, helpTextDescription, required }: Props): JSX.Element => {
   const [collapse, setCollapse] = useState(false);
 
@@ -67,3 +67,4 @@ export const HelpText = ({ title, helpTextAbstract, helpTextDescription, require
     </div>
   );
 };
+/* eslint-enable react/no-danger */

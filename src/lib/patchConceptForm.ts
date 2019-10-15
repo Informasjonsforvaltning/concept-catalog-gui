@@ -4,8 +4,7 @@ import { patchConcept } from '../api/concept-catalogue-api';
 import {
   conceptPatchSuccessAction,
   conceptPatchErrorAction,
-  conceptPatchIsSavingAction,
-  stateReducer
+  conceptPatchIsSavingAction
 } from '../app/reducers/stateReducer';
 
 export const patchConceptFromForm = (values, { concept, dispatch }): void => {

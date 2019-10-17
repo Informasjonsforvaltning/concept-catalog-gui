@@ -20,20 +20,14 @@ export const HeaderPure: FunctionComponent = (): JSX.Element => (
     <div className="fdk-header">
       <div className="container">
         <div className="row">
-          <div className="col-6 col-lg-4">
+          <div className="col-6">
             <a title="Link til Felles datakatalog" href={getConfig().registrationHost}>
               <span className="uu-invisible" aria-hidden="false" />
               <img className="fdk-logo" src="./img/logo-registrering.svg" alt="Logo for Felles datakatalog" />
             </a>
           </div>
 
-          <div className="col-4 d-none d-lg-block my-auto">
-            <span>
-              <div className="fdk-title-header">{localization.title}</div>
-            </span>
-          </div>
-
-          <div className="col-6 col-lg-4 d-flex align-items-center fdk-header-text_items justify-content-end">
+          <div className="col-6 d-flex align-items-center fdk-header-text_items justify-content-end">
             <UncontrolledDropdown className="d-none d-lg-inline">
               <DropdownToggle className="fdk-button-language" caret>
                 Språk

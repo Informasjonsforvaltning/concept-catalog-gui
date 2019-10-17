@@ -51,7 +51,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 {
    "id": "6d770978-34b0-439c-a7cb-adacb3612220000",
    "status": "utkast",
-   "anbefaltTerm": "dokumentnummer",
+   "anbefaltTerm": { "navn": { "nb": "dokumentnummer" } },
    "definisjon": "lorem ipsum",
    "kilde": "Forskrift om tinglysing § 11 tredje ledd og § 16 annet ledd bokstav e). _Forskrift 3. november 1995 nr. 875 om tinglysing_ https://lovdata.no/forskrift/1995-11-03-875",
    "merknad": "Lorem",

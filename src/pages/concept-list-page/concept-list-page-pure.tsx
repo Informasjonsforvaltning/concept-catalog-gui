@@ -15,7 +15,9 @@ interface Props {
 }
 
 const createConcept = catalogId => ({
-  anbefaltTerm: '',
+  anbefaltTerm: {
+    navn: {}
+  },
   status: 'utkast',
   ansvarligVirksomhet: {
     id: catalogId

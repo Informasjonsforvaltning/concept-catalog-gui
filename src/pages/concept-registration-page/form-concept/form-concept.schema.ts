@@ -2,14 +2,68 @@ import * as Yup from 'yup';
 import { localization } from '../../../lib/localization';
 
 export const schema = Yup.object().shape({
-  anbefaltTerm: Yup.string()
-    .nullable()
-    .min(2, localization.validationMin2)
-    .required(localization.validationRequired),
-  definisjon: Yup.string()
-    .nullable()
-    .min(2, localization.validationMin2)
-    .required(localization.validationRequired),
+  anbefaltTerm: Yup.object().shape({
+    navn: Yup.object().shape({
+      nb: Yup.string().test({
+        test() {
+          const { nb, nn, en } = this.parent;
+          if (!nb && !nn && !en) {
+            return this.createError({ message: localization.validationRequired, path: this.path });
+          }
+          return true;
+        }
+      }),
+      nn: Yup.string().test({
+        test() {
+          const { nb, nn, en } = this.parent;
+          if (!nb && !nn && !en) {
+            return this.createError({ message: localization.validationRequired, path: this.path });
+          }
+          return true;
+        }
+      }),
+      en: Yup.string().test({
+        test() {
+          const { nb, nn, en } = this.parent;
+          if (!nb && !nn && !en) {
+            return this.createError({ message: localization.validationRequired, path: this.path });
+          }
+          return true;
+        }
+      })
+    })
+  }),
+  definisjon: Yup.object().shape({
+    tekst: Yup.object().shape({
+      nb: Yup.string().test({
+        test() {
+          const { nb, nn, en } = this.parent;
+          if (!nb && !nn && !en) {
+            return this.createError({ message: localization.validationRequired, path: this.path });
+          }
+          return true;
+        }
+      }),
+      nn: Yup.string().test({
+        test() {
+          const { nb, nn, en } = this.parent;
+          if (!nb && !nn && !en) {
+            return this.createError({ message: localization.validationRequired, path: this.path });
+          }
+          return true;
+        }
+      }),
+      en: Yup.string().test({
+        test() {
+          const { nb, nn, en } = this.parent;
+          if (!nb && !nn && !en) {
+            return this.createError({ message: localization.validationRequired, path: this.path });
+          }
+          return true;
+        }
+      })
+    })
+  }),
   kildebeskrivelse: Yup.object()
     .nullable()
     .shape({

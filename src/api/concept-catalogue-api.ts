@@ -14,16 +14,6 @@ const extractResourseId = response =>
 
 const extractJsonBody = response => response.data;
 
-// TODO: remove this when translatable fields are supported
-const normalizeToString = input => (typeof input === 'string' ? input : get(input, 'nb'));
-
-// TODO: remove this when translatable fields are supported
-const normalizeConcept = ({ anbefaltTerm, definisjon, ...rest }: Concept) => ({
-  anbefaltTerm: normalizeToString(anbefaltTerm),
-  definisjon: normalizeToString(definisjon),
-  ...rest
-});
-
 /* low level api */
 const conceptCatalogueApiRaw = async (method, path, data?) =>
   axios({
@@ -49,13 +39,10 @@ const conceptPath = (conceptId): string => `${conceptListPath}/${conceptId}`;
 
 /* high level api */
 
-export const getConcept = (catalogId): Promise<Concept> =>
-  conceptCatalogueApiGet(conceptPath(catalogId)).then(normalizeConcept);
+export const getConcept = (catalogId): Promise<Concept> => conceptCatalogueApiGet(conceptPath(catalogId));
 
 export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
-  (conceptCatalogueApiGet(`${conceptListPath}?orgNummer=${catalogId}`) as Promise<Concept[]>).then(concepts =>
-    concepts.map(normalizeConcept)
-  );
+  conceptCatalogueApiGet(`${conceptListPath}?orgNummer=${catalogId}`) as Promise<Concept[]>;
 
 export const postConcept = (body): Promise<void> => conceptCatalogueApiPost(conceptListPath, body);
 

@@ -50,8 +50,8 @@ const patchWithPreProcess = (values, { concept, dispatch }) => {
 const config = {
   mapPropsToValues: ({
     concept: {
-      anbefaltTerm = '',
-      definisjon = '',
+      anbefaltTerm = { navn: {} },
+      definisjon = { tekst: {} },
       kildebeskrivelse = null,
       merknad = '',
       tillattTerm = [],

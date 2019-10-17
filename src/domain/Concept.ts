@@ -10,14 +10,22 @@ export interface ContactDetails {
   harTelefon: string;
 }
 
-export interface TranslatableField {
-  [key: string]: string;
+export interface AnbefaltTerm {
+  navn: TekstMedSpraakKode;
+}
+
+export interface Definisjon {
+  tekst: TekstMedSpraakKode;
+}
+
+export interface TekstMedSpraakKode {
+  [kode: string]: string;
 }
 
 export interface Concept {
   id: string;
-  anbefaltTerm?: TranslatableField | string;
-  definisjon?: TranslatableField | string;
+  anbefaltTerm?: AnbefaltTerm;
+  definisjon?: Definisjon;
   kildebeskrivelse?: {
     forholdTilKilde: string;
     kilde: Kilde[];

@@ -16,7 +16,7 @@ exports[`should render ConceptList 1`] = `
         Anbefalt term
       </span>
       <Component
-        field="anbefaltTerm"
+        field="anbefaltTerm.navn"
         onSortField={[Function]}
         sortType="asc"
       />
@@ -65,7 +65,7 @@ exports[`should render ConceptList 1`] = `
     </div>
   </div>
   <Component
-    col1="begrep med omfang"
+    col1=""
     col2="Dokument"
     col3=""
     key="083c8716-6006-428f-be3b-39bc01dcc58b-0"

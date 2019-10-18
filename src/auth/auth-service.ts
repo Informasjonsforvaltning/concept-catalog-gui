@@ -53,7 +53,7 @@ export const getToken: () => Promise<string | undefined> = async () => {
 const extractResourceRoles: (authorities: string) => { resource: string; resourceId: string; role: string }[] = (
   authorities: string
 ) => {
-  return authorities
+  return (authorities || '')
     .split(',')
     .map(authorityDescriptor => authorityDescriptor.split(':'))
     .map(parts => ({ resource: parts[0], resourceId: parts[1], role: parts[2] }));

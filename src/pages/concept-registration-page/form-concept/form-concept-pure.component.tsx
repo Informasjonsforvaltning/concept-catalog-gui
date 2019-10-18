@@ -13,10 +13,14 @@ import { setInputLanguages, toggleInputLanguage } from '../../../components/lang
 import { languagePickerReducer, initialState } from '../../../components/language-picker/reducer/reducer';
 import { deepKeys } from '../../../lib/deep-keys';
 import { LanguagePicker } from '../../../components/language-picker/language-picker.component';
+import { Concept } from '../../../domain/Concept';
 
-export const FormConceptPure = (props): JSX.Element => {
-  const { concept, isValid } = props;
+interface Props {
+  concept: Concept;
+  isValid: boolean;
+}
 
+export const FormConceptPure: React.FC<Props> = ({ concept, isValid }) => {
   const [languagesDetermined, setLanguagesDetermined] = useState(false);
 
   const [state, dispatch] = useReducer(languagePickerReducer, initialState);

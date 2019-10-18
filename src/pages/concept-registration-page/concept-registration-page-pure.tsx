@@ -18,7 +18,7 @@ interface Props {
   history: object;
 }
 
-export const ConceptRegistrationPagePure = ({ concept }: Props): JSX.Element => {
+export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
   const { dispatch } = useContext(StateContext);
   const anbefaltTerm = get(concept, ['anbefaltTerm', 'navn']);
 

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import _ from 'lodash';
 import { Header } from '../components/app-header/app-header.component';
@@ -18,7 +18,7 @@ import 'font-awesome/scss/font-awesome.scss';
 import { stateReducer } from './reducers/stateReducer';
 import { StateProvider } from './context/stateContext';
 
-export const App: FunctionComponent = (): JSX.Element => {
+export const App: React.FC = () => {
   const [statusBarState, dispatch] = useReducer(stateReducer, [{}]);
   const value = { statusBarState, dispatch };
   return (

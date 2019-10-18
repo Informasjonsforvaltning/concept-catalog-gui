@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import './app-header.scss';
 import { DropdownToggle, DropdownItem, DropdownMenu, UncontrolledDropdown } from 'reactstrap';
-import { localization } from '../../lib/localization';
 import { getConfig } from '../../config';
 import { getUserName, logout } from '../../auth/auth-service';
 

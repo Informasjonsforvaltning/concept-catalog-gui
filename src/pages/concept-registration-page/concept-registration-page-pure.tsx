@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import get from 'lodash/get';
-import { StateContext, StateConsumer } from '../../app/context/stateContext';
+import { StateContext } from '../../app/context/stateContext';
 import './concept-registration-page-pure.scss';
 import { FormConcept } from './form-concept/form-concept.component';
 import { conceptPatchSuccessAction } from '../../app/reducers/stateReducer';

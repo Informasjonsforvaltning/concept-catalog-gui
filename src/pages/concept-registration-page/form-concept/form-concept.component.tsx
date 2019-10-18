@@ -76,7 +76,7 @@ const config = {
     kontaktpunkt
   }),
   validationSchema: schema,
-  validate: _.throttle(patchWithPreProcess, 250),
+  validate: _.throttle(patchWithPreProcess, 1500),
   isInitialValid: (values: FormProps) => schema.isValidSync(values.concept),
   validateOnBlur: false,
   handleSubmit() {}

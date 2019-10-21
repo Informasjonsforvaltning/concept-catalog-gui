@@ -46,7 +46,7 @@ export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
 
 export const postConcept = (body): Promise<void> => conceptCatalogueApiPost(conceptListPath, body);
 
-export const patchConcept = (conceptId, patch): Promise<void> =>
+export const patchConcept = (conceptId, patch): Promise<Concept> =>
   conceptCatalogueApiPatch(conceptPath(conceptId), patch);
 
 export const deleteConcept = (conceptId: string): Promise<void> => conceptCatalogueApiDelete(conceptPath(conceptId));

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import cx from 'classnames';
 import _ from 'lodash';
@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 import { DateTime } from 'luxon';
 
 import { localization } from '../../lib/localization';
-import { StateContext } from '../../app/context/stateContext';
+import { useDispatch, useGlobalState } from '../../app/context/stateContext';
 import { patchConceptFromForm } from '../../lib/patchConceptForm';
 import { deleteConcept } from '../../api/concept-catalogue-api';
 import './status-bar.scss';
@@ -76,14 +76,15 @@ export const StatusBarPure = ({ concept, isInitialInValidForm, history, match: {
   const conceptId = _.get(concept, 'id');
   const published = _.get(concept, 'status') === CONCEPT_STATUS_PUBLISHED;
 
-  const { statusBarState, dispatch } = useContext(StateContext);
+  const stateConcept = useGlobalState(conceptId);
+  const dispatch = useDispatch();
 
-  const status = _.get(statusBarState, [conceptId, 'status']);
-  const justPublishedOrUnPublished = _.get(statusBarState, [conceptId, 'justPublishedOrUnPublished']);
-  const isSaving = _.get(statusBarState, [conceptId, 'isSaving'], false);
-  const error = _.get(statusBarState, [conceptId, 'error']);
-  const validationError = _.get(statusBarState, [conceptId, 'validationError'], isInitialInValidForm);
-  const endringstidspunkt = _.get(statusBarState, [conceptId, 'endringstidspunkt']);
+  const status = _.get(stateConcept, 'status');
+  const justPublishedOrUnPublished = _.get(stateConcept, 'justPublishedOrUnPublished');
+  const isSaving = _.get(stateConcept, 'isSaving', false);
+  const error = _.get(stateConcept, 'error');
+  const validationError = _.get(stateConcept, 'validationError', isInitialInValidForm);
+  const endringstidspunkt = _.get(stateConcept, 'endringstidspunkt');
 
   let messageClass;
   let message;

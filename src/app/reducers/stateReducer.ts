@@ -1,11 +1,11 @@
 import _ from 'lodash';
 
-export const CONCEPT_STATUS_PATCH_SUCCESS = 'CONCEPT_STATUS_PATCH_SUCCESS';
-export const CONCEPT_STATUS_IS_SAVING = 'CONCEPT_STATUS_IS_SAVING';
-export const CONCEPT_STATUS_SAVE_ERROR = 'CONCEPT_STATUS_SAVE_ERROR';
-export const CONCEPT_STATUS_VALIDATION_ERROR = 'CONCEPT_STATUS_VALIDATION_ERROR';
+export const CONCEPT_STATUS_PATCH_SUCCESS: string = 'CONCEPT_STATUS_PATCH_SUCCESS';
+export const CONCEPT_STATUS_IS_SAVING: string = 'CONCEPT_STATUS_IS_SAVING';
+export const CONCEPT_STATUS_SAVE_ERROR: string = 'CONCEPT_STATUS_SAVE_ERROR';
+export const CONCEPT_STATUS_VALIDATION_ERROR: string = 'CONCEPT_STATUS_VALIDATION_ERROR';
 
-export const conceptPatchSuccessAction = (conceptId, patch, concept) => ({
+export const conceptPatchSuccessAction = (conceptId: string, patch: object, concept: object) => ({
   type: CONCEPT_STATUS_PATCH_SUCCESS,
   payload: {
     conceptId,
@@ -29,7 +29,7 @@ export const conceptPatchErrorAction = (conceptId, error): object => ({
   }
 });
 
-export const conceptValidationErrorAction = (conceptId, error): object => ({
+export const conceptValidationErrorAction = (conceptId: string, error: boolean) => ({
   type: CONCEPT_STATUS_VALIDATION_ERROR,
   payload: {
     conceptId,
@@ -37,7 +37,9 @@ export const conceptValidationErrorAction = (conceptId, error): object => ({
   }
 });
 
-export const stateReducer = (state, action): object => {
+export type Action = { type: string; payload: any };
+
+export const stateReducer = (state, action: Action): object => {
   switch (action.type) {
     case CONCEPT_STATUS_IS_SAVING: {
       const { conceptId } = action.payload;

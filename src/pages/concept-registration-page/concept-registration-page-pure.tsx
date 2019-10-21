@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import get from 'lodash/get';
-import { StateContext } from '../../app/context/stateContext';
+import { useDispatch } from '../../app/context/stateContext';
 import './concept-registration-page-pure.scss';
 import { FormConcept } from './form-concept/form-concept.component';
 import { conceptPatchSuccessAction } from '../../app/reducers/stateReducer';
@@ -19,7 +19,7 @@ interface Props {
 }
 
 export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
-  const { dispatch } = useContext(StateContext);
+  const dispatch = useDispatch();
   const anbefaltTerm = get(concept, ['anbefaltTerm', 'navn']);
 
   useEffect(() => {

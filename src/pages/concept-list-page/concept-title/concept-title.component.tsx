@@ -1,4 +1,5 @@
 import React from 'react';
+import { localization } from '../../../lib/localization';
 
 interface Props {
   title: string;
@@ -7,7 +8,7 @@ interface Props {
 export const ConceptTitle = ({ title }: Props): JSX.Element | null => {
   return (
     <div>
-      <h1>{title} sine begrepsbeskrivelser</h1>
+      <h1>{localization.conceptCatalog}</h1>
       <p>{title}</p>
     </div>
   );

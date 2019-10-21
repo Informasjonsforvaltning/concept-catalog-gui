@@ -47,6 +47,7 @@ export const en = {
   confirmDeleteMessage: 'Confirm delete concept',
   cancelDelete: 'Cancel',
   requiredFieldsMissing: 'Required fields missing',
+  conceptCatalog: 'Concept Catalog',
   concept: 'Concept',
   isSaving: 'Saving',
   changesUpdated: 'Changes are updated',

@@ -47,6 +47,7 @@ export const nn = {
   confirmDeleteMessage: 'Stadfest slette omgrep',
   cancelDelete: 'Avbryt',
   requiredFieldsMissing: 'Obligatoriske felt manglar',
+  conceptCatalog: 'Omgrepskatalog',
   concept: 'Omgrep',
   isSaving: 'Lagrar',
   changesUpdated: 'Endringar er oppdatert',

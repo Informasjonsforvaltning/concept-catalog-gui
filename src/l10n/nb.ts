@@ -48,6 +48,7 @@ export const nb = {
   cancelDelete: 'Avbryt',
   requiredFieldsMissing: 'Obligatoriske felt mangler',
   concept: 'Begrep',
+  conceptCatalog: 'Begrepskatalog',
   isSaving: 'Lagrer',
   changesUpdated: 'Endringer er oppdatert',
   savedAsDraft: 'Lagret som utkast',

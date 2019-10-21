@@ -24,13 +24,17 @@ const createConcept = catalogId => ({
   }
 });
 
+const getTitle = (publisher: object): string => {
+  return getTranslateText(_.get(publisher, 'prefLabel')) || _.get(publisher, 'name');
+};
+
 const createNewConceptAndNavigate = ({ history, catalogId }) =>
   postConcept(createConcept(catalogId)).then(resourceId => history.push(`/${catalogId}/${resourceId}`));
 
 export const ConceptListPagePure = ({ history, concepts, publisher, catalogId }: Props): JSX.Element => (
   <div className="container">
     <div className="row mb-2">
-      <ConceptTitle title={getTranslateText(_.get(publisher, 'prefLabel'))} />
+      <ConceptTitle title={getTitle(publisher)} />
     </div>
     <div className="mb-2">
       <NewConceptButton parentOnClick={() => createNewConceptAndNavigate({ history, catalogId })} />

@@ -7,6 +7,8 @@ import { getConfig } from '../config';
 
 let kc: KeycloakInstance;
 
+export const PERMISSION_READ = 'PERMISSION_READ';
+
 export function initAuth(): Promise<boolean> {
   kc = Keycloak(getConfig().keycloak);
 
@@ -62,5 +64,17 @@ const extractResourceRoles: (authorities: string) => { resource: string; resourc
 const getRoles: () => { resource: string; resourceId: string; role: string }[] = () =>
   extractResourceRoles(get(kc.tokenParsed, 'authorities'));
 
-export const hasAnyRoleForResource: ({ resource, resourceId }) => boolean = ({ resource, resourceId }) =>
-  !!find(getRoles(), { resource, resourceId });
+export const hasPermissionForResource: ({ resource, resourceId, permission: string }) => boolean = ({
+  resource,
+  resourceId,
+  permission
+}) => {
+  switch (permission) {
+    case PERMISSION_READ: {
+      return !!find(getRoles(), { resource, resourceId });
+    }
+    default: {
+      throw new Error('no permission');
+    }
+  }
+};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, FieldArray } from 'formik';
+import { FieldArray } from 'formik';
 
 import { InputField } from '../../../../components/fields/field-input/field-input.component';
 import { TextAreaField } from '../../../../components/fields/field-textarea/field-textarea.component';
@@ -51,7 +51,7 @@ export const Term = ({ languages }: Props): JSX.Element => (
         helpTextAbstract={localization.merknadAbstract}
         helpTextDescription={localization.merknadDescription}
       />
-      <Field name="merknad" rows="5" component={TextAreaField} />
+      <MultilingualField name="merknad" component={TextAreaField} label="merknad" languages={languages} />
     </div>
   </div>
 );

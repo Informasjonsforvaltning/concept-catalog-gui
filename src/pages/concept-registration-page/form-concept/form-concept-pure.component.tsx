@@ -47,10 +47,10 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid }) => {
         <Term languages={state.languages} />
       </FormTemplate>
       <FormTemplate title={localization.formAllowedAndDiscouraged}>
-        <AllowedAndDiscouraged />
+        <AllowedAndDiscouraged languages={state.languages} />
       </FormTemplate>
       <FormTemplate title={localization.formUseOfConcept}>
-        <UseOfTerm />
+        <UseOfTerm languages={state.languages} />
       </FormTemplate>
       <FormTemplate title={localization.formContactPoint}>
         <ContactInfo />

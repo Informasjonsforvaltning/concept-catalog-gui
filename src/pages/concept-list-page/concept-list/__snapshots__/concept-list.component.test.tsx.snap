@@ -65,7 +65,7 @@ exports[`should render ConceptList 1`] = `
     </div>
   </div>
   <Component
-    col1=""
+    col1="begrep med omfang"
     col2="Dokument"
     col3=""
     key="083c8716-6006-428f-be3b-39bc01dcc58b-0"

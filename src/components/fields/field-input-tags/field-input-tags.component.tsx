@@ -16,22 +16,30 @@ interface Props {
   showLabel: boolean;
   label: string;
   type: string;
+  language: string;
+  isOnlyOneSelectedLanguage: boolean;
 }
 
-export const InputTagsField = ({ field, showLabel, label, form: { setFieldValue } }: Props): JSX.Element => {
+export const InputTagsField = ({
+  field,
+  showLabel,
+  label,
+  form: { setFieldValue },
+  language,
+  isOnlyOneSelectedLanguage
+}: Props): JSX.Element => {
   const tagNodes = _.get(field, 'value', []).map(item => item);
   return (
     <div className="px-2">
-      <label className="fdk-form-label w-100" htmlFor={field.name}>
+      <label className="fdk-form-label w-100 position-relative" htmlFor={field.name}>
         {showLabel ? label : null}
-        <div className="d-flex align-items-center">
-          <TagsInput
-            value={tagNodes}
-            className="fdk-reg-input-tags"
-            inputProps={{ placeholder: '' }}
-            onChange={tags => setFieldValue(_.get(field, 'name'), tags)}
-          />
-        </div>
+        {!!language && !isOnlyOneSelectedLanguage && <span className="language-indicator">{language}</span>}
+        <TagsInput
+          value={tagNodes}
+          className="fdk-reg-input-tags"
+          inputProps={{ placeholder: '' }}
+          onChange={tags => setFieldValue(_.get(field, 'name'), tags)}
+        />
       </label>
     </div>
   );

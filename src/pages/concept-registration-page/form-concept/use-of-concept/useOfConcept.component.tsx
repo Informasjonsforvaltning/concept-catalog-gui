@@ -5,8 +5,14 @@ import { InputTagsField } from '../../../../components/fields/field-input-tags/f
 import { TextAreaField } from '../../../../components/fields/field-textarea/field-textarea.component';
 import { HelpText } from '../../../../components/help-text/help-text.component';
 import { localization } from '../../../../lib/localization';
+import { MultilingualField } from '../../../../components/multilingual-field/multilingual-field.component';
+import { Language } from '../../../../domain/Language';
 
-export const UseOfTerm = (): JSX.Element => (
+interface Props {
+  languages: Language[];
+}
+
+export const UseOfTerm = ({ languages }: Props): JSX.Element => (
   <div>
     <div className="form-group">
       <HelpText
@@ -15,7 +21,7 @@ export const UseOfTerm = (): JSX.Element => (
         helpTextAbstract={localization.eksempelAbstract}
         helpTextDescription={localization.eksempelDescription}
       />
-      <Field name="eksempel" component={TextAreaField} />
+      <MultilingualField name="eksempel" component={TextAreaField} label="eksempel" languages={languages} />
     </div>
     <div className="form-group">
       <HelpText
@@ -24,7 +30,7 @@ export const UseOfTerm = (): JSX.Element => (
         helpTextAbstract={localization.fagomraadeAbstract}
         helpTextDescription={localization.fagomraadeDescription}
       />
-      <Field name="fagområde" component={InputField} />
+      <MultilingualField name="fagområde" component={InputField} label="fagområde" languages={languages} />
     </div>
     <div className="form-group">
       <HelpText
@@ -33,7 +39,7 @@ export const UseOfTerm = (): JSX.Element => (
         helpTextAbstract={localization.bruksomraadeAbstract}
         helpTextDescription={localization.bruksomraadeDescription}
       />
-      <Field name="bruksområde" component={InputTagsField} />
+      <MultilingualField name="bruksområde" component={InputTagsField} label="bruksområde" languages={languages} />
     </div>
     <div className="form-group">
       <HelpText

@@ -1,10 +1,15 @@
 import React from 'react';
-import { Field } from 'formik';
 import { InputTagsField } from '../../../../components/fields/field-input-tags/field-input-tags.component';
 import { HelpText } from '../../../../components/help-text/help-text.component';
 import { localization } from '../../../../lib/localization';
+import { Language } from '../../../../domain/Language';
+import { MultilingualField } from '../../../../components/multilingual-field/multilingual-field.component';
 
-export const AllowedAndDiscouraged = (): JSX.Element => (
+interface Props {
+  languages: Language[];
+}
+
+export const AllowedAndDiscouraged = ({ languages }: Props): JSX.Element => (
   <div>
     <div className="form-group">
       <HelpText
@@ -13,7 +18,7 @@ export const AllowedAndDiscouraged = (): JSX.Element => (
         helpTextAbstract={localization.tillattTermAbstract}
         helpTextDescription={localization.tillattTermDescription}
       />
-      <Field name="tillattTerm" component={InputTagsField} />
+      <MultilingualField name="tillattTerm" component={InputTagsField} label="tillattTerm" languages={languages} />
     </div>
     <div className="form-group">
       <HelpText
@@ -22,7 +27,7 @@ export const AllowedAndDiscouraged = (): JSX.Element => (
         helpTextAbstract={localization.fraraadetTermAbstract}
         helpTextDescription={localization.fraraadetTermDescription}
       />
-      <Field name="frarådetTerm" component={InputTagsField} />
+      <MultilingualField name="frarådetTerm" component={InputTagsField} label="frarådetTerm" languages={languages} />
     </div>
   </div>
 );

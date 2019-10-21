@@ -2,10 +2,25 @@
   {
     "id": "083c8716-6006-428f-be3b-39bc01dcc58b",
     "status": "utkast",
-    "anbefaltTerm": "begrep med omfang",
-    "definisjon": "lorem ipsum",
+    "anbefaltTerm": {
+      "navn": {
+        "nb": "begrep med omfang",
+        "nn": "begrep med omfang nn",
+        "en": "begrep med omfang en"
+      }
+    },
+    "definisjon": {
+      "tekst": {
+        "nb": "lorem ipsum",
+        "nn": "lorem ipsum NN",
+        "en": "lorem ipsum EN"
+      }
+    },
     "kilde": "Forskrift om tinglysing § 11 tredje ledd og § 16 annet ledd bokstav e). _Forskrift 3. november 1995 nr. 875 om tinglysing_ https://lovdata.no/forskrift/1995-11-03-875",
-    "merknad": "Lorem",
+    "merknad": {
+      "nb": "Lorem",
+      "nn": "Lorem NN"
+    },
     "ansvarligVirksomhet": {
       "uri": "http://data.brreg.no/enhetsregisteret/enhet/910244132",
       "id": "910244132",
@@ -13,9 +28,20 @@
       "orgPath": "/ANNET/910244132",
       "prefLabel": "Brønnøysundregistrene"
     },
-    "eksempel": "Eksempel lorem ipsum.",
-    "fagområde": "Dokument",
-    "bruksområde": "Bruksområde lorem ipsum",
+    "eksempel": {
+      "nb": "Eksempel lorem ipsum.",
+      "nn": "Eksempel lorem ipsum NN.",
+      "en": "Eksempel lorem ipsum EN."
+    },
+    "fagområde": {
+      "nb": "Dokument",
+      "nn": "Dokument NN",
+      "en": "Dokument EN"
+    },
+    "bruksområde": {
+      "nb": ["Bruksområde lorem ipsum"],
+      "en": ["Bruksområde lorem ipsum EN", "Bruksområde lorem ipsum 2 EN"]
+    },
     "omfang": {
       "tekst": "Tekst for omfang",
       "uri": "uri for omfang"
@@ -26,7 +52,25 @@
     },
     "gyldigFom": "2019-03-30",
     "forholdTilKilde": "ForholdTilKilde lorem ipsum",
-    "tillattTerm": ["Tillatt term", "Et annet tillatt term"],
-    "frarådetTerm": ["Frarådet term", "Særs frarådet"]
+    "tillattTerm": {
+        "nb": [
+          "Tillatt term",
+          "Et annet tillatt term",
+          "Et annet tillatt term",
+          "Et annet tillatt term",
+          "Et annet tillatt term",
+          "Et annet tillatt term",
+          "Et annet tillatt term",
+          "Et annet tillatt term"
+        ],
+        "en": ["allowed 1 EN", "allowed 2 EN"]
+    },
+    "frarådetTerm": {
+        "nb": [
+          "Frarådet term",
+          "Særs frarådet"
+        ],
+        "en": ["discouraged 1 EN", "discouraged 2 EN"]
+    }
   }
 ]

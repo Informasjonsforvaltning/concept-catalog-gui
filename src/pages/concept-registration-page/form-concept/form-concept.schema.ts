@@ -74,13 +74,8 @@ export const schema = Yup.object().shape({
         })
       )
     }),
-  eksempel: Yup.string()
-    .min(2, localization.validationMin2)
-    .nullable(),
-  fagområde: Yup.string()
-    .min(2, localization.validationMin2)
-    .nullable(),
-  bruksområde: Yup.array().of(Yup.string().min(2, localization.validationMin2)),
+  eksempel: Yup.string().nullable(),
+  fagområde: Yup.string().nullable(),
   omfang: Yup.object()
     .nullable()
     .shape({

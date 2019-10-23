@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { Form } from 'formik';
 import pick from 'lodash/pick';
+import get from 'lodash/get';
 
 import { Term } from './term/term.component';
 import { AllowedAndDiscouraged } from './allowed-and-discouraged-term/allowed-and-discouraged-term.component';
@@ -14,6 +15,7 @@ import { languagePickerReducer, initialState } from '../../../components/languag
 import { deepKeys } from '../../../lib/deep-keys';
 import { LanguagePicker } from '../../../components/language-picker/language-picker.component';
 import { Concept } from '../../../domain/Concept';
+import { Can } from '../../../casl/Can';
 
 interface Props {
   concept: Concept;
@@ -37,6 +39,8 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid }) => {
     }
   }, [concept]);
 
+  const publisherId = get(concept, ['ansvarligVirksomhet', 'id']);
+
   return (
     <Form>
       <LanguagePicker
@@ -55,7 +59,9 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid }) => {
       <FormTemplate title={localization.formContactPoint}>
         <ContactInfo />
       </FormTemplate>
-      <StatusBar concept={concept} isInitialInValidForm={!isValid} />
+      <Can I="view a statusBar" of={{ __type: 'StatusBar', publisher: publisherId }}>
+        <StatusBar concept={concept} isInitialInValidForm={!isValid} />
+      </Can>
     </Form>
   );
 };

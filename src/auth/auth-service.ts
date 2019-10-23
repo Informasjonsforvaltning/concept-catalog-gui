@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import find from 'lodash/find';
 import { loadTokens, removeTokens, storeTokens } from './token-store';
 import { getConfig } from '../config';
+import { ResourceRole } from '../domain/ResourceRole';
 
 let kc: KeycloakInstance;
 
@@ -61,7 +62,7 @@ const extractResourceRoles: (authorities: string) => { resource: string; resourc
     .map(parts => ({ resource: parts[0], resourceId: parts[1], role: parts[2] }));
 };
 
-const getRoles: () => { resource: string; resourceId: string; role: string }[] = () =>
+export const getResourceRoles: () => { resource: string; resourceId: string; role: string }[] = (): ResourceRole[] =>
   extractResourceRoles(get(kc.tokenParsed, 'authorities'));
 
 export const hasPermissionForResource: ({ resource, resourceId, permission: string }) => boolean = ({
@@ -71,7 +72,7 @@ export const hasPermissionForResource: ({ resource, resourceId, permission: stri
 }) => {
   switch (permission) {
     case PERMISSION_READ: {
-      return !!find(getRoles(), { resource, resourceId });
+      return !!find(getResourceRoles(), { resource, resourceId });
     }
     default: {
       throw new Error('no permission');

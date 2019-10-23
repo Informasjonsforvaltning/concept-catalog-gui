@@ -5,6 +5,7 @@ import { ConceptList } from './concept-list/concept-list.component';
 import { ConceptTitle } from './concept-title/concept-title.component';
 import { NewConceptButton } from '../../components/new-concept-button/new-concept-button.component';
 import { postConcept } from '../../api/concept-catalogue-api';
+import { Can } from '../../casl/Can';
 
 interface Props {
   myProp: any;
@@ -36,9 +37,11 @@ export const ConceptListPagePure = ({ history, concepts, publisher, catalogId }:
     <div className="row mb-2">
       <ConceptTitle title={getTitle(publisher)} />
     </div>
-    <div className="mb-2">
-      <NewConceptButton parentOnClick={() => createNewConceptAndNavigate({ history, catalogId })} />
-    </div>
+    <Can I="create a concept" of={{ __type: 'Concept', publisher: catalogId }}>
+      <div className="mb-2">
+        <NewConceptButton parentOnClick={() => createNewConceptAndNavigate({ history, catalogId })} />
+      </div>
+    </Can>
     <div className="mb-2">
       <ConceptList items={concepts} catalogId={catalogId} />
     </div>

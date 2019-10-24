@@ -16,7 +16,12 @@ const renderListHeader = (sortField, sortDirection, onSortField): JSX.Element =>
   <div className="row fdk-list-header">
     <div className="col-3 d-flex align-items-center">
       <span className="header-item mr-1">{localization.preferredTerm}</span>
-      <SortButtons field="anbefaltTerm.navn" sortField={sortField} sortType={sortDirection} onSortField={onSortField} />
+      <SortButtons
+        field="anbefaltTerm.navn.nb"
+        sortField={sortField}
+        sortType={sortDirection}
+        onSortField={onSortField}
+      />
     </div>
 
     <div className="col-3 d-flex align-items-center">
@@ -41,12 +46,12 @@ const renderListItems = (items, catalogId, sortField, sortDirection): JSX.Elemen
     return null;
   }
   // TODO fix validity
-  return _.orderBy(items, [item => (item[sortField] && item[sortField].toLowerCase()) || ''], [sortDirection]).map(
+  return _.orderBy(items, [i => (_.get(i, sortField) && _.get(i, sortField).toLowerCase()) || ''], [sortDirection]).map(
     (item, index): JSX.Element => {
       return (
         <ListItem
           key={`${_.get(item, 'id')}-${index}`}
-          col1={getTranslateText(_.get(item, ['anbefaltTerm', 'navn']))}
+          col1={getTranslateText(_.get(item, ['anbefaltTerm', 'navn', 'nb']))}
           col2={getTranslateText(_.get(item, 'fagområde'))}
           col3=""
           status={_.get(item, 'status')}

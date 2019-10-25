@@ -51,7 +51,7 @@ const renderListItems = (items, catalogId, sortField, sortDirection): JSX.Elemen
       return (
         <ListItem
           key={`${_.get(item, 'id')}-${index}`}
-          col1={getTranslateText(_.get(item, ['anbefaltTerm', 'navn', 'nb']))}
+          col1={getTranslateText(_.get(item, ['anbefaltTerm', 'navn']))}
           col2={getTranslateText(_.get(item, 'fagområde'))}
           col3=""
           status={_.get(item, 'status')}

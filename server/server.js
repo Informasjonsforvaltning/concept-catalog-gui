@@ -7,7 +7,7 @@ const compression = require('compression');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const config = require('../webpack.dev.config.js');
+const config = require('../webpack/dev.config.js');
 require('dotenv').config();
 
 module.exports = {
@@ -48,7 +48,7 @@ module.exports = {
     app.use('/begrep/:id', (req, res) => {
       let jsonObj = require('../src/mock/concepts.json');
 
-      res.json(_.find(jsonObj, {id: req.params.id}));
+      res.json(_.find(jsonObj, { id: req.params.id }));
     });
 
     if (!env.production) {

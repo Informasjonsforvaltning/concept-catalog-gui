@@ -4,32 +4,26 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
-  devtool: 'cheap-module-source-map',
   entry: ['./src/index.tsx'],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '../dist'),
     filename: 'bundle.js'
-  },
-  devServer: {
-    host: '0.0.0.0',
-    port: 8203,
-    historyApiFallback: true,
-    before: app =>
-      app.get('/env.json', (_, res) =>
-        res.json({
-          CONCEPT_REGISTRATION_API: process.env.CONCEPT_REGISTRATION_API || 'http://localhost:8200',
-          REGISTRATION_HOST: process.env.REGISTRATION_HOST || 'https://localhost:8098',
-          PUBLISHER_API: process.env.PUBLISHER_API || 'http://localhost:8080',
-          PUBLISHER_DATA_AUTHORIZATION: process.env.PUBLISHER_DATA_AUTHORIZATION || '',
-          // PUBLISHER_API:'https://www.ut1.fellesdatakatalog.brreg.no'
-          // PUBLISHER_DATA_AUTHORIZATION:'Basic ZmRrOkJSUkVH' // for ut1 and st1
-          SSO_HOST: process.env.SSO_HOST || 'http://localhost:8084'
-        })
-      )
   },
   module: {
     rules: [
+      {
+        test: /\.(js|ts)x?$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              configFile: path.resolve(__dirname, '../.babelrc')
+            }
+          },
+          'ts-loader'
+        ],
+        exclude: /node_modules/
+      },
       {
         test: /\.s?css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
@@ -52,10 +46,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.(ts|tsx)$/,
-        loader: 'ts-loader'
-      },
-      {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         issuer: {
           test: /\.tsx?$/
@@ -69,13 +59,7 @@ module.exports = {
     ]
   },
   resolve: {
-    alias: {
-      react: path.resolve('./node_modules/react')
-    },
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.webpack.js', '.web.js']
-  },
-  resolveLoader: {
-    modules: [__dirname, 'node_modules']
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   optimization: {
     minimize: false

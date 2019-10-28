@@ -78,6 +78,12 @@
         "*.d.ts"
       ],
       "rules": {}
+    },
+    {
+      "files": ["./webpack/*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
     }
   ],
   "settings": {

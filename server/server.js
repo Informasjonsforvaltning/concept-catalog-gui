@@ -4,7 +4,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const compression = require('compression');
-require('dotenv').config();
 
 module.exports = {
   start() {

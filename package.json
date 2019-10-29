@@ -42,7 +42,6 @@
     "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^3.0.0",
     "designsystemet": "git+https://github.com/Informasjonsforvaltning/designsystemet.git#1.4.24",
-    "dotenv": "^8.0.0",
     "ejs": "^2.6.1",
     "express": "^4.17.0",
     "fast-json-patch": "^3.0.0-0",

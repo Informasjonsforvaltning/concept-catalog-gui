@@ -1,17 +1,15 @@
 const path = require('path');
-const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  context: path.join(__dirname),
-  entry: {
-    app: ['./src/index.tsx']
-  },
+  mode: 'production',
+  devtool: 'none',
+  entry: ['./src/index.tsx'],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/'
+    filename: 'bundle.js'
   },
   module: {
     rules: [
@@ -54,25 +52,13 @@ module.exports = {
     ]
   },
   resolve: {
-    alias: {
-      react: path.resolve('./node_modules/react')
-    },
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.webpack.js', '.web.js']
-  },
-  resolveLoader: {
-    modules: [__dirname, 'node_modules']
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      'process.env.REDUX_LOG': JSON.stringify(process.env.REDUX_LOG)
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html'
     }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new webpack.optimize.OccurrenceOrderPlugin(true),
     new MiniCssExtractPlugin({
       filename: 'styles.css'
     }),

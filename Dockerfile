@@ -14,19 +14,19 @@ RUN mkdir -p /usr/src/app && chmod 777 /usr/src/app
 RUN mkdir /.pm2 && chmod 777 /.pm2
 WORKDIR /usr/src/app
 
-COPY package.json /usr/src/app/package.json
-COPY package-lock.json /usr/src/app/package-lock.json
+COPY package.json ./
+COPY package-lock.json ./
 
 # Install app dependencies
 RUN npm install --only=production --loglevel=warn
 
-COPY server /usr/src/app/server
-COPY tsconfig.json /usr/src/app/tsconfig.json
-COPY webpack.* /usr/src/app/
-COPY images.d.ts /usr/src/app/
+COPY server ./server/
+COPY tsconfig.json ./
+COPY webpack.* ./
+COPY images.d.ts ./
 
 # most volatile directory latest, in order to reuse layers.
-COPY src /usr/src/app/src
+COPY src ./src/
 
 RUN npm run build
 

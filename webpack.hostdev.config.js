@@ -69,22 +69,12 @@ module.exports = {
     ]
   },
   resolve: {
-    alias: {
-      react: path.resolve('./node_modules/react')
-    },
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.webpack.js', '.web.js']
-  },
-  resolveLoader: {
-    modules: [__dirname, 'node_modules']
-  },
-  optimization: {
-    minimize: false
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      filename: 'index.html',
-      inject: true
+      filename: 'index.html'
     }),
     new MiniCssExtractPlugin({
       filename: 'styles.css'

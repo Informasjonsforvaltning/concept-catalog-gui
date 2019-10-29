@@ -33,16 +33,6 @@ module.exports = {
       res.json(envObj);
     });
 
-    app.use('/begreper', (req, res) => {
-      let jsonObj = require('../src/mock/concepts.json');
-      res.json(jsonObj);
-    });
-
-    app.use('/begrep/:id', (req, res) => {
-      let jsonObj = require('../src/mock/concepts.json');
-
-      res.json(_.find(jsonObj, {id: req.params.id}));
-    });
     app.use('/', express.static(path.join(__dirname, '/../dist')));
 
     app.get('*', (req, res) => {

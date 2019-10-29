@@ -27,7 +27,16 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid }) => {
 
   const [state, dispatch] = useReducer(languagePickerReducer, initialState);
 
-  const translatableFields = ['anbefaltTerm', 'definisjon'];
+  const translatableFields = [
+    'anbefaltTerm',
+    'definisjon',
+    'tillattTerm',
+    'frarådetTerm',
+    'merknad',
+    'eksempel',
+    'fagområde',
+    'bruksområde'
+  ];
 
   const getUsedLanguages = (): any[] =>
     concept ? [...new Set(deepKeys(pick(concept, translatableFields), (_, v) => !!v))] : [];

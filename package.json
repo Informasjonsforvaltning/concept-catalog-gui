@@ -4,10 +4,10 @@
   "description": "",
   "main": "server/start.js",
   "scripts": {
-    "start": "webpack-dev-server  --hot --inline --config webpack.hostdev.config.js",
+    "start": "webpack-dev-server  --hot --inline --config webpack/dev.config.js",
     "release": "standard-version --no-verify",
     "test": "jest --runInBand --config=jest.config.json",
-    "build": "webpack --config webpack.prod.config.js",
+    "build": "webpack --config webpack/prod.config.js",
     "lint:project": "eslint --ext tsx,ts,jsx,js ./",
     "lint:project:fix": "eslint --ext tsx,ts,jsx,js ./ --fix",
     "lint:staged:fix": "eslint --ext tsx,ts,jsx,js --fix"

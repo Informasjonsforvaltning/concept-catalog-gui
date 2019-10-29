@@ -22,7 +22,7 @@ RUN npm install --only=production --loglevel=warn
 
 COPY server ./server/
 COPY tsconfig.json ./
-COPY webpack.* ./
+COPY webpack/ ./webpack/
 COPY images.d.ts ./
 
 # most volatile directory latest, in order to reuse layers.

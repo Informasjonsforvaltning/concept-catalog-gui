@@ -4,6 +4,7 @@ import { FormConceptPure } from './form-concept-pure.component';
 import { schema } from './form-concept.schema';
 import { Concept } from '../../../domain/Concept';
 import { validateConceptForm } from '../../../lib/validateConceptForm';
+import { patchConceptFromForm } from '../../../lib/patchConceptForm';
 
 interface FormProps {
   concept: Concept;
@@ -44,7 +45,8 @@ const preProcessValues = origValues => {
 
 const patchWithPreProcess = (values, { concept, dispatch }) => {
   const processedValues = preProcessValues(values);
-  return validateConceptForm(processedValues, schema, concept, dispatch);
+  patchConceptFromForm(processedValues, { concept, dispatch });
+  validateConceptForm(processedValues, schema, concept, dispatch);
 };
 
 const config = {

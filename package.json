@@ -47,7 +47,7 @@
     "fast-json-patch": "^3.0.0-0",
     "file-loader": "^4.0.0",
     "font-awesome": "^4.7.0",
-    "formik": "^1.5.7",
+    "formik": "^2.0.3",
     "husky": "^2.3.0",
     "jquery": "^3.4.1",
     "keycloak-js": "^6.0.1",

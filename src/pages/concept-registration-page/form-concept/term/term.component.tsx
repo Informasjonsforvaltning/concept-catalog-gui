@@ -1,5 +1,4 @@
 import React from 'react';
-import { FieldArray } from 'formik';
 
 import { InputField } from '../../../../components/fields/field-input/field-input.component';
 import { TextAreaField } from '../../../../components/fields/field-textarea/field-textarea.component';
@@ -42,7 +41,7 @@ export const Term = ({ languages }: Props): JSX.Element => (
         helpTextAbstract={localization.kildeAbstract}
         helpTextDescription={localization.kildeDescription}
       />
-      <FieldArray name="kildebeskrivelse" component={Source} />
+      <Source />
     </div>
     <div className="form-group">
       <HelpText

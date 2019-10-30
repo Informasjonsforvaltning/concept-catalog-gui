@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Select from 'react-select';
 import { localization } from '../../../lib/localization';
 
@@ -22,7 +22,7 @@ const onChangeField = (fieldName, option, form, onClear, onChange) => {
   }
 };
 
-export const SelectField = ({
+export const SelectField: FC<Props> = ({
   field, // { name, value, onChange, onBlur }
   options,
   form: { touched, errors }, // also values, dirty, isValid, status, etc.
@@ -31,7 +31,7 @@ export const SelectField = ({
   form,
   onClear,
   onChange
-}: Props): JSX.Element => {
+}) => {
   return (
     <div className="px-2">
       <div className="d-flex align-items-center">

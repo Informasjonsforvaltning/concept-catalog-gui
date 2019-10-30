@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import get from 'lodash/get';
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
   isOnlyOneSelectedLanguage: boolean;
 }
 
-export const TextAreaField = ({
+export const TextAreaField: FC<Props> = ({
   field,
   form: { touched, errors },
   showLabel,
@@ -24,7 +24,7 @@ export const TextAreaField = ({
   rows = 2,
   language,
   isOnlyOneSelectedLanguage
-}: Props): JSX.Element => (
+}) => (
   <div className="px-2">
     <label className="fdk-form-label w-100 fdk-text-strong position-relative" htmlFor={field.name}>
       {showLabel ? label : null}

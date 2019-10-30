@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import _ from 'lodash';
 import TagsInput from 'react-tagsinput';
 import './field-input-tags.scss';
@@ -20,14 +20,14 @@ interface Props {
   isOnlyOneSelectedLanguage: boolean;
 }
 
-export const InputTagsField = ({
+export const InputTagsField: FC<Props> = ({
   field,
   showLabel,
   label,
   form: { setFieldValue },
   language,
   isOnlyOneSelectedLanguage
-}: Props): JSX.Element => {
+}) => {
   const tagNodes = _.get(field, 'value', []).map(item => item);
   return (
     <div className="px-2">

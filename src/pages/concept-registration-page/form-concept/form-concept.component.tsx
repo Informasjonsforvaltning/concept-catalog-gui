@@ -9,6 +9,7 @@ import { patchConceptFromForm } from '../../../lib/patchConceptForm';
 interface FormProps {
   concept: Concept;
   dispatch: Function;
+  lastPatchedValues?: object;
 }
 
 type FormValues = Pick<
@@ -43,9 +44,9 @@ const preProcessValues = origValues => {
   return values;
 };
 
-const patchWithPreProcess = (values, { concept, dispatch }) => {
+const patchWithPreProcess = (values, { concept, dispatch, lastPatchedValues }) => {
   const processedValues = preProcessValues(values);
-  patchConceptFromForm(processedValues, { concept, dispatch });
+  patchConceptFromForm(processedValues, { concept, dispatch, lastPatchedValues });
   validateConceptForm(processedValues, schema, concept, dispatch);
 };
 

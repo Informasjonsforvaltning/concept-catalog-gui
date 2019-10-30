@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import get from 'lodash/get';
-import { useDispatch } from '../../app/context/stateContext';
+import { useDispatch, useGlobalState } from '../../app/context/stateContext';
 import './concept-registration-page-pure.scss';
 import { FormConcept } from './form-concept/form-concept.component';
 import { conceptPatchSuccessAction } from '../../app/reducers/stateReducer';
@@ -19,6 +19,7 @@ interface Props {
 }
 
 export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
+  const stateConcept = useGlobalState(concept.id);
   const dispatch = useDispatch();
   const anbefaltTerm = get(concept, ['anbefaltTerm', 'navn']);
 
@@ -30,7 +31,7 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
     <div className="container">
       <div className="col-12">
         <h1 className="pb-5">{getTranslateText(anbefaltTerm)}</h1>
-        <FormConcept concept={concept} dispatch={dispatch} />
+        <FormConcept concept={concept} dispatch={dispatch} lastPatchedValues={get(stateConcept, 'lastPatchedValues')} />
       </div>
     </div>
   );

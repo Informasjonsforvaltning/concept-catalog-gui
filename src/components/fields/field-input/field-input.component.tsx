@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 import get from 'lodash/get';
+import { withRouter } from 'react-router-dom';
+import { RouterProps } from '../../../types/common';
 
 interface Props {
   field: {
@@ -16,7 +18,7 @@ interface Props {
   isOnlyOneSelectedLanguage: boolean;
 }
 
-export const InputField: FC<Props> = ({
+const InputFieldPure: FC<Props & RouterProps> = ({
   field, // { name, value, onChange, onBlur }
   form: { touched, errors }, // also values, dirty, isValid, status, etc.
   showLabel,
@@ -38,3 +40,5 @@ export const InputField: FC<Props> = ({
     )}
   </div>
 );
+
+export const InputField = withRouter(InputFieldPure);

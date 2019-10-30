@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 import get from 'lodash/get';
+import { withRouter } from 'react-router-dom';
+import { RouterProps } from '../../../types/common';
 
 interface Props {
   rows: number;
@@ -16,7 +18,7 @@ interface Props {
   isOnlyOneSelectedLanguage: boolean;
 }
 
-export const TextAreaField: FC<Props> = ({
+const TextAreaFieldPure: FC<Props & RouterProps> = ({
   field,
   form: { touched, errors },
   showLabel,
@@ -38,3 +40,5 @@ export const TextAreaField: FC<Props> = ({
     )}
   </div>
 );
+
+export const TextAreaField = withRouter(TextAreaFieldPure);

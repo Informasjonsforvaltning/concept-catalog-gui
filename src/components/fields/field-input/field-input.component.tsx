@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import get from 'lodash/get';
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
   isOnlyOneSelectedLanguage: boolean;
 }
 
-export const InputField = ({
+export const InputField: FC<Props> = ({
   field, // { name, value, onChange, onBlur }
   form: { touched, errors }, // also values, dirty, isValid, status, etc.
   showLabel,
@@ -24,7 +24,7 @@ export const InputField = ({
   type,
   language,
   isOnlyOneSelectedLanguage
-}: Props): JSX.Element => (
+}) => (
   <div className="px-2">
     <div className="d-flex align-items-center">
       <label className="fdk-form-label w-100 fdk-text-strong position-relative" htmlFor={field.name}>

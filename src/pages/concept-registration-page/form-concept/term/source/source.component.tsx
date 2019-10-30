@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import { Field } from 'formik';
 import { v4 } from 'uuid';
 import _ from 'lodash';
-import { localization } from '../../../lib/localization';
-import { InputField } from '../field-input/field-input.component';
-import { ButtonSource } from '../../button-source/button-source.component';
-import { SelectField } from '../field-select/field-select.component';
-import './field-array-source.scss';
+import { localization } from '../../../../../lib/localization';
+import { InputField } from '../../../../../components/fields/field-input/field-input.component';
+import { ButtonSource } from '../../../../../components/button-source/button-source.component';
+import { SelectField } from '../../../../../components/fields/field-select/field-select.component';
+import './source.scss';
 
 const options = [
   { value: 'egendefinert', label: localization.custom },
@@ -53,7 +53,7 @@ const handleRemoveKilde = (form, index) => {
 
 const getKilde = props => _.get(props, ['form', 'values', 'kildebeskrivelse', 'kilde'], []);
 
-export const FieldArraySource: FC<any> = props => {
+export const Source: FC<any> = props => {
   const forholdTilKilde = _.get(props, 'form.values.kildebeskrivelse.forholdTilKilde');
 
   return (

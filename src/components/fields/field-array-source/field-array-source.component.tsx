@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Field } from 'formik';
 import { v4 } from 'uuid';
 import _ from 'lodash';
@@ -53,7 +53,7 @@ const handleRemoveKilde = (form, index) => {
 
 const getKilde = props => _.get(props, ['form', 'values', 'kildebeskrivelse', 'kilde'], []);
 
-export const FieldArraySource = (props): JSX.Element => {
+export const FieldArraySource: FC<any> = props => {
   const forholdTilKilde = _.get(props, 'form.values.kildebeskrivelse.forholdTilKilde');
 
   return (

@@ -55,10 +55,10 @@ export const Source: FC = () => {
 
   return (
     <div>
-      <div className="row d-flex fdk-after-element">
-        <div className="col-sm-5">
+      <div className="row d-flex">
+        <div className="col-sm-5 mb-4">
           <Field
-            className="fdk-after-element col-sm-5"
+            className="col-sm-5"
             name="kildebeskrivelse.forholdTilKilde"
             component={SelectField}
             label={localization.relationToSource}
@@ -77,7 +77,7 @@ export const Source: FC = () => {
             <div>
               {getKilde(form).map((kilde, index) => {
                 return (
-                  <div key={`${kilde.id}-${index}`} className="row d-flex fdk-after-element">
+                  <div key={`${kilde.id}-${index}`} className="row d-flex mb-4">
                     <div className="col-sm-5">
                       <Field
                         name={`kildebeskrivelse.kilde[${index}].tekst`}
@@ -89,7 +89,6 @@ export const Source: FC = () => {
 
                     <div className="col-sm-5">
                       <Field
-                        className="fdk-after-element"
                         name={`kildebeskrivelse.kilde[${index}].uri`}
                         component={InputField}
                         label={localization.linkSource}

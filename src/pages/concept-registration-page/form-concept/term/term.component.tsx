@@ -7,7 +7,7 @@ import { TextAreaField } from '../../../../components/fields/field-textarea/fiel
 import { HelpText } from '../../../../components/help-text/help-text.component';
 import { localization } from '../../../../lib/localization';
 
-import { FieldArraySource } from '../../../../components/fields/field-array-source/field-array-source.component';
+import { Source } from './source/source.component';
 import { MultilingualField } from '../../../../components/multilingual-field/multilingual-field.component';
 import { Language } from '../../../../domain/Language';
 
@@ -42,7 +42,7 @@ export const Term = ({ languages }: Props): JSX.Element => (
         helpTextAbstract={localization.kildeAbstract}
         helpTextDescription={localization.kildeDescription}
       />
-      <FieldArray name="kildebeskrivelse" component={FieldArraySource} />
+      <FieldArray name="kildebeskrivelse" component={Source} />
     </div>
     <div className="form-group">
       <HelpText

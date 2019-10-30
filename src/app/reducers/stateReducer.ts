@@ -66,7 +66,8 @@ export const stateReducer = (state, action: Action): object => {
           justPublishedOrUnPublished,
           endringstidspunkt,
           anbefaltTerm,
-          error: false
+          error: false,
+          lastPatchedValues: patch
         }
       };
     }

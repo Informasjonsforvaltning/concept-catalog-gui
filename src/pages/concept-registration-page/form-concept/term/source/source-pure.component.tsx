@@ -49,7 +49,10 @@ const handleRemoveKilde = (form, index) => {
 
 const getKilde = form => _.get(form, ['values', 'kildebeskrivelse', 'kilde'], []);
 
-export const Source: FC = () => {
+interface Props {
+  catalogId: string;
+}
+export const SourcePure: FC<Props> = () => {
   const [field] = useField('kildebeskrivelse');
   const forholdTilKilde = _.get(field, ['value', 'forholdTilKilde']);
 

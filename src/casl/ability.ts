@@ -23,6 +23,7 @@ const defineRulesFor = (resourceRoles: ResourceRole[]) => {
       if (resourceRole.role === 'admin' || resourceRole.role === 'publish') {
         can('create', 'Concept', { publisher: resourceRole.resourceId });
         can('view', 'StatusBar', { publisher: resourceRole.resourceId });
+        can('edit', ['Language', 'Field'], { publisher: resourceRole.resourceId });
       }
     }
   });

@@ -2,11 +2,13 @@ import React, { FC } from 'react';
 import { Field, FieldArray, useField } from 'formik';
 import { v4 } from 'uuid';
 import _ from 'lodash';
+
 import { localization } from '../../../../../lib/localization';
 import { InputField } from '../../../../../components/fields/field-input/field-input.component';
 import { ButtonSource } from '../../../../../components/button-source/button-source.component';
 import { SelectField } from '../../../../../components/fields/field-select/field-select.component';
 import './source.scss';
+import { Can } from '../../../../../casl/Can';
 
 const options = [
   { value: 'egendefinert', label: localization.custom },
@@ -52,7 +54,7 @@ const getKilde = form => _.get(form, ['values', 'kildebeskrivelse', 'kilde'], []
 interface Props {
   catalogId: string;
 }
-export const SourcePure: FC<Props> = () => {
+export const SourcePure: FC<Props> = ({ catalogId }) => {
   const [field] = useField('kildebeskrivelse');
   const forholdTilKilde = _.get(field, ['value', 'forholdTilKilde']);
 
@@ -100,16 +102,20 @@ export const SourcePure: FC<Props> = () => {
                     </div>
 
                     <div className="fdk-source col-sm-2">
-                      <ButtonSource
-                        remove
-                        title={localization.removeSource}
-                        handleClick={() => handleRemoveKilde(form, index)}
-                      />
+                      <Can I="edit" of={{ __type: 'Field', publisher: catalogId }}>
+                        <ButtonSource
+                          remove
+                          title={localization.removeSource}
+                          handleClick={() => handleRemoveKilde(form, index)}
+                        />
+                      </Can>
                     </div>
                   </div>
                 );
               })}
-              <ButtonSource add title={localization.addNewSource} handleClick={() => handleAddKilde(form, push)} />
+              <Can I="edit" of={{ __type: 'Field', publisher: catalogId }}>
+                <ButtonSource add title={localization.addNewSource} handleClick={() => handleAddKilde(form, push)} />
+              </Can>
             </div>
           )}
         />

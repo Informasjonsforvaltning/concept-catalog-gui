@@ -52,10 +52,12 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid }) => {
 
   return (
     <Form>
-      <LanguagePicker
-        languages={state.languages}
-        toggleInputLanguage={language => dispatch(toggleInputLanguage(language))}
-      />
+      <Can I="edit" of={{ __type: 'Language', publisher: publisherId }}>
+        <LanguagePicker
+          languages={state.languages}
+          toggleInputLanguage={language => dispatch(toggleInputLanguage(language))}
+        />
+      </Can>
       <FormTemplate title={localization.formTerm} required>
         <Term languages={state.languages} />
       </FormTemplate>

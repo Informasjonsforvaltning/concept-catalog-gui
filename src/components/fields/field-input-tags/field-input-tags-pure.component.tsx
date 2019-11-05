@@ -2,8 +2,6 @@ import React, { FC } from 'react';
 import _ from 'lodash';
 import TagsInput from 'react-tagsinput';
 import './field-input-tags.scss';
-import { withRouter } from 'react-router';
-import { RouterProps } from '../../../types/common';
 
 interface Props {
   field: {
@@ -20,9 +18,10 @@ interface Props {
   type: string;
   language: string;
   isOnlyOneSelectedLanguage: boolean;
+  catalogId: string;
 }
 
-const InputTagsFieldPure: FC<Props & RouterProps> = ({
+export const InputTagsFieldPure: FC<Props> = ({
   field,
   showLabel,
   label,
@@ -46,5 +45,3 @@ const InputTagsFieldPure: FC<Props & RouterProps> = ({
     </div>
   );
 };
-
-export const InputTagsField = withRouter(InputTagsFieldPure);

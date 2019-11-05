@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
 import Select from 'react-select';
-import { withRouter } from 'react-router';
 import { localization } from '../../../lib/localization';
-import { RouterProps } from '../../../types/common';
 
 interface Props {
   field: any;
@@ -13,6 +11,7 @@ interface Props {
   type: string;
   onClear: () => {};
   onChange: () => {};
+  catalogId: string;
 }
 
 const onChangeField = (fieldName, option, form, onClear, onChange) => {
@@ -24,7 +23,7 @@ const onChangeField = (fieldName, option, form, onClear, onChange) => {
   }
 };
 
-const SelectFieldPure: FC<Props & RouterProps> = ({
+export const SelectFieldPure: FC<Props> = ({
   field, // { name, value, onChange, onBlur }
   options,
   form: { touched, errors }, // also values, dirty, isValid, status, etc.
@@ -55,5 +54,3 @@ const SelectFieldPure: FC<Props & RouterProps> = ({
     </div>
   );
 };
-
-export const SelectField = withRouter(SelectFieldPure);

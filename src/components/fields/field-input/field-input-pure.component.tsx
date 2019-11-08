@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import get from 'lodash/get';
+import isUrl from 'is-url';
 import { Can } from '../../../casl/Can';
 
 interface Props {
@@ -43,7 +44,9 @@ export const InputFieldPure: FC<Props> = ({
           {!!language && !isOnlyOneSelectedLanguage && get(field, 'value') && (
             <span className="badge fdk-bg-color-primary-lighter mr-2">{language}</span>
           )}
-          <span>{get(field, 'value')}</span>
+          <span>
+            {isUrl(get(field, 'value')) ? <a href={get(field, 'value')}>{get(field, 'value')}</a> : get(field, 'value')}
+          </span>
         </div>
       </Can>
     </div>

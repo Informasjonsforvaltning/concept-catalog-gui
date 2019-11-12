@@ -10,7 +10,11 @@ const mapRouteParams = withProps(({ match: { params } }) => _.pick(params, 'cata
 
 const enhance = compose(
   mapRouteParams,
-  requirePermissionDecorator({ resource: 'publisher', resourceIdPropName: 'catalogId', permission: PERMISSION_READ }),
+  requirePermissionDecorator({
+    resource: 'organization',
+    resourceIdPropName: 'catalogId',
+    permission: PERMISSION_READ
+  }),
   conceptListResolver
 );
 export const ConceptListPage = enhance(ConceptListPagePure);

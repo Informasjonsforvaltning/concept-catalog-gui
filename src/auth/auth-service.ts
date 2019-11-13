@@ -2,7 +2,6 @@
 import Keycloak, { KeycloakInstance } from 'keycloak-js';
 import get from 'lodash/get';
 import find from 'lodash/find';
-import { loadTokens, removeTokens, storeTokens } from './token-store';
 import { getConfig } from '../config';
 import { ResourceRole } from '../domain/ResourceRole';
 
@@ -13,19 +12,10 @@ export const PERMISSION_READ = 'PERMISSION_READ';
 export function initAuth(): Promise<boolean> {
   kc = Keycloak(getConfig().keycloak);
 
-  kc.onAuthSuccess = () => storeTokens({ token: kc.token, refreshToken: kc.refreshToken });
-  kc.onAuthRefreshSuccess = kc.onAuthSuccess;
-  kc.onAuthError = removeTokens;
-  kc.onAuthRefreshError = removeTokens;
-
-  const { token, refreshToken } = loadTokens();
-
   return new Promise(resolve =>
     kc
       .init({
-        onLoad: 'login-required',
-        token,
-        refreshToken
+        onLoad: 'login-required'
       })
       .success(resolve)
       .error(err => {
@@ -39,7 +29,6 @@ export function initAuth(): Promise<boolean> {
 export const getUserName: () => string = () => get(kc.tokenParsed, 'name');
 
 export async function logout(): Promise<void> {
-  removeTokens();
   return new Promise(() => kc.logout().error(console.error));
 }
 

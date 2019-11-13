@@ -20,7 +20,7 @@ exports[`should render HelpText 1`] = `
       className="help-text mb-0"
       dangerouslySetInnerHTML={
         Object {
-          "__html": "<p>Abstract</p>",
+          "__html": "Abstract",
         }
       }
     />
@@ -57,7 +57,7 @@ exports[`should render HelpText 1`] = `
       className="help-text mb-0"
       dangerouslySetInnerHTML={
         Object {
-          "__html": "<p>Description</p>",
+          "__html": "Description",
         }
       }
     />

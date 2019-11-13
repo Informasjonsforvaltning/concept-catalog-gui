@@ -3,7 +3,6 @@ import { Collapse } from 'reactstrap';
 import './help-text.scss';
 import cx from 'classnames';
 import { localization } from '../../lib/localization';
-import { convertToSanitizedHtml } from '../../lib/markdown-converter';
 
 interface Props {
   title: string;
@@ -38,7 +37,7 @@ export const HelpText = ({ title, helpTextAbstract, helpTextDescription, require
           <p
             className="help-text mb-0"
             dangerouslySetInnerHTML={{
-              __html: convertToSanitizedHtml(helpTextAbstract)
+              __html: helpTextAbstract
             }}
           />
         )}
@@ -59,7 +58,7 @@ export const HelpText = ({ title, helpTextAbstract, helpTextDescription, require
           <p
             className="help-text mb-0"
             dangerouslySetInnerHTML={{
-              __html: convertToSanitizedHtml(helpTextDescription)
+              __html: helpTextDescription
             }}
           />
         </Collapse>

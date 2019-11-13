@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import Select from 'react-select';
-import get from 'lodash/get';
 import find from 'lodash/find';
 import { localization } from '../../../lib/localization';
 import { Can } from '../../../casl/Can';
@@ -56,10 +55,12 @@ export const SelectFieldPure: FC<Props> = ({
           </label>
         </Can>
         <Can not I="edit field" of={{ __type: 'Field', publisher: catalogId }}>
-          <div>
-            {showLabel ? <div className="fdk-text-strong">{label}</div> : null}
-            <span>{find(options, { value: get(field, 'value') }).label}</span>
-          </div>
+          {showLabel && field.value && (
+            <div>
+              <div className="fdk-text-strong">{label}</div>
+              <span>{find(options, { value: field.value }).label}</span>
+            </div>
+          )}
         </Can>
       </div>
       {touched[field.name] && errors[field.name] && <div className="alert alert-danger mt-2">{errors[field.name]}</div>}

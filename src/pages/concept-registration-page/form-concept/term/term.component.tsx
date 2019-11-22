@@ -12,14 +12,15 @@ import { Language } from '../../../../domain/Language';
 
 interface Props {
   languages: Language[];
+  isReadOnly: boolean;
 }
 
-export const Term = ({ languages }: Props): JSX.Element => (
+export const Term = ({ languages, isReadOnly = false }: Props): JSX.Element => (
   <div>
     <div className="form-group">
       <HelpText
         title={localization.anbefaltTermTitle}
-        showRequired
+        showRequired={!isReadOnly}
         helpTextAbstract={localization.anbefaltTermAbstract}
         helpTextDescription={localization.anbefaltTermDescription}
       />
@@ -28,7 +29,7 @@ export const Term = ({ languages }: Props): JSX.Element => (
     <div className="form-group">
       <HelpText
         title={localization.definisjonTitle}
-        showRequired
+        showRequired={!isReadOnly}
         helpTextAbstract={localization.definisjonAbstract}
         helpTextDescription={localization.definisjonDescription}
       />

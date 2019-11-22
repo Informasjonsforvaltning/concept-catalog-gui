@@ -8,6 +8,9 @@ import { ResourceRole } from '../domain/ResourceRole';
 let kc: KeycloakInstance;
 
 export const PERMISSION_READ = 'PERMISSION_READ';
+const PERMISSION_WRITE = 'PERMISSION_WRITE';
+const RESOURCE_ORGANIZATION = 'organization';
+const ROLE_ADMIN = 'admin';
 
 export function initAuth(): Promise<boolean> {
   kc = Keycloak(getConfig().keycloak);
@@ -55,16 +58,30 @@ export const getResourceRoles: () => { resource: string; resourceId: string; rol
   extractResourceRoles(get(kc.tokenParsed, 'authorities'));
 
 export const hasPermissionForResource: ({ resource, resourceId, permission: string }) => boolean = ({
-  resource,
   resourceId,
   permission
 }) => {
   switch (permission) {
     case PERMISSION_READ: {
-      return !!find(getResourceRoles(), { resource, resourceId });
+      return !!find(getResourceRoles(), { resource: RESOURCE_ORGANIZATION, resourceId });
+    }
+    case PERMISSION_WRITE: {
+      return !!find(getResourceRoles(), {
+        resource: RESOURCE_ORGANIZATION,
+        resourceId,
+        role: ROLE_ADMIN
+      });
     }
     default: {
       throw new Error('no permission');
     }
   }
+};
+
+export const hasOrganizationWritePermission = resourceId => {
+  return hasPermissionForResource({
+    resource: RESOURCE_ORGANIZATION,
+    resourceId,
+    permission: PERMISSION_WRITE
+  });
 };

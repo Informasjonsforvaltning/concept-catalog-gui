@@ -14,7 +14,6 @@ export const AllowedAndDiscouraged = ({ languages }: Props): JSX.Element => (
     <div className="form-group">
       <HelpText
         title={localization.tillattTermTitle}
-        required={false}
         helpTextAbstract={localization.tillattTermAbstract}
         helpTextDescription={localization.tillattTermDescription}
       />
@@ -23,7 +22,6 @@ export const AllowedAndDiscouraged = ({ languages }: Props): JSX.Element => (
     <div className="form-group">
       <HelpText
         title={localization.fraraadetTermTitle}
-        required={false}
         helpTextAbstract={localization.fraraadetTermAbstract}
         helpTextDescription={localization.fraraadetTermDescription}
       />

@@ -9,10 +9,15 @@ interface Props {
   title: string;
   helpTextAbstract?: string;
   helpTextDescription?: string;
-  required: boolean;
+  showRequired?: boolean;
 }
 /* eslint-disable react/no-danger */
-export const HelpText = ({ title, helpTextAbstract, helpTextDescription, required }: Props): JSX.Element => {
+export const HelpText = ({
+  title,
+  helpTextAbstract,
+  helpTextDescription,
+  showRequired = false
+}: Props): JSX.Element => {
   const [collapse, setCollapse] = useState(false);
 
   const collapseClass = cx('fa', 'fdk-fa-left', {
@@ -28,7 +33,7 @@ export const HelpText = ({ title, helpTextAbstract, helpTextDescription, require
     <div className="fdk-reg-helptext mb-3 p-3">
       <div className="d-flex align-items-center">
         <h3 className="help-text mb-0">{title}</h3>
-        {required && (
+        {showRequired && (
           <span className="fdk-badge badge fdk-bg-color-warning-lightest ml-2">{localization.required}</span>
         )}
       </div>

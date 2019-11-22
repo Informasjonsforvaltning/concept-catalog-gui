@@ -19,7 +19,7 @@ export const Term = ({ languages }: Props): JSX.Element => (
     <div className="form-group">
       <HelpText
         title={localization.anbefaltTermTitle}
-        required
+        showRequired
         helpTextAbstract={localization.anbefaltTermAbstract}
         helpTextDescription={localization.anbefaltTermDescription}
       />
@@ -28,7 +28,7 @@ export const Term = ({ languages }: Props): JSX.Element => (
     <div className="form-group">
       <HelpText
         title={localization.definisjonTitle}
-        required
+        showRequired
         helpTextAbstract={localization.definisjonAbstract}
         helpTextDescription={localization.definisjonDescription}
       />
@@ -37,7 +37,6 @@ export const Term = ({ languages }: Props): JSX.Element => (
     <div className="form-group">
       <HelpText
         title={localization.kildeTitle}
-        required={false}
         helpTextAbstract={localization.kildeAbstract}
         helpTextDescription={localization.kildeDescription}
       />
@@ -46,7 +45,6 @@ export const Term = ({ languages }: Props): JSX.Element => (
     <div className="form-group">
       <HelpText
         title={localization.merknadTitle}
-        required={false}
         helpTextAbstract={localization.merknadAbstract}
         helpTextDescription={localization.merknadDescription}
       />

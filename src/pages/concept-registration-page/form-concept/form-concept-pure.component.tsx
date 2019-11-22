@@ -58,7 +58,7 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid }) => {
           toggleInputLanguage={language => dispatch(toggleInputLanguage(language))}
         />
       </Can>
-      <FormTemplate title={localization.formTerm} required>
+      <FormTemplate title={localization.formTerm} showRequired>
         <Term languages={state.languages} />
       </FormTemplate>
       <FormTemplate title={localization.formAllowedAndDiscouraged}>

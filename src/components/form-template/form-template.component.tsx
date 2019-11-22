@@ -7,11 +7,11 @@ import './form-template.scss';
 
 interface Props {
   title: string;
-  required?: boolean;
   children: object;
+  showRequired?: boolean;
 }
 
-export const FormTemplate = ({ title, required = false, children }: Props): JSX.Element => {
+export const FormTemplate = ({ title, children, showRequired = false }: Props): JSX.Element => {
   const [collapse, setCollapse] = useState(true);
 
   const toggle = (): void => {
@@ -32,7 +32,7 @@ export const FormTemplate = ({ title, required = false, children }: Props): JSX.
       <button type="button" className="fdk-collapseButton fdk-btn-no-border w-100 p-0" onClick={toggle}>
         <div className="d-flex align-items-center">
           <h2 className="mb-0 text-ellipsis">{title}</h2>
-          {required && (
+          {showRequired && (
             <span className="fdk-badge badge fdk-bg-color-warning-lightest ml-2">{localization.required}</span>
           )}
           <i className={collapseIconClass} />

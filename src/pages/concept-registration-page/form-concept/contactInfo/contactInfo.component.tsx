@@ -9,7 +9,6 @@ export const ContactInfo = (): JSX.Element => (
     <div className="form-group">
       <HelpText
         title={localization.kontaktinformasjonTitle}
-        required={false}
         helpTextAbstract={localization.kontaktinformasjonAbstract}
         helpTextDescription={localization.kontaktinformasjonDescription}
       />

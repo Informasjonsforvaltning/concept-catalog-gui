@@ -45,20 +45,21 @@ const renderListItems = (items, catalogId, sortField, sortDirection): JSX.Elemen
   if (!items) {
     return null;
   }
-  // TODO fix validity
-  return _.orderBy(items, [i => (_.get(i, sortField) && _.get(i, sortField).toLowerCase()) || ''], [sortDirection]).map(
-    (item, index): JSX.Element => {
-      return (
-        <ListItem
-          key={`${_.get(item, 'id')}-${index}`}
-          col1={getTranslateText(_.get(item, ['anbefaltTerm', 'navn']))}
-          col2={getTranslateText(_.get(item, 'fagområde'))}
-          col3=""
-          status={_.get(item, 'status')}
-          path={`${catalogId}/${_.get(item, 'id')}`}
-        />
-      );
-    }
+  return _.orderBy(
+    items,
+    [i => (getTranslateText(_.get(i, sortField)) && getTranslateText(_.get(i, sortField)).toLowerCase()) || ''],
+    [sortDirection]
+  ).map(
+    ({ id, fagområde, status, anbefaltTerm }, index): JSX.Element => (
+      <ListItem
+        key={`${id}-${index}`}
+        col1={getTranslateText(anbefaltTerm.navn)}
+        col2={getTranslateText(fagområde)}
+        col3=""
+        status={status}
+        path={`${catalogId}/${id}`}
+      />
+    )
   );
 };
 

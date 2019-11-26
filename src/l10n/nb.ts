@@ -50,7 +50,7 @@ export const nb = {
   concept: 'Begrep',
   conceptCatalog: 'Begrepskatalog',
   isSaving: 'Lagrer',
-  changesUpdated: 'Endringer er oppdatert',
+  changesUpdated: 'Sist oppdatert',
   savedAsDraft: 'Lagret som utkast',
   publish: 'Publiser begrepsbeskrivelsen',
   unPublish: 'Avpubliser begrepsbeskrivelsen',

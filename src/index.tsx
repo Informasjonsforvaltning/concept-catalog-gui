@@ -15,8 +15,13 @@ const render = () =>
     document.getElementById('root')
   );
 
-loadConfig()
-  .then(initAuth)
-  .then(initAbilities)
-  .then(authenticated => authenticated && render())
-  .catch(console.error);
+async function main() {
+  await loadConfig();
+  const authenticated = await initAuth();
+  if (authenticated) {
+    initAbilities();
+    render();
+  }
+}
+
+main().catch(console.error);

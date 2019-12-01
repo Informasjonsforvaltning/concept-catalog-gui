@@ -12,13 +12,13 @@ const PERMISSION_WRITE = 'PERMISSION_WRITE';
 const RESOURCE_ORGANIZATION = 'organization';
 const ROLE_ADMIN = 'admin';
 
-export function initAuth(): Promise<boolean> {
+export async function initAuth(): Promise<boolean> {
   kc = Keycloak(getConfig().keycloak);
 
-  return new Promise(resolve =>
+  const authenticated = await new Promise<boolean>(resolve =>
     kc
       .init({
-        onLoad: 'login-required'
+        onLoad: 'check-sso'
       })
       .success(resolve)
       .error(err => {
@@ -26,6 +26,12 @@ export function initAuth(): Promise<boolean> {
         return false;
       })
   );
+
+  if (!authenticated) {
+    location.replace(getConfig().registrationHost);
+  }
+
+  return authenticated;
 }
 
 // name missing in types

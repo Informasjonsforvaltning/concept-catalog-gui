@@ -12,20 +12,17 @@ const PERMISSION_WRITE = 'PERMISSION_WRITE';
 const RESOURCE_ORGANIZATION = 'organization';
 const ROLE_ADMIN = 'admin';
 
+function toPromise(keycloakPromise) {
+  return new Promise<any>((resolve, reject) => keycloakPromise.success(resolve).error(reject));
+}
+
 export async function initAuth(): Promise<boolean> {
   kc = Keycloak(getConfig().keycloak);
 
-  const authenticated = await new Promise<boolean>(resolve =>
-    kc
-      .init({
-        onLoad: 'check-sso'
-      })
-      .success(resolve)
-      .error(err => {
-        console.error(err);
-        return false;
-      })
-  );
+  const authenticated = await toPromise(kc.init({ onLoad: 'check-sso' })).catch(err => {
+    console.error(err);
+    return false;
+  });
 
   if (!authenticated) {
     location.replace(getConfig().registrationHost);
@@ -37,17 +34,12 @@ export async function initAuth(): Promise<boolean> {
 // name missing in types
 export const getUserName: () => string = () => get(kc.tokenParsed, 'name');
 
-export async function logout(): Promise<void> {
-  return new Promise(() => kc.logout().error(console.error));
+export function logout(): void {
+  kc.logout();
 }
 
 export const getToken: () => Promise<string | undefined> = async () => {
-  await new Promise((resolve, reject) =>
-    kc
-      .updateToken(30)
-      .success(resolve)
-      .error(reject)
-  );
+  await toPromise(kc.updateToken(30));
   return kc.token;
 };
 

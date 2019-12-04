@@ -17,6 +17,10 @@ function toPromise(keycloakPromise) {
 }
 
 export async function initAuth(): Promise<boolean> {
+  if (location.href === `${location.origin}/afterLogout`) {
+    location.replace(getConfig().registrationHost);
+  }
+
   kc = Keycloak(getConfig().keycloak);
 
   const authenticated = await toPromise(kc.init({ onLoad: 'check-sso' })).catch(err => {
@@ -25,7 +29,8 @@ export async function initAuth(): Promise<boolean> {
   });
 
   if (!authenticated) {
-    location.replace(getConfig().registrationHost);
+    const redirectLocation = encodeURIComponent(location.href);
+    location.replace(`${getConfig().registrationHost}/login?redirectLocation=${redirectLocation}`);
   }
 
   return authenticated;
@@ -35,7 +40,7 @@ export async function initAuth(): Promise<boolean> {
 export const getUserName: () => string = () => get(kc.tokenParsed, 'name');
 
 export function logout(): void {
-  kc.logout();
+  kc.logout({ redirectUri: `${location.origin}/afterLogout` });
 }
 
 export const getToken: () => Promise<string | undefined> = async () => {

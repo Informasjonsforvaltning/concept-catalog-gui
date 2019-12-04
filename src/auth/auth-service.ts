@@ -44,7 +44,7 @@ export function logout(): void {
 }
 
 export const getToken: () => Promise<string | undefined> = async () => {
-  await toPromise(kc.updateToken(30));
+  await toPromise(kc.updateToken(30)).catch(() => logout());
   return kc.token;
 };
 

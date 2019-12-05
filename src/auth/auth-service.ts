@@ -16,20 +16,13 @@ function toPromise(keycloakPromise) {
   return new Promise<any>((resolve, reject) => keycloakPromise.success(resolve).error(reject));
 }
 
-export async function initAuth(): Promise<boolean> {
+export function initAuth(): Promise<boolean> {
   kc = Keycloak(getConfig().keycloak);
 
-  const authenticated = await toPromise(kc.init({ onLoad: 'check-sso' })).catch(err => {
+  return toPromise(kc.init({ onLoad: 'login-required' })).catch(err => {
     console.error(err);
     return false;
   });
-
-  if (!authenticated) {
-    const redirectLocation = encodeURIComponent(location.href);
-    location.replace(`${getConfig().registrationHost}/login?redirectLocation=${redirectLocation}`);
-  }
-
-  return authenticated;
 }
 
 // name missing in types

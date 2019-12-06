@@ -48,7 +48,7 @@ export const InputTagsFieldPure: FC<Props> = ({
         </label>
       </Can>
       <Can not I="edit field" of={{ __type: 'Field', publisher: catalogId }}>
-        <div className="mb-2">
+        <div className="d-flex align-items-baseline fdk-text-size-small mb-2">
           {showLabel ? <div className="fdk-text-strong">{label}</div> : null}
           {!!language && !isOnlyOneSelectedLanguage && get(field, 'value') && (
             <span className="badge fdk-bg-color-primary-lighter mr-2">{language}</span>

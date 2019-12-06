@@ -39,10 +39,10 @@ export const TextAreaFieldPure: FC<Props> = ({
       </label>
     </Can>
     <Can not I="edit field" of={{ __type: 'Field', publisher: catalogId }}>
-      <div className="mb-2">
+      <div className="d-flex align-items-baseline mb-2">
         {showLabel ? label : null}
         {!!language && !isOnlyOneSelectedLanguage && get(field, 'value') && (
-          <span className="badge fdk-bg-color-primary-lighter mr-2">{language}</span>
+          <span className="badge fdk-bg-color-primary-lighter fdk-text-size-small mr-2">{language}</span>
         )}
         <span>{get(field, 'value')}</span>
       </div>

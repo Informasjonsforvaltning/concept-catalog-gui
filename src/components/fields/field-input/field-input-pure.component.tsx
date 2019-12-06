@@ -29,7 +29,7 @@ export const InputFieldPure: FC<Props> = ({
   isOnlyOneSelectedLanguage,
   catalogId
 }) => (
-  <div className="px-2">
+  <div className="px-3">
     <div className="d-flex align-items-center">
       <Can I="edit field" of={{ __type: 'Field', publisher: catalogId }}>
         <label className="fdk-form-label w-100 fdk-text-strong position-relative" htmlFor={field.name}>
@@ -39,10 +39,10 @@ export const InputFieldPure: FC<Props> = ({
         </label>
       </Can>
       <Can not I="edit field" of={{ __type: 'Field', publisher: catalogId }}>
-        <div className="mb-2">
+        <div className="d-flex align-items-baseline mb-2">
           {showLabel ? <div className="fdk-text-strong">{label}</div> : null}
           {!!language && !isOnlyOneSelectedLanguage && get(field, 'value') && (
-            <span className="badge fdk-bg-color-primary-lighter mr-2">{language}</span>
+            <span className="badge fdk-bg-color-primary-lighter fdk-text-size-small mr-2">{language}</span>
           )}
           <span>
             {isUrl(get(field, 'value')) ? <a href={get(field, 'value')}>{get(field, 'value')}</a> : get(field, 'value')}

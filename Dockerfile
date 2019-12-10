@@ -21,6 +21,7 @@ RUN npm set progress=false && \
 COPY --chown=app:app images.d.ts tsconfig.json jest.config.json ./
 COPY --chown=app:app webpack ./webpack
 COPY --chown=app:app src ./src
+COPY --chown=app:app test ./test
 
 RUN npm test
 RUN npm run build:prod

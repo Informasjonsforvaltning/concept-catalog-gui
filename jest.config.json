@@ -8,7 +8,7 @@
   ],
   "setupFiles": [
     "raf/polyfill",
-    "<rootDir>/src/setupTest.ts"
+    "<rootDir>/test/setupTest.ts"
   ],
   "snapshotSerializers": [
     "enzyme-to-json/serializer"

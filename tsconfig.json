@@ -23,5 +23,6 @@
     "strictNullChecks": true
   },
   "include": ["./images.d.ts", "./src/**/**/*"],
-  "exclude": ["node_modules", "./src/setupTest.ts", "./src/**/*.test.tsx"]
+  "exclude": ["node_modules",
+    "./test/setupTest.ts", "./src/**/*.test.tsx"]
 }

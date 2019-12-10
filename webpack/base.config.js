@@ -5,9 +5,12 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { BaseHrefWebpackPlugin } from 'base-href-webpack-plugin';
 
 export default {
-  entry: ['./src/index.tsx'],
+  entry: {
+    main: './src/entrypoints/main/index.tsx'
+  },
   output: {
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx']
@@ -54,7 +57,7 @@ export default {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './src/entrypoints/main/index.html',
       filename: 'index.html'
     }),
     new MiniCssExtractPlugin({

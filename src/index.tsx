@@ -23,3 +23,7 @@ async function main() {
 }
 
 main().catch(console.error);
+
+if ((module as any).hot) {
+  (module as any).hot.accept();
+}

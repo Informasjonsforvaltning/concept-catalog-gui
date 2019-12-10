@@ -1,13 +1,16 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { BaseHrefWebpackPlugin } from 'base-href-webpack-plugin';
 
-module.exports = {
+export default {
   entry: ['./src/index.tsx'],
   output: {
-    path: path.join(__dirname, '../dist')
+    path: path.resolve(__dirname, '../dist')
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   module: {
     rules: [
@@ -48,9 +51,6 @@ module.exports = {
         loader: 'url-loader'
       }
     ]
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   plugins: [
     new HtmlWebpackPlugin({

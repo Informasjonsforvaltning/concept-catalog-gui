@@ -16,9 +16,7 @@ RUN npm set progress=false && \
   npm config set depth 0 && \
   npm ci
 
-#todo we don't have yet babelrc
-#COPY --chown=app:app .babelrc tsconfig.json jest.config.js ./
-COPY --chown=app:app images.d.ts tsconfig.json jest.config.json ./
+COPY --chown=app:app .babelrc images.d.ts tsconfig.json jest.config.json ./
 COPY --chown=app:app webpack ./webpack
 COPY --chown=app:app src ./src
 COPY --chown=app:app test ./test

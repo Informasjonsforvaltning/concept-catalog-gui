@@ -31,8 +31,6 @@ services:
     build: ../concept-catalogue-gui
     ports:
       - "8202:3111"
-    volumes:
-      - ../concept-catalogue-gui/src:/usr/src/app/src
     environment:
       - CONCEPT_REGISTRATION_API=http://localhost:8200
       - REGISTRATION_HOST=https://localhost:8098

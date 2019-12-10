@@ -1,7 +1,7 @@
 FROM node:8-alpine
 
 #the only reason why we need git here, is that we have designsystem in another github repo
-RUN apk add --no-cache git
+RUN apk add --no-cache git gettext
 # to run localhost docker
 
 RUN npm init -y
@@ -24,13 +24,14 @@ COPY server ./server/
 COPY tsconfig.json ./
 COPY webpack/ ./webpack/
 COPY images.d.ts ./
+COPY config.template.js ./
+COPY entrypoint.sh ./
 
 # most volatile directory latest, in order to reuse layers.
 COPY src ./src/
 
 RUN npm run build
 
+ENTRYPOINT ["./entrypoint.sh"]
 EXPOSE 3111
-
-CMD [ "pm2-docker", "./server/start.js" ]
 

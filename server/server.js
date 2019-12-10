@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -17,17 +16,8 @@ module.exports = {
     const port = Number(process.env.PORT || 3111);
     app.set('port', port);
 
-    app.use('/env.json', (req, res) => {
-      const vars = [
-        'CONCEPT_REGISTRATION_API',
-        'REGISTRATION_HOST',
-        'PUBLISHER_API',
-        'PUBLISHER_DATA_AUTHORIZATION',
-        'SSO_HOST'
-      ];
-      const values = vars.map(varName => process.env[varName]);
-      const envObj = _.zipObject(vars, values);
-      res.json(envObj);
+    app.use('/config.js',(req, res) => {
+      res.sendFile(path.join(__dirname, '../config.js'));
     });
 
     app.use('/', express.static(path.join(__dirname, '../dist')));

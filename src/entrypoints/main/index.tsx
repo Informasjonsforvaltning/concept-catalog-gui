@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { App } from './app/App';
-import { ErrorBoundary } from './components/error-boundary/error-boundary';
-import { initAuth } from './auth/auth-service';
-import { initAbilities } from './casl/ability';
+import { App } from '../../app/App';
+import { ErrorBoundary } from '../../components/error-boundary/error-boundary';
+import { initAuth } from '../../auth/auth-service';
+import { initAbilities } from '../../casl/ability';
 
 const render = () =>
   ReactDOM.render(

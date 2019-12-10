@@ -6,8 +6,5 @@ import { SourcePure } from './source-pure.component';
 
 const mapRouteParams = withProps(({ match: { params } }) => pick(params, 'catalogId'));
 
-const enhance = compose(
-  withRouter,
-  mapRouteParams
-);
+const enhance = compose(withRouter, mapRouteParams);
 export const Source = enhance(SourcePure);

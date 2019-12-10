@@ -39,6 +39,18 @@
       }
     ],
     "import/no-extraneous-dependencies": "off",
+    "import/extensions": [
+      "error",
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".json",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ],
     "no-console": [
       "error",
       {

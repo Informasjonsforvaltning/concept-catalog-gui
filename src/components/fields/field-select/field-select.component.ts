@@ -6,8 +6,5 @@ import { SelectFieldPure } from './field-select-pure.component';
 
 const mapRouteParams = withProps(({ match: { params } }) => pick(params, 'catalogId'));
 
-const enhance = compose(
-  withRouter,
-  mapRouteParams
-);
+const enhance = compose(withRouter, mapRouteParams);
 export const SelectField = enhance(SelectFieldPure);

@@ -5,9 +5,6 @@ import { PublisherBreadcrumbPure } from './publisher-breadcrumb-pure.component';
 
 const mapRouteParams = withProps(({ match: { params } }) => _.pick(params, 'catalogId'));
 
-const enhance = compose(
-  mapRouteParams,
-  publisherBreadcrumbResolver
-);
+const enhance = compose(mapRouteParams, publisherBreadcrumbResolver);
 
 export const PublisherBreadcrumb = enhance(PublisherBreadcrumbPure);

@@ -6,8 +6,5 @@ import { TextAreaFieldPure } from './field-textarea-pure.component';
 
 const mapRouteParams = withProps(({ match: { params } }) => pick(params, 'catalogId'));
 
-const enhance = compose(
-  withRouter,
-  mapRouteParams
-);
+const enhance = compose(withRouter, mapRouteParams);
 export const TextAreaField = enhance(TextAreaFieldPure);

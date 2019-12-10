@@ -19,3 +19,5 @@ services:
 
   concept-catalogue-gui:
     image: dcatno/concept-catalogue-gui:latest
+    expose:
+      - "8080"

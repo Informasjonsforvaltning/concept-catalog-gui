@@ -30,7 +30,7 @@ services:
     #interestingly, if multiple docker-compose files are combined, then "." gets wrong value
     build: ../concept-catalogue-gui
     ports:
-      - "8202:3111"
+      - "8202:8080"
     environment:
       - CONCEPT_REGISTRATION_API=http://localhost:8200
       - REGISTRATION_HOST=https://localhost:8098

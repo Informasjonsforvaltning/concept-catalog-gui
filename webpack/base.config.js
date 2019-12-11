@@ -58,7 +58,8 @@ export default {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/entrypoints/main/index.html',
-      filename: 'index.html'
+      filename: 'index.html',
+      favicon: './src/assets/img/favicon.ico'
     }),
     new MiniCssExtractPlugin({
       filename: 'styles.css'

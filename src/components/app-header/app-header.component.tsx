@@ -27,35 +27,7 @@ export const HeaderPure: FunctionComponent = (): JSX.Element => (
           </div>
 
           <div className="col-6 d-flex align-items-center fdk-header-text_items justify-content-end">
-            <UncontrolledDropdown className="d-none d-lg-inline">
-              <DropdownToggle className="fdk-button-language" caret>
-                Språk
-              </DropdownToggle>
-              <DropdownMenu right className="fdk-dropdownmenu">
-                <DropdownItem>Norsk</DropdownItem>
-                <DropdownItem>Nynorsk</DropdownItem>
-                <DropdownItem>English</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-
-            <UncontrolledDropdown
-              tabIndex="0"
-              className="fdk-dropdown-menu d-inline d-lg-none justify-content-end text-right"
-            >
-              <DropdownToggle className="fdk-button fdk-button-menu" caret color="primary">
-                Meny
-              </DropdownToggle>
-
-              <DropdownMenu right className="fdk-dropdownmenu">
-                <DropdownItem>Konto</DropdownItem>
-                <DropdownItem onClick={logout}>Logg ut</DropdownItem>
-                <DropdownItem>Norsk</DropdownItem>
-                <DropdownItem>Nynorsk</DropdownItem>
-                <DropdownItem>English</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-
-            <UncontrolledDropdown className="d-none d-lg-inline fdk-user-button">
+            <UncontrolledDropdown className="fdk-user-button">
               <DropdownToggle className="fdk-button-account fdk-user" color="link" caret>
                 {getUserName()}
               </DropdownToggle>

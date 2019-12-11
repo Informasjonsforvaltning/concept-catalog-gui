@@ -71,6 +71,7 @@
     "@typescript-eslint/parser": "^2.11.0",
     "babel-loader": "^8.0.6",
     "base-href-webpack-plugin": "^2.0.0",
+    "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.0",
     "css-loader": "^3.3.0",
     "enzyme": "^3.9.0",

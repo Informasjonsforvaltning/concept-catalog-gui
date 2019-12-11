@@ -1,5 +1,6 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { BaseHrefWebpackPlugin } from 'base-href-webpack-plugin';
@@ -14,6 +15,26 @@ export default {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx']
+  },
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      hidePathInfo: true,
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      maxAsyncRequests: Infinity,
+      minSize: 0,
+      automaticNameDelimiter: '.',
+      cacheGroups: {
+        default: false,
+        mainVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'main.vendors',
+          filename: '[name].bundle.js',
+          chunks: ({ name }) => name === 'main'
+        }
+      }
+    }
   },
   module: {
     rules: [
@@ -56,7 +77,23 @@ export default {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
+    new (class ChunksFromEntryPlugin {
+      apply(compiler) {
+        compiler.hooks.emit.tap('ChunksFromEntryPlugin', compilation => {
+          compilation.hooks.htmlWebpackPluginAlterChunks.tap('ChunksFromEntryPlugin', (_, { plugin }) =>
+            compilation.entrypoints.get(plugin.options.entry).chunks.map(chunk => ({
+              names: chunk.name ? [chunk.name] : [],
+              files: chunk.files.slice(),
+              size: chunk.modulesSize(),
+              hash: chunk.hash
+            }))
+          );
+        });
+      }
+    })(),
     new HtmlWebpackPlugin({
+      entry: 'main',
       template: './src/entrypoints/main/index.html',
       filename: 'index.html',
       favicon: './src/assets/img/favicon.ico'

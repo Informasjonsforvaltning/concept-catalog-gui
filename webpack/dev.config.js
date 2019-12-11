@@ -1,4 +1,5 @@
 import merge from 'webpack-merge';
+import ErrorOverlayPlugin from 'error-overlay-webpack-plugin';
 import baseConfig from './base.config';
 
 module.exports = merge(baseConfig, {
@@ -9,5 +10,6 @@ module.exports = merge(baseConfig, {
     port: 8203,
     historyApiFallback: true,
     before: app => app.get('/config.js', (_, res) => res.status(204).send())
-  }
+  },
+  plugins: [new ErrorOverlayPlugin()]
 });

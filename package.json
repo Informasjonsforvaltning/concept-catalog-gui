@@ -8,6 +8,7 @@
     "release": "standard-version --no-verify",
     "test": "jest --runInBand --config=jest.config.json",
     "build:prod": "webpack --config-register @babel/register --config webpack/prod.config.js",
+    "build:webpack:stats": "webpack --config-register @babel/register --config webpack/stats.config.js",
     "lint:project": "eslint --ext tsx,ts,jsx,js ./",
     "lint:project:fix": "eslint --ext tsx,ts,jsx,js ./ --fix",
     "lint:staged:fix": "eslint --ext tsx,ts,jsx,js --fix"
@@ -106,6 +107,7 @@
     "url-loader": "^1.1.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2"
   }

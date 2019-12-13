@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { App } from '../../app/App';
 import { ErrorBoundary } from '../../components/error-boundary/error-boundary';
-import { initAuth } from '../../services/auth-service';
+import { authService } from '../../services/auth-service';
 import { initAbilities } from '../../casl/ability';
 
 const render = () =>
@@ -15,7 +15,7 @@ const render = () =>
   );
 
 async function main() {
-  const authenticated = await initAuth();
+  const authenticated = await authService.init({ loginRequired: true });
   if (authenticated) {
     initAbilities();
     render();

@@ -17,10 +17,9 @@ const env = (window as any).env || {
 // env.PUBLISHER_DATA_AUTHORIZATION = 'Basic ZmRrOkJSUkVH';
 
 const config = {
-  keycloak: {
-    realm: 'fdk',
-    url: `${env.SSO_HOST}/auth`,
-    clientId: 'concept-catalogue-gui'
+  auth: {
+    oidcIssuer: `${env.SSO_HOST}/auth/realms/fdk`,
+    oidcClientId: 'concept-catalogue-gui'
   },
 
   // frontend hosts

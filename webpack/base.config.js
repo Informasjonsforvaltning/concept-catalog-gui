@@ -104,6 +104,9 @@ export default {
     new CopyWebpackPlugin([{ from: './src/assets/img/*', to: './img', flatten: true }], {
       copyUnmodified: true
     }),
+    new CopyWebpackPlugin([{ from: './src/lib/auth/silent-check-sso.html', to: './' }], {
+      copyUnmodified: true
+    }),
     new BaseHrefWebpackPlugin({
       baseHref: '/'
     })

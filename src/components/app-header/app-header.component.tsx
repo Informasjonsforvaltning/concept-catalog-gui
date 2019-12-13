@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import './app-header.scss';
 import { DropdownToggle, DropdownItem, DropdownMenu, UncontrolledDropdown } from 'reactstrap';
 import { getConfig } from '../../config';
-import { getUserName, logout } from '../../auth/auth-service';
+import { getUserName, logout } from '../../services/auth-service';
 
 export const HeaderPure: FunctionComponent = (): JSX.Element => (
   <header>

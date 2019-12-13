@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { Ability, AbilityBuilder } from '@casl/ability';
-import { getResourceRoles } from '../services/auth-service';
-import { ResourceRole } from '../domain/ResourceRole';
+import { authService } from '../services/auth-service';
+import { ResourceRole } from '../lib/auth/auth';
 
 // Defines how to detect object's type
 const subjectName = item => {
@@ -33,6 +33,6 @@ const defineRulesFor = (resourceRoles: ResourceRole[]) => {
 
 export const ability = new Ability([], { subjectName });
 
-export const initAbilities = () => ability.update(defineRulesFor(getResourceRoles()));
+export const initAbilities = () => ability.update(defineRulesFor(authService.getResourceRoles()));
 
 /* eslint-enable no-underscore-dangle */

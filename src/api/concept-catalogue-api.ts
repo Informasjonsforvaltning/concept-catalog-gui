@@ -3,7 +3,7 @@ import get from 'lodash/get';
 
 import { Concept } from '../domain/Concept';
 import { getConfig } from '../config';
-import { getToken } from '../services/auth-service';
+import { authService } from '../services/auth-service';
 
 /* utility functions */
 
@@ -21,7 +21,7 @@ const conceptCatalogueApiRaw = async (method, path, data?) =>
     method,
     data,
     headers: {
-      Authorization: `Bearer ${await getToken()}`
+      Authorization: await authService.getAuthorizationHeader()
     }
   });
 

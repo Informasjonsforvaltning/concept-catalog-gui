@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { Ability, AbilityBuilder } from '@casl/ability';
-import { getResourceRoles } from '../auth/auth-service';
+import { getResourceRoles } from '../services/auth-service';
 import { ResourceRole } from '../domain/ResourceRole';
 
 // Defines how to detect object's type

@@ -16,7 +16,7 @@ import { deepKeys } from '../../../lib/deep-keys';
 import { LanguagePicker } from '../../../components/language-picker/language-picker.component';
 import { Concept } from '../../../domain/Concept';
 import { Can } from '../../../casl/Can';
-import { hasOrganizationWritePermission } from '../../../services/auth-service';
+import { authService } from '../../../services/auth-service';
 
 interface Props {
   concept: Concept;
@@ -50,7 +50,7 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid }) => {
   }, [concept]);
 
   const publisherId = get(concept, ['ansvarligVirksomhet', 'id']);
-  const isReadOnly = !hasOrganizationWritePermission(publisherId);
+  const isReadOnly = !authService.hasOrganizationWritePermission(publisherId);
 
   return (
     <Form>

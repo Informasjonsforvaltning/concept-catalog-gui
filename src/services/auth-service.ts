@@ -5,21 +5,17 @@ import find from 'lodash/find';
 import { getConfig } from '../config';
 import { ResourceRole } from '../domain/ResourceRole';
 
-let kc: KeycloakInstance;
+let kc: KeycloakInstance<'native'>;
 
 export const PERMISSION_READ = 'PERMISSION_READ';
 const PERMISSION_WRITE = 'PERMISSION_WRITE';
 const RESOURCE_ORGANIZATION = 'organization';
 const ROLE_ADMIN = 'admin';
 
-function toPromise(keycloakPromise) {
-  return new Promise<any>((resolve, reject) => keycloakPromise.success(resolve).error(reject));
-}
-
 export function initAuth(): Promise<boolean> {
   kc = Keycloak(getConfig().keycloak);
 
-  return toPromise(kc.init({ onLoad: 'login-required' })).catch(err => {
+  return kc.init({ onLoad: 'login-required', promiseType: 'native' }).catch(err => {
     console.error(err);
     return false;
   });
@@ -33,7 +29,7 @@ export function logout(): void {
 }
 
 export const getToken: () => Promise<string | undefined> = async () => {
-  await toPromise(kc.updateToken(30)).catch(() => logout());
+  await kc.updateToken(30).catch(() => logout());
   return kc.token;
 };
 

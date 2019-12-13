@@ -3,7 +3,7 @@ import { compose, withProps } from 'recompose';
 
 import { ConceptRegistrationPagePure } from './concept-registration-page-pure';
 import { conceptRegistrationResolver } from './concept-registration-resolver';
-import { hasPermissionForResource, logout, PERMISSION_READ } from '../../auth/auth-service';
+import { hasPermissionForResource, logout, PERMISSION_READ } from '../../services/auth-service';
 import { requirePredicate } from '../../lib/require-predicate';
 
 const mapRouteParams = withProps(({ match: { params } }) => _.pick(params, ['catalogId', 'conceptId']));

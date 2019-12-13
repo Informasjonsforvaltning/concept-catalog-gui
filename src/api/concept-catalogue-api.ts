@@ -3,7 +3,7 @@ import get from 'lodash/get';
 
 import { Concept } from '../domain/Concept';
 import { getConfig } from '../config';
-import { getToken } from '../auth/auth-service';
+import { getToken } from '../services/auth-service';
 
 /* utility functions */
 

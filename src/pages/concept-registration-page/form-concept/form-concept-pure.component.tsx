@@ -16,7 +16,7 @@ import { deepKeys } from '../../../lib/deep-keys';
 import { LanguagePicker } from '../../../components/language-picker/language-picker.component';
 import { Concept } from '../../../domain/Concept';
 import { Can } from '../../../casl/Can';
-import { hasOrganizationWritePermission } from '../../../auth/auth-service';
+import { hasOrganizationWritePermission } from '../../../services/auth-service';
 
 interface Props {
   concept: Concept;

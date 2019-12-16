@@ -16,6 +16,8 @@ RUN npm set progress=false && \
   npm config set depth 0 && \
   npm ci
 
+RUN npm audit
+
 COPY --chown=app:app .babelrc images.d.ts tsconfig.json jest.config.json ./
 COPY --chown=app:app webpack ./webpack
 COPY --chown=app:app src ./src

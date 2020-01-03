@@ -24,10 +24,10 @@ jobs:
       - run: gcloud auth configure-docker
 
       - name: Build Docker image
-        run: docker build -t eu.gcr.io/fdk-infra/concept-catalogue-gui:latest .
+        run: docker build . -t eu.gcr.io/fdk-infra/concept-catalogue-gui:$GITHUB_SHA -t eu.gcr.io/fdk-infra/concept-catalogue-gui:latest
 
       - name: Publish docker image to Google Cloud
-        run: docker -- push eu.gcr.io/fdk-infra/concept-catalogue-gui:latest
+        run: docker -- push eu.gcr.io/fdk-infra/concept-catalogue-gui
 
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@v1
@@ -37,7 +37,7 @@ jobs:
             helm init --client-only
             helm repo add fdk https://informasjonsforvaltning.github.io/helm-chart/
             helm fetch --untar --untardir ./helm fdk/concept-catalogue-gui
-            helm template --set DOCKER_IMAGE_NAME="eu.gcr.io/fdk-infra/concept-catalogue-gui:latest" -f ./helm/concept-catalogue-gui/values/production.yaml ./helm/concept-catalogue-gui/ > ./kubectlapply.yaml
+            helm template --set DOCKER_IMAGE_NAME="eu.gcr.io/fdk-infra/concept-catalogue-gui:$GITHUB_SHA" -f ./helm/concept-catalogue-gui/values/production.yaml ./helm/concept-catalogue-gui/ > ./kubectlapply.yaml
             cat ./kubectlapply.yaml
             chmod o+w ./kubectlapply.yaml
             cat kubectlapply.yaml
@@ -62,3 +62,4 @@ jobs:
         with:
           token: ${{ secrets.DISPATCH_TOKEN }}
           event-type: deploy-demo
+          client-payload: '{"sha": "${{ github.sha }}"}'

@@ -24,7 +24,7 @@ jobs:
       - run: gcloud auth configure-docker
 
       - name: Build Docker image with GitHub commit sha tag
-        run: docker build -t eu.gcr.io/fdk-infra/concept-catalogue-gui:$GITHUB_SHA -t eu.gcr.io/fdk-infra/concept-catalogue-gui:staging_latest .
+        run: docker build . -t eu.gcr.io/fdk-infra/concept-catalogue-gui:$GITHUB_SHA -t eu.gcr.io/fdk-infra/concept-catalogue-gui:staging_latest
 
       - name: Publish docker image to Google Cloud
         run: docker -- push eu.gcr.io/fdk-infra/concept-catalogue-gui
@@ -62,3 +62,4 @@ jobs:
         with:
           token: ${{ secrets.DISPATCH_TOKEN }}
           event-type: deploy-ut1
+          client-payload: '{"sha": "${{ github.sha }}"}'

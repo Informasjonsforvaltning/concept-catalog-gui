@@ -3,7 +3,7 @@ import { getConfig } from '../config';
 
 export const publisherApiGet = path =>
   axios
-    .get(`${getConfig().publisherApi.host}${path}`, {
-      headers: { authorization: getConfig().publisherApi.authorization }
+    .get(`${getConfig().organizationApi.host}${path}`, {
+      headers: { accept: 'application/json' }
     })
     .then(r => r.data);

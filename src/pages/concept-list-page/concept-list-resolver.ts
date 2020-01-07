@@ -7,7 +7,7 @@ const memoizedPublisherApiGetByOrgNr = _.memoize(publisherApiGet);
 
 const mapProps = {
   concepts: ({ catalogId }) => getConceptsForCatalog(catalogId),
-  publisher: ({ catalogId }) => memoizedPublisherApiGetByOrgNr(`/publishers/${catalogId}`)
+  publisher: ({ catalogId }) => memoizedPublisherApiGetByOrgNr(`/organizations/${catalogId}`)
 };
 
 export const conceptListResolver = resolve(mapProps);

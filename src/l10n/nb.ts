@@ -66,5 +66,7 @@ export const nb = {
   langChoose: 'Velg språk',
   ENG: 'Engelsk (EN)',
   NO_NB: 'Norsk bokmål (NB)',
-  NO_NN: 'Norsk nynorsk (NN)'
+  NO_NN: 'Norsk nynorsk (NN)',
+  expand: 'Åpne alle faner',
+  collapse: 'Lukk alle faner'
 };

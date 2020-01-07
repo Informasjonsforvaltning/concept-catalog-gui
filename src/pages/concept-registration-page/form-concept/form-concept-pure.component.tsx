@@ -17,6 +17,7 @@ import { LanguagePicker } from '../../../components/language-picker/language-pic
 import { Concept } from '../../../domain/Concept';
 import { Can } from '../../../casl/Can';
 import { authService } from '../../../services/auth-service';
+import { ButtonToggle } from '../../../components/button-toggle/button-toggle.component';
 
 interface Props {
   concept: Concept;
@@ -52,6 +53,14 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid }) => {
   const publisherId = get(concept, ['ansvarligVirksomhet', 'id']);
   const isReadOnly = !authService.hasOrganizationWritePermission(publisherId);
 
+  const [expandAll, setExpandAll] = useState(false);
+  const [isExpandAllDirty, setExpandAllDirty] = useState(false);
+
+  const toggleExpand = () => {
+    setExpandAll(!expandAll);
+    setExpandAllDirty(true);
+  };
+
   return (
     <Form>
       <Can I="edit" of={{ __type: 'Language', publisher: publisherId }}>
@@ -60,16 +69,23 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid }) => {
           toggleInputLanguage={language => dispatch(toggleInputLanguage(language))}
         />
       </Can>
-      <FormTemplate title={localization.formTerm} showRequired={!isReadOnly}>
+      <div className="d-flex justify-content-end">
+        <ButtonToggle expanded={expandAll} toggle={toggleExpand} />
+      </div>
+      <FormTemplate
+        title={localization.formTerm}
+        showRequired={!isReadOnly}
+        showInitially={isExpandAllDirty ? expandAll : true}
+      >
         <Term languages={state.languages} isReadOnly={isReadOnly} />
       </FormTemplate>
-      <FormTemplate title={localization.formAllowedAndDiscouraged}>
+      <FormTemplate title={localization.formAllowedAndDiscouraged} showInitially={expandAll}>
         <AllowedAndDiscouraged languages={state.languages} />
       </FormTemplate>
-      <FormTemplate title={localization.formUseOfConcept}>
+      <FormTemplate title={localization.formUseOfConcept} showInitially={expandAll}>
         <UseOfTerm languages={state.languages} />
       </FormTemplate>
-      <FormTemplate title={localization.formContactPoint}>
+      <FormTemplate title={localization.formContactPoint} showInitially={expandAll}>
         <ContactInfo />
       </FormTemplate>
       <Can I="view a statusBar" of={{ __type: 'StatusBar', publisher: publisherId }}>

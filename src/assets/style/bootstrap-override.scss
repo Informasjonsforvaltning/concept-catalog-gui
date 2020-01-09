@@ -1,6 +1,5 @@
 @import '../../../node_modules/designsystemet/fdk-designsystem-bootstrap4/scss/colors.scss';
 
-
 /***************  **************************/
 /*********** Bootstrap overrides **********/
 /*****************************************/
@@ -29,8 +28,6 @@ $input-height: 4.1rem;
 $form-group-margin-bottom: 0rem;
 
 $hr-margin-y: 3rem;
-
-$font-family-base: "heebo", "helvetica", sans-serif;
 
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 

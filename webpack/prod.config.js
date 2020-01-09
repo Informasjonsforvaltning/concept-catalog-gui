@@ -11,13 +11,20 @@ export default merge(baseConfig, {
   optimization: {
     moduleIds: 'hashed',
     splitChunks: {
-      maxSize: 40000,
       cacheGroups: {
         mainVendors: {
+          maxSize: 40000,
           test: /[\\/]node_modules[\\/]/,
           name: module =>
             `main.vendor.${module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1].replace('@', '')}`,
           chunks: ({ name }) => name === 'main'
+        },
+        // Merge all the CSS into one file
+        styles: {
+          name: 'styles',
+          test: /\.s?css$/,
+          chunks: 'all',
+          enforce: true
         }
       }
     }

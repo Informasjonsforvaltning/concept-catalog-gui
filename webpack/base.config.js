@@ -28,10 +28,17 @@ export default {
       cacheGroups: {
         default: false,
         mainVendors: {
-          test: /[\\/]node_modules[\\/]/,
+          test: /[\\/]node_modules[\\/](.(?!.*\.s?css$))*$/,
           name: 'main.vendors',
           filename: '[name].bundle.js',
           chunks: ({ name }) => name === 'main'
+        },
+        // Merge all the CSS into one file
+        styles: {
+          name: 'styles',
+          test: /\.s?css$/,
+          chunks: 'all',
+          enforce: true
         }
       }
     }
@@ -99,7 +106,7 @@ export default {
       favicon: './src/assets/img/favicon.ico'
     }),
     new MiniCssExtractPlugin({
-      filename: 'styles.css'
+      filename: 'main.css'
     }),
     new CopyWebpackPlugin([{ from: './src/assets/img/*', to: './img', flatten: true }], {
       copyUnmodified: true

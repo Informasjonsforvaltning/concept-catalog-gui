@@ -9,11 +9,6 @@ import { Concept } from '../../domain/Concept';
 import { getTranslateText } from '../../lib/translateText';
 import { localization } from '../../lib/localization';
 
-interface Kilde {
-  uri: string;
-  tekst: string;
-}
-
 interface Props {
   concept: Concept;
   history: object;

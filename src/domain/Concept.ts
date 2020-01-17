@@ -38,4 +38,6 @@ export interface Concept {
   tillattTerm?: string[];
   frarådetTerm?: string[];
   kontaktpunkt?: ContactDetails | null;
+  gyldigFom?: string | null;
+  gyldigTom?: string | null;
 }

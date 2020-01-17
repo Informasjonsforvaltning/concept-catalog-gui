@@ -71,5 +71,8 @@ export const nb = {
   NO_NB: 'Norsk bokmål (NB)',
   NO_NN: 'Norsk nynorsk (NN)',
   expand: 'Åpne alle faner',
-  collapse: 'Lukk alle faner'
+  collapse: 'Lukk alle faner',
+  formValidity: 'Gyldighet',
+  validFromTitle: 'Gyldig fra og med',
+  validToTitle: 'Gyldig til og med'
 };

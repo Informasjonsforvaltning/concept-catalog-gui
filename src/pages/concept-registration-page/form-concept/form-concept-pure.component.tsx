@@ -18,6 +18,7 @@ import { Concept } from '../../../domain/Concept';
 import { Can } from '../../../casl/Can';
 import { authService } from '../../../services/auth-service';
 import { ButtonToggle } from '../../../components/button-toggle/button-toggle.component';
+import { Validity } from './validity/validity.component';
 
 interface Props {
   concept: Concept;
@@ -84,6 +85,9 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid }) => {
       </FormTemplate>
       <FormTemplate title={localization.formUseOfConcept} showInitially={expandAll}>
         <UseOfTerm languages={state.languages} />
+      </FormTemplate>
+      <FormTemplate title={localization.formValidity} showInitially={expandAll}>
+        <Validity />
       </FormTemplate>
       <FormTemplate title={localization.formContactPoint} showInitially={expandAll}>
         <ContactInfo />

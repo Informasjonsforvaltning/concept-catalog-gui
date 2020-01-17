@@ -25,6 +25,8 @@ type FormValues = Pick<
   | 'bruksområde'
   | 'omfang'
   | 'kontaktpunkt'
+  | 'gyldigFom'
+  | 'gyldigTom'
 >;
 
 // Remove all empty occurenses of kilde on Egendefinert
@@ -63,7 +65,9 @@ const config = {
       fagområde = '',
       bruksområde = [],
       omfang = null,
-      kontaktpunkt = null
+      kontaktpunkt = null,
+      gyldigFom = null,
+      gyldigTom = null
     }
   }: FormProps) => ({
     anbefaltTerm,
@@ -76,7 +80,9 @@ const config = {
     fagområde,
     bruksområde,
     omfang,
-    kontaktpunkt
+    kontaktpunkt,
+    gyldigFom,
+    gyldigTom
   }),
   validationSchema: schema,
   validate: _.throttle(patchWithPreProcess, 1500),

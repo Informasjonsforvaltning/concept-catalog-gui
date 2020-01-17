@@ -7,6 +7,7 @@ import { conceptPatchSuccessAction } from '../../app/reducers/stateReducer';
 import { Concept } from '../../domain/Concept';
 
 import { getTranslateText } from '../../lib/translateText';
+import { localization } from '../../lib/localization';
 
 interface Kilde {
   uri: string;
@@ -21,7 +22,6 @@ interface Props {
 export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
   const stateConcept = useGlobalState(concept.id);
   const dispatch = useDispatch();
-  const anbefaltTerm = get(concept, ['anbefaltTerm', 'navn']);
 
   useEffect(() => {
     dispatch(conceptPatchSuccessAction(concept.id, {}, concept));
@@ -30,7 +30,9 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
   return (
     <div className="container">
       <div className="col-12">
-        <h1 className="pb-5">{getTranslateText(anbefaltTerm)}</h1>
+        <h1 className="pb-5">
+          {getTranslateText(get(stateConcept, ['anbefaltTerm', 'navn'])) || localization.registerNewConcept}
+        </h1>
         <FormConcept concept={concept} dispatch={dispatch} lastPatchedValues={get(stateConcept, 'lastPatchedValues')} />
       </div>
     </div>

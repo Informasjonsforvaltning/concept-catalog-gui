@@ -13,5 +13,5 @@ export const ConceptBreadcrumb: React.FC<ConceptBreadcrumbProps> = ({ match }) =
   const conceptId = get(match, ['params', 'conceptId']);
   const stateConcept = useGlobalState(conceptId);
   const anbefaltTerm = get(stateConcept, ['anbefaltTerm', 'navn']);
-  return <span>{getTranslateText(anbefaltTerm) || localization.newConcept}</span>;
+  return <span>{getTranslateText(anbefaltTerm) || localization.registerNewConcept}</span>;
 };

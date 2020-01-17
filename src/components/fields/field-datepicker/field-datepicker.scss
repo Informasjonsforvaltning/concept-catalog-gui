@@ -1,0 +1,10 @@
+$datepicker__day-margin: .3rem;
+$datepicker__font-size: 1.2rem !default;
+$datepicker__item-size: 2.7rem;
+$datepicker__margin: 0.6rem;
+@import '../../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
+
+.fdk-date {
+  position: relative;
+  margin-left: -2.5rem;
+}

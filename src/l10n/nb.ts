@@ -24,7 +24,7 @@ export const nb = {
   breadCrumbsAllCatalogs: 'Alle kataloger',
   breadCrumbsPublisherList: '{0} sine begrepsbeskrivelser',
   breadCrumbsConceptCatalog: 'Begrepskatalog',
-  breadCrumbRegisterNewConcept: 'Registrer ny begrepsbeskrivelse',
+  registerNewConcept: 'Registrer ny begrepsbeskrivelse',
   required: 'Obligatorisk',
   formTerm: 'Term, definisjon og kilde',
   formAllowedAndDiscouraged: 'Tillatt og frarådet term',

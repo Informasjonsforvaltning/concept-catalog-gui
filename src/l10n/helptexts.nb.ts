@@ -66,6 +66,20 @@ Se mer om ‘bruksområde’ i [veileder for begrepsbeskrivelser](https://doc.di
 Eksempel på verdiområde: For begrepet ‘alder’ kan verdiområdet beskrives som “alle positive tall”.    
 Dette feltet skal ikke brukes for å oppgi eksempler.    
 Se mer om ‘omfang’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#omfang)`,
+  gyldigFomTitle: 'Gyldig f.o.m.',
+  gyldigFomAbstract: 'Her registrerer du datoen som begrepet skal gjelde fra og med.',
+  gyldigFomDescription: `Dette feltet skal brukes til å angi den første datoen begrepet er gyldig. 
+
+Merk at gyldigheten skal gjelde fra og med (f.o.m.) en gitt dato.
+
+Se mer om ‘gyldighetsperiode’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#gyldighetsperiode) `,
+  gyldigTomTitle: 'Gyldig t.o.m.',
+  gyldigTomAbstract: 'Her registrerer du datoen som begrepet skal gjelde til og med.',
+  gyldigTomDescription: `Dette feltet skal brukes til å angi den siste datoen begrepet er gyldig. Dersom dette begrepet er erstattet av et annet kan du oppgi det som en relasjon under feltet for relaterte begreper.
+
+Merk at gyldigheten gjelder til og med (t.o.m).
+
+Se mer om ‘gyldighetsperiode’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#gyldighetsperiode) `,
   kontaktinformasjonTitle: 'Kontaktinformasjon',
   kontaktinformasjonAbstract: 'Kontaktinformasjon hos ansvarlig virksomhet for begrepet.',
   kontaktinformasjonDescription: `Du kan gjerne oppgi en organisatorisk underenhet, men du skal  ikke bruke kontaktpunkter ned til enkeltpersoner i en virksomhet.    

@@ -67,7 +67,7 @@ export const stateReducer = (state, action: Action): object => {
           endringstidspunkt,
           anbefaltTerm,
           error: false,
-          lastPatchedValues: patch
+          lastPatchedValues: _.omit(patch, ['gyldigFom', 'gyldigTom']) // this is to avoid json patch compare on string, not object
         }
       };
     }

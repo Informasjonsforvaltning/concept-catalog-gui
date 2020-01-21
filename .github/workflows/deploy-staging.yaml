@@ -57,6 +57,13 @@ jobs:
         with:
           args: "apply -f ./kubectlapply.yaml --force"
 
+      - name: Notify slack of deploy
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: pullreminders/slack-action@master
+        with:
+          args: '{\"channel\":\"C7NTH118T\",\"text\":\"Application: concept-catalogue-gui deployed to staging\"}'
+
       - name: Trigger deploy to staging-ut1
         uses: peter-evans/repository-dispatch@master
         with:

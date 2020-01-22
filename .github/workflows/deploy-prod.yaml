@@ -38,7 +38,6 @@ jobs:
             helm repo add fdk https://informasjonsforvaltning.github.io/helm-chart/
             helm fetch --untar --untardir ./helm fdk/concept-catalogue-gui
             helm template --set DOCKER_IMAGE_NAME="eu.gcr.io/fdk-infra/concept-catalogue-gui:$GITHUB_SHA" -f ./helm/concept-catalogue-gui/values/production.yaml ./helm/concept-catalogue-gui/ > ./kubectlapply.yaml
-            cat ./kubectlapply.yaml
             chmod o+w ./kubectlapply.yaml
             cat kubectlapply.yaml
 

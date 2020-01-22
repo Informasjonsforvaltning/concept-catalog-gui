@@ -38,7 +38,6 @@ jobs:
             helm repo add fdk https://informasjonsforvaltning.github.io/helm-chart/
             helm fetch --untar --untardir ./helm fdk/concept-catalogue-gui
             helm template --set DOCKER_IMAGE_NAME="eu.gcr.io/fdk-infra/concept-catalogue-gui:$GITHUB_SHA" -f ./helm/concept-catalogue-gui/values/staging.yaml ./helm/concept-catalogue-gui/ > ./kubectlapply.yaml
-            cat ./kubectlapply.yaml
             chmod o+w ./kubectlapply.yaml
             cat kubectlapply.yaml
 
@@ -63,10 +62,3 @@ jobs:
         uses: pullreminders/slack-action@master
         with:
           args: '{\"channel\":\"C7NTH118T\",\"text\":\"Application: concept-catalogue-gui deployed to staging\"}'
-
-      - name: Trigger deploy to staging-ut1
-        uses: peter-evans/repository-dispatch@master
-        with:
-          token: ${{ secrets.DISPATCH_TOKEN }}
-          event-type: deploy-ut1
-          client-payload: '{"sha": "${{ github.sha }}"}'

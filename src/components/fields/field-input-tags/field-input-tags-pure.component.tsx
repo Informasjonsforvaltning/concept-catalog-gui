@@ -44,6 +44,7 @@ export const InputTagsFieldPure: FC<Props> = ({
             className="fdk-reg-input-tags"
             inputProps={{ placeholder: '' }}
             onChange={tags => setFieldValue(_.get(field, 'name'), tags)}
+            addOnBlur
           />
         </label>
       </Can>

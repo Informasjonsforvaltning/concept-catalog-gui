@@ -67,7 +67,7 @@ exports[`should render ConceptList 1`] = `
   <Component
     col1="begrep med omfang"
     col2="Dokument"
-    col3=""
+    col3="Gyldig"
     key="083c8716-6006-428f-be3b-39bc01dcc58b-0"
     path="986105174/083c8716-6006-428f-be3b-39bc01dcc58b"
     status="utkast"

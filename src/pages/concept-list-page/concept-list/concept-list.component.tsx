@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import { localization } from '../../../lib/localization';
 import { getTranslateText } from '../../../lib/translateText';
+import { dateStringToDate, isDateBeforeToday, isDateAfterToday } from '../../../lib/date-utils';
 import { ListItem } from './list-item/list-item.component';
 import { SortButtons } from '../../../components/sort-button/sort-button.component';
 import './concept-list.scss';
@@ -41,6 +42,18 @@ const renderListHeader = (sortField, sortDirection, onSortField): JSX.Element =>
   </div>
 );
 
+const determineValidity = (validFromIncluding, validToIncluding) => {
+  const isExpired = isDateBeforeToday(dateStringToDate(validToIncluding));
+  const isWillBeValid = isDateAfterToday(dateStringToDate(validFromIncluding));
+  if (isExpired) {
+    return localization.expired;
+  }
+  if (isWillBeValid) {
+    return localization.willBeValid;
+  }
+  return localization.valid;
+};
+
 const renderListItems = (items, catalogId, sortField, sortDirection): JSX.Element | null => {
   if (!items) {
     return null;
@@ -50,12 +63,12 @@ const renderListItems = (items, catalogId, sortField, sortDirection): JSX.Elemen
     [i => (getTranslateText(_.get(i, sortField)) && getTranslateText(_.get(i, sortField)).toLowerCase()) || ''],
     [sortDirection]
   ).map(
-    ({ id, fagområde, status, anbefaltTerm }, index): JSX.Element => (
+    ({ id, fagområde, status, anbefaltTerm, gyldigFom, gyldigTom }, index): JSX.Element => (
       <ListItem
         key={`${id}-${index}`}
         col1={getTranslateText(anbefaltTerm.navn)}
         col2={getTranslateText(fagområde)}
-        col3=""
+        col3={determineValidity(gyldigFom, gyldigTom)}
         status={status}
         path={`${catalogId}/${id}`}
       />

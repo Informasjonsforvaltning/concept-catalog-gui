@@ -2,16 +2,20 @@
 
 .fdk-reg-input-tags {
   width: 100%;
-  padding: 0.05rem 0.75rem;
+  padding: 0.05rem 0;
   border: 1px solid #ced4da;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
   span {
+    display: flex;
+    flex-wrap: wrap;
+   
     .react-tagsinput-input {
+      flex-grow: 1;
+
       input[type='text'] {
         border: none;
         outline: none;
-        min-width: 100%;
       }
     }
   }
@@ -23,12 +27,11 @@
   }
 
   .react-tagsinput-tag {
-    background-color: $color-neutral-lightest;
-    border-radius: 2px;
     display: inline-block;
-    margin-right: 5px;
-    margin-top: 5px;
+    margin: 5px;
     padding: 1px 5px;
+    border-radius: 2px;
+    background-color: $color-neutral-lightest;
   }
 
   .react-tagsinput-remove {
@@ -48,6 +51,6 @@
     margin-top: 1px;
     outline: none;
     padding: 5px;
-    width: 100px;
+    min-width: 100px;
   }
 }

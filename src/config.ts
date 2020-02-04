@@ -28,6 +28,10 @@ const config = {
   },
   organizationApi: {
     host: env.ORGANIZATION_API || ''
+  },
+
+  conceptApi: {
+    host: env.CONCEPT_API || 'https://fellesdatakatalog.brreg.no'
   }
 };
 

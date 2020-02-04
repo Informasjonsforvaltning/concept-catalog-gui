@@ -74,5 +74,8 @@ export const nb = {
   collapse: 'Lukk alle faner',
   formValidity: 'Gyldighet',
   validFromTitle: 'Gyldig fra og med',
-  validToTitle: 'Gyldig til og med'
+  validToTitle: 'Gyldig til og med',
+  formRelatedConcepts: 'Relasjoner',
+  seeAlso: 'Se også',
+  searchConcepts: 'Søk etter begrep'
 };

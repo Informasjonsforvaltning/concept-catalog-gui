@@ -40,5 +40,6 @@ export interface Concept {
   kontaktpunkt?: ContactDetails | null;
   gyldigFom?: string | null;
   gyldigTom?: string | null;
+  seOgså: string[];
   status?: string | null;
 }

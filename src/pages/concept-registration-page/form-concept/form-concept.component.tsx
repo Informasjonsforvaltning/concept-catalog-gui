@@ -27,6 +27,7 @@ type FormValues = Pick<
   | 'kontaktpunkt'
   | 'gyldigFom'
   | 'gyldigTom'
+  | 'seOgså'
 >;
 
 // Remove all empty occurenses of kilde on Egendefinert
@@ -67,7 +68,8 @@ const config = {
       omfang = null,
       kontaktpunkt = null,
       gyldigFom = null,
-      gyldigTom = null
+      gyldigTom = null,
+      seOgså = []
     }
   }: FormProps) => ({
     anbefaltTerm,
@@ -82,7 +84,8 @@ const config = {
     omfang,
     kontaktpunkt,
     gyldigFom,
-    gyldigTom
+    gyldigTom,
+    seOgså
   }),
   validationSchema: schema,
   validate: _.throttle(patchWithPreProcess, 1500),

@@ -55,6 +55,7 @@ const renderConfirmDeleteOverlayDialog = ({
 interface Props {
   concept: object;
   isInitialInValidForm: boolean;
+  lastPatchedResponse: object;
 }
 
 type EnhancedProps = Props & RouteComponentProps;
@@ -68,7 +69,13 @@ const lastSavedTime = (endringstidspunkt): string => {
   );
 };
 
-export const StatusBarPure = ({ concept, isInitialInValidForm, history, match: { params } }: EnhancedProps) => {
+export const StatusBarPure = ({
+  concept,
+  isInitialInValidForm,
+  history,
+  match: { params },
+  lastPatchedResponse
+}: EnhancedProps) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const toggleShowConfirmDelete = (): void => setShowConfirmDelete(!showConfirmDelete);
 
@@ -139,7 +146,9 @@ export const StatusBarPure = ({ concept, isInitialInValidForm, history, match: {
               className="fdk-button mr-3"
               color="primary"
               disabled={validationError}
-              onClick={() => patchConceptFromForm({ status: CONCEPT_STATUS_PUBLISHED }, { concept, dispatch })}
+              onClick={() =>
+                patchConceptFromForm({ status: CONCEPT_STATUS_PUBLISHED }, { concept, dispatch, lastPatchedResponse })
+              }
             >
               {localization.publish}
             </Button>

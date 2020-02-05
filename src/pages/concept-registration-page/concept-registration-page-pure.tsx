@@ -19,7 +19,7 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(conceptPatchSuccessAction(concept.id, {}, concept));
+    dispatch(conceptPatchSuccessAction(concept.id, concept, concept));
   }, []);
 
   return (
@@ -28,7 +28,13 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
         <h1 className="pb-5">
           {getTranslateText(get(stateConcept, ['anbefaltTerm', 'navn'])) || localization.registerNewConcept}
         </h1>
-        <FormConcept concept={concept} dispatch={dispatch} lastPatchedValues={get(stateConcept, 'lastPatchedValues')} />
+        {stateConcept && (
+          <FormConcept
+            concept={concept}
+            dispatch={dispatch}
+            lastPatchedValues={get(stateConcept, 'lastPatchedValues')}
+          />
+        )}
       </div>
     </div>
   );

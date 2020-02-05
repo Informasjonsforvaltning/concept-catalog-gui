@@ -23,9 +23,10 @@ import { Validity } from './validity/validity.component';
 interface Props {
   concept: Concept;
   isValid: boolean;
+  lastPatchedResponse?: object;
 }
 
-export const FormConceptPure: React.FC<Props> = ({ concept, isValid }) => {
+export const FormConceptPure: React.FC<Props> = ({ concept, isValid, lastPatchedResponse = {} }) => {
   const [languagesDetermined, setLanguagesDetermined] = useState(false);
 
   const [state, dispatch] = useReducer(languagePickerReducer, initialState);
@@ -93,7 +94,7 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid }) => {
         <ContactInfo />
       </FormTemplate>
       <Can I="view a statusBar" of={{ __type: 'StatusBar', publisher: publisherId }}>
-        <StatusBar concept={concept} isInitialInValidForm={!isValid} />
+        <StatusBar concept={concept} isInitialInValidForm={!isValid} lastPatchedResponse={lastPatchedResponse} />
       </Can>
     </Form>
   );

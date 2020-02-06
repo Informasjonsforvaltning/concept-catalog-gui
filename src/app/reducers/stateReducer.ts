@@ -5,12 +5,12 @@ export const CONCEPT_STATUS_IS_SAVING: string = 'CONCEPT_STATUS_IS_SAVING';
 export const CONCEPT_STATUS_SAVE_ERROR: string = 'CONCEPT_STATUS_SAVE_ERROR';
 export const CONCEPT_STATUS_VALIDATION_ERROR: string = 'CONCEPT_STATUS_VALIDATION_ERROR';
 
-export const conceptPatchSuccessAction = (conceptId: string, patch: object, concept: object) => ({
+export const conceptPatchSuccessAction = (conceptId: string, patch: object, patchResponse: object) => ({
   type: CONCEPT_STATUS_PATCH_SUCCESS,
   payload: {
     conceptId,
     patch,
-    concept
+    patchResponse
   }
 });
 
@@ -52,11 +52,11 @@ export const stateReducer = (state, action: Action): object => {
       };
     }
     case CONCEPT_STATUS_PATCH_SUCCESS: {
-      const { conceptId, patch, concept } = action.payload;
+      const { conceptId, patch, patchResponse } = action.payload;
       const justPublishedOrUnPublished = !!_.get(patch, 'status');
-      const status = _.get(concept, 'status');
-      const endringstidspunkt = _.get(concept, ['endringslogelement', 'endringstidspunkt']);
-      const anbefaltTerm = _.get(concept, 'anbefaltTerm');
+      const status = _.get(patchResponse, 'status');
+      const endringstidspunkt = _.get(patchResponse, ['endringslogelement', 'endringstidspunkt']);
+      const anbefaltTerm = _.get(patchResponse, 'anbefaltTerm');
       return {
         ...state,
         [conceptId]: {
@@ -67,7 +67,7 @@ export const stateReducer = (state, action: Action): object => {
           endringstidspunkt,
           anbefaltTerm,
           error: false,
-          lastPatchedValues: concept
+          lastPatchedResponse: patchResponse
         }
       };
     }

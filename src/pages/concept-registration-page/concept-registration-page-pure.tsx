@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
-  const stateConcept = useGlobalState(concept.id);
+  const globalStateValues = useGlobalState(concept.id);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,13 +26,13 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
     <div className="container">
       <div className="col-12">
         <h1 className="pb-5">
-          {getTranslateText(get(stateConcept, ['anbefaltTerm', 'navn'])) || localization.registerNewConcept}
+          {getTranslateText(get(globalStateValues, ['anbefaltTerm', 'navn'])) || localization.registerNewConcept}
         </h1>
-        {stateConcept && (
+        {globalStateValues && (
           <FormConcept
             concept={concept}
             dispatch={dispatch}
-            lastPatchedValues={get(stateConcept, 'lastPatchedValues')}
+            lastPatchedResponse={get(globalStateValues, 'lastPatchedResponse')}
           />
         )}
       </div>

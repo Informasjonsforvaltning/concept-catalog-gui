@@ -17,7 +17,7 @@ export const patchConceptFromForm = (values, { concept, dispatch, lastPatchedRes
   dispatch(conceptPatchIsSavingAction(conceptId));
   patchConcept(conceptId, diff)
     .then(response => {
-      dispatch(conceptPatchSuccessAction(conceptId, values, response));
+      dispatch(conceptPatchSuccessAction(conceptId, !!values.status, response));
     })
     .catch(error => {
       dispatch(conceptPatchErrorAction(conceptId, error));

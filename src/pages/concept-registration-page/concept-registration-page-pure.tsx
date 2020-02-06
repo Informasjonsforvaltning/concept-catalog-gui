@@ -19,7 +19,7 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(conceptPatchSuccessAction(concept.id, concept, concept));
+    dispatch(conceptPatchSuccessAction(concept.id, false, concept));
   }, []);
 
   return (

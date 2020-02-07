@@ -86,5 +86,7 @@ Se mer om ‘gyldighetsperiode’ i [veileder for begrepsbeskrivelser](https://d
 Eksempel på kontaktinformasjon kan være:    
 Epost: informasjonsforvaltning@brreg.no    
 Telefon: +4775007500    
-Se mer om ‘kontaktinformasjon’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#_12_ansvarlig_virksomhet_og_kontaktpunkt)`
+Se mer om ‘kontaktinformasjon’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#_12_ansvarlig_virksomhet_og_kontaktpunkt)`,
+  seOgsaaTitle: 'Se også',
+  seOgsaaAbstract: 'Referanse til et beslektet begrep.'
 };

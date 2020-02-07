@@ -41,7 +41,7 @@ interface Props {
 export const RelatedConceptsPure: FC<Props> = ({ catalogId, seeAlsoConcepts = [] }) => (
   <div>
     <div className="form-group">
-      <HelpText title={localization.seeAlso} />
+      <HelpText title={localization.seeAlso} helpTextAbstract={localization.seOgsaaAbstract} />
 
       <FieldArray
         name="seOgså"

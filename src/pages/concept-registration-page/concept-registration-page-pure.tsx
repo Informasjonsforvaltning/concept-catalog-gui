@@ -22,6 +22,8 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
     dispatch(conceptPatchSuccessAction(concept.id, false, concept));
   }, []);
 
+  const copyOfConcept = JSON.parse(JSON.stringify(concept));
+
   return (
     <div className="container">
       <div className="col-12">
@@ -30,7 +32,7 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
         </h1>
         {globalStateValues && (
           <FormConcept
-            concept={concept}
+            concept={copyOfConcept}
             dispatch={dispatch}
             lastPatchedResponse={get(globalStateValues, 'lastPatchedResponse')}
           />

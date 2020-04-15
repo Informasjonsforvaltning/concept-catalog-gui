@@ -21,7 +21,7 @@ export const nb = {
   organisationNumber: 'Organisasjonsnummer:',
   information: 'Informasjonskapsler',
   informationText: 'Dette er et samarbeidsprosjekt mellom Brønnøysundregistrene, Difi og øvrige SKATE-etater.',
-  mail: 'fellesdatakatalog@brreg.no',
+  mail: 'digdir@fellesdatakatalog.no',
   privacy: ' og personvern',
   emailAddress: 'Mailadresse',
   breadCrumbsAllCatalogs: 'Alle kataloger',

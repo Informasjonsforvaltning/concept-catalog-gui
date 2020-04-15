@@ -8,7 +8,7 @@ export const FooterPure: FunctionComponent = (): JSX.Element => (
       <div className="row">
         <div className="col-md-4">
           <p className="fdk-p-footer">
-            <a href="https://www.brreg.no/personvernerklaering/" className="align-items-center d-flex">
+            <a href="https://www.digdir.no/om-oss/personvernerklaering/706" className="align-items-center d-flex">
               {localization.information}
               {localization.privacy}
               <i className="d-flex fdk-external-link ml-2" />
@@ -23,7 +23,7 @@ export const FooterPure: FunctionComponent = (): JSX.Element => (
         </div>
         <div className="col-md-4 text-right">
           <p className="fdk-p-footer">
-            <a href="mailto:fellesdatakatalog@brreg.no">
+            <a href="mailto:digdir@fellesdatakatalog.no">
               <span className="uu-invisible" aria-hidden="false">
                 Mailadresse.
               </span>

@@ -6,12 +6,12 @@ const env = (window as any).env || {
   ORGANIZATION_API: 'http://localhost:8140'
 };
 
-// use ut1
-// env.REGISTRATION_HOST = 'https://registrering.it1.fellesdatakatalog.brreg.no';
-// env.CONCEPT_REGISTRATION_API = 'https://registrering-begrep-api.it1.fellesdatakatalog.brreg.no';
-// env.SSO_HOST = 'https://sso.it1.fellesdatakatalog.brreg.no';
-// env.ORGANIZATION_API = 'https://organization-catalogue.it1.fellesdatakatalog.brreg.no';
-// env.CONCEPT_API = 'https://www.it1.fellesdatakatalog.brreg.no';
+// use staging
+// env.REGISTRATION_HOST = 'https://registrering.staging.fellesdatakatalog.digdir.no';
+// env.CONCEPT_REGISTRATION_API = 'https://registrering-begrep-api.staging.fellesdatakatalog.digdir.no';
+// env.SSO_HOST = 'https://sso.staging.fellesdatakatalog.digdir.no';
+// env.ORGANIZATION_API = 'https://organization-catalogue.staging.fellesdatakatalog.digdir.no';
+// env.CONCEPT_API = 'https://www.staging.fellesdatakatalog.digdir.no';
 
 const config = {
   auth: {

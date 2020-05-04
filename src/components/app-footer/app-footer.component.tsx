@@ -23,7 +23,7 @@ export const FooterPure: FunctionComponent = (): JSX.Element => (
         </div>
         <div className="col-md-4 text-right">
           <p className="fdk-p-footer">
-            <a href="mailto:digdir@fellesdatakatalog.no">
+            <a href="mailto:fellesdatakatalog@digdir.no">
               <span className="uu-invisible" aria-hidden="false">
                 Mailadresse.
               </span>

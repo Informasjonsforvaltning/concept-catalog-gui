@@ -9,8 +9,12 @@ export const FooterPure: FunctionComponent = (): JSX.Element => (
         <div className="col-md-4">
           <p className="fdk-p-footer">
             <a href="https://www.digdir.no/om-oss/personvernerklaering/706" className="align-items-center d-flex">
-              {localization.information}
               {localization.privacy}
+              <i className="d-flex fdk-external-link ml-2" />
+            </a>
+
+            <a href="https://www.digdir.no/om-oss/personvernerklaering/707" className="align-items-center d-flex">
+              {localization.information}
               <i className="d-flex fdk-external-link ml-2" />
             </a>
           </p>

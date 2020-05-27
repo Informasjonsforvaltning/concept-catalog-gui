@@ -20,7 +20,7 @@ export const nb = {
   status: 'Status',
   organisationNumber: 'Organisasjonsnummer:',
   information: 'Informasjonskapsler',
-  informationText: 'Digitaliseringsdirektoratet forvalter Felles Datakatalog.',
+  informationText: 'Digitaliseringsdirektoratet forvalter Felles datakatalog.',
   mail: 'fellesdatakatalog@digdir.no',
   privacy: 'Personvernerklæring',
   emailAddress: 'Mailadresse',

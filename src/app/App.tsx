@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import _ from 'lodash';
-import { Header } from '../components/app-header/app-header.component';
-import { Footer } from '../components/app-footer/app-footer.component';
+import Footer from '@fellesdatakatalog/internal-footer';
 
+import { Header } from '../components/app-header/app-header.component';
 import { routeConfig } from './routeConfig';
 import { Breadcrumbs } from './breadcrumbs/breadcrumbs.component';
 

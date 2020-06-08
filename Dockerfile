@@ -1,4 +1,5 @@
 FROM node:alpine AS build
+ARG GITHUB_TOKEN
 
 #the only reason why we need git here, is that we have designsystem in another github repo
 RUN apk add --no-cache git
@@ -12,6 +13,11 @@ USER app:app
 WORKDIR /app
 
 COPY --chown=app:app package.json package-lock.json ./
+RUN echo $'\n\
+        #!/bin/bash\n\
+        @fellesdatakatalog:registry=https://npm.pkg.github.com\n\
+        //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}\n'\
+        > .npmrc
 RUN npm set progress=false && \
   npm config set depth 0 && \
   npm ci

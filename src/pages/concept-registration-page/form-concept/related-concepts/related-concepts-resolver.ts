@@ -1,5 +1,5 @@
 import { resolve } from 'react-resolver';
-import { extractConcepts, searchConcepts } from '../../../../api/search-portal-api';
+import { extractConcepts, paramsToSearchBody, searchConcepts } from '../../../../api/search-fulltext-api/concepts';
 import { getConcept } from '../../../../api/concept-catalogue-api';
 import { Concept } from '../../../../domain/Concept';
 
@@ -9,10 +9,7 @@ const mapProps = {
     const concept: Concept = await getConcept(conceptId);
     return Promise.resolve(
       concept.seOgså.length > 0
-        ? searchConcepts({
-            identifiers: concept.seOgså.join(','),
-            returnfields: 'identifier,prefLabel'
-          }).then(extractConcepts)
+        ? searchConcepts(paramsToSearchBody({ identifier: concept.seOgså })).then(extractConcepts)
         : []
     );
   }

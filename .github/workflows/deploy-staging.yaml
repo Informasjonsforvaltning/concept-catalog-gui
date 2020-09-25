@@ -60,8 +60,8 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          author_name: 'Deploy concept-catalogue-gui to staging'
-          fields: repo,message,commit,author,ref,workflow
+          author_name: 'Application: concept-catalogue-gui | Environment: staging'
+          fields: commit,author,workflow
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

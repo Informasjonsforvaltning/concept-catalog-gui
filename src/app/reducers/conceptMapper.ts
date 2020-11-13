@@ -1,3 +1,4 @@
+import { readString } from 'react-papaparse';
 import { importConcept } from '../../api/concept-catalogue-api';
 import { Concept } from '../../domain/Concept';
 
@@ -12,17 +13,20 @@ function mapTilEnkeltVerdi(csvMap: Map<string, string[]>, key: string) {
   return value[0];
 }
 
-function mapLanguageToData(key: string, csvMap: Map<string, string[]>): Map<string, string[]> | undefined {
+function mapLanguageToData(key: string, csvMap: Map<string, string[]>): Map<string, string[]> {
   const map = new Map<string, string[]>();
   csvMap.forEach((val, key1) => {
     if (key1.startsWith(key)) {
       const split = key1.split(':');
-      if (split.length !== 2) {
-        throw new Error(`Ugyldig formattert kolonne i CSV ${key}`);
-      }
-      const dataOnKey = csvMap.get(key1);
-      if (dataOnKey) {
-        map.set(split[1], dataOnKey);
+      const data = csvMap.get(key1);
+      if (data) {
+        if (split.length === 2) {
+          map.set(split[1], data);
+        } else if (split.length === 1) {
+          map.set('nb', data);
+        } else {
+          throw new Error(`Ugyldig formattert kolonne i CSV ${key}. Kan ikke inneholde flere kolon`);
+        }
       }
     }
   });
@@ -30,12 +34,12 @@ function mapLanguageToData(key: string, csvMap: Map<string, string[]>): Map<stri
 }
 
 function mapTilFlerSpraakeligEnVerdi(csvMap: Map<string, string[]>, key: string) {
-  const termPrSpraak: Map<string, string[]> | undefined = mapLanguageToData(key, csvMap);
-  if (!termPrSpraak) {
+  const dataPrSpraak: Map<string, string[]> = mapLanguageToData(key, csvMap);
+  if (dataPrSpraak.size === 0) {
     return undefined;
   }
   const returnObj = {};
-  termPrSpraak.forEach((data, spraak) => {
+  dataPrSpraak.forEach((data, spraak) => {
     if (data.length > 1) {
       throw new Error(`Det kan bare være en Verdi med Nøkkel: ${key} på språket: ${spraak} av gangen.`);
     }
@@ -45,8 +49,8 @@ function mapTilFlerSpraakeligEnVerdi(csvMap: Map<string, string[]>, key: string)
 }
 
 function mapTilFlerSpraakeligFlereVerdier(csvMap: Map<string, string[]>, key: string) {
-  const termPrSpraak: Map<string, string[]> | undefined = mapLanguageToData(key, csvMap);
-  if (!termPrSpraak) {
+  const termPrSpraak: Map<string, string[]> = mapLanguageToData(key, csvMap);
+  if (termPrSpraak.size === 0) {
     return undefined;
   }
   const returnObj = {};
@@ -60,10 +64,12 @@ function createCsvMap(header: string[], data: string[]) {
   const csvMap = new Map<string, string[]>();
   header.forEach((colHeader, index) => {
     const colHeaderLC = colHeader.toLowerCase();
-    if (csvMap.get(colHeaderLC)) {
-      csvMap.set(colHeaderLC, [...csvMap.get(colHeaderLC), data[index]]);
-    } else {
-      csvMap.set(colHeaderLC, [data[index]]);
+    if (data[index]) {
+      if (csvMap.get(colHeaderLC)) {
+        csvMap.set(colHeaderLC, [...csvMap.get(colHeaderLC), data[index]]);
+      } else {
+        csvMap.set(colHeaderLC, [data[index]]);
+      }
     }
   });
   return csvMap;
@@ -106,17 +112,6 @@ function mapKilde(csvMap: Map<string, string[]>): {} | undefined {
   };
 }
 
-// TODO undersøk om denne hentes fra innlogget bruker.
-function mapAnsvarligVirksomhet(csvMap: Map<string, string[]>) {
-  // const uri = mapTilEnkeltVerdi(csvMap, 'ansvarligVirksomhet_uri');
-  // const id = mapTilEnkeltVerdi(csvMap, 'ansvarligVirksomhet_id');
-  // const uri = mapTilEnkeltVerdi(csvMap, 'ansvarligVirksomhet_uri');
-  // const uri = mapTilEnkeltVerdi(csvMap, 'ansvarligVirksomhet_uri');
-  // const uri = mapTilEnkeltVerdi(csvMap, 'ansvarligVirksomhet_uri');
-  // const uri = mapTilEnkeltVerdi(csvMap, 'ansvarligVirksomhet_uri');
-  // return undefined;
-}
-
 function mapOmfang(csvMap: Map<string, string[]>) {
   const omfangUri = mapTilEnkeltVerdi(csvMap, 'omfang_uri');
   const omfangTekst = mapTilEnkeltVerdi(csvMap, 'omfang_tekst');
@@ -141,8 +136,8 @@ function mapSeOgsaa(csvMap: Map<string, string[]>) {
   };
 }
 
-function mapDataToObject(header: string[], data: string[]): {} {
-  const csvMap = createCsvMap(header, data);
+function mapDataToObject(columnHeaders: string[], data: string[]): {} {
+  const csvMap = createCsvMap(columnHeaders, data);
   const mergedObject = {};
   mergeIfExistsToPath(mapTilFlerSpraakeligEnVerdi(csvMap, 'anbefaltterm'), mergedObject, innData => {
     return { anbefaltTerm: { navn: innData } };
@@ -176,11 +171,7 @@ function mapDataToObject(header: string[], data: string[]): {} {
   mergeIfExistsToPath(mapTilEnkeltVerdi(csvMap, 'gyldigtom'), mergedObject, innData => {
     return { gyldigTom: innData };
   });
-  // TODO
   mergeIfExists(mapSeOgsaa(csvMap), mergedObject);
-  // mergeIfExistsToPath(mapAnsvarligVirksomhet(csvMap), mergedObject, innData => {
-  //   return { ansvarligVirksomhet: { uri: innData } };
-  // });
 
   return mergedObject;
 }
@@ -195,15 +186,24 @@ function checkFormat(fileText: string): string {
   return '';
 }
 function mapCsv(fileText: string): Concept[] {
-  const lines = fileText
-    .split('\n')
-    .map(line => line.replace('\n', '').replace('\r', ''))
-    .filter(line => line.includes(';'));
-  const headers = lines[0].split(';');
+  const parsedCsv = readString(fileText, {
+    transform: line => (line === '' ? undefined : line)
+  });
+  if (parsedCsv.errors.length > 0) {
+    throw new Error(parsedCsv.errors.reduce((prev, current) => `\n${prev}\n${current}`, 'Feilmeldinger:\n'));
+  }
+  const columnHeaders = (parsedCsv.data[0] as string[]).map(value =>
+    value
+      .replace(' ', '')
+      .replace('\t', '')
+      .replace('æ', 'ae')
+      .replace('ø', 'oe')
+      .replace('å', 'aa')
+  );
   const mappedLines: Concept[] = [];
-  for (let j = 1; j < lines.length; j += 1) {
-    const data = lines[j].split(';');
-    const dataObj = mapDataToObject(headers, data);
+  for (let j = 1; j < parsedCsv.data.length; j += 1) {
+    const data = parsedCsv.data[j] as string[];
+    const dataObj = mapDataToObject(columnHeaders, data);
     mappedLines.push(dataObj as Concept);
   }
   return mappedLines;
@@ -241,6 +241,7 @@ export const mapConcepts = (x: any, onError: Function, catalogId: string): Conce
       default:
     }
     if (mappedObjects) {
+      mappedObjects = mappedObjects.filter(object => !!object && object.anbefaltTerm && object.anbefaltTerm.navn);
       mappedObjects.forEach(el => {
         el.ansvarligVirksomhet = { id: catalogId };
       });

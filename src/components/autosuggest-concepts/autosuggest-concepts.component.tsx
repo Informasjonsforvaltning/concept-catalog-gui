@@ -4,7 +4,7 @@ import Autosuggest from 'react-autosuggest';
 import { localization } from '../../lib/localization';
 import { getTranslateText } from '../../lib/translateText';
 import './autosuggest-concepts.scss';
-import { extractConcepts, searchConcepts } from '../../api/search-portal-api';
+import { getConceptSuggestions, extractSuggestions } from '../../api/search-fulltext-api/suggestions';
 
 const renderSuggestionContainer = (containerProps, children) => (
   <div {...containerProps}>
@@ -45,12 +45,10 @@ const loadSuggestions = (value, setSuggestions, lastRequestId) => {
     clearTimeout(lastRequestId);
   }
 
-  searchConcepts({
-    prefLabel: value,
-    returnfields: 'identifier,definition.text,publisher.prefLabel,publisher.name',
-    size: 25
+  getConceptSuggestions({
+    q: value
   })
-    .then(extractConcepts)
+    .then(extractSuggestions)
     .then(concepts => {
       lastRequestId = setTimeout(() => {
         setSuggestions(concepts);

@@ -15,7 +15,7 @@ exports[`should render ConceptList 1`] = `
       >
         Anbefalt term
       </span>
-      <Component
+      <SortButtons
         field="anbefaltTerm.navn.nb"
         onSortField={[Function]}
         sortType="asc"
@@ -29,7 +29,7 @@ exports[`should render ConceptList 1`] = `
       >
         Fagområde
       </span>
-      <Component
+      <SortButtons
         field="fagområde"
         onSortField={[Function]}
         sortType="asc"
@@ -43,7 +43,7 @@ exports[`should render ConceptList 1`] = `
       >
         Gyldighet
       </span>
-      <Component
+      <SortButtons
         field="valid"
         onSortField={[Function]}
         sortType="asc"
@@ -57,14 +57,14 @@ exports[`should render ConceptList 1`] = `
       >
         Status
       </span>
-      <Component
+      <SortButtons
         field="status"
         onSortField={[Function]}
         sortType="asc"
       />
     </div>
   </div>
-  <Component
+  <ListItem
     col1="begrep med omfang"
     col2="Dokument"
     col3="Gyldig"

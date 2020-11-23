@@ -1,16 +1,11 @@
 import axios from 'axios';
-import get from 'lodash/get';
-
+import { Concept } from '../domain/Concept';
 import { getConfig } from '../config';
 import { authService } from '../services/auth-service';
-import { Concept } from '../domain/Concept';
 
 /* utility functions */
 
-const extractResourseId = response =>
-  get(response, 'headers.location')
-    .split('/')
-    .pop();
+const extractResourseId = response => response?.headers?.location?.split('/').pop();
 
 const extractJsonBody = response => response.data;
 
@@ -48,8 +43,8 @@ export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
 
 export const postConcept = (body): Promise<void> => conceptCatalogueApiPost(conceptListPath, body);
 
-export const importConcept = (body: Array<Concept>): Promise<void> =>
-  conceptCatalogueApiRaw('POST', conceptListImportPath, body).then();
+export const importConcepts = (body: Array<Omit<Concept, 'id'>>): Promise<void> =>
+  conceptCatalogueApiPost(conceptListImportPath, body);
 
 export const patchConcept = (conceptId, patch): Promise<Concept> =>
   conceptCatalogueApiPatch(conceptPath(conceptId), patch);

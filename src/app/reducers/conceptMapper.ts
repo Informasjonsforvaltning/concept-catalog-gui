@@ -1,179 +1,104 @@
 import { readString } from 'react-papaparse';
-import { importConcept } from '../../api/concept-catalogue-api';
+import { getConceptsForCatalog, importConcepts } from '../../api/concept-catalogue-api';
 import { Concept } from '../../domain/Concept';
 
-function mapTilEnkeltVerdi(csvMap: Map<string, string[]>, key: string) {
-  const value = csvMap.get(key);
-  if (!value) {
-    return undefined;
-  }
-  if (value.length !== 1) {
+function mapToSingleValue(csvMap: Record<string, string[]>, key: string) {
+  const value = csvMap[key];
+  if (value && value.length !== 1) {
     throw new Error(`Forventet bare en verdi med kolonnenavn: ${key}, men det var ${value.length}`);
   }
-  return value[0];
+
+  return value ? value[0] : undefined;
 }
 
-function mapLanguageToData(key: string, csvMap: Map<string, string[]>): Map<string, string[]> {
-  const map = new Map<string, string[]>();
-  csvMap.forEach((val, key1) => {
-    if (key1.startsWith(key)) {
-      const split = key1.split(':');
-      const data = csvMap.get(key1);
-      if (data) {
-        if (split.length === 2) {
-          map.set(split[1], data);
-        } else if (split.length === 1) {
-          map.set('nb', data);
-        } else {
-          throw new Error(`Ugyldig formattert kolonne i CSV ${key}. Kan ikke inneholde flere kolon`);
-        }
+function mapLanguageToData(columnName: string, csvMap: Record<string, string[]>): Record<string, string[]> {
+  return Object.entries(csvMap).reduce((prev, [key, value]) => {
+    if (value && key.startsWith(columnName)) {
+      const columnParts = key.split(':');
+
+      if (columnParts.length === 2) {
+        return { ...prev, [columnParts[1]]: value };
       }
+
+      if (columnParts.length === 1) {
+        return { ...prev, nb: value };
+      }
+
+      throw new Error(`Ugyldig formattert kolonne i CSV ${columnName}. Kan ikke inneholde flere kolon`);
     }
-  });
-  return map;
+
+    return prev;
+  }, {});
 }
 
-function mapTilFlerSpraakeligEnVerdi(csvMap: Map<string, string[]>, key: string) {
-  const dataPrSpraak: Map<string, string[]> = mapLanguageToData(key, csvMap);
-  if (dataPrSpraak.size === 0) {
-    return undefined;
-  }
-  const returnObj = {};
-  dataPrSpraak.forEach((data, spraak) => {
+function mapMultipleLanguagesOneValue(csvMap: Record<string, string[]>, key: string) {
+  return Object.entries(mapLanguageToData(key, csvMap)).reduce((prev, [language, data]) => {
     if (data.length > 1) {
-      throw new Error(`Det kan bare være en Verdi med Nøkkel: ${key} på språket: ${spraak} av gangen.`);
+      throw new Error(`Det kan bare være en Verdi med Nøkkel: ${language} på språket: ${language} av gangen.`);
     }
-    [returnObj[spraak]] = data;
-  });
-  return returnObj;
+    return { ...prev, [language]: data };
+  }, {});
 }
 
-function mapTilFlerSpraakeligFlereVerdier(csvMap: Map<string, string[]>, key: string) {
-  const termPrSpraak: Map<string, string[]> = mapLanguageToData(key, csvMap);
-  if (termPrSpraak.size === 0) {
-    return undefined;
-  }
-  const returnObj = {};
-  termPrSpraak.forEach((data, spraak) => {
-    returnObj[spraak] = data;
-  });
-  return returnObj;
+function mapTilFlerSpraakeligFlereVerdier(csvMap: Record<string, string[]>, key: string): Record<string, string[]> {
+  return Object.entries(mapLanguageToData(key, csvMap)).reduce(
+    (prev, [language, data]) => ({ ...prev, [language]: data }),
+    {}
+  );
 }
 
 function createCsvMap(header: string[], data: string[]) {
-  const csvMap = new Map<string, string[]>();
+  const csvMap: Record<string, string[]> = {};
   header.forEach((colHeader, index) => {
-    const colHeaderLC = colHeader.toLowerCase();
+    const colHeaderLC = colHeader.toLowerCase().replace(/\s/g, '');
     if (data[index]) {
-      if (csvMap.get(colHeaderLC)) {
-        csvMap.set(colHeaderLC, [...csvMap.get(colHeaderLC), data[index]]);
+      if (csvMap[colHeaderLC]) {
+        csvMap[colHeaderLC] = [...csvMap[colHeaderLC], data[index]];
       } else {
-        csvMap.set(colHeaderLC, [data[index]]);
+        csvMap[colHeaderLC] = [data[index]];
       }
     }
   });
   return csvMap;
 }
 
-function mergeIfExistsToPath(dataToMerge: {} | undefined, target: {}, jsonPathMapper: (value) => {}) {
-  if (dataToMerge) {
-    Object.assign(target, jsonPathMapper(dataToMerge));
-  }
-}
-
-function mergeIfExists(dataToMerge: {} | undefined, target: {}) {
-  if (dataToMerge) {
-    Object.assign(target, dataToMerge);
-  }
-}
-
-function mapKilde(csvMap: Map<string, string[]>): {} | undefined {
-  const forholdTilKilde = mapTilEnkeltVerdi(csvMap, 'forholdtilkilde');
-  const kilder = csvMap.get('kilde');
-  if (!forholdTilKilde && !kilder) {
-    return undefined;
-  }
-  let formatterteKilder;
-  if (kilder) {
-    formatterteKilder = kilder.map(kilde => {
-      const splitKilder = kilde.split('|');
-      if (splitKilder.length !== 2) {
-        throw new Error(`Kilder skal være på følgende format "kilde|uri", men var følgende:  ${kilde}`);
+function mapKilde(csvMap: Record<string, string[]>) {
+  const forholdTilKilde = mapToSingleValue(csvMap, 'forholdtilkilde');
+  const formatterteKilder = csvMap.kilde?.map(kilde => {
+    const [tekst, uri] = kilde.split('|');
+    if (!tekst && !uri) {
+      throw new Error(`Kilder skal være på følgende format "kilde|uri", men var følgende:  ${kilde}`);
+    }
+    return { tekst, uri };
+  });
+  return forholdTilKilde && formatterteKilder
+    ? {
+        forholdTilKilde,
+        kilde: formatterteKilder
       }
-      const [navn, uri] = splitKilder;
-      return { navn, uri };
-    });
-  }
-  return {
-    kildebeskrivelse: {
-      forholdTilKilde,
-      kilde: formatterteKilder
-    }
-  };
+    : undefined;
 }
 
-function mapOmfang(csvMap: Map<string, string[]>) {
-  const omfangUri = mapTilEnkeltVerdi(csvMap, 'omfang_uri');
-  const omfangTekst = mapTilEnkeltVerdi(csvMap, 'omfang_tekst');
-  if (!omfangUri && !omfangTekst) {
-    return undefined;
-  }
-  return {
-    omfang: {
-      uri: omfangUri,
-      tekst: omfangTekst
-    }
-  };
-}
-
-function mapSeOgsaa(csvMap: Map<string, string[]>) {
-  const seogsaa = csvMap.get('seogsaa');
-  if (!seogsaa) {
-    return undefined;
-  }
-  return {
-    seOgså: seogsaa
-  };
-}
-
-function mapDataToObject(columnHeaders: string[], data: string[]): {} {
+function mapCsvTextToConcept(columnHeaders: string[], data: string[]): Omit<Concept, 'id' | 'ansvarligVirksomhet'> {
   const csvMap = createCsvMap(columnHeaders, data);
-  const mergedObject = {};
-  mergeIfExistsToPath(mapTilFlerSpraakeligEnVerdi(csvMap, 'anbefaltterm'), mergedObject, innData => {
-    return { anbefaltTerm: { navn: innData } };
-  });
-  mergeIfExistsToPath(mapTilFlerSpraakeligFlereVerdier(csvMap, 'tillattterm'), mergedObject, innData => {
-    return { tillattTerm: innData };
-  });
-  mergeIfExistsToPath(mapTilFlerSpraakeligFlereVerdier(csvMap, 'fraraadetterm'), mergedObject, innData => {
-    return { frarådetTerm: innData };
-  });
-  mergeIfExistsToPath(mapTilFlerSpraakeligEnVerdi(csvMap, 'definisjon'), mergedObject, innData => {
-    return { definisjon: { tekst: innData } };
-  });
-  mergeIfExists(mapKilde(csvMap), mergedObject);
-  mergeIfExistsToPath(mapTilFlerSpraakeligEnVerdi(csvMap, 'merknad'), mergedObject, innData => {
-    return { merknad: innData };
-  });
-  mergeIfExistsToPath(mapTilFlerSpraakeligEnVerdi(csvMap, 'eksempel'), mergedObject, innData => {
-    return { eksempel: innData };
-  });
-  mergeIfExistsToPath(mapTilFlerSpraakeligEnVerdi(csvMap, 'fagomraade'), mergedObject, innData => {
-    return { fagområde: innData };
-  });
-  mergeIfExistsToPath(mapTilFlerSpraakeligFlereVerdier(csvMap, 'bruksomraade'), mergedObject, innData => {
-    return { bruksområde: innData };
-  });
-  mergeIfExists(mapOmfang(csvMap), mergedObject);
-  mergeIfExistsToPath(mapTilEnkeltVerdi(csvMap, 'gyldigfom'), mergedObject, innData => {
-    return { gyldigFom: innData };
-  });
-  mergeIfExistsToPath(mapTilEnkeltVerdi(csvMap, 'gyldigtom'), mergedObject, innData => {
-    return { gyldigTom: innData };
-  });
-  mergeIfExists(mapSeOgsaa(csvMap), mergedObject);
-
-  return mergedObject;
+  return {
+    anbefaltTerm: { navn: mapMultipleLanguagesOneValue(csvMap, 'anbefaltterm') },
+    tillattTerm: mapTilFlerSpraakeligFlereVerdier(csvMap, 'tillattterm'),
+    frarådetTerm: mapTilFlerSpraakeligFlereVerdier(csvMap, 'frarådetterm'),
+    definisjon: { tekst: mapMultipleLanguagesOneValue(csvMap, 'definisjon') },
+    merknad: mapMultipleLanguagesOneValue(csvMap, 'merknad'),
+    eksempel: mapMultipleLanguagesOneValue(csvMap, 'eksempel'),
+    fagområde: mapMultipleLanguagesOneValue(csvMap, 'fagområde'),
+    bruksområde: mapTilFlerSpraakeligFlereVerdier(csvMap, 'bruksområde'),
+    gyldigFom: mapToSingleValue(csvMap, 'gyldigfom'),
+    gyldigTom: mapToSingleValue(csvMap, 'gyldigtom'),
+    kildebeskrivelse: mapKilde(csvMap),
+    omfang: {
+      uri: mapToSingleValue(csvMap, 'omfang_uri'),
+      tekst: mapToSingleValue(csvMap, 'omfang_tekst')
+    },
+    seOgså: csvMap.seogsaa ?? []
+  };
 }
 
 function checkFormat(fileText: string): string {
@@ -185,69 +110,53 @@ function checkFormat(fileText: string): string {
   }
   return '';
 }
-function mapCsv(fileText: string): Concept[] {
+
+function mapCsv(fileText: string): Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] {
   const parsedCsv = readString(fileText, {
     transform: line => (line === '' ? undefined : line)
   });
+
   if (parsedCsv.errors.length > 0) {
     throw new Error(parsedCsv.errors.reduce((prev, current) => `\n${prev}\n${current}`, 'Feilmeldinger:\n'));
   }
-  const columnHeaders = (parsedCsv.data[0] as string[]).map(value =>
-    value
-      .replace(' ', '')
-      .replace('\t', '')
-      .replace('æ', 'ae')
-      .replace('ø', 'oe')
-      .replace('å', 'aa')
-  );
-  const mappedLines: Concept[] = [];
-  for (let j = 1; j < parsedCsv.data.length; j += 1) {
-    const data = parsedCsv.data[j] as string[];
-    const dataObj = mapDataToObject(columnHeaders, data);
-    mappedLines.push(dataObj as Concept);
-  }
-  return mappedLines;
+
+  const [columnHeaders, ...data] = parsedCsv.data as string[][];
+
+  return data.map(row => mapCsvTextToConcept(columnHeaders, row));
 }
 
-export const mapConcepts = (x: any, onError: Function, catalogId: string): Concept[] | undefined => {
-  if (!x || !x.target || !x.target.files) {
-    return;
-  }
-  let mappedObjects: Concept[] = [];
-  x.target.files[0].text().then(text => {
-    switch (checkFormat(text)) {
-      case 'json': {
-        try {
-          const items = JSON.parse(text);
-          if (items) {
-            mappedObjects.concat(items as Concept[]);
-          }
-        } catch (e) {
-          onError(e.message);
-        }
-        break;
-      }
-      case 'csv': {
-        try {
-          mappedObjects = mapCsv(text);
-          if (mappedObjects) {
-            mappedObjects.concat(mappedObjects);
-          }
-        } catch (e) {
-          onError(e.message);
-        }
-        break;
-      }
-      default:
+function parseConcepts(text, setError: Function): Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] {
+  try {
+    const format = checkFormat(text);
+    if (format === 'json') {
+      return JSON.parse(text);
     }
-    if (mappedObjects) {
-      mappedObjects = mappedObjects.filter(object => !!object && object.anbefaltTerm && object.anbefaltTerm.navn);
-      mappedObjects.forEach(el => {
-        el.ansvarligVirksomhet = { id: catalogId };
-      });
-      importConcept(mappedObjects)
-        .then()
-        .catch(error => onError(`${error.message}`));
+    if (format === 'csv') {
+      return mapCsv(text);
+    }
+  } catch (e) {
+    setError(e.message);
+  }
+  return [];
+}
+
+export const mapConcepts = (x: any, setError: Function, catalogId: string, setConcepts: Function): void => {
+  x?.target?.files?.[0].text().then(async text => {
+    const mappedObjects = parseConcepts(text, setError)
+      .filter(({ anbefaltTerm }) => Object.values(anbefaltTerm?.navn ?? {}).length > 0)
+      .map(el => ({
+        ...el,
+        ansvarligVirksomhet: {
+          id: catalogId
+        }
+      }));
+    if (mappedObjects.length > 0) {
+      try {
+        await importConcepts(mappedObjects);
+        setConcepts(await getConceptsForCatalog(catalogId));
+      } catch (e) {
+        setError(`${e.message}`);
+      }
     }
   });
 };

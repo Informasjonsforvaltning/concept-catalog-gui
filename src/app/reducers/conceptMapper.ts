@@ -97,7 +97,11 @@ function mapCsvTextToConcept(columnHeaders: string[], data: string[]): Omit<Conc
       uri: mapToSingleValue(csvMap, 'omfang_uri'),
       tekst: mapToSingleValue(csvMap, 'omfang_tekst')
     },
-    seOgså: csvMap.seogsaa ?? []
+    seOgså: csvMap.seogsaa ?? [],
+    kontaktpunkt: {
+      harEpost: mapToSingleValue(csvMap, 'kontaktpunkt_epost'),
+      harTelefon: mapToSingleValue(csvMap, 'kontaktpunkt_telefon')
+    }
   };
 }
 

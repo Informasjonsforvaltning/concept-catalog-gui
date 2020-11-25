@@ -7,12 +7,12 @@ const env = (window as any).env || {
 };
 
 // use staging
-env.REGISTRATION_HOST = 'https://registrering.staging.fellesdatakatalog.digdir.no';
+// env.REGISTRATION_HOST = 'https://registrering.staging.fellesdatakatalog.digdir.no';
 // env.CONCEPT_REGISTRATION_API = 'https://registrering-begrep-api.staging.fellesdatakatalog.digdir.no';
-env.SSO_HOST = 'https://sso.staging.fellesdatakatalog.digdir.no';
-env.ORGANIZATION_API = 'https://organization-catalogue.staging.fellesdatakatalog.digdir.no';
-env.CONCEPT_API = 'https://www.staging.fellesdatakatalog.digdir.no';
-env.SEARCH_FULLTEXT_HOST = 'https://search.staging.fellesdatakatalog.digdir.no';
+// env.SSO_HOST = 'https://sso.staging.fellesdatakatalog.digdir.no';
+// env.ORGANIZATION_API = 'https://organization-catalogue.staging.fellesdatakatalog.digdir.no';
+// env.CONCEPT_API = 'https://www.staging.fellesdatakatalog.digdir.no';
+// env.SEARCH_FULLTEXT_HOST = 'https://search.staging.fellesdatakatalog.digdir.no';
 
 const config = {
   auth: {

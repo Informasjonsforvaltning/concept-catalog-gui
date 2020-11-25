@@ -40,7 +40,7 @@ function mapMultipleLanguagesOneValue(csvMap: Record<string, string[]>, key: str
   }, {});
 }
 
-function mapTilFlerSpraakeligFlereVerdier(csvMap: Record<string, string[]>, key: string): Record<string, string[]> {
+function mapToMultipleLanguagesMultipleValues(csvMap: Record<string, string[]>, key: string): Record<string, string[]> {
   return Object.entries(mapLanguageToData(key, csvMap)).reduce(
     (prev, [language, data]) => ({ ...prev, [language]: data }),
     {}
@@ -83,13 +83,13 @@ function mapCsvTextToConcept(columnHeaders: string[], data: string[]): Omit<Conc
   const csvMap = createCsvMap(columnHeaders, data);
   return {
     anbefaltTerm: { navn: mapMultipleLanguagesOneValue(csvMap, 'anbefaltterm') },
-    tillattTerm: mapTilFlerSpraakeligFlereVerdier(csvMap, 'tillattterm'),
-    frarådetTerm: mapTilFlerSpraakeligFlereVerdier(csvMap, 'frarådetterm'),
+    tillattTerm: mapToMultipleLanguagesMultipleValues(csvMap, 'tillattterm'),
+    frarådetTerm: mapToMultipleLanguagesMultipleValues(csvMap, 'frarådetterm'),
     definisjon: { tekst: mapMultipleLanguagesOneValue(csvMap, 'definisjon') },
     merknad: mapMultipleLanguagesOneValue(csvMap, 'merknad'),
     eksempel: mapMultipleLanguagesOneValue(csvMap, 'eksempel'),
     fagområde: mapMultipleLanguagesOneValue(csvMap, 'fagområde'),
-    bruksområde: mapTilFlerSpraakeligFlereVerdier(csvMap, 'bruksområde'),
+    bruksområde: mapToMultipleLanguagesMultipleValues(csvMap, 'bruksområde'),
     gyldigFom: mapToSingleValue(csvMap, 'gyldigfom'),
     gyldigTom: mapToSingleValue(csvMap, 'gyldigtom'),
     kildebeskrivelse: mapKilde(csvMap),

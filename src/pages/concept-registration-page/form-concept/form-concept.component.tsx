@@ -93,5 +93,4 @@ const config = {
   validateOnBlur: false,
   handleSubmit() {}
 };
-//  Feil ved import av fil. Teknisk feilmelding: lodash_get__WEBPACK_IMPORTED_MODULE_1___default()(...) is undefined
 export const FormConcept = withFormik<FormProps, FormValues>(config)(FormConceptPure);

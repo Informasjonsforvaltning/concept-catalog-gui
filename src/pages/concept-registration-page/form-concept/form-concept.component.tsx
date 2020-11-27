@@ -93,4 +93,5 @@ const config = {
   validateOnBlur: false,
   handleSubmit() {}
 };
+
 export const FormConcept = withFormik<FormProps, FormValues>(config)(FormConceptPure);

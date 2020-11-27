@@ -1,0 +1,22 @@
+@import '../../../node_modules/designsystemet/fdk-designsystem-bootstrap4/scss/colors.scss';
+
+.fdk-icon-import {
+  width: 1em;
+  height: 1em;
+
+  circle {
+    fill: $color-link-dark;
+  }
+
+  path {
+    fill: #fff;
+  }
+}
+
+.fdk-button-import-concept {
+  margin-right: 5px;
+  input {
+    overflow: hidden;
+    display: none;
+  }
+}

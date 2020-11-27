@@ -1,13 +1,13 @@
 import { Kilde } from './Kilde';
 
 export interface UriText {
-  uri: string;
-  tekst: string;
+  uri?: string;
+  tekst?: string;
 }
 
 export interface ContactDetails {
-  harEpost: string;
-  harTelefon: string;
+  harEpost?: string;
+  harTelefon?: string;
 }
 
 export interface AnbefaltTerm {
@@ -26,17 +26,18 @@ export interface Concept {
   id: string;
   anbefaltTerm?: AnbefaltTerm;
   definisjon?: Definisjon;
+  ansvarligVirksomhet: { id: string };
   kildebeskrivelse?: {
     forholdTilKilde: string;
     kilde: Kilde[];
   } | null;
-  merknad?: string;
-  eksempel?: string;
-  fagområde?: string;
-  bruksområde?: string[];
+  merknad?: TekstMedSpraakKode;
+  eksempel?: TekstMedSpraakKode;
+  fagområde?: TekstMedSpraakKode;
+  bruksområde?: Record<string, string[]>;
   omfang?: UriText | null;
-  tillattTerm?: string[];
-  frarådetTerm?: string[];
+  tillattTerm?: Record<string, string[]>;
+  frarådetTerm?: Record<string, string[]>;
   kontaktpunkt?: ContactDetails | null;
   gyldigFom?: string | null;
   gyldigTom?: string | null;

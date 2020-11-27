@@ -25,8 +25,8 @@ const renderErrorOverlay = ({ error }: ErrorOverlayProps): JSX.Element => (
 );
 
 interface ConfirmDeleteOverlayProps {
-  deleteConceptAndNavigate: Function;
-  toggleShowConfirmDelete: Function;
+  deleteConceptAndNavigate: () => void;
+  toggleShowConfirmDelete: () => void;
 }
 
 const renderConfirmDeleteOverlayDialog = ({

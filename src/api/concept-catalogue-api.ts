@@ -35,6 +35,8 @@ const conceptCatalogueApiDelete = path => conceptCatalogueApiRaw('DELETE', path)
 
 const conceptListPath = '/begreper';
 
+const conceptListImportPath = '/begreper/import';
+
 const conceptPath = (conceptId): string => `${conceptListPath}/${conceptId}`;
 
 /* high level api */
@@ -45,6 +47,9 @@ export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
   conceptCatalogueApiGet(`${conceptListPath}?orgNummer=${catalogId}`) as Promise<Concept[]>;
 
 export const postConcept = (body): Promise<void> => conceptCatalogueApiPost(conceptListPath, body);
+
+export const importConcept = (body: Array<Concept>): Promise<void> =>
+  conceptCatalogueApiRaw('POST', conceptListImportPath, body).then();
 
 export const patchConcept = (conceptId, patch): Promise<Concept> =>
   conceptCatalogueApiPatch(conceptPath(conceptId), patch);

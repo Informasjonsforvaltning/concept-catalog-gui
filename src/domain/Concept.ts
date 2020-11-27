@@ -26,6 +26,7 @@ export interface Concept {
   id: string;
   anbefaltTerm?: AnbefaltTerm;
   definisjon?: Definisjon;
+  ansvarligVirksomhet: { id: string };
   kildebeskrivelse?: {
     forholdTilKilde: string;
     kilde: Kilde[];

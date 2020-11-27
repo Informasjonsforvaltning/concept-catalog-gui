@@ -1,6 +1,6 @@
 const env = (window as any).env || {
   // use docker
-  CONCEPT_REGISTRATION_API: 'http://localhost:8200',
+  CONCEPT_REGISTRATION_API: 'http://localhost:8201',
   REGISTRATION_HOST: 'http://localhost:8098',
   SSO_HOST: 'http://localhost:8084',
   ORGANIZATION_API: 'http://localhost:8140'

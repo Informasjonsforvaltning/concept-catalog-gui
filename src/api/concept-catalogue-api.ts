@@ -1,16 +1,11 @@
 import axios from 'axios';
-import get from 'lodash/get';
-
 import { Concept } from '../domain/Concept';
 import { getConfig } from '../config';
 import { authService } from '../services/auth-service';
 
 /* utility functions */
 
-const extractResourseId = response =>
-  get(response, 'headers.location')
-    .split('/')
-    .pop();
+const extractResourseId = response => response?.headers?.location?.split('/').pop();
 
 const extractJsonBody = response => response.data;
 
@@ -35,6 +30,8 @@ const conceptCatalogueApiDelete = path => conceptCatalogueApiRaw('DELETE', path)
 
 const conceptListPath = '/begreper';
 
+const conceptListImportPath = '/begreper/import';
+
 const conceptPath = (conceptId): string => `${conceptListPath}/${conceptId}`;
 
 /* high level api */
@@ -45,6 +42,9 @@ export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
   conceptCatalogueApiGet(`${conceptListPath}?orgNummer=${catalogId}`) as Promise<Concept[]>;
 
 export const postConcept = (body): Promise<void> => conceptCatalogueApiPost(conceptListPath, body);
+
+export const importConcepts = (body: Array<Omit<Concept, 'id'>>): Promise<void> =>
+  conceptCatalogueApiPost(conceptListImportPath, body);
 
 export const patchConcept = (conceptId, patch): Promise<Concept> =>
   conceptCatalogueApiPatch(conceptPath(conceptId), patch);

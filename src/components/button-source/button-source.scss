@@ -1,6 +1,6 @@
 @import '../../../node_modules/designsystemet/fdk-designsystem-bootstrap4/scss/colors.scss';
 
-svg {
+svg.remove, svg.add {
   width: 1em;
   height: 1em;
 }

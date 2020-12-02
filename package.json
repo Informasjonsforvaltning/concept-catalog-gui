@@ -28,6 +28,8 @@
     "@casl/ability": "^3.4.0",
     "@casl/react": "^1.0.4",
     "@fellesdatakatalog/internal-footer": "^0.3.0",
+    "@fellesdatakatalog/internal-header": "^0.4.2",
+    "@fellesdatakatalog/link": "^0.2.2",
     "@fellesdatakatalog/theme": "^0.4.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",

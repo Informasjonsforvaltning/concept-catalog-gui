@@ -13,6 +13,8 @@ const env = (window as any).env || {
 // env.ORGANIZATION_API = 'https://organization-catalogue.staging.fellesdatakatalog.digdir.no';
 // env.CONCEPT_API = 'https://www.staging.fellesdatakatalog.digdir.no';
 // env.SEARCH_FULLTEXT_HOST = 'https://search.staging.fellesdatakatalog.digdir.no';
+// env.SEARCH_HOST = 'https://www.staging.fellesdatakatalog.digdir.no';
+// env.ADMIN_GUI_HOST = 'https://admin.staging.fellesdatakatalog.digdir.no';
 
 const config = {
   auth: {
@@ -21,21 +23,25 @@ const config = {
   },
 
   // frontend hosts
-  registrationHost: env.REGISTRATION_HOST || 'https://registrering.fellesdatakatalog.brreg.no/',
+  registrationHost: env.REGISTRATION_HOST || 'https://registrering.fellesdatakatalog.digdir.no',
 
   // api modules
   conceptCatalogueApi: {
-    host: env.CONCEPT_REGISTRATION_API || 'https://begrep-registrering.fellesdatakatalog.brreg.no'
+    host: env.CONCEPT_REGISTRATION_API || 'https://begrep-registrering.fellesdatakatalog.digdir.no'
   },
   organizationApi: {
     host: env.ORGANIZATION_API || ''
   },
 
   conceptApi: {
-    host: env.CONCEPT_API || 'https://fellesdatakatalog.brreg.no'
+    host: env.CONCEPT_API || 'https://fellesdatakatalog.digdir.no'
   },
   searchFullTextApi: {
     host: env.SEARCH_FULLTEXT_HOST
+  },
+  searchHost: env.SEARCH_HOST || 'https://fellesdatakatalog.digdir.no',
+  adminGui: {
+    host: env.ADMIN_GUI_HOST
   }
 };
 

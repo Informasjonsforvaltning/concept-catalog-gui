@@ -27,8 +27,8 @@
   "dependencies": {
     "@casl/ability": "^3.4.0",
     "@casl/react": "^1.0.4",
-    "@fellesdatakatalog/internal-footer": "^0.1.6",
-    "@fellesdatakatalog/theme": "^0.1.2",
+    "@fellesdatakatalog/internal-footer": "^0.3.0",
+    "@fellesdatakatalog/theme": "^0.4.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
     "classnames": "^2.2.6",

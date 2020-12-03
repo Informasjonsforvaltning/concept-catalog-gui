@@ -1,4 +1,4 @@
-FROM node:alpine AS build
+FROM node:14-alpine AS build
 
 #the only reason why we need git here, is that we have designsystem in another github repo
 RUN apk add --no-cache git

@@ -97,7 +97,7 @@ function mapCsvTextToConcept(columnHeaders: string[], data: string[]): Omit<Conc
       uri: mapToSingleValue(csvMap, 'omfang_uri'),
       tekst: mapToSingleValue(csvMap, 'omfang_tekst')
     },
-    seOgså: csvMap.seogsaa ?? [],
+    seOgså: csvMap['seogså'] ?? [],
     kontaktpunkt: {
       harEpost: mapToSingleValue(csvMap, 'kontaktpunkt_epost'),
       harTelefon: mapToSingleValue(csvMap, 'kontaktpunkt_telefon')
@@ -105,62 +105,66 @@ function mapCsvTextToConcept(columnHeaders: string[], data: string[]): Omit<Conc
   };
 }
 
-function checkFormat(fileText: string): string {
-  if (fileText.startsWith('[')) {
-    return 'json';
-  }
-  if (fileText.split('\n')[0].match(';')) {
-    return 'csv';
-  }
-  return '';
-}
-
-function mapCsv(fileText: string): Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] {
-  const parsedCsv = readString(fileText, {
-    transform: line => (line === '' ? undefined : line)
-  });
-
-  if (parsedCsv.errors.length > 0) {
-    throw new Error(parsedCsv.errors.reduce((prev, current) => `\n${prev}\n${current}`, 'Feilmeldinger:\n'));
-  }
-
-  const [columnHeaders, ...data] = parsedCsv.data as string[][];
-
-  return data.map(row => mapCsvTextToConcept(columnHeaders, row));
-}
-
-function parseConcepts(text, setError: Function): Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] {
+function attemptToParseJsonFile(text: string): Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] | null {
   try {
-    const format = checkFormat(text);
-    if (format === 'json') {
-      return JSON.parse(text);
-    }
-    if (format === 'csv') {
-      return mapCsv(text);
-    }
-  } catch (e) {
-    setError(e.message);
+    const json = JSON.parse(text);
+
+    return Array.isArray(json) ? json : null;
+  } catch (error) {
+    return null;
   }
-  return [];
 }
 
-export const mapConcepts = (x: any, setError: Function, catalogId: string, setConcepts: Function): void => {
+function attemptToParseCsvFile(text: string): Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] | null {
+  try {
+    const {
+      data: [columnHeaders, ...rows],
+      errors
+    } = readString(text, { skipEmptyLines: true });
+
+    if (errors.length > 0) {
+      return null;
+    }
+
+    return rows.map(row => mapCsvTextToConcept(columnHeaders as string[], row as string[]));
+  } catch (error) {
+    return null;
+  }
+}
+
+export const mapConcepts = (
+  x: any,
+  onError: (error: string) => void,
+  onSuccess: (message: string) => void,
+  catalogId: string,
+  setConcepts: Function
+): void => {
   x?.target?.files?.[0].text().then(async text => {
-    const mappedObjects = parseConcepts(text, setError)
-      .filter(({ anbefaltTerm }) => Object.values(anbefaltTerm?.navn ?? {}).length > 0)
+    const concepts = (attemptToParseJsonFile(text) ?? attemptToParseCsvFile(text) ?? [])
+      .filter(
+        ({ anbefaltTerm, definisjon }) =>
+          Object.values(anbefaltTerm?.navn ?? {}).length > 0 && Object.values(definisjon?.tekst ?? {}).length > 0
+      )
       .map(el => ({
         ...el,
         ansvarligVirksomhet: {
           id: catalogId
         }
       }));
-    if (mappedObjects.length > 0) {
+
+    if (concepts.length > 0) {
       try {
-        await importConcepts(mappedObjects);
+        await importConcepts(concepts);
         setConcepts(await getConceptsForCatalog(catalogId));
-      } catch (e) {
-        setError(`${e.message}`);
+        onError('');
+        onSuccess(`Importen var vellykket og ${concepts.length} begreper er nå lagt til i begrepskatalogen din.`);
+      } catch (error) {
+        onSuccess('');
+        onError(error.message);
       }
+    } else {
+      onSuccess('');
+      onError('Kunne ikke importere noen begreper.');
     }
   });
 };

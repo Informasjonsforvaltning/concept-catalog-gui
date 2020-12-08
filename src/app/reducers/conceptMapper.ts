@@ -11,40 +11,28 @@ function mapToSingleValue(csvMap: Record<string, string[]>, key: string) {
   return value ? value[0] : undefined;
 }
 
-function mapLanguageToData(columnName: string, csvMap: Record<string, string[]>): Record<string, string[]> {
-  return Object.entries(csvMap).reduce((prev, [key, value]) => {
+function mapRowToLanguageValue(csvMap: Record<string, string[]>, columnName: string): Record<string, string> {
+  return Object.entries(csvMap).reduce((prev, [key, [value]]) => {
     if (value && key.startsWith(columnName)) {
-      const columnParts = key.split(':');
+      const [field, language] = key.split(':');
 
-      if (columnParts.length === 2) {
-        return { ...prev, [columnParts[1]]: value };
-      }
-
-      if (columnParts.length === 1) {
-        return { ...prev, nb: value };
-      }
-
-      throw new Error(`Ugyldig formattert kolonne i CSV ${columnName}. Kan ikke inneholde flere kolon`);
+      return { ...prev, ...(field && { [language ?? 'nb']: value }) };
     }
 
     return prev;
   }, {});
 }
 
-function mapMultipleLanguagesOneValue(csvMap: Record<string, string[]>, key: string) {
-  return Object.entries(mapLanguageToData(key, csvMap)).reduce((prev, [language, data]) => {
-    if (data.length > 1) {
-      throw new Error(`Det kan bare være en Verdi med Nøkkel: ${language} på språket: ${language} av gangen.`);
-    }
-    return { ...prev, [language]: data };
-  }, {});
-}
+function mapRowToLanguageValueList(csvMap: Record<string, string[]>, columnName: string): Record<string, string[]> {
+  return Object.entries(csvMap).reduce((prev, [key, [value]]) => {
+    if (value && key.startsWith(columnName)) {
+      const [field, language] = key.split(':');
 
-function mapToMultipleLanguagesMultipleValues(csvMap: Record<string, string[]>, key: string): Record<string, string[]> {
-  return Object.entries(mapLanguageToData(key, csvMap)).reduce(
-    (prev, [language, data]) => ({ ...prev, [language]: data }),
-    {}
-  );
+      return { ...prev, ...(field && { [language ?? 'nb']: value.split('|') }) };
+    }
+
+    return prev;
+  }, {});
 }
 
 function createCsvMap(header: string[], data: string[]) {
@@ -82,14 +70,14 @@ function mapKilde(csvMap: Record<string, string[]>) {
 function mapCsvTextToConcept(columnHeaders: string[], data: string[]): Omit<Concept, 'id' | 'ansvarligVirksomhet'> {
   const csvMap = createCsvMap(columnHeaders, data);
   return {
-    anbefaltTerm: { navn: mapMultipleLanguagesOneValue(csvMap, 'anbefaltterm') },
-    tillattTerm: mapToMultipleLanguagesMultipleValues(csvMap, 'tillattterm'),
-    frarådetTerm: mapToMultipleLanguagesMultipleValues(csvMap, 'frarådetterm'),
-    definisjon: { tekst: mapMultipleLanguagesOneValue(csvMap, 'definisjon') },
-    merknad: mapMultipleLanguagesOneValue(csvMap, 'merknad'),
-    eksempel: mapMultipleLanguagesOneValue(csvMap, 'eksempel'),
-    fagområde: mapMultipleLanguagesOneValue(csvMap, 'fagområde'),
-    bruksområde: mapToMultipleLanguagesMultipleValues(csvMap, 'bruksområde'),
+    anbefaltTerm: { navn: mapRowToLanguageValue(csvMap, 'anbefaltterm') },
+    tillattTerm: mapRowToLanguageValueList(csvMap, 'tillattterm'),
+    frarådetTerm: mapRowToLanguageValueList(csvMap, 'frarådetterm'),
+    definisjon: { tekst: mapRowToLanguageValue(csvMap, 'definisjon') },
+    merknad: mapRowToLanguageValue(csvMap, 'merknad'),
+    eksempel: mapRowToLanguageValue(csvMap, 'eksempel'),
+    fagområde: mapRowToLanguageValue(csvMap, 'fagområde'),
+    bruksområde: mapRowToLanguageValueList(csvMap, 'bruksområde'),
     gyldigFom: mapToSingleValue(csvMap, 'gyldigfom'),
     gyldigTom: mapToSingleValue(csvMap, 'gyldigtom'),
     kildebeskrivelse: mapKilde(csvMap),
@@ -97,7 +85,7 @@ function mapCsvTextToConcept(columnHeaders: string[], data: string[]): Omit<Conc
       uri: mapToSingleValue(csvMap, 'omfang_uri'),
       tekst: mapToSingleValue(csvMap, 'omfang_tekst')
     },
-    seOgså: csvMap['seogså'] ?? [],
+    seOgså: csvMap?.seogså?.[0]?.split('|') ?? [],
     kontaktpunkt: {
       harEpost: mapToSingleValue(csvMap, 'kontaktpunkt_epost'),
       harTelefon: mapToSingleValue(csvMap, 'kontaktpunkt_telefon')

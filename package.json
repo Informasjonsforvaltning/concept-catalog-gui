@@ -4,6 +4,7 @@
   "description": "",
   "main": "server/start.js",
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "start": "webpack-dev-server  --hot --inline  --config-register @babel/register --config webpack/dev.config.js",
     "release": "standard-version --no-verify",
     "test": "jest --runInBand --config=jest.config.json",
@@ -24,14 +25,17 @@
     "url": "https://github.com/Informasjonsforvaltning/begrepskatalog/issues"
   },
   "homepage": "https://github.com/Informasjonsforvaltning/begrepskatalog#readme",
+  "resolutions": {
+    "node-fetch": "^2.6.1"
+  },
   "dependencies": {
     "@casl/ability": "^3.4.0",
     "@casl/react": "^1.0.4",
-    "@fellesdatakatalog/internal-footer": "^0.3.0",
-    "@fellesdatakatalog/internal-header": "^0.4.2",
+    "@fellesdatakatalog/internal-footer": "^0.3.4",
+    "@fellesdatakatalog/internal-header": "^0.4.4",
     "@fellesdatakatalog/link": "^0.2.2",
     "@fellesdatakatalog/theme": "^0.4.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.2",
     "classnames": "^2.2.6",
     "clean-deep": "^3.4.0",
@@ -113,7 +117,7 @@
     "prettier": "^1.19.1",
     "sass-loader": "^10.1.0",
     "source-map-loader": "^0.2.4",
-    "standard-version": "^8.0.1",
+    "standard-version": "^9.1.0",
     "ts-jest": "^26.4.4",
     "ts-loader": "^7.0.5",
     "typescript": "^4.1.2",

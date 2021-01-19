@@ -58,11 +58,13 @@ const renderListItems = (items, catalogId, sortField, sortDirection): JSX.Elemen
   if (!items) {
     return null;
   }
-  return _.orderBy(
-    items,
-    [i => (getTranslateText(_.get(i, sortField)) && getTranslateText(_.get(i, sortField)).toLowerCase()) || ''],
-    [sortDirection]
-  ).map(
+
+  const iteratees = i => {
+    const f: any = getTranslateText(_.get(i, sortField));
+    return f instanceof Array ? f[0]?.toLowerCase() : f?.toLowerCase();
+  };
+
+  return _.orderBy(items, [iteratees], [sortDirection]).map(
     ({ id, fagområde, status, anbefaltTerm, gyldigFom, gyldigTom }, index): JSX.Element => (
       <ListItem
         key={`${id}-${index}`}

@@ -54,7 +54,7 @@ const determineValidity = (validFromIncluding, validToIncluding) => {
   return localization.valid;
 };
 
-const renderListItems = (items, catalogId, sortField, sortDirection): JSX.Element | null => {
+const renderListItems = (items, catalogId, sortField, sortDirection): JSX.Element[] | null => {
   if (!items) {
     return null;
   }

@@ -24,7 +24,7 @@ import { RelatedConcepts } from './related-concepts/related-concepts.component';
 interface Props {
   concept: Concept;
   isValid: boolean;
-  lastPatchedResponse?: object;
+  lastPatchedResponse: object;
 }
 
 export const FormConceptPure: React.FC<Props> = ({ concept, isValid, lastPatchedResponse = {} }) => {

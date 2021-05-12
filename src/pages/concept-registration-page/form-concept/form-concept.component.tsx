@@ -9,7 +9,7 @@ import { patchConceptFromForm } from '../../../lib/patchConceptForm';
 interface FormProps {
   concept: Concept;
   dispatch: Function;
-  lastPatchedResponse?: object;
+  lastPatchedResponse: object;
 }
 
 type FormValues = Pick<

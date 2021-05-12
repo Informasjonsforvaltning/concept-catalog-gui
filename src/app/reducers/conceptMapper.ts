@@ -52,6 +52,13 @@ function createCsvMap(header: string[], data: string[]) {
 
 function mapKilde(csvMap: Record<string, string[]>) {
   const forholdTilKilde = mapToSingleValue(csvMap, 'forholdtilkilde');
+  if (forholdTilKilde && forholdTilKilde?.toLowerCase() === 'egendefinert') {
+    return {
+      forholdTilKilde,
+      kilde: []
+    };
+  }
+
   const formatterteKilder = csvMap.kilde?.map(kilde => {
     const [tekst, uri] = kilde.split('|');
     if (!tekst && !uri) {

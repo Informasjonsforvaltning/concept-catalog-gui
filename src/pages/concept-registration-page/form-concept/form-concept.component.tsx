@@ -89,7 +89,8 @@ const config = {
   }),
   validationSchema: schema,
   validate: _.throttle(patchWithPreProcess, 1500),
-  isInitialValid: (values: FormProps) => schema.isValidSync(values.concept),
+  initialValues: ({ concept }: FormProps) => concept,
+  validateOnMount: true,
   validateOnBlur: false,
   handleSubmit() {}
 };

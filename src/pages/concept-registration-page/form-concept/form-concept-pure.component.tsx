@@ -25,9 +25,12 @@ interface Props {
   concept: Concept;
   isValid: boolean;
   lastPatchedResponse: object;
+  errors: any;
 }
 
-export const FormConceptPure: React.FC<Props> = ({ concept, isValid, lastPatchedResponse = {} }) => {
+export const FormConceptPure: React.FC<Props> = ({ concept, isValid, lastPatchedResponse = {}, errors }) => {
+  const { omfang: useOfConceptError, kontaktpunkt: contactPointError } = errors;
+
   const [languagesDetermined, setLanguagesDetermined] = useState(false);
 
   const [state, dispatch] = useReducer(languagePickerReducer, initialState);
@@ -85,7 +88,7 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid, lastPatched
       <FormTemplate title={localization.formAllowedAndDiscouraged} showInitially={expandAll}>
         <AllowedAndDiscouraged languages={state.languages} />
       </FormTemplate>
-      <FormTemplate title={localization.formUseOfConcept} showInitially={expandAll}>
+      <FormTemplate title={localization.formUseOfConcept} showInitially={expandAll || useOfConceptError}>
         <UseOfTerm languages={state.languages} />
       </FormTemplate>
       <FormTemplate title={localization.formValidity} showInitially={expandAll}>
@@ -94,7 +97,7 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid, lastPatched
       <FormTemplate title={localization.formRelatedConcepts} showInitially={expandAll}>
         <RelatedConcepts />
       </FormTemplate>
-      <FormTemplate title={localization.formContactPoint} showInitially={expandAll}>
+      <FormTemplate title={localization.formContactPoint} showInitially={expandAll || contactPointError}>
         <ContactInfo />
       </FormTemplate>
       <Can I="view a statusBar" of={{ __type: 'StatusBar', publisher: publisherId }}>

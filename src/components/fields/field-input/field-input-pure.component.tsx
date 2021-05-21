@@ -8,7 +8,6 @@ interface Props {
     name: string;
   };
   form: {
-    touched: any;
     errors: object;
   };
   showLabel: boolean;
@@ -21,7 +20,7 @@ interface Props {
 
 export const InputFieldPure: FC<Props> = ({
   field, // { name, value, onChange, onBlur }
-  form: { touched, errors }, // also values, dirty, isValid, status, etc.
+  form: { errors }, // also values, dirty, isValid, status, etc.
   showLabel,
   label,
   type,
@@ -50,8 +49,6 @@ export const InputFieldPure: FC<Props> = ({
         </div>
       </Can>
     </div>
-    {get(touched, field.name) && get(errors, field.name) && (
-      <div className="alert alert-danger mt-2">{get(errors, field.name)}</div>
-    )}
+    {get(errors, field.name) && <div className="alert alert-danger mt-2">{get(errors, field.name)}</div>}
   </div>
 );

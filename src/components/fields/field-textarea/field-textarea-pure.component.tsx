@@ -8,7 +8,6 @@ interface Props {
     name: string;
   };
   form: {
-    touched: any;
     errors: object;
   };
   showLabel: boolean;
@@ -20,7 +19,7 @@ interface Props {
 
 export const TextAreaFieldPure: FC<Props> = ({
   field,
-  form: { touched, errors },
+  form: { errors },
   showLabel,
   label,
   rows = 2,
@@ -47,8 +46,6 @@ export const TextAreaFieldPure: FC<Props> = ({
         <span>{get(field, 'value')}</span>
       </div>
     </Can>
-    {get(touched, field.name) && get(errors, field.name) && (
-      <div className="alert alert-danger mt-2">{get(errors, field.name)}</div>
-    )}
+    {get(errors, field.name) && <div className="alert alert-danger mt-2">{get(errors, field.name)}</div>}
   </div>
 );

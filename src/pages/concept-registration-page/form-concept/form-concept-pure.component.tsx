@@ -29,7 +29,13 @@ interface Props {
 }
 
 export const FormConceptPure: React.FC<Props> = ({ concept, isValid, lastPatchedResponse = {}, errors }) => {
-  const { omfang: useOfConceptError, kontaktpunkt: contactPointError } = errors;
+  const {
+    anbefaltTerm: termError,
+    definisjon: definitionError,
+    kildebeskrivelse: sourceError,
+    omfang: useOfConceptError,
+    kontaktpunkt: contactPointError
+  } = errors;
 
   const [languagesDetermined, setLanguagesDetermined] = useState(false);
 
@@ -82,13 +88,14 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid, lastPatched
         title={localization.formTerm}
         showRequired={!isReadOnly}
         showInitially={isExpandAllDirty ? expandAll : true}
+        error={termError || definitionError || sourceError}
       >
         <Term languages={state.languages} isReadOnly={isReadOnly} />
       </FormTemplate>
       <FormTemplate title={localization.formAllowedAndDiscouraged} showInitially={expandAll}>
         <AllowedAndDiscouraged languages={state.languages} />
       </FormTemplate>
-      <FormTemplate title={localization.formUseOfConcept} showInitially={expandAll || useOfConceptError}>
+      <FormTemplate title={localization.formUseOfConcept} showInitially={expandAll} error={useOfConceptError}>
         <UseOfTerm languages={state.languages} />
       </FormTemplate>
       <FormTemplate title={localization.formValidity} showInitially={expandAll}>
@@ -97,7 +104,7 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid, lastPatched
       <FormTemplate title={localization.formRelatedConcepts} showInitially={expandAll}>
         <RelatedConcepts />
       </FormTemplate>
-      <FormTemplate title={localization.formContactPoint} showInitially={expandAll || contactPointError}>
+      <FormTemplate title={localization.formContactPoint} showInitially={expandAll} error={contactPointError}>
         <ContactInfo />
       </FormTemplate>
       <Can I="view a statusBar" of={{ __type: 'StatusBar', publisher: publisherId }}>

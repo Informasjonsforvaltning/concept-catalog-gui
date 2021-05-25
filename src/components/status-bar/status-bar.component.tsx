@@ -147,7 +147,10 @@ export const StatusBarPure = ({
               color="primary"
               disabled={validationError}
               onClick={() =>
-                patchConceptFromForm({ status: CONCEPT_STATUS_PUBLISHED }, { concept, dispatch, lastPatchedResponse })
+                patchConceptFromForm(
+                  { status: CONCEPT_STATUS_PUBLISHED },
+                  { concept, dispatch, lastPatchedResponse, isSaving }
+                )
               }
             >
               {localization.publish}

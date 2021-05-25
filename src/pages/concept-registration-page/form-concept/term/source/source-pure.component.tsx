@@ -17,23 +17,15 @@ const options = [
 ];
 
 const handleClearKildebeskrivelse = form => {
-  form.values.kildebeskrivelse = null;
-  form.setFieldValue('kildebeskrivelse', form.values.kildebeskrivelse);
+  form.setFieldValue('kildebeskrivelse', null);
 };
 
 const handleChangeForholdTilKilde = (form, fieldName, option) => {
-  if (fieldName === 'kildebeskrivelse.forholdTilKilde' && option != null) {
-    // Create default kildebeskrivelse if null
-    if (!_.get(form, 'values.kildebeskrivelse')) {
-      form.values.kildebeskrivelse = {};
-      form.values.kildebeskrivelse.kilde = [];
-    }
-
-    // Create a default kilde-row for the user if its empty
-    if (_.get(form, 'values.kildebeskrivelse.kilde', []).length < 1) {
-      form.values.kildebeskrivelse.kilde.push({ id: v4(), tekst: '', uri: '' });
-      form.setFieldValue('kildebeskrivelse', form.values.kildebeskrivelse);
-    }
+  if (fieldName === 'kildebeskrivelse.forholdTilKilde' && option?.value) {
+    form.setFieldValue('kildebeskrivelse', {
+      forholdTilKilde: option.value,
+      kilde: option.value === 'egendefinert' ? [] : form.values.kildebeskrivelse?.kilde ?? []
+    });
   }
 };
 
@@ -42,10 +34,10 @@ const handleAddKilde = (form: object, push: Function) => {
 };
 
 const handleRemoveKilde = (form, index) => {
-  const { kilde } = form.values.kildebeskrivelse;
-  if (Array.isArray(kilde)) {
-    kilde.splice(index, 1);
-    form.setFieldValue('kildebeskrivelse', form.values.kildebeskrivelse);
+  const { kildebeskrivelse } = form.values;
+  if (Array.isArray(kildebeskrivelse?.kilde)) {
+    const newSource = kildebeskrivelse?.kilde?.filter((v, i) => i !== index);
+    form.setFieldValue('kildebeskrivelse', { ...kildebeskrivelse, kilde: newSource ?? [] });
   }
 };
 

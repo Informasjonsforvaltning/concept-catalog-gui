@@ -10,6 +10,7 @@ interface FormProps {
   concept: Concept;
   dispatch: Function;
   lastPatchedResponse: object;
+  isSaving: boolean;
 }
 
 type FormValues = Pick<
@@ -30,26 +31,24 @@ type FormValues = Pick<
   | 'seOgså'
 >;
 
-// Remove all empty occurenses of kilde on Egendefinert
-const preProcessValues = origValues => {
-  // Exit if user is clearing the select box and kilde is null
-  const kilder = _.get(origValues, 'kildebeskrivelse.kilde');
-  if (!kilder) {
-    return origValues;
+const preProcessValues = ({ kildebeskrivelse, ...conceptValues }) => {
+  if (kildebeskrivelse?.kilde) {
+    return {
+      ...conceptValues,
+      kildebeskrivelse: {
+        ...kildebeskrivelse,
+        kilde: kildebeskrivelse.kilde.filter(kilde => !!(kilde.uri || kilde.tekst))
+      }
+    };
   }
 
-  // Filter out empty kilder
-  const nonEmptyKildes = _.filter(kilder, kilde => !!(kilde.uri || kilde.tekst));
-
-  // Clone the original values but replace kilde with nonEmptyKildes
-  const values = _.cloneDeep(origValues);
-  values.kildebeskrivelse.kilde = nonEmptyKildes;
-  return values;
+  return { ...conceptValues, kildebeskrivelse: null };
 };
 
-const patchWithPreProcess = (values, { concept, dispatch, lastPatchedResponse }) => {
+const patchWithPreProcess = (values, { concept, dispatch, lastPatchedResponse, isSaving }) => {
   const processedValues = preProcessValues(values);
-  patchConceptFromForm(processedValues, { concept, dispatch, lastPatchedResponse });
+
+  patchConceptFromForm(processedValues, { concept, dispatch, lastPatchedResponse, isSaving });
   validateConceptForm(processedValues, schema, concept, dispatch);
 };
 

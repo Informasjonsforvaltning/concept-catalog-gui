@@ -54,14 +54,14 @@ export const SelectFieldPure: FC<Props> = ({
             />
           </label>
         </Can>
-        <Can not I="edit field" of={{ __type: 'Field', publisher: catalogId }}>
-          {showLabel && field.value && (
+        {showLabel && field.value && (
+          <Can not I="edit field" of={{ __type: 'Field', publisher: catalogId }}>
             <div>
               <div className="fdk-text-strong">{label}</div>
               <span>{find(options, { value: field.value }).label}</span>
             </div>
-          )}
-        </Can>
+          </Can>
+        )}
       </div>
       {touched[field.name] && errors[field.name] && <div className="alert alert-danger mt-2">{errors[field.name]}</div>}
     </div>

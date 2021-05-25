@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
 import { Collapse } from 'reactstrap';
 
+import ErrorIcon from '../../images/icon-alert-danger-md.svg';
+
 import { localization } from '../../lib/localization';
 import './form-template.scss';
 
@@ -10,9 +12,16 @@ interface Props {
   children: object;
   showRequired?: boolean;
   showInitially?: boolean;
+  error?: boolean;
 }
 
-export const FormTemplate = ({ title, children, showRequired = false, showInitially = false }: Props): JSX.Element => {
+export const FormTemplate = ({
+  title,
+  children,
+  showRequired = false,
+  showInitially = false,
+  error = false
+}: Props): JSX.Element => {
   const [collapse, setCollapse] = useState(showInitially);
 
   const toggle = (changeProp): void => {
@@ -27,7 +36,7 @@ export const FormTemplate = ({ title, children, showRequired = false, showInitia
     'fdk-reg_collapse_open': collapse
   });
 
-  const collapseIconClass = cx('fa', 'fa-2x', 'ml-auto', 'fdk-color-link-dark', {
+  const collapseIconClass = cx('fa', 'fa-2x', 'fdk-color-link-dark', {
     'fa-angle-down': !collapse,
     'fa-angle-up': collapse
   });
@@ -44,7 +53,11 @@ export const FormTemplate = ({ title, children, showRequired = false, showInitia
           {showRequired && (
             <span className="fdk-badge badge fdk-bg-color-warning-lightest ml-2">{localization.required}</span>
           )}
-          <i className={collapseIconClass} />
+          <div className="ml-auto">
+            {error && <ErrorIcon className="fdk-error-icon" />}
+
+            <i className={collapseIconClass} />
+          </div>
         </div>
       </button>
       <Collapse isOpen={collapse}>

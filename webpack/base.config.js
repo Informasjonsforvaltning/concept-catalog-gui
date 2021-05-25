@@ -75,11 +75,26 @@ export default {
         issuer: {
           test: /\.tsx?$/
         },
-        use: ['babel-loader', '@svgr/webpack', 'url-loader']
+        use: ['babel-loader', '@svgr/webpack', 'url-loader'],
+        exclude: [path.resolve(__dirname, '..', 'src', 'images')]
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader'
+        loader: 'url-loader',
+        exclude: [path.resolve(__dirname, '..', 'src', 'images')]
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          'babel-loader',
+          {
+            loader: 'react-svg-loader',
+            options: {
+              jsx: true
+            }
+          }
+        ],
+        include: [path.resolve(__dirname, '..', 'src', 'images')]
       }
     ]
   },

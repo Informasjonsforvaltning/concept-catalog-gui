@@ -67,6 +67,7 @@ export const schema = Yup.object().shape({
   kildebeskrivelse: Yup.object()
     .nullable()
     .shape({
+      forholdTilKilde: Yup.string().nullable(),
       kilde: Yup.array().of(
         Yup.object().shape({
           tekst: Yup.string().min(2, localization.validationMin2),
@@ -74,8 +75,20 @@ export const schema = Yup.object().shape({
         })
       )
     }),
-  eksempel: Yup.string().nullable(),
-  fagområde: Yup.string().nullable(),
+  eksempel: Yup.object()
+    .nullable()
+    .shape({
+      nb: Yup.string(),
+      nn: Yup.string(),
+      en: Yup.string()
+    }),
+  fagområde: Yup.object()
+    .nullable()
+    .shape({
+      nb: Yup.string(),
+      nn: Yup.string(),
+      en: Yup.string()
+    }),
   omfang: Yup.object()
     .nullable()
     .shape({

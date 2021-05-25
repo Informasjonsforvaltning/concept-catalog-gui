@@ -24,4 +24,4 @@ export const paramsToSearchBody = ({ q, page, ...params }: any) => {
   return body;
 };
 
-export const extractConcepts = (searchResponse: any) => searchResponse.hits ?? [];
+export const extractConcepts = (searchResponse: any) => searchResponse?.hits ?? [];

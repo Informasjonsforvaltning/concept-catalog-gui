@@ -35,6 +35,7 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
             concept={copyOfConcept}
             dispatch={dispatch}
             lastPatchedResponse={get(globalStateValues, 'lastPatchedResponse')}
+            isSaving={globalStateValues.isSaving}
           />
         )}
       </div>

@@ -8,18 +8,21 @@ import {
   conceptPatchIsSavingAction
 } from '../app/reducers/stateReducer';
 
-export const patchConceptFromForm = (values, { concept, dispatch, lastPatchedResponse = {} }): void => {
-  const diff = compare(
-    omit(lastPatchedResponse, 'endringslogelement'),
-    omit({ ...lastPatchedResponse, ...values }, 'endringslogelement')
-  );
-  const conceptId = _.get(concept, 'id');
-  dispatch(conceptPatchIsSavingAction(conceptId));
-  patchConcept(conceptId, diff)
-    .then(response => {
-      dispatch(conceptPatchSuccessAction(conceptId, !!values.status, response));
-    })
-    .catch(error => {
-      dispatch(conceptPatchErrorAction(conceptId, error));
-    });
+export const patchConceptFromForm = (values, { concept, dispatch, lastPatchedResponse = {}, isSaving }): void => {
+  if (!isSaving) {
+    const diff = compare(
+      omit(lastPatchedResponse, 'endringslogelement'),
+      omit({ ...lastPatchedResponse, ...values }, 'endringslogelement')
+    );
+
+    const conceptId = _.get(concept, 'id');
+    dispatch(conceptPatchIsSavingAction(conceptId));
+    patchConcept(conceptId, diff)
+      .then(response => {
+        dispatch(conceptPatchSuccessAction(conceptId, !!values.status, response));
+      })
+      .catch(error => {
+        dispatch(conceptPatchErrorAction(conceptId, error));
+      });
+  }
 };

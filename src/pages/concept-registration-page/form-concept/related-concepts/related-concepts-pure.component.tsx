@@ -13,8 +13,7 @@ interface Suggestion {
 
 const addSeeAlso = (suggestion: Suggestion, form): void => {
   const seeAlsoValues: string[] = form.values.seOgså;
-  seeAlsoValues.push(suggestion.identifier);
-  form.setFieldValue('seOgså', seeAlsoValues);
+  form.setFieldValue('seOgså', [...seeAlsoValues, suggestion.identifier]);
 };
 
 const removeSeeAlso = (identifier: string, form): void => {

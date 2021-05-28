@@ -78,9 +78,15 @@ export const schema = Yup.object().shape({
   eksempel: Yup.object()
     .nullable()
     .shape({
-      nb: Yup.string(),
-      nn: Yup.string(),
-      en: Yup.string()
+      nb: Yup.array()
+        .of(Yup.string())
+        .nullable(),
+      nn: Yup.array()
+        .of(Yup.string())
+        .nullable(),
+      en: Yup.array()
+        .of(Yup.string())
+        .nullable()
     }),
   fagområde: Yup.object()
     .nullable()

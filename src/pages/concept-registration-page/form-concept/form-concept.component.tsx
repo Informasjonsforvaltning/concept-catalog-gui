@@ -31,23 +31,30 @@ type FormValues = Pick<
   | 'seOgså'
 >;
 
-const preProcessValues = ({ kildebeskrivelse, ...conceptValues }) => {
-  if (kildebeskrivelse?.kilde) {
-    return {
-      ...conceptValues,
-      kildebeskrivelse: {
+const pruneEmptySources = kildebeskrivelse =>
+  kildebeskrivelse?.kilde
+    ? {
         ...kildebeskrivelse,
-        kilde: kildebeskrivelse.kilde.filter(kilde => !!(kilde.uri || kilde.tekst))
+        kilde: kildebeskrivelse.kilde.filter(({ uri, tekst }) => !!(uri || tekst))
       }
-    };
-  }
+    : null;
 
-  return { ...conceptValues, kildebeskrivelse: null };
-};
+const wrapStrings = ({ nb, nn, en }) => ({
+  ...(nb && { nb: Array.isArray(nb) ? nb : [nb] }),
+  ...(nn && { nn: Array.isArray(nn) ? nn : [nn] }),
+  ...(en && { en: Array.isArray(en) ? en : [en] })
+});
+
+const preProcessValues = ({ kildebeskrivelse, merknad, eksempel, bruksområde, ...conceptValues }) => ({
+  ...conceptValues,
+  kildebeskrivelse: pruneEmptySources(kildebeskrivelse),
+  merknad: wrapStrings(merknad),
+  eksempel: wrapStrings(eksempel),
+  bruksområde: wrapStrings(bruksområde)
+});
 
 const patchWithPreProcess = (values, { concept, dispatch, lastPatchedResponse, isSaving }) => {
   const processedValues = preProcessValues(values);
-
   patchConceptFromForm(processedValues, { concept, dispatch, lastPatchedResponse, isSaving });
   validateConceptForm(processedValues, schema, concept, dispatch);
 };

@@ -12,7 +12,10 @@ import { ImportConceptButton } from '../../components/import-concept-button/impo
 import { mapConcepts } from '../../app/reducers/conceptMapper';
 import { Concept } from '../../domain/Concept';
 
-interface Props {
+import { Props as ConceptProps } from '../../components/with-concepts';
+import SearchBar from '../../components/search-bar';
+
+interface Props extends ConceptProps {
   history: any;
   publisher: Record<string, any>;
   catalogId: string;
@@ -31,10 +34,11 @@ const createConcept = catalogId => ({
 const createNewConceptAndNavigate = ({ history, catalogId }) =>
   postConcept(createConcept(catalogId)).then(resourceId => history.push(`/${catalogId}/${resourceId}`));
 
-export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, catalogId }: Props): JSX.Element => {
+export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, catalogId, conceptSuggestions, isLoadingConceptSuggestions, conceptsActions: {searchConceptsRequested: searchConcepts} }: Props): JSX.Element => {
   const [fileParsingError, setFileParsingError] = useState('');
   const [conceptImportSuccess, setConceptImportSuccess] = useState('');
   const [concepts, setConcepts] = useState<Concept[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const init = async () => {
     if (catalogId) {
@@ -45,6 +49,10 @@ export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, c
   useEffect(() => {
     init();
   }, []);
+
+  useEffect(() => {
+    searchConcepts(searchQuery, catalogId);
+  }, [searchQuery]);
 
   return (
     <div className="container">
@@ -67,7 +75,7 @@ export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, c
             <Link
               href="https://informasjonsforvaltning.github.io/felles-datakatalog/begrepskatalog/hvordan_publisere/"
               external
-              className="mb-4"
+              className="mb-2"
             >
               Retningslinjer for import av begrep
             </Link>
@@ -76,8 +84,11 @@ export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, c
         {fileParsingError && <div className="row alert alert-danger">Feil ved import av fil. {fileParsingError}</div>}
         {conceptImportSuccess && <div className="row alert alert-success">{conceptImportSuccess}</div>}
       </Can>
+      <div className="row mb-4">
+        <SearchBar placeholder={"Søk etter begrep"} onChange={setSearchQuery}/>
+      </div>
       <div className="mb-2">
-        <ConceptList items={concepts} catalogId={catalogId} />
+        <ConceptList items={searchQuery.length > 0 ? conceptSuggestions : concepts} catalogId={catalogId} />
       </div>
     </div>
   );

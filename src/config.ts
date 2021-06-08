@@ -42,7 +42,8 @@ const config = {
   searchHost: env.SEARCH_HOST || 'https://fellesdatakatalog.digdir.no',
   adminGui: {
     host: env.ADMIN_GUI_HOST
-  }
+  },
+  store: { useLogger: env.REDUX_LOG === 'true' }
 };
 
 export const getConfig = () => config;

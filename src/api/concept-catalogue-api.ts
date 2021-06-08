@@ -28,6 +28,8 @@ const conceptCatalogueApiPatch = (path, body) => conceptCatalogueApiRaw('PATCH',
 
 const conceptCatalogueApiDelete = path => conceptCatalogueApiRaw('DELETE', path).then(() => {});
 
+const conceptCatalogueApiSearch = (path, body) => conceptCatalogueApiRaw('POST', path, body).then(extractJsonBody);
+
 const conceptListPath = '/begreper';
 
 const conceptListImportPath = '/begreper/import';
@@ -50,3 +52,6 @@ export const patchConcept = (conceptId, patch): Promise<Concept> =>
   conceptCatalogueApiPatch(conceptPath(conceptId), patch);
 
 export const deleteConcept = (conceptId: string): Promise<void> => conceptCatalogueApiDelete(conceptPath(conceptId));
+
+export const searchConcepts = (catalogId: string, query: string): Promise<Concept[]> =>
+conceptCatalogueApiSearch(`${conceptListPath}/search?orgNummer=${catalogId}`, {query}) as Promise<Concept[]>;

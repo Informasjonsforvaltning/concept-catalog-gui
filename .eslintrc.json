@@ -43,7 +43,8 @@
         "devDependencies": [
           "webpack/*.js",
           "test/**/*.{js,jsx,ts,tsx}",
-          "**/*test.{js,jsx,ts,tsx}"
+          "**/*test.{js,jsx,ts,tsx}",
+          "./src/types/**/*"
         ]
       }
     ],

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import _ from 'lodash';
+import { Provider } from 'react-redux';
 import Footer from '@fellesdatakatalog/internal-footer';
 import Header from '@fellesdatakatalog/internal-header';
 import Link from '@fellesdatakatalog/link';
@@ -19,32 +20,37 @@ import 'designsystemet/fdk-designsystem-bootstrap4/scss/register.scss';
 import 'font-awesome/scss/font-awesome.scss';
 import { StateProvider } from './context/stateContext';
 import { getConfig } from '../config';
+import {configureStore} from '../redux/configureStore'
+
+const store = configureStore(getConfig().store);
 
 export const App: React.FC = () => (
   <Router>
-    <StateProvider>
-      <div className="d-flex flex-column site theme-fdk">
-        <Header
-          homeUrl={getConfig().registrationHost}
-          username={authService.getUser()?.name}
-          onLogout={authService.logout}
-        >
-          <Link href={`${getConfig().searchHost}/guidance`}>Registrere data</Link>
-          <Link href={getConfig().adminGui.host}>Høste data</Link>
-          <Link href={getConfig().searchHost} external>
-            Søk i Felles datakatalog
-          </Link>
-        </Header>
-        <Breadcrumbs />
-        <div className="site-content d-flex flex-column pt-5">
-          <Switch>
-            {routeConfig.map((route, i) => (
-              <Route key={`${i}-${_.get(route, 'path', '')}`} {...route} />
-            ))}
-          </Switch>
+    <Provider store={store}>
+      <StateProvider>
+        <div className="d-flex flex-column site theme-fdk">
+          <Header
+            homeUrl={getConfig().registrationHost}
+            username={authService.getUser()?.name}
+            onLogout={authService.logout}
+          >
+            <Link href={`${getConfig().searchHost}/guidance`}>Registrere data</Link>
+            <Link href={getConfig().adminGui.host}>Høste data</Link>
+            <Link href={getConfig().searchHost} external>
+              Søk i Felles datakatalog
+            </Link>
+          </Header>
+          <Breadcrumbs />
+          <div className="site-content d-flex flex-column pt-5">
+            <Switch>
+              {routeConfig.map((route, i) => (
+                <Route key={`${i}-${_.get(route, 'path', '')}`} {...route} />
+              ))}
+            </Switch>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    </StateProvider>
+      </StateProvider>
+    </Provider>
   </Router>
 );

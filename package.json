@@ -43,7 +43,7 @@
     "fast-json-patch": "^3.0.0-0",
     "font-awesome": "^4.7.0",
     "formik": "^2.1.5",
-    "immutable": "*",
+    "immutable": "^3.8.2",
     "is-url": "^1.2.4",
     "jquery": "^3.5.1",
     "keycloak-js": "^8.0.2",

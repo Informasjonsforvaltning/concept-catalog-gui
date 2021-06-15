@@ -12,10 +12,18 @@ import { ImportConceptButton } from '../../components/import-concept-button/impo
 import { mapConcepts } from '../../app/reducers/conceptMapper';
 import { Concept } from '../../domain/Concept';
 
+import SearchBar from '../../components/search-bar';
+
 interface Props {
   history: any;
   publisher: Record<string, any>;
   catalogId: string;
+}
+
+interface Navn {
+  nb?: any;
+  nn?: any;
+  en?: any;
 }
 
 const createConcept = catalogId => ({
@@ -35,6 +43,28 @@ export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, c
   const [fileParsingError, setFileParsingError] = useState('');
   const [conceptImportSuccess, setConceptImportSuccess] = useState('');
   const [concepts, setConcepts] = useState<Concept[]>([]);
+  const [filteredConcepts, setFilteredConcepts] = useState<Concept[]>([]);
+  const [previousQuery, setPreviousQuery] = useState<string>('');
+
+  const multiLangMatch = (query: string, { nb, nn, en }: Navn): boolean => {
+    const regex = new RegExp(`\\b${query}\\w*`, 'i');
+    return (
+      (typeof nb === 'string' && nb.match(regex) != null) ||
+      (typeof nn === 'string' && nn.match(regex) != null) ||
+      (typeof en === 'string' && en.match(regex) != null)
+    );
+  };
+
+  const filterConcepts = (query: string) => {
+    const isExtension = previousQuery.length > 0 && query.slice(0, -1) === previousQuery;
+
+    setFilteredConcepts(
+      (isExtension ? filteredConcepts : concepts).filter(
+        ({ anbefaltTerm }) => anbefaltTerm?.navn && multiLangMatch(query, anbefaltTerm.navn)
+      )
+    );
+    setPreviousQuery(query);
+  };
 
   const init = async () => {
     if (catalogId) {
@@ -67,7 +97,7 @@ export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, c
             <Link
               href="https://informasjonsforvaltning.github.io/felles-datakatalog/begrepskatalog/hvordan_publisere/"
               external
-              className="mb-4"
+              className="mb-2"
             >
               Retningslinjer for import av begrep
             </Link>
@@ -76,8 +106,11 @@ export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, c
         {fileParsingError && <div className="row alert alert-danger">Feil ved import av fil. {fileParsingError}</div>}
         {conceptImportSuccess && <div className="row alert alert-success">{conceptImportSuccess}</div>}
       </Can>
+      <div className="row mb-4">
+        <SearchBar placeholder="Søk etter begrep" onChange={filterConcepts} />
+      </div>
       <div className="mb-2">
-        <ConceptList items={concepts} catalogId={catalogId} />
+        <ConceptList items={previousQuery.length > 0 ? filteredConcepts : concepts} catalogId={catalogId} />
       </div>
     </div>
   );

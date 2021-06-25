@@ -31,8 +31,8 @@ export interface Concept {
     forholdTilKilde: string;
     kilde: Kilde[];
   } | null;
-  merknad?: TekstMedSpraakKode;
-  eksempel?: TekstMedSpraakKode;
+  merknad?: Record<string, string[]>;
+  eksempel?: Record<string, string[]>;
   fagområde?: TekstMedSpraakKode;
   bruksområde?: Record<string, string[]>;
   omfang?: UriText | null;

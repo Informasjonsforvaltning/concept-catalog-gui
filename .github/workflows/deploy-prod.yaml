@@ -3,7 +3,7 @@ name: Build, test and deploy to production on merge to master branch
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-test-and-deploy-production:

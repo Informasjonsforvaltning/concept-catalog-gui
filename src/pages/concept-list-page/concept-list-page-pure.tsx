@@ -10,20 +10,16 @@ import { postConcept, getConceptsForCatalog } from '../../api/concept-catalogue-
 import { Can } from '../../casl/Can';
 import { ImportConceptButton } from '../../components/import-concept-button/import-concept-button.component';
 import { mapConcepts } from '../../app/reducers/conceptMapper';
-import { Concept } from '../../domain/Concept';
+import { Concept, Navn } from '../../domain/Concept';
+import { ImportError } from '../../domain/Common';
 
 import SearchBar from '../../components/search-bar';
+import ErrorRow from '../../components/error-row';
 
 interface Props {
   history: any;
   publisher: Record<string, any>;
   catalogId: string;
-}
-
-interface Navn {
-  nb?: any;
-  nn?: any;
-  en?: any;
 }
 
 const createConcept = catalogId => ({
@@ -40,7 +36,7 @@ const createNewConceptAndNavigate = ({ history, catalogId }) =>
   postConcept(createConcept(catalogId)).then(resourceId => history.push(`/${catalogId}/${resourceId}`));
 
 export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, catalogId }: Props): JSX.Element => {
-  const [fileParsingError, setFileParsingError] = useState('');
+  const [fileParsingError, setFileParsingError] = useState<ImportError>({ thrown: false });
   const [conceptImportSuccess, setConceptImportSuccess] = useState('');
   const [concepts, setConcepts] = useState<Concept[]>([]);
   const [filteredConcepts, setFilteredConcepts] = useState<Concept[]>([]);
@@ -103,7 +99,7 @@ export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, c
             </Link>
           </div>
         </div>
-        {fileParsingError && <div className="row alert alert-danger">Feil ved import av fil. {fileParsingError}</div>}
+        {fileParsingError.thrown && <ErrorRow errorTitle="Feil ved import av fil." errorMessage={fileParsingError} />}
         {conceptImportSuccess && <div className="row alert alert-success">{conceptImportSuccess}</div>}
       </Can>
       <div className="row mb-4">

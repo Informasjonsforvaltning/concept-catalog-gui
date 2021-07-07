@@ -1,5 +1,6 @@
 import { readString } from 'react-papaparse';
 import { getConceptsForCatalog, importConcepts } from '../../api/concept-catalogue-api';
+import { ImportError } from '../../domain/Common';
 import { Concept } from '../../domain/Concept';
 
 function mapToSingleValue(csvMap: Record<string, string[]>, key: string) {
@@ -129,7 +130,7 @@ function attemptToParseCsvFile(text: string): Omit<Concept, 'id' | 'ansvarligVir
 
 export const mapConcepts = (
   x: any,
-  onError: (error: string) => void,
+  onError: (error: ImportError) => void,
   onSuccess: (message: string) => void,
   catalogId: string,
   setConcepts: Function
@@ -151,15 +152,22 @@ export const mapConcepts = (
       try {
         await importConcepts(concepts);
         setConcepts(await getConceptsForCatalog(catalogId));
-        onError('');
+        onError({ thrown: false });
         onSuccess(`Importen var vellykket og ${concepts.length} begreper er nå lagt til i begrepskatalogen din.`);
       } catch (error) {
         onSuccess('');
-        onError(error.message);
+        onError({
+          thrown: true,
+          name: error?.response?.data?.exception,
+          message: error?.response?.data?.message ?? error.message
+        });
       }
     } else {
       onSuccess('');
-      onError('Kunne ikke importere noen begreper.');
+      onError({
+        thrown: true,
+        name: 'Kunne ikke importere noen begreper.'
+      });
     }
   });
 };

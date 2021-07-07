@@ -22,6 +22,12 @@ export interface TekstMedSpraakKode {
   [kode: string]: string;
 }
 
+export interface Navn {
+  nb?: any;
+  nn?: any;
+  en?: any;
+}
+
 export interface Concept {
   id: string;
   anbefaltTerm?: AnbefaltTerm;

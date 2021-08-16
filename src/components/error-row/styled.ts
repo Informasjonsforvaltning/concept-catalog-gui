@@ -7,7 +7,8 @@ import CollapseTextIcon from '../../images/icon-collapse-text-sm.svg';
 
 const ErrorContainer = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 0.5em 0em;
   color: ${theme.colour(Colour.RED, 'R60')};
   background-color: ${theme.colour(Colour.RED, 'R20')};
@@ -57,7 +58,7 @@ const CollapseIcon = styled(CollapseTextIcon)`
 
 const ExceptionContainer = styled.div`
   margin-top: 1em;
-  margin-left: 0.5em;
+  margin-left: 3.2em;
   margin-right: 0.5em;
   display: flex;
   flex-direction: column;
@@ -65,12 +66,13 @@ const ExceptionContainer = styled.div`
 
 const ExceptionName = styled.h3`
   font-weight: ${theme.fontWeight('FW700')};
-  font-size: ${theme.fontSize('FS12')};
+  font-size: ${theme.fontSize('FS14')};
 `;
 
 const ExceptionMessage = styled.p`
   font-size: ${theme.fontSize('FS12')};
   margin: 0;
+  white-space: pre-line;
 `;
 
 export default {

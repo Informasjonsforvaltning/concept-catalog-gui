@@ -1,7 +1,10 @@
 import { readString } from 'react-papaparse';
 import { getConceptsForCatalog, importConcepts } from '../../api/concept-catalogue-api';
-import { ImportError } from '../../domain/Common';
+import { ImportErrorMessage, InvalidConceptErrorMessage } from '../../domain/Common';
 import { Concept } from '../../domain/Concept';
+import ImportError from '../../domain/ImportError';
+import { getTranslateText } from '../../lib/translateText';
+import { schema } from '../../pages/concept-registration-page/form-concept/form-concept.schema';
 
 function mapToSingleValue(csvMap: Record<string, string[]>, key: string) {
   const value = csvMap[key];
@@ -128,45 +131,65 @@ function attemptToParseCsvFile(text: string): Omit<Concept, 'id' | 'ansvarligVir
   }
 }
 
+async function validateConcepts(concepts: Concept[]) {
+  return concepts.reduce((previous, concept, index) => {
+    try {
+      schema.validateSync(concept, { abortEarly: false });
+    } catch (error) {
+      const errorMessages = error?.inner?.map(
+        ({ message, params }) => `${message} [${params?.path}: ${params?.value}]`
+      );
+
+      return [
+        ...previous,
+        {
+          index,
+          conceptTitle: getTranslateText(error?.value?.anbefaltTerm?.navn ?? ''),
+          message: errorMessages.join('\r\n')
+        } as InvalidConceptErrorMessage
+      ];
+    }
+    return previous;
+  }, [] as InvalidConceptErrorMessage[]);
+}
+
+function createErrorMessage(errors: InvalidConceptErrorMessage[]) {
+  return errors
+    .map(({ index, conceptTitle, message }) => `Begrep ${index + 1} - ${conceptTitle || 'ingen tittel'}:\r\n${message}`)
+    .join('\r\n\r\n');
+}
+
 export const mapConcepts = (
-  x: any,
-  onError: (error: ImportError) => void,
+  uploadEvent: any,
+  onError: (error: ImportErrorMessage) => void,
   onSuccess: (message: string) => void,
   catalogId: string,
   setConcepts: Function
 ): void => {
-  x?.target?.files?.[0].text().then(async text => {
-    const concepts = (attemptToParseJsonFile(text) ?? attemptToParseCsvFile(text) ?? [])
-      .filter(
-        ({ anbefaltTerm, definisjon }) =>
-          Object.values(anbefaltTerm?.navn ?? {}).length > 0 && Object.values(definisjon?.tekst ?? {}).length > 0
-      )
-      .map(el => ({
-        ...el,
-        ansvarligVirksomhet: {
-          id: catalogId
-        }
-      }));
+  uploadEvent?.target?.files?.[0].text().then(async text => {
+    const parsedText = attemptToParseJsonFile(text) ?? attemptToParseCsvFile(text) ?? [];
+    const concepts = parsedText.map(concept => ({ ...concept, ansvarligVirksomhet: { id: catalogId } }));
 
     if (concepts.length > 0) {
       try {
+        const errors = await validateConcepts(concepts as Concept[]);
+        if (errors.length > 0) {
+          throw new ImportError(createErrorMessage(errors), 'Feil i importerte begrep');
+        }
+
         await importConcepts(concepts);
         setConcepts(await getConceptsForCatalog(catalogId));
-        onError({ thrown: false });
         onSuccess(`Importen var vellykket og ${concepts.length} begreper er nå lagt til i begrepskatalogen din.`);
       } catch (error) {
         onSuccess('');
-        onError({
-          thrown: true,
-          name: error?.response?.data?.exception,
-          message: error?.response?.data?.message ?? error.message
-        });
+        onError({ thrown: true, name: error.name, message: error.message });
       }
     } else {
       onSuccess('');
       onError({
         thrown: true,
-        name: 'Kunne ikke importere noen begreper.'
+        name: 'Ingen gyldige begreper.',
+        message: 'Kunne ikke importere noen begreper.'
       });
     }
   });

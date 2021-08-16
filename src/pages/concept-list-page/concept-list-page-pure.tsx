@@ -11,7 +11,7 @@ import { Can } from '../../casl/Can';
 import { ImportConceptButton } from '../../components/import-concept-button/import-concept-button.component';
 import { mapConcepts } from '../../app/reducers/conceptMapper';
 import { Concept, Navn } from '../../domain/Concept';
-import { ImportError } from '../../domain/Common';
+import { ImportErrorMessage } from '../../domain/Common';
 
 import SearchBar from '../../components/search-bar';
 import ErrorRow from '../../components/error-row';
@@ -36,7 +36,7 @@ const createNewConceptAndNavigate = ({ history, catalogId }) =>
   postConcept(createConcept(catalogId)).then(resourceId => history.push(`/${catalogId}/${resourceId}`));
 
 export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, catalogId }: Props): JSX.Element => {
-  const [fileParsingError, setFileParsingError] = useState<ImportError>({ thrown: false });
+  const [fileParsingError, setFileParsingError] = useState<ImportErrorMessage>({ thrown: false });
   const [conceptImportSuccess, setConceptImportSuccess] = useState('');
   const [concepts, setConcepts] = useState<Concept[]>([]);
   const [filteredConcepts, setFilteredConcepts] = useState<Concept[]>([]);

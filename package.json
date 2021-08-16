@@ -39,6 +39,7 @@
     "bootstrap": "^4.5.2",
     "classnames": "^2.2.6",
     "clean-deep": "^3.4.0",
+    "date-fns": "^2.23.0",
     "designsystemet": "git+https://git@github.com/Informasjonsforvaltning/designsystemet.git",
     "fast-json-patch": "^3.0.0-0",
     "font-awesome": "^4.7.0",

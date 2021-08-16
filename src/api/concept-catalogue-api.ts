@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Concept } from '../domain/Concept';
 import { getConfig } from '../config';
 import { authService } from '../services/auth-service';
+import ImportError from '../domain/ImportError';
 
 /* utility functions */
 
@@ -43,8 +44,13 @@ export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
 
 export const postConcept = (body): Promise<void> => conceptCatalogueApiPost(conceptListPath, body);
 
-export const importConcepts = (body: Array<Omit<Concept, 'id'>>): Promise<void> =>
-  conceptCatalogueApiPost(conceptListImportPath, body);
+export const importConcepts = async (body: Array<Omit<Concept, 'id'>>): Promise<void> => {
+  try {
+    return await conceptCatalogueApiPost(conceptListImportPath, body);
+  } catch (error) {
+    throw new ImportError(error?.response?.data?.message ?? error.message, error?.response?.data?.exception);
+  }
+};
 
 export const patchConcept = (conceptId, patch): Promise<Concept> =>
   conceptCatalogueApiPatch(conceptPath(conceptId), patch);

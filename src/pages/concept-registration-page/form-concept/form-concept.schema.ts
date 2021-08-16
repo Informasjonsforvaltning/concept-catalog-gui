@@ -1,5 +1,28 @@
+import { isValid, parse } from 'date-fns';
 import * as Yup from 'yup';
 import { localization } from '../../../lib/localization';
+
+const tekstMedSpraakKodeArray = Yup.object()
+  .nullable()
+  .shape({
+    nb: Yup.array()
+      .of(Yup.string())
+      .nullable(),
+    nn: Yup.array()
+      .of(Yup.string())
+      .nullable(),
+    en: Yup.array()
+      .of(Yup.string())
+      .nullable()
+  });
+
+const tekstMedSpraakKode = Yup.object()
+  .nullable()
+  .shape({
+    nb: Yup.string(),
+    nn: Yup.string(),
+    en: Yup.string()
+  });
 
 export const schema = Yup.object().shape({
   anbefaltTerm: Yup.object().shape({
@@ -33,6 +56,8 @@ export const schema = Yup.object().shape({
       })
     })
   }),
+  tillattTerm: tekstMedSpraakKodeArray,
+  frarådetTerm: tekstMedSpraakKodeArray,
   definisjon: Yup.object().shape({
     tekst: Yup.object().shape({
       nb: Yup.string().test({
@@ -75,26 +100,10 @@ export const schema = Yup.object().shape({
         })
       )
     }),
-  eksempel: Yup.object()
-    .nullable()
-    .shape({
-      nb: Yup.array()
-        .of(Yup.string())
-        .nullable(),
-      nn: Yup.array()
-        .of(Yup.string())
-        .nullable(),
-      en: Yup.array()
-        .of(Yup.string())
-        .nullable()
-    }),
-  fagområde: Yup.object()
-    .nullable()
-    .shape({
-      nb: Yup.string(),
-      nn: Yup.string(),
-      en: Yup.string()
-    }),
+  merknad: tekstMedSpraakKodeArray,
+  eksempel: tekstMedSpraakKodeArray,
+  fagområde: tekstMedSpraakKode,
+  bruksområde: tekstMedSpraakKodeArray,
   omfang: Yup.object()
     .nullable()
     .shape({
@@ -112,5 +121,28 @@ export const schema = Yup.object().shape({
       harTelefon: Yup.string()
         .nullable()
         .matches(/^\+?(?:[0-9\s]){6,14}[0-9]$/i, { message: localization.validationPhone, excludeEmptyString: true })
-    })
+    }),
+  gyldigFom: Yup.string()
+    .nullable()
+    .test({
+      test(value) {
+        if (value != null && isValid(parse(value, 'yyyy-MM-dd', new Date()))) {
+          return true;
+        }
+        return this.createError({ message: localization.validationDate, path: this.path });
+      }
+    }),
+  gyldigTom: Yup.string()
+    .nullable()
+    .test({
+      test(value) {
+        if (value != null && isValid(parse(value, 'yyyy-MM-dd', new Date()))) {
+          return true;
+        }
+        return this.createError({ message: localization.validationDate, path: this.path });
+      }
+    }),
+  seOgså: Yup.array()
+    .of(Yup.string().nullable())
+    .nullable()
 });

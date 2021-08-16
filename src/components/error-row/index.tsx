@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
-import { Exception } from '../../domain/Common';
+import { ErrorMessage } from '../../domain/Common';
 import SC from './styled';
 
 interface Props {
   errorTitle: string;
-  errorMessage: Exception;
+  errorMessage: ErrorMessage;
 }
 
 const ErrorRow: FC<Props> = ({ errorTitle, errorMessage: { message, name } }) => {

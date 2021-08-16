@@ -36,6 +36,7 @@ export const nb = {
   validationEmail: 'Ugyldig adresse.',
   validationPhone: 'Ugyldig telefonnummer.',
   validationUrl: 'Ugyldig URL',
+  validationDate: 'Ugyldig dato (gyldig format yyyy-MM-dd).',
   email: 'E-post',
   phone: 'Telefon',
   titleScope: 'Tittel på omfang',

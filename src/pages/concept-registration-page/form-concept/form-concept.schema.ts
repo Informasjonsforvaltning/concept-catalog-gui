@@ -122,21 +122,21 @@ export const schema = Yup.object().shape({
         .nullable()
         .matches(/^\+?(?:[0-9\s]){6,14}[0-9]$/i, { message: localization.validationPhone, excludeEmptyString: true })
     }),
-  gyldigFom: Yup.string()
+  gyldigFom: Yup.mixed()
     .nullable()
     .test({
       test(value) {
-        if (value != null && DateTime.fromFormat(value, 'yyyy-MM-dd').isValid) {
+        if (value == null || DateTime.fromJSDate(value).isValid || DateTime.fromFormat(value, 'yyyy-MM-dd').isValid) {
           return true;
         }
         return this.createError({ message: localization.validationDate, path: this.path });
       }
     }),
-  gyldigTom: Yup.string()
+  gyldigTom: Yup.mixed()
     .nullable()
     .test({
       test(value) {
-        if (value != null && DateTime.fromFormat(value, 'yyyy-MM-dd').isValid) {
+        if (value == null || DateTime.fromJSDate(value).isValid || DateTime.fromFormat(value, 'yyyy-MM-dd').isValid) {
           return true;
         }
         return this.createError({ message: localization.validationDate, path: this.path });

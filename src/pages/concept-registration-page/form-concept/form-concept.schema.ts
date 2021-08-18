@@ -1,4 +1,4 @@
-import { isValid, parse } from 'date-fns';
+import { DateTime } from 'luxon';
 import * as Yup from 'yup';
 import { localization } from '../../../lib/localization';
 
@@ -126,7 +126,7 @@ export const schema = Yup.object().shape({
     .nullable()
     .test({
       test(value) {
-        if (value != null && isValid(parse(value, 'yyyy-MM-dd', new Date()))) {
+        if (value != null && DateTime.fromFormat(value, 'yyyy-MM-dd').isValid) {
           return true;
         }
         return this.createError({ message: localization.validationDate, path: this.path });
@@ -136,7 +136,7 @@ export const schema = Yup.object().shape({
     .nullable()
     .test({
       test(value) {
-        if (value != null && isValid(parse(value, 'yyyy-MM-dd', new Date()))) {
+        if (value != null && DateTime.fromFormat(value, 'yyyy-MM-dd').isValid) {
           return true;
         }
         return this.createError({ message: localization.validationDate, path: this.path });

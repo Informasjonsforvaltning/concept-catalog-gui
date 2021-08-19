@@ -45,13 +45,25 @@ const wrapStrings = ({ nb, nn, en }) => ({
   ...(en && { en: Array.isArray(en) ? en : [en] })
 });
 
-const preProcessValues = ({ kildebeskrivelse, merknad, eksempel, bruksområde, ...conceptValues }) => ({
-  ...conceptValues,
-  kildebeskrivelse: pruneEmptySources(kildebeskrivelse),
-  merknad: wrapStrings(merknad),
-  eksempel: wrapStrings(eksempel),
-  bruksområde: wrapStrings(bruksområde)
-});
+const pruneEmptyProperties = (obj: any) =>
+  Object.keys(obj)
+    .filter(key => obj[key] != null && obj[key] !== '' && obj[key] !== [])
+    .reduce((acc, key) => {
+      if (typeof obj[key] === 'object') {
+        const prunedObject = pruneEmptyProperties(obj[key]);
+        return Object.keys(prunedObject).length === 0 ? acc : { ...acc, [key]: prunedObject };
+      }
+      return { ...acc, [key]: obj[key] };
+    }, {});
+
+const preProcessValues = ({ kildebeskrivelse, merknad, eksempel, bruksområde, ...conceptValues }) =>
+  pruneEmptyProperties({
+    ...conceptValues,
+    kildebeskrivelse: pruneEmptySources(kildebeskrivelse),
+    merknad: wrapStrings(merknad),
+    eksempel: wrapStrings(eksempel),
+    bruksområde: wrapStrings(bruksområde)
+  });
 
 const patchWithPreProcess = (values, { concept, dispatch, lastPatchedResponse, isSaving }) => {
   const processedValues = preProcessValues(values);

@@ -96,7 +96,9 @@ export const schema = Yup.object().shape({
       kilde: Yup.array().of(
         Yup.object().shape({
           tekst: Yup.string().min(2, localization.validationMin2),
-          uri: Yup.string().url(localization.validationUrl)
+          uri: Yup.string()
+            .nullable()
+            .url(localization.validationUrl)
         })
       )
     }),

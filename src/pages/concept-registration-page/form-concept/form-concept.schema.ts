@@ -93,14 +93,18 @@ export const schema = Yup.object().shape({
     .nullable()
     .shape({
       forholdTilKilde: Yup.string().nullable(),
-      kilde: Yup.array().of(
-        Yup.object().shape({
-          tekst: Yup.string().min(2, localization.validationMin2),
-          uri: Yup.string()
-            .nullable()
-            .url(localization.validationUrl)
-        })
-      )
+      kilde: Yup.array()
+        .of(
+          Yup.object().shape({
+            tekst: Yup.string()
+              .nullable()
+              .min(2, localization.validationMin2),
+            uri: Yup.string()
+              .nullable()
+              .url(localization.validationUrl)
+          })
+        )
+        .nullable()
     }),
   merknad: tekstMedSpraakKodeArray,
   eksempel: tekstMedSpraakKodeArray,

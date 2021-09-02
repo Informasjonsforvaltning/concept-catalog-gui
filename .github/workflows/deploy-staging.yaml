@@ -15,6 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'npm'
+
       - name: Setup gcloud CLI for image-store
         uses: google-github-actions/setup-gcloud@master
         with:
@@ -24,13 +29,13 @@ jobs:
       - name: Configure docker to use the gcloud command-line tool as a credential helper
         run: gcloud auth configure-docker eu.gcr.io
 
-      - name: Cache Docker layers
-        uses: actions/cache@v2.1.5
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
+#      - name: Cache Docker layers
+#        uses: actions/cache@v2.1.5
+#        with:
+#          path: /tmp/.buildx-cache
+#          key: ${{ runner.os }}-buildx-${{ github.sha }}
+#          restore-keys: |
+#            ${{ runner.os }}-buildx-
 
       - name: Set up Docker Buildx
         id: buildx

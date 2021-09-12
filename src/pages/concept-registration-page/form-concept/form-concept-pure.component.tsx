@@ -10,8 +10,14 @@ import { ContactInfo } from './contactInfo/contactInfo.component';
 import { localization } from '../../../lib/localization';
 import { FormTemplate } from '../../../components/form-template/form-template.component';
 import { StatusBar } from '../../../components/status-bar/status-bar.component';
-import { setInputLanguages, toggleInputLanguage } from '../../../components/language-picker/reducer/actions';
-import { languagePickerReducer, initialState } from '../../../components/language-picker/reducer/reducer';
+import {
+  setInputLanguages,
+  toggleInputLanguage
+} from '../../../components/language-picker/reducer/actions';
+import {
+  languagePickerReducer,
+  initialState
+} from '../../../components/language-picker/reducer/reducer';
 import { deepKeys } from '../../../lib/deep-keys';
 import { LanguagePicker } from '../../../components/language-picker/language-picker.component';
 import { Concept } from '../../../domain/Concept';
@@ -24,11 +30,16 @@ import { RelatedConcepts } from './related-concepts/related-concepts.component';
 interface Props {
   concept: Concept;
   isValid: boolean;
-  lastPatchedResponse: object;
+  lastPatchedResponse: any;
   errors: any;
 }
 
-export const FormConceptPure: React.FC<Props> = ({ concept, isValid, lastPatchedResponse = {}, errors }) => {
+export const FormConceptPure: React.FC<Props> = ({
+  concept,
+  isValid,
+  lastPatchedResponse = {},
+  errors
+}) => {
   const {
     anbefaltTerm: termError,
     definisjon: definitionError,
@@ -53,7 +64,9 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid, lastPatched
   ];
 
   const getUsedLanguages = (): any[] =>
-    concept ? [...new Set(deepKeys(pick(concept, translatableFields), (_, v) => !!v))] : [];
+    concept
+      ? [...new Set(deepKeys(pick(concept, translatableFields), (_, v) => !!v))]
+      : [];
 
   useEffect(() => {
     if (concept && !languagesDetermined) {
@@ -75,13 +88,15 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid, lastPatched
 
   return (
     <Form>
-      <Can I="edit" of={{ __type: 'Language', publisher: publisherId }}>
+      <Can I='edit' of={{ __type: 'Language', publisher: publisherId }}>
         <LanguagePicker
           languages={state.languages}
-          toggleInputLanguage={language => dispatch(toggleInputLanguage(language))}
+          toggleInputLanguage={language =>
+            dispatch(toggleInputLanguage(language))
+          }
         />
       </Can>
-      <div className="d-flex justify-content-end">
+      <div className='d-flex justify-content-end'>
         <ButtonToggle expanded={expandAll} toggle={toggleExpand} />
       </div>
       <FormTemplate
@@ -92,23 +107,44 @@ export const FormConceptPure: React.FC<Props> = ({ concept, isValid, lastPatched
       >
         <Term languages={state.languages} isReadOnly={isReadOnly} />
       </FormTemplate>
-      <FormTemplate title={localization.formAllowedAndDiscouraged} showInitially={expandAll}>
+      <FormTemplate
+        title={localization.formAllowedAndDiscouraged}
+        showInitially={expandAll}
+      >
         <AllowedAndDiscouraged languages={state.languages} />
       </FormTemplate>
-      <FormTemplate title={localization.formUseOfConcept} showInitially={expandAll} error={useOfConceptError}>
+      <FormTemplate
+        title={localization.formUseOfConcept}
+        showInitially={expandAll}
+        error={useOfConceptError}
+      >
         <UseOfTerm languages={state.languages} />
       </FormTemplate>
       <FormTemplate title={localization.formValidity} showInitially={expandAll}>
         <Validity />
       </FormTemplate>
-      <FormTemplate title={localization.formRelatedConcepts} showInitially={expandAll}>
+      <FormTemplate
+        title={localization.formRelatedConcepts}
+        showInitially={expandAll}
+      >
         <RelatedConcepts />
       </FormTemplate>
-      <FormTemplate title={localization.formContactPoint} showInitially={expandAll} error={contactPointError}>
+      <FormTemplate
+        title={localization.formContactPoint}
+        showInitially={expandAll}
+        error={contactPointError}
+      >
         <ContactInfo />
       </FormTemplate>
-      <Can I="view a statusBar" of={{ __type: 'StatusBar', publisher: publisherId }}>
-        <StatusBar concept={concept} isInitialInValidForm={!isValid} lastPatchedResponse={lastPatchedResponse} />
+      <Can
+        I='view a statusBar'
+        of={{ __type: 'StatusBar', publisher: publisherId }}
+      >
+        <StatusBar
+          concept={concept}
+          isInitialInValidForm={!isValid}
+          lastPatchedResponse={lastPatchedResponse}
+        />
       </Can>
     </Form>
   );

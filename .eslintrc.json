@@ -1,7 +1,7 @@
 {
   "env": {
     "browser": true,
-    "es6": true,
+    "es2020": true,
     "jest": true
   },
   "extends": [
@@ -10,15 +10,20 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "plugin:jsx-a11y/strict"
   ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "ecmaVersion": 2020,
+    "sourceType": "module"
   },
   "plugins": [
     "@typescript-eslint",
@@ -26,7 +31,9 @@
     "html",
     "json",
     "markdown",
-    "prettier"
+    "prettier",
+    "jsx-a11y",
+    "react-hooks"
   ],
   "rules": {
     "prettier/prettier": [
@@ -34,60 +41,75 @@
       {
         "semi": true,
         "singleQuote": true,
-        "jsxSingleQuote": false
+        "jsxSingleQuote": true,
+        "trailingComma": "none",
+        "arrowParens": "avoid",
+        "endOfLine": "auto"
       }
     ],
     "import/no-extraneous-dependencies": [
       "error",
       {
         "devDependencies": [
-          "webpack/*.js",
+          "./webpack/*",
           "test/**/*.{js,jsx,ts,tsx}",
           "**/*test.{js,jsx,ts,tsx}"
         ]
       }
     ],
-    "import/extensions": [
-      "error",
-      {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".json",
-          ".ts",
-          ".tsx"
-        ]
-      }
-    ],
-    "no-console": [
+    "@typescript-eslint/no-empty-function": [
       "error",
       {
         "allow": [
-          "warn",
-          "error"
+          "arrowFunctions"
         ]
       }
     ],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-inferrable-types": "off",
     "@typescript-eslint/member-delimiter-style": "off",
-    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true
+      }
+    ],
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-shadow": ["error"],
     "react/jsx-one-expression-per-line": "off",
+    "react/prefer-stateless-function": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-array-index-key": "off",
     "react/no-unused-state": "off",
+    "react/jsx-indent": "off",
+    "react/prop-types": "off",
+    "jsx-a11y/label-has-for": "off",
+    "react/require-default-props": "off",
     "react/jsx-curly-newline": "off",
+    "no-use-before-define": "off",
     "no-restricted-globals": "off",
+    "no-underscore-dangle": "off",
     "no-param-reassign": "off",
+    "no-plusplus": "off",
+    "no-shadow": "off",
+    "camelcase": "off",
     "class-methods-use-this": "off",
     "import/prefer-default-export": "off",
-    "no-irregular-whitespace": "off",
-    "react/prop-types": "off",
-    "react/no-render-return-value": "off",
-    "no-unused-expressions": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
     "react/jsx-filename-extension": [
       "error",
       {
@@ -101,24 +123,28 @@
   "overrides": [
     {
       "files": [
-        "*.ts",
-        "*.tsx",
-        "*.d.ts"
+        "**/*.ts?(x)"
       ],
-      "rules": {}
+      "rules": {
+        "no-unused-expressions": "off"
+      }
     },
     {
       "files": [
         "./webpack/*"
       ],
       "rules": {
-        "@typescript-eslint/no-var-requires": "off"
+        "no-console": [
+          "error",
+          {
+            "allow": [
+              "warn",
+              "error"
+            ]
+          }
+        ],
+        "@typescript-eslint/no-non-null-assertion": "off"
       }
     }
-  ],
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  }
+  ]
 }

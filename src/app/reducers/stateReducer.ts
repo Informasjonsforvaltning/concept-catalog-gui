@@ -1,14 +1,16 @@
 import _ from 'lodash';
 
-export const CONCEPT_STATUS_PATCH_SUCCESS: string = 'CONCEPT_STATUS_PATCH_SUCCESS';
+export const CONCEPT_STATUS_PATCH_SUCCESS: string =
+  'CONCEPT_STATUS_PATCH_SUCCESS';
 export const CONCEPT_STATUS_IS_SAVING: string = 'CONCEPT_STATUS_IS_SAVING';
 export const CONCEPT_STATUS_SAVE_ERROR: string = 'CONCEPT_STATUS_SAVE_ERROR';
-export const CONCEPT_STATUS_VALIDATION_ERROR: string = 'CONCEPT_STATUS_VALIDATION_ERROR';
+export const CONCEPT_STATUS_VALIDATION_ERROR: string =
+  'CONCEPT_STATUS_VALIDATION_ERROR';
 
 export const conceptPatchSuccessAction = (
   conceptId: string,
   justPublishedOrUnPublished: boolean,
-  patchResponse: object
+  patchResponse: any
 ) => ({
   type: CONCEPT_STATUS_PATCH_SUCCESS,
   payload: {
@@ -25,7 +27,7 @@ export const conceptPatchIsSavingAction = conceptId => ({
   }
 });
 
-export const conceptPatchErrorAction = (conceptId, error): object => ({
+export const conceptPatchErrorAction = (conceptId, error): any => ({
   type: CONCEPT_STATUS_SAVE_ERROR,
   payload: {
     conceptId,
@@ -33,7 +35,10 @@ export const conceptPatchErrorAction = (conceptId, error): object => ({
   }
 });
 
-export const conceptValidationErrorAction = (conceptId: string, error: boolean) => ({
+export const conceptValidationErrorAction = (
+  conceptId: string,
+  error: boolean
+) => ({
   type: CONCEPT_STATUS_VALIDATION_ERROR,
   payload: {
     conceptId,
@@ -43,7 +48,7 @@ export const conceptValidationErrorAction = (conceptId: string, error: boolean) 
 
 export type Action = { type: string; payload: any };
 
-export const stateReducer = (state, action: Action): object => {
+export const stateReducer = (state, action: Action): any => {
   switch (action.type) {
     case CONCEPT_STATUS_IS_SAVING: {
       const { conceptId } = action.payload;
@@ -56,9 +61,13 @@ export const stateReducer = (state, action: Action): object => {
       };
     }
     case CONCEPT_STATUS_PATCH_SUCCESS: {
-      const { conceptId, justPublishedOrUnPublished, patchResponse } = action.payload;
+      const { conceptId, justPublishedOrUnPublished, patchResponse } =
+        action.payload;
       const status = _.get(patchResponse, 'status');
-      const endringstidspunkt = _.get(patchResponse, ['endringslogelement', 'endringstidspunkt']);
+      const endringstidspunkt = _.get(patchResponse, [
+        'endringslogelement',
+        'endringstidspunkt'
+      ]);
       const anbefaltTerm = _.get(patchResponse, 'anbefaltTerm');
       return {
         ...state,

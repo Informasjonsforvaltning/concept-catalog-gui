@@ -9,7 +9,10 @@ interface Props {
 
 const SearchBar: FC<Props> = ({ placeholder, onChange }) => (
   <SC.SearchContainer>
-    <SC.SearchField placeholder={placeholder} onChange={({ currentTarget }) => onChange(currentTarget.value ?? '')} />
+    <SC.SearchField
+      placeholder={placeholder}
+      onChange={({ currentTarget }) => onChange(currentTarget.value ?? '')}
+    />
     <SC.SearchIcon />
   </SC.SearchContainer>
 );

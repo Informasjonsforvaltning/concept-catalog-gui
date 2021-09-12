@@ -6,18 +6,28 @@ import { HelpText } from '../../../../components/help-text/help-text.component';
 
 export const ContactInfo = (): JSX.Element => (
   <div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.kontaktinformasjonTitle}
         helpTextAbstract={localization.kontaktinformasjonAbstract}
         helpTextDescription={localization.kontaktinformasjonDescription}
       />
-      <div className="d-flex">
-        <div className="w-50">
-          <Field name="kontaktpunkt.harEpost" component={InputField} label={localization.email} showLabel />
+      <div className='d-flex'>
+        <div className='w-50'>
+          <Field
+            name='kontaktpunkt.harEpost'
+            component={InputField}
+            label={localization.email}
+            showLabel
+          />
         </div>
-        <div className="w-50">
-          <Field name="kontaktpunkt.harTelefon" component={InputField} label={localization.phone} showLabel />
+        <div className='w-50'>
+          <Field
+            name='kontaktpunkt.harTelefon'
+            component={InputField}
+            label={localization.phone}
+            showLabel
+          />
         </div>
       </div>
     </div>

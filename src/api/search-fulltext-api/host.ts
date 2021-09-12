@@ -22,4 +22,5 @@ export const searchFullTextApi = ({ path, method, params, data }: Props) =>
 export const searchFullTextApiPost = (path: string, body: any) =>
   searchFullTextApi({ path, method: 'POST', data: body });
 
-export const searchFullTextApiGet = (path: string, params: any) => searchFullTextApi({ path, method: 'GET', params });
+export const searchFullTextApiGet = (path: string, params: any) =>
+  searchFullTextApi({ path, method: 'GET', params });

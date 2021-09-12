@@ -5,6 +5,9 @@ import { getTranslateText } from '../../../lib/translateText';
 
 export const PublisherBreadcrumbPure = ({ breadCrumbLabel, publisher }) => (
   <span>
-    {localization.formatString(localization[breadCrumbLabel], getTranslateText(_.get(publisher, 'prefLabel')))}
+    {localization.formatString(
+      localization[breadCrumbLabel],
+      getTranslateText(_.get(publisher, 'prefLabel'))
+    )}
   </span>
 );

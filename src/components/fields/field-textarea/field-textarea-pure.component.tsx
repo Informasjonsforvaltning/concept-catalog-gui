@@ -8,7 +8,7 @@ interface Props {
     name: string;
   };
   form: {
-    errors: object;
+    errors: any;
   };
   showLabel: boolean;
   label: string;
@@ -27,25 +27,34 @@ export const TextAreaFieldPure: FC<Props> = ({
   isOnlyOneSelectedLanguage,
   catalogId
 }) => (
-  <div className="px-2">
-    <Can I="edit field" of={{ __type: 'Field', publisher: catalogId }}>
-      <label className="fdk-form-label w-100 fdk-text-strong position-relative" htmlFor={field.name}>
+  <div className='px-2'>
+    <Can I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
+      <label
+        className='fdk-form-label w-100 fdk-text-strong position-relative'
+        htmlFor={field.name}
+      >
         {showLabel ? label : null}
         {!!language && !isOnlyOneSelectedLanguage && (
-          <span className="language-indicator language-indicator-text-area">{language}</span>
+          <span className='language-indicator language-indicator-text-area'>
+            {language}
+          </span>
         )}
-        <textarea {...field} rows={rows} className="form-control" />
+        <textarea {...field} rows={rows} className='form-control' />
       </label>
     </Can>
-    <Can not I="edit field" of={{ __type: 'Field', publisher: catalogId }}>
-      <div className="d-flex align-items-baseline mb-2">
+    <Can not I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
+      <div className='d-flex align-items-baseline mb-2'>
         {showLabel ? label : null}
         {!!language && !isOnlyOneSelectedLanguage && get(field, 'value') && (
-          <span className="badge fdk-bg-color-primary-lighter fdk-text-size-small mr-2">{language}</span>
+          <span className='badge fdk-bg-color-primary-lighter fdk-text-size-small mr-2'>
+            {language}
+          </span>
         )}
         <span>{get(field, 'value')}</span>
       </div>
     </Can>
-    {get(errors, field.name) && <div className="alert alert-danger mt-2">{get(errors, field.name)}</div>}
+    {get(errors, field.name) && (
+      <div className='alert alert-danger mt-2'>{get(errors, field.name)}</div>
+    )}
   </div>
 );

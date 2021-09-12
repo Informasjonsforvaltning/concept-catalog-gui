@@ -1,4 +1,13 @@
 dist
+coverage
 node_modules
-/server
-start.js
+
+.gitignore
+.dockerignore
+.eslintignore
+.huskyrc
+.lintstagedrc
+
+package-lock.json
+
+/src/l10n

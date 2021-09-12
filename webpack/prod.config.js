@@ -16,7 +16,9 @@ export default merge(baseConfig, {
           maxSize: 40000,
           test: /[\\/]node_modules[\\/]/,
           name: module =>
-            `main.vendor.${module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1].replace('@', '')}`,
+            `main.vendor.${module.context
+              .match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+              .replace('@', '')}`,
           chunks: ({ name }) => name === 'main'
         },
         // Merge all the CSS into one file

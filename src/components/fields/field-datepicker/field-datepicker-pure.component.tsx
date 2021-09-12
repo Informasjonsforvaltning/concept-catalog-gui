@@ -9,8 +9,6 @@ import { localization } from '../../../lib/localization';
 interface Props extends FieldProps {
   showLabel: boolean;
   label: string;
-  type: string;
-  language: string;
   catalogId: string;
   minDate?: string;
   maxDate?: string;
@@ -25,16 +23,19 @@ export const DatePickerFieldPure: FC<Props> = ({
   minDate,
   maxDate
 }) => (
-  <div className="px-3">
-    <div className="d-flex align-items-center">
-      <Can I="edit field" of={{ __type: 'Field', publisher: catalogId }}>
-        <label className="fdk-form-label fdk-text-strong position-relative" htmlFor={name}>
+  <div className='px-3'>
+    <div className='d-flex align-items-center'>
+      <Can I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
+        <label
+          className='fdk-form-label fdk-text-strong position-relative'
+          htmlFor={name}
+        >
           {showLabel ? label : null}
           {value && value !== 'Invalid date' && (
             <DatePicker
               id={name}
-              className="form-control fdk-datepicker"
-              dateFormat="dd.MM.yyyy"
+              className='form-control fdk-datepicker'
+              dateFormat='dd.MM.yyyy'
               showYearDropdown
               yearDropdownItemNumber={5}
               selected={new Date(value)}
@@ -46,8 +47,8 @@ export const DatePickerFieldPure: FC<Props> = ({
           {(!value || (value && value === 'Invalid date')) && (
             <DatePicker
               id={name}
-              className="form-control fdk-datepicker"
-              dateFormat="dd.MM.yyyy"
+              className='form-control fdk-datepicker'
+              dateFormat='dd.MM.yyyy'
               showYearDropdown
               yearDropdownItemNumber={5}
               onChange={date => setFieldValue(name, date)}
@@ -55,14 +56,18 @@ export const DatePickerFieldPure: FC<Props> = ({
               maxDate={maxDate ? new Date(maxDate) : null}
             />
           )}
-          <i className="fa fa-calendar fdk-date" />
+          <i className='fa fa-calendar fdk-date' />
         </label>
       </Can>
 
-      <Can not I="edit field" of={{ __type: 'Field', publisher: catalogId }}>
-        <div className="d-flex align-items-baseline mb-2">
-          {showLabel ? <div className="fdk-text-strong">{label}</div> : null}
-          <span>{DateTime.fromISO(value, { locale: localization.getLanguage() }).toFormat('DDDD')}</span>
+      <Can not I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
+        <div className='d-flex align-items-baseline mb-2'>
+          {showLabel ? <div className='fdk-text-strong'>{label}</div> : null}
+          <span>
+            {DateTime.fromISO(value, {
+              locale: localization.getLanguage()
+            }).toFormat('DDDD')}
+          </span>
         </div>
       </Can>
     </div>

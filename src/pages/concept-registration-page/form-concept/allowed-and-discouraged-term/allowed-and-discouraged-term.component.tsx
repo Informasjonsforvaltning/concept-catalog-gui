@@ -11,21 +11,31 @@ interface Props {
 
 export const AllowedAndDiscouraged = ({ languages }: Props): JSX.Element => (
   <div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.tillattTermTitle}
         helpTextAbstract={localization.tillattTermAbstract}
         helpTextDescription={localization.tillattTermDescription}
       />
-      <MultilingualField name="tillattTerm" component={InputTagsField} label="tillattTerm" languages={languages} />
+      <MultilingualField
+        name='tillattTerm'
+        component={InputTagsField}
+        label='tillattTerm'
+        languages={languages}
+      />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.fraraadetTermTitle}
         helpTextAbstract={localization.fraraadetTermAbstract}
         helpTextDescription={localization.fraraadetTermDescription}
       />
-      <MultilingualField name="frarådetTerm" component={InputTagsField} label="frarådetTerm" languages={languages} />
+      <MultilingualField
+        name='frarådetTerm'
+        component={InputTagsField}
+        label='frarådetTerm'
+        languages={languages}
+      />
     </div>
   </div>
 );

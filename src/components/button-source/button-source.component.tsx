@@ -10,17 +10,24 @@ interface Props {
   handleClick: any;
 }
 
-export const ButtonSource = ({ title, handleClick, remove, add }: Props): JSX.Element => (
+export const ButtonSource = ({
+  title,
+  handleClick,
+  remove = false,
+  add = false
+}: Props): JSX.Element => (
   <button
-    type="button"
-    aria-haspopup="true"
-    aria-expanded="false"
-    className="fdk-btn-no-border color-link-dark mb-2"
+    type='button'
+    aria-haspopup='true'
+    aria-expanded='false'
+    className='fdk-btn-no-border color-link-dark mb-2'
     onClick={handleClick}
   >
-    {remove && <IconRemove className="remove mr-2" />}
-    {add && <IconAdd className="fdk-color-link2 add mr-2" />}
+    {remove && <IconRemove className='remove mr-2' />}
+    {add && <IconAdd className='fdk-color-link2 add mr-2' />}
 
-    <span className={`${add ? 'fdk-color-link' : 'fdk-color-danger'}`}>{title}</span>
+    <span className={`${add ? 'fdk-color-link' : 'fdk-color-danger'}`}>
+      {title}
+    </span>
   </button>
 );

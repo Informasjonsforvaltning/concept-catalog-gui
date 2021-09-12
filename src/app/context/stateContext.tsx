@@ -13,9 +13,7 @@ export const StateProvider = ({ children }) => {
   );
 };
 
-export const useDispatch = () => {
-  return useContext(DispatchContext);
-};
+export const useDispatch = () => useContext(DispatchContext);
 
 export const useGlobalState = property => {
   const state = useContext(StateContext);

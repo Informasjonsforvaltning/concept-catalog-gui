@@ -23,7 +23,9 @@ const defineRulesFor = (resourceRoles: ResourceRole[]) => {
       if (resourceRole.role === 'admin' || resourceRole.role === 'publish') {
         can('create', 'Concept', { publisher: resourceRole.resourceId });
         can('view', 'StatusBar', { publisher: resourceRole.resourceId });
-        can('edit', ['Language', 'Field'], { publisher: resourceRole.resourceId });
+        can('edit', ['Language', 'Field'], {
+          publisher: resourceRole.resourceId
+        });
       }
     }
   });
@@ -33,6 +35,7 @@ const defineRulesFor = (resourceRoles: ResourceRole[]) => {
 
 export const ability = new Ability([], { subjectName });
 
-export const initAbilities = () => ability.update(defineRulesFor(authService.getResourceRoles()));
+export const initAbilities = () =>
+  ability.update(defineRulesFor(authService.getResourceRoles()));
 
 /* eslint-enable no-underscore-dangle */

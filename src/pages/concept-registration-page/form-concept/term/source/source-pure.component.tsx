@@ -24,12 +24,15 @@ const handleChangeForholdTilKilde = (form, fieldName, option) => {
   if (fieldName === 'kildebeskrivelse.forholdTilKilde' && option?.value) {
     form.setFieldValue('kildebeskrivelse', {
       forholdTilKilde: option.value,
-      kilde: option.value === 'egendefinert' ? [] : form.values.kildebeskrivelse?.kilde ?? []
+      kilde:
+        option.value === 'egendefinert'
+          ? []
+          : form.values.kildebeskrivelse?.kilde ?? []
     });
   }
 };
 
-const handleAddKilde = (form: object, push: Function) => {
+const handleAddKilde = (form: any, push: any) => {
   push({ id: v4(), tekst: '', uri: '' });
 };
 
@@ -37,11 +40,15 @@ const handleRemoveKilde = (form, index) => {
   const { kildebeskrivelse } = form.values;
   if (Array.isArray(kildebeskrivelse?.kilde)) {
     const newSource = kildebeskrivelse?.kilde?.filter((v, i) => i !== index);
-    form.setFieldValue('kildebeskrivelse', { ...kildebeskrivelse, kilde: newSource ?? [] });
+    form.setFieldValue('kildebeskrivelse', {
+      ...kildebeskrivelse,
+      kilde: newSource ?? []
+    });
   }
 };
 
-const getKilde = form => _.get(form, ['values', 'kildebeskrivelse', 'kilde'], []);
+const getKilde = form =>
+  _.get(form, ['values', 'kildebeskrivelse', 'kilde'], []);
 
 interface Props {
   catalogId: string;
@@ -52,11 +59,11 @@ export const SourcePure: FC<Props> = ({ catalogId }) => {
 
   return (
     <div>
-      <div className="row d-flex">
-        <div className="col-sm-5 mb-4">
+      <div className='row d-flex'>
+        <div className='col-sm-5 mb-4'>
           <Field
-            className="col-sm-5"
-            name="kildebeskrivelse.forholdTilKilde"
+            className='col-sm-5'
+            name='kildebeskrivelse.forholdTilKilde'
             component={SelectField}
             label={localization.relationToSource}
             showLabel
@@ -65,48 +72,53 @@ export const SourcePure: FC<Props> = ({ catalogId }) => {
             onChange={handleChangeForholdTilKilde}
           />
         </div>
-        <div className="col-sm-7" />
+        <div className='col-sm-7' />
       </div>
       {forholdTilKilde && forholdTilKilde !== 'egendefinert' && (
         <FieldArray
-          name="kildebeskrivelse.kilde"
+          name='kildebeskrivelse.kilde'
           render={({ form, push }) => (
             <div>
-              {getKilde(form).map((kilde, index) => {
-                return (
-                  <div key={`${kilde.id}-${index}`} className="row d-flex mb-4">
-                    <div className="col-sm-5">
-                      <Field
-                        name={`kildebeskrivelse.kilde[${index}].tekst`}
-                        component={InputField}
-                        label={localization.titleSource}
-                        showLabel
-                      />
-                    </div>
-
-                    <div className="col-sm-5">
-                      <Field
-                        name={`kildebeskrivelse.kilde[${index}].uri`}
-                        component={InputField}
-                        label={localization.linkSource}
-                        showLabel
-                      />
-                    </div>
-
-                    <div className="fdk-source col-sm-2">
-                      <Can I="edit" of={{ __type: 'Field', publisher: catalogId }}>
-                        <ButtonSource
-                          remove
-                          title={localization.removeSource}
-                          handleClick={() => handleRemoveKilde(form, index)}
-                        />
-                      </Can>
-                    </div>
+              {getKilde(form).map((kilde, index) => (
+                <div key={`${kilde.id}-${index}`} className='row d-flex mb-4'>
+                  <div className='col-sm-5'>
+                    <Field
+                      name={`kildebeskrivelse.kilde[${index}].tekst`}
+                      component={InputField}
+                      label={localization.titleSource}
+                      showLabel
+                    />
                   </div>
-                );
-              })}
-              <Can I="edit" of={{ __type: 'Field', publisher: catalogId }}>
-                <ButtonSource add title={localization.addNewSource} handleClick={() => handleAddKilde(form, push)} />
+
+                  <div className='col-sm-5'>
+                    <Field
+                      name={`kildebeskrivelse.kilde[${index}].uri`}
+                      component={InputField}
+                      label={localization.linkSource}
+                      showLabel
+                    />
+                  </div>
+
+                  <div className='fdk-source col-sm-2'>
+                    <Can
+                      I='edit'
+                      of={{ __type: 'Field', publisher: catalogId }}
+                    >
+                      <ButtonSource
+                        remove
+                        title={localization.removeSource}
+                        handleClick={() => handleRemoveKilde(form, index)}
+                      />
+                    </Can>
+                  </div>
+                </div>
+              ))}
+              <Can I='edit' of={{ __type: 'Field', publisher: catalogId }}>
+                <ButtonSource
+                  add
+                  title={localization.addNewSource}
+                  handleClick={() => handleAddKilde(form, push)}
+                />
               </Can>
             </div>
           )}

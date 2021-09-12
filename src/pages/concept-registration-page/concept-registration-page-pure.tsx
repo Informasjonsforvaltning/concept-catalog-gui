@@ -11,7 +11,6 @@ import { localization } from '../../lib/localization';
 
 interface Props {
   concept: Concept;
-  history: object;
 }
 
 export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
@@ -25,10 +24,11 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
   const copyOfConcept = JSON.parse(JSON.stringify(concept));
 
   return (
-    <div className="container">
-      <div className="col-12">
-        <h1 className="pb-5">
-          {getTranslateText(get(globalStateValues, ['anbefaltTerm', 'navn'])) || localization.registerNewConcept}
+    <div className='container'>
+      <div className='col-12'>
+        <h1 className='pb-5'>
+          {getTranslateText(get(globalStateValues, ['anbefaltTerm', 'navn'])) ||
+            localization.registerNewConcept}
         </h1>
         {globalStateValues && (
           <FormConcept

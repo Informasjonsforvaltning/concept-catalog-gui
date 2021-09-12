@@ -6,7 +6,9 @@ import { conceptListResolver } from './concept-list-resolver';
 import { requirePredicate } from '../../lib/require-predicate';
 import { authService } from '../../services/auth-service';
 
-const mapRouteParams = withProps(({ match: { params } }) => _.pick(params, 'catalogId'));
+const mapRouteParams = withProps(({ match: { params } }) =>
+  _.pick(params, 'catalogId')
+);
 
 const enhance = compose(
   mapRouteParams,

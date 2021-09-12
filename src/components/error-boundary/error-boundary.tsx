@@ -9,7 +9,7 @@ import { ErrorMessage } from './error-message';
 
 interface ErrorMessageProps {
   hasError?: boolean;
-  errorObj?: object;
+  errorObj?: any;
   errorInfo?: {
     componentStack: string;
   };

@@ -17,25 +17,35 @@ interface Props {
 
 export const Term = ({ languages, isReadOnly = false }: Props): JSX.Element => (
   <div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.anbefaltTermTitle}
         showRequired={!isReadOnly}
         helpTextAbstract={localization.anbefaltTermAbstract}
         helpTextDescription={localization.anbefaltTermDescription}
       />
-      <MultilingualField name="anbefaltTerm.navn" component={InputField} label="anbefaltTerm" languages={languages} />
+      <MultilingualField
+        name='anbefaltTerm.navn'
+        component={InputField}
+        label='anbefaltTerm'
+        languages={languages}
+      />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.definisjonTitle}
         showRequired={!isReadOnly}
         helpTextAbstract={localization.definisjonAbstract}
         helpTextDescription={localization.definisjonDescription}
       />
-      <MultilingualField name="definisjon.tekst" component={TextAreaField} label="definisjon" languages={languages} />
+      <MultilingualField
+        name='definisjon.tekst'
+        component={TextAreaField}
+        label='definisjon'
+        languages={languages}
+      />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.kildeTitle}
         helpTextAbstract={localization.kildeAbstract}
@@ -43,13 +53,18 @@ export const Term = ({ languages, isReadOnly = false }: Props): JSX.Element => (
       />
       <Source />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.merknadTitle}
         helpTextAbstract={localization.merknadAbstract}
         helpTextDescription={localization.merknadDescription}
       />
-      <MultilingualField name="merknad" component={TextAreaField} label="merknad" languages={languages} />
+      <MultilingualField
+        name='merknad'
+        component={TextAreaField}
+        label='merknad'
+        languages={languages}
+      />
     </div>
   </div>
 );

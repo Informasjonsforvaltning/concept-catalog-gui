@@ -14,42 +14,67 @@ interface Props {
 
 export const UseOfTerm = ({ languages }: Props): JSX.Element => (
   <div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.eksempelTitle}
         helpTextAbstract={localization.eksempelAbstract}
         helpTextDescription={localization.eksempelDescription}
       />
-      <MultilingualField name="eksempel" component={TextAreaField} label="eksempel" languages={languages} />
+      <MultilingualField
+        name='eksempel'
+        component={TextAreaField}
+        label='eksempel'
+        languages={languages}
+      />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.fagomraadeTitle}
         helpTextAbstract={localization.fagomraadeAbstract}
         helpTextDescription={localization.fagomraadeDescription}
       />
-      <MultilingualField name="fagområde" component={InputField} label="fagområde" languages={languages} />
+      <MultilingualField
+        name='fagområde'
+        component={InputField}
+        label='fagområde'
+        languages={languages}
+      />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.bruksomraadeTitle}
         helpTextAbstract={localization.bruksomraadeAbstract}
         helpTextDescription={localization.bruksomraadeDescription}
       />
-      <MultilingualField name="bruksområde" component={InputTagsField} label="bruksområde" languages={languages} />
+      <MultilingualField
+        name='bruksområde'
+        component={InputTagsField}
+        label='bruksområde'
+        languages={languages}
+      />
     </div>
-    <div className="form-group">
+    <div className='form-group'>
       <HelpText
         title={localization.omfangTitle}
         helpTextAbstract={localization.omfangAbstract}
         helpTextDescription={localization.omfangDescription}
       />
-      <div className="d-flex">
-        <div className="w-50">
-          <Field name="omfang.tekst" component={InputField} label={localization.titleScope} showLabel />
+      <div className='d-flex'>
+        <div className='w-50'>
+          <Field
+            name='omfang.tekst'
+            component={InputField}
+            label={localization.titleScope}
+            showLabel
+          />
         </div>
-        <div className="w-50">
-          <Field name="omfang.uri" component={InputField} label={localization.linkScope} showLabel />
+        <div className='w-50'>
+          <Field
+            name='omfang.uri'
+            component={InputField}
+            label={localization.linkScope}
+            showLabel
+          />
         </div>
       </div>
     </div>

@@ -23,11 +23,14 @@ const config = {
   },
 
   // frontend hosts
-  registrationHost: env.REGISTRATION_HOST || 'https://registrering.fellesdatakatalog.digdir.no',
+  registrationHost:
+    env.REGISTRATION_HOST || 'https://registrering.fellesdatakatalog.digdir.no',
 
   // api modules
   conceptCatalogueApi: {
-    host: env.CONCEPT_REGISTRATION_API || 'https://begrep-registrering.fellesdatakatalog.digdir.no'
+    host:
+      env.CONCEPT_REGISTRATION_API ||
+      'https://begrep-registrering.fellesdatakatalog.digdir.no'
   },
   organizationApi: {
     host: env.ORGANIZATION_API || ''

@@ -8,8 +8,8 @@ import { patchConceptFromForm } from '../../../lib/patchConceptForm';
 
 interface FormProps {
   concept: Concept;
-  dispatch: Function;
-  lastPatchedResponse: object;
+  dispatch: any;
+  lastPatchedResponse: any;
   isSaving: boolean;
 }
 
@@ -35,7 +35,9 @@ const pruneEmptySources = kildebeskrivelse =>
   kildebeskrivelse?.kilde
     ? {
         ...kildebeskrivelse,
-        kilde: kildebeskrivelse.kilde.filter(({ uri, tekst }) => !!(uri || tekst))
+        kilde: kildebeskrivelse.kilde.filter(
+          ({ uri, tekst }) => !!(uri || tekst)
+        )
       }
     : null;
 
@@ -46,13 +48,17 @@ const wrapStrings = ({ nb, nn, en }) => ({
 });
 
 const pruneEmptyProperties = (obj: any, reduceAsArray = false) => {
-  const filteredKeys = Object.keys(obj).filter(key => obj[key] != null && obj[key] !== '' && obj[key] !== []);
+  const filteredKeys = Object.keys(obj).filter(
+    key => obj[key] != null && obj[key] !== '' && obj[key] !== []
+  );
 
   return reduceAsArray
     ? filteredKeys.reduce((acc, key) => {
         if (typeof obj[key] === 'object') {
           const prunedObject = pruneEmptyProperties(obj[key]);
-          return Object.keys(prunedObject).length === 0 ? acc : [...acc, prunedObject];
+          return Object.keys(prunedObject).length === 0
+            ? acc
+            : [...acc, prunedObject];
         }
         return [...acc, obj[key]];
       }, [] as any[])
@@ -60,13 +66,21 @@ const pruneEmptyProperties = (obj: any, reduceAsArray = false) => {
         if (typeof obj[key] === 'object') {
           const isArray = Array.isArray(obj[key]);
           const prunedObject = pruneEmptyProperties(obj[key], isArray);
-          return Object.keys(prunedObject).length === 0 ? acc : { ...acc, [key]: prunedObject };
+          return Object.keys(prunedObject).length === 0
+            ? acc
+            : { ...acc, [key]: prunedObject };
         }
         return { ...acc, [key]: obj[key] };
       }, {});
 };
 
-const preProcessValues = ({ kildebeskrivelse, merknad, eksempel, bruksområde, ...conceptValues }) =>
+const preProcessValues = ({
+  kildebeskrivelse,
+  merknad,
+  eksempel,
+  bruksområde,
+  ...conceptValues
+}) =>
   pruneEmptyProperties({
     ...conceptValues,
     kildebeskrivelse: pruneEmptySources(kildebeskrivelse),
@@ -75,9 +89,17 @@ const preProcessValues = ({ kildebeskrivelse, merknad, eksempel, bruksområde, .
     bruksområde: wrapStrings(bruksområde)
   });
 
-const patchWithPreProcess = (values, { concept, dispatch, lastPatchedResponse, isSaving }) => {
+const patchWithPreProcess = (
+  values,
+  { concept, dispatch, lastPatchedResponse, isSaving }
+) => {
   const processedValues = preProcessValues(values);
-  patchConceptFromForm(processedValues, { concept, dispatch, lastPatchedResponse, isSaving });
+  patchConceptFromForm(processedValues, {
+    concept,
+    dispatch,
+    lastPatchedResponse,
+    isSaving
+  });
   validateConceptForm(processedValues, schema, concept, dispatch);
 };
 
@@ -120,7 +142,9 @@ const config = {
   initialValues: ({ concept }: FormProps) => concept,
   validateOnMount: true,
   validateOnBlur: false,
-  handleSubmit() {}
+  handleSubmit: () => {}
 };
 
-export const FormConcept = withFormik<FormProps, FormValues>(config)(FormConceptPure);
+export const FormConcept = withFormik<FormProps, FormValues>(config)(
+  FormConceptPure
+);

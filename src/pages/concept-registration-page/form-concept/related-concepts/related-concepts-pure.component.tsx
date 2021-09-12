@@ -37,29 +37,42 @@ interface Props {
   seeAlsoConcepts?: SkosConcept[];
 }
 
-export const RelatedConceptsPure: FC<Props> = ({ catalogId, seeAlsoConcepts = [] }) => (
+export const RelatedConceptsPure: FC<Props> = ({
+  catalogId,
+  seeAlsoConcepts = []
+}) => (
   <div>
-    <div className="form-group">
-      <HelpText title={localization.seeAlso} helpTextAbstract={localization.seOgsaaAbstract} />
+    <div className='form-group'>
+      <HelpText
+        title={localization.seeAlso}
+        helpTextAbstract={localization.seOgsaaAbstract}
+      />
 
       <FieldArray
-        name="seOgså"
+        name='seOgså'
         render={({ form }) => (
           <>
-            <Can I="edit" of={{ __type: 'Field', publisher: catalogId }}>
-              <AutosuggestConcepts onAddSuggestion={(suggestion: Suggestion) => addSeeAlso(suggestion, form)} />
+            <Can I='edit' of={{ __type: 'Field', publisher: catalogId }}>
+              <AutosuggestConcepts
+                onAddSuggestion={(suggestion: Suggestion) =>
+                  addSeeAlso(suggestion, form)
+                }
+              />
             </Can>
-            <div className="pl-2">
+            <div className='pl-2'>
               {seeAlsoConcepts.map((seeAlso, index) => (
-                <div key={`${seeAlso}-${index}`} className="badge badge-dark mt-3 mr-3 p-3">
+                <div
+                  key={`${seeAlso}-${index}`}
+                  className='badge badge-dark mt-3 mr-3 p-3'
+                >
                   <span>{getTranslateText(seeAlso.prefLabel)}</span>
-                  <Can I="edit" of={{ __type: 'Field', publisher: catalogId }}>
+                  <Can I='edit' of={{ __type: 'Field', publisher: catalogId }}>
                     <button
-                      type="button"
-                      className="fdk-btn-no-border"
+                      type='button'
+                      className='fdk-btn-no-border'
                       onClick={() => removeSeeAlso(seeAlso.identifier, form)}
                     >
-                      <i className="fa fa-times-circle ml-2 fdk-color-white" />
+                      <i className='fa fa-times-circle ml-2 fdk-color-white' />
                     </button>
                   </Can>
                 </div>

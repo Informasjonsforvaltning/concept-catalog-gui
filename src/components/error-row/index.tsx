@@ -7,11 +7,14 @@ interface Props {
   errorMessage: ErrorMessage;
 }
 
-const ErrorRow: FC<Props> = ({ errorTitle, errorMessage: { message, name } }) => {
+const ErrorRow: FC<Props> = ({
+  errorTitle,
+  errorMessage: { message, name }
+}) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <SC.ErrorContainer className="row mb-4">
+    <SC.ErrorContainer className='row mb-4'>
       <span>
         <SC.ErrorIcon />
         {errorTitle}

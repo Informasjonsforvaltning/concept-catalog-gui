@@ -9,7 +9,7 @@ import './form-template.scss';
 
 interface Props {
   title: string;
-  children: object;
+  children: any;
   showRequired?: boolean;
   showInitially?: boolean;
   error?: boolean;
@@ -44,17 +44,19 @@ export const FormTemplate = ({
   return (
     <div className={collapseClass}>
       <button
-        type="button"
-        className="fdk-collapseButton fdk-btn-no-border w-100 p-0"
+        type='button'
+        className='fdk-collapseButton fdk-btn-no-border w-100 p-0'
         onClick={() => toggle(!collapse)}
       >
-        <div className="d-flex align-items-center">
-          <h2 className="mb-0 text-ellipsis">{title}</h2>
+        <div className='d-flex align-items-center'>
+          <h2 className='mb-0 text-ellipsis'>{title}</h2>
           {showRequired && (
-            <span className="fdk-badge badge fdk-bg-color-warning-lightest ml-2">{localization.required}</span>
+            <span className='fdk-badge badge fdk-bg-color-warning-lightest ml-2'>
+              {localization.required}
+            </span>
           )}
-          <div className="ml-auto">
-            {error && <ErrorIcon className="fdk-error-icon" />}
+          <div className='ml-auto'>
+            {error && <ErrorIcon className='fdk-error-icon' />}
 
             <i className={collapseIconClass} />
           </div>

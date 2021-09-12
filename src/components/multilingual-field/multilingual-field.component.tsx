@@ -4,21 +4,27 @@ import { Field } from 'formik';
 interface Props {
   name: string;
   label: string;
-  component: Function;
+  component: any;
   languages: any;
   showLabel?: boolean;
 }
 
-export const MultilingualField = ({ name, component, languages, label, showLabel = false }: Props): JSX.Element => (
+export const MultilingualField = ({
+  name,
+  component,
+  languages,
+  label,
+  showLabel = false
+}: Props): JSX.Element => (
   <>
     {showLabel && label && (
-      <label className="fdk-form-label w-100 pl-2" htmlFor={name}>
+      <label className='fdk-form-label w-100 pl-2' htmlFor={name}>
         {label}
       </label>
     )}
     {languages.map(({ code, selected }) => {
-      // eslint-disable-next-line no-shadow
-      const isOnlyOneSelectedLanguage = languages.filter(({ selected }) => selected).length === 1;
+      const isOnlyOneSelectedLanguage =
+        languages.filter(l => l.selected).length === 1;
 
       return (
         selected && (

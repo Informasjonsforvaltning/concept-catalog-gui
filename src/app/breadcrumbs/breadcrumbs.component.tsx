@@ -17,19 +17,23 @@ const options = {
 const PureBreadcrumbs = ({ breadcrumbs }) => {
   if (breadcrumbs) {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-12 px-0">
-            <p className="fdk-p-path">
-              <a href={getConfig().registrationHost}>{localization.breadCrumbsAllCatalogs}</a>
-              <i className="fa fa-angle-right mx-3" />
+      <div className='container'>
+        <div className='row'>
+          <div className='col-12 px-0'>
+            <p className='fdk-p-path'>
+              <a href={getConfig().registrationHost}>
+                {localization.breadCrumbsAllCatalogs}
+              </a>
+              <i className='fa fa-angle-right mx-3' />
 
               {breadcrumbs.map((breadcrumb, index) => (
                 <span key={breadcrumb.key}>
                   {index < breadcrumbs.length - 1 && (
                     <>
-                      <NavLink to={breadcrumb.match.url}>{breadcrumb.breadcrumb}</NavLink>
-                      <i className="fa fa-angle-right mx-3" />
+                      <NavLink to={breadcrumb.match.url}>
+                        {breadcrumb.breadcrumb}
+                      </NavLink>
+                      <i className='fa fa-angle-right mx-3' />
                     </>
                   )}
                   {index === breadcrumbs.length - 1 && breadcrumb.breadcrumb}

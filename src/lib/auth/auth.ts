@@ -36,30 +36,34 @@ export class Auth {
     this.kc = Keycloak(kcConfig);
   }
 
-  init: ({ loginRequired }: { loginRequired: boolean }) => Promise<boolean> = async ({ loginRequired }) => {
-    const keycloakInitOptions: KeycloakInitOptions = {
-      onLoad: 'check-sso',
-      silentCheckSsoRedirectUri: this.conf.silentCheckSsoRedirectUri,
-      promiseType: 'native'
+  init: ({ loginRequired }: { loginRequired: boolean }) => Promise<boolean> =
+    async ({ loginRequired }) => {
+      const keycloakInitOptions: KeycloakInitOptions = {
+        onLoad: 'check-sso',
+        silentCheckSsoRedirectUri: this.conf.silentCheckSsoRedirectUri,
+        promiseType: 'native'
+      };
+      // eslint-disable-next-line no-console
+      await this.kc.init(keycloakInitOptions).catch(console.error);
+      if (loginRequired && !this.isAuthenticated()) {
+        await this.login();
+      }
+      return this.isAuthenticated();
     };
-    await this.kc.init(keycloakInitOptions).catch(console.error);
-    if (loginRequired && !this.isAuthenticated()) {
-      await this.login();
-    }
-    return this.isAuthenticated();
-  };
 
+  // eslint-disable-next-line no-console
   login: () => Promise<void> = () =>
     this.kc
       .login()
       .then()
-      .catch(console.error);
+      .catch(() => {});
 
   logout: () => Promise<void> = () =>
+    // eslint-disable-next-line no-console
     this.kc
       .logout({ redirectUri: this.conf.logoutRedirectUri })
       .then()
-      .catch(console.error);
+      .catch(() => {});
 
   isAuthenticated: () => boolean = () => this.kc.authenticated || false;
 
@@ -77,10 +81,12 @@ export class Auth {
       .catch(() => this.logout())
       .then(() => this.kc.token as string);
 
-  getAuthorizationHeader: () => Promise<string> = async () => `Bearer ${await this.getToken()}`;
+  getAuthorizationHeader: () => Promise<string> = async () =>
+    `Bearer ${await this.getToken()}`;
 
   getAuthorities: () => string = () =>
-    ((this.kc.tokenParsed && (this.kc.tokenParsed as any).authorities) as string) || '';
+    ((this.kc.tokenParsed &&
+      (this.kc.tokenParsed as any).authorities) as string) || '';
 
   getResourceRoles: () => ResourceRole[] = () =>
     this.getAuthorities()
@@ -88,19 +94,41 @@ export class Auth {
       .map(authorityDescriptor => authorityDescriptor.split(':'))
       .map(([resource, resourceId, role]) => ({ resource, resourceId, role }));
 
-  hasResourceRole: (resourceRole: ResourceRole) => boolean = ({ resource, resourceId, role }) =>
-    !!this.getResourceRoles().find(r => r.resource === resource && r.resourceId === resourceId && r.role === role);
+  hasResourceRole: (resourceRole: ResourceRole) => boolean = ({
+    resource,
+    resourceId,
+    role
+  }) =>
+    !!this.getResourceRoles().find(
+      r =>
+        r.resource === resource &&
+        r.resourceId === resourceId &&
+        r.role === role
+    );
 
-  hasOrganizationRole: (organizationRole: OrganizationRole) => boolean = ({ orgNr, role }) =>
+  hasOrganizationRole: (organizationRole: OrganizationRole) => boolean = ({
+    orgNr,
+    role
+  }) =>
     this.hasResourceRole({ resource: 'organization', resourceId: orgNr, role });
 
   hasOrganizationReadPermission: (orgNr: string) => boolean = (orgNr: string) =>
     this.hasSystemAdminPermission() ||
-    !!this.getResourceRoles().find(({ resource, resourceId }) => resource === 'organization' && resourceId === orgNr);
+    !!this.getResourceRoles().find(
+      ({ resource, resourceId }) =>
+        resource === 'organization' && resourceId === orgNr
+    );
 
-  hasOrganizationWritePermission = (orgNr: string) => this.hasOrganizationRole({ orgNr, role: 'admin' });
+  hasOrganizationWritePermission = (orgNr: string) =>
+    this.hasOrganizationRole({ orgNr, role: 'admin' });
 
-  hasOrganizationAdminPermission = (orgNr: string) => this.hasOrganizationRole({ orgNr, role: 'admin' });
+  hasOrganizationAdminPermission = (orgNr: string) =>
+    this.hasOrganizationRole({ orgNr, role: 'admin' });
 
-  hasSystemAdminPermission = () => this.hasResourceRole({ resource: 'system', resourceId: 'root', role: 'admin' });
+  hasSystemAdminPermission = () =>
+    this.hasResourceRole({
+      resource: 'system',
+      resourceId: 'root',
+      role: 'admin'
+    });
 }

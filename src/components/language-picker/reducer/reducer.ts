@@ -30,11 +30,16 @@ export const initialState: LanguageState = {
   ]
 };
 
-export const languagePickerReducer = (state = initialState, action): LanguageState => {
+export const languagePickerReducer = (
+  state = initialState,
+  action
+): LanguageState => {
   switch (action.type) {
     case SET_INPUT_LANGUAGES: {
       const allowedLanguages = state.languages.map(({ code }) => code);
-      const inputLanguages = action.payload.languages.filter(lang => allowedLanguages.includes(lang));
+      const inputLanguages = action.payload.languages.filter(lang =>
+        allowedLanguages.includes(lang)
+      );
 
       return {
         ...state,

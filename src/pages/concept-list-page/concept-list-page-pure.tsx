@@ -5,7 +5,10 @@ import { getTranslateText } from '../../lib/translateText';
 import { ConceptList } from './concept-list/concept-list.component';
 import { ConceptTitle } from './concept-title/concept-title.component';
 import { AddConceptButton } from '../../components/add-concept-button/add-concept-button.component';
-import { postConcept, getConceptsForCatalog } from '../../api/concept-catalogue-api';
+import {
+  postConcept,
+  getConceptsForCatalog
+} from '../../api/concept-catalogue-api';
 
 import { Can } from '../../casl/Can';
 import { ImportConceptButton } from '../../components/import-concept-button/import-concept-button.component';
@@ -33,10 +36,18 @@ const createConcept = catalogId => ({
 });
 
 const createNewConceptAndNavigate = ({ history, catalogId }) =>
-  postConcept(createConcept(catalogId)).then(resourceId => history.push(`/${catalogId}/${resourceId}`));
+  postConcept(createConcept(catalogId)).then(resourceId =>
+    history.push(`/${catalogId}/${resourceId}`)
+  );
 
-export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, catalogId }: Props): JSX.Element => {
-  const [fileParsingError, setFileParsingError] = useState<ImportErrorMessage>({ thrown: false });
+export const ConceptListPagePure = ({
+  history,
+  publisher: { prefLabel, name },
+  catalogId
+}: Props): JSX.Element => {
+  const [fileParsingError, setFileParsingError] = useState<ImportErrorMessage>({
+    thrown: false
+  });
   const [conceptImportSuccess, setConceptImportSuccess] = useState('');
   const [concepts, setConcepts] = useState<Concept[]>([]);
   const [filteredConcepts, setFilteredConcepts] = useState<Concept[]>([]);
@@ -52,11 +63,13 @@ export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, c
   };
 
   const filterConcepts = (query: string) => {
-    const isExtension = previousQuery.length > 0 && query.slice(0, -1) === previousQuery;
+    const isExtension =
+      previousQuery.length > 0 && query.slice(0, -1) === previousQuery;
 
     setFilteredConcepts(
       (isExtension ? filteredConcepts : concepts).filter(
-        ({ anbefaltTerm }) => anbefaltTerm?.navn && multiLangMatch(query, anbefaltTerm.navn)
+        ({ anbefaltTerm }) =>
+          anbefaltTerm?.navn && multiLangMatch(query, anbefaltTerm.navn)
       )
     );
     setPreviousQuery(query);
@@ -73,40 +86,63 @@ export const ConceptListPagePure = ({ history, publisher: { prefLabel, name }, c
   }, []);
 
   return (
-    <div className="container">
-      <div className="row mb-2">
+    <div className='container'>
+      <div className='row mb-2'>
         <ConceptTitle title={getTranslateText(prefLabel) || name} />
       </div>
-      <Can I="create a concept" of={{ __type: 'Concept', publisher: catalogId }}>
-        <div className="d-flex flex-row justify-content-start align-items-center row">
-          <div className="p-2">
-            <AddConceptButton parentOnClick={() => createNewConceptAndNavigate({ history, catalogId })} />
-          </div>
-          <div className="p-2">
-            <ImportConceptButton
-              onUpload={event =>
-                mapConcepts(event, setFileParsingError, setConceptImportSuccess, catalogId, setConcepts)
+      <Can
+        I='create a concept'
+        of={{ __type: 'Concept', publisher: catalogId }}
+      >
+        <div className='d-flex flex-row justify-content-start align-items-center row'>
+          <div className='p-2'>
+            <AddConceptButton
+              parentOnClick={() =>
+                createNewConceptAndNavigate({ history, catalogId })
               }
             />
           </div>
-          <div className="p-2">
+          <div className='p-2'>
+            <ImportConceptButton
+              onUpload={event =>
+                mapConcepts(
+                  event,
+                  setFileParsingError,
+                  setConceptImportSuccess,
+                  catalogId,
+                  setConcepts
+                )
+              }
+            />
+          </div>
+          <div className='p-2'>
             <Link
-              href="https://informasjonsforvaltning.github.io/felles-datakatalog/begrepskatalog/hvordan_publisere/"
+              href='https://informasjonsforvaltning.github.io/felles-datakatalog/begrepskatalog/hvordan_publisere/'
               external
-              className="mb-2"
+              className='mb-2'
             >
               Retningslinjer for import av begrep
             </Link>
           </div>
         </div>
-        {fileParsingError.thrown && <ErrorRow errorTitle="Feil ved import av fil." errorMessage={fileParsingError} />}
-        {conceptImportSuccess && <div className="row alert alert-success">{conceptImportSuccess}</div>}
+        {fileParsingError.thrown && (
+          <ErrorRow
+            errorTitle='Feil ved import av fil.'
+            errorMessage={fileParsingError}
+          />
+        )}
+        {conceptImportSuccess && (
+          <div className='row alert alert-success'>{conceptImportSuccess}</div>
+        )}
       </Can>
-      <div className="row mb-4">
-        <SearchBar placeholder="Søk etter begrep" onChange={filterConcepts} />
+      <div className='row mb-4'>
+        <SearchBar placeholder='Søk etter begrep' onChange={filterConcepts} />
       </div>
-      <div className="mb-2">
-        <ConceptList items={previousQuery.length > 0 ? filteredConcepts : concepts} catalogId={catalogId} />
+      <div className='mb-2'>
+        <ConceptList
+          items={previousQuery.length > 0 ? filteredConcepts : concepts}
+          catalogId={catalogId}
+        />
       </div>
     </div>
   );

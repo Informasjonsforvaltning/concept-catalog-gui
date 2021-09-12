@@ -8,19 +8,22 @@ import { Language } from '../../domain/Language';
 
 interface Props {
   languages: Language[];
-  toggleInputLanguage: Function;
+  toggleInputLanguage: (code: string) => void;
 }
 
-export const LanguagePicker = ({ languages, toggleInputLanguage }: Props): JSX.Element => {
+export const LanguagePicker = ({
+  languages,
+  toggleInputLanguage
+}: Props): JSX.Element => {
   const shouldDisableLanguage = (code): boolean => {
     const selectedLanguages = languages.filter(({ selected }) => selected);
     return selectedLanguages.length === 1 && selectedLanguages[0].code === code;
   };
 
   return (
-    <div className="language-picker">
+    <div className='language-picker'>
       <p>{`${localization.langChoose}:`}</p>
-      <div className="language-button-group">
+      <div className='language-button-group'>
         {languages.map(({ code, title, selected }) => (
           <Button
             key={code}
@@ -33,7 +36,9 @@ export const LanguagePicker = ({ languages, toggleInputLanguage }: Props): JSX.E
             disabled={shouldDisableLanguage(code)}
             onClick={() => toggleInputLanguage(code)}
           >
-            {selected && <img src="./img/icon-checked-white-sm.svg" alt="icon" />}
+            {selected && (
+              <img src='./img/icon-checked-white-sm.svg' alt='icon' />
+            )}
             {title}
           </Button>
         ))}

@@ -10,5 +10,7 @@ const isDateSameDayAsNow = date =>
   date.getMonth() === new Date().getMonth() &&
   date.getDate() === new Date().getDate();
 
-export const isDateBeforeToday = date => date && date < Date.now() && !isDateSameDayAsNow(date);
-export const isDateAfterToday = date => date && date > Date.now() && !isDateSameDayAsNow(date);
+export const isDateBeforeToday = date =>
+  date && date < Date.now() && !isDateSameDayAsNow(date);
+export const isDateAfterToday = date =>
+  date && date > Date.now() && !isDateSameDayAsNow(date);

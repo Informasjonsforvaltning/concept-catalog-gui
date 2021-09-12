@@ -1,6 +1,7 @@
 import { searchFullTextApiPost } from './host';
 
-export const searchConcepts = (body: any) => searchFullTextApiPost('/concepts', body);
+export const searchConcepts = (body: any) =>
+  searchFullTextApiPost('/concepts', body);
 
 const mapFilters = ({ identifier }: any) => {
   const filters: any = [];
@@ -16,7 +17,7 @@ const mapFilters = ({ identifier }: any) => {
   return filters.length > 0 ? filters : undefined;
 };
 
-export const paramsToSearchBody = ({ q, page, ...params }: any) => {
+export const paramsToSearchBody = ({ q, ...params }: any) => {
   const body = {
     q,
     filters: mapFilters(params)
@@ -24,4 +25,5 @@ export const paramsToSearchBody = ({ q, page, ...params }: any) => {
   return body;
 };
 
-export const extractConcepts = (searchResponse: any) => searchResponse?.hits ?? [];
+export const extractConcepts = (searchResponse: any) =>
+  searchResponse?.hits ?? [];

@@ -13,7 +13,13 @@ interface Props {
   path: string;
 }
 
-export const ListItem = ({ col1, col2, col3, status, path }: Props): JSX.Element | null => {
+export const ListItem = ({
+  col1,
+  col2,
+  col3,
+  status,
+  path
+}: Props): JSX.Element | null => {
   if (!(col1 || status)) {
     return null;
   }
@@ -24,11 +30,11 @@ export const ListItem = ({ col1, col2, col3, status, path }: Props): JSX.Element
   });
 
   return (
-    <Link to={path} className="row fdk-list-item">
-      <span className="col-3">{col1}</span>
-      <span className="col-3">{col2}</span>
-      <span className="col-3">{col3}</span>
-      <span className="col-3">
+    <Link to={path} className='row fdk-list-item'>
+      <span className='col-3'>{col1}</span>
+      <span className='col-3'>{col2}</span>
+      <span className='col-3'>{col3}</span>
+      <span className='col-3'>
         <i className={statusClass} />
         {status === 'publisert' && <span>{localization.published}</span>}
         {status === 'utkast' && <span>{localization.draft}</span>}

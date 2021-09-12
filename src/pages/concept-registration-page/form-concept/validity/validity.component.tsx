@@ -9,21 +9,31 @@ export const Validity: FC = () => {
   const [gyldigTomField] = useField('gyldigTom');
   return (
     <div>
-      <div className="form-group">
+      <div className='form-group'>
         <HelpText
           title={localization.gyldigFomTitle}
           helpTextAbstract={localization.gyldigFomAbstract}
           helpTextDescription={localization.gyldigFomDescription}
         />
-        <Field name="gyldigFom" component={DatePickerField} label="gyldigFom" maxDate={gyldigTomField.value} />
+        <Field
+          name='gyldigFom'
+          component={DatePickerField}
+          label='gyldigFom'
+          maxDate={gyldigTomField.value}
+        />
       </div>
-      <div className="form-group">
+      <div className='form-group'>
         <HelpText
           title={localization.gyldigTomTitle}
           helpTextAbstract={localization.gyldigTomAbstract}
           helpTextDescription={localization.gyldigTomDescription}
         />
-        <Field name="gyldigTom" component={DatePickerField} label="gyldigTom" minDate={gyldigFomField.value} />
+        <Field
+          name='gyldigTom'
+          component={DatePickerField}
+          label='gyldigTom'
+          minDate={gyldigFomField.value}
+        />
       </div>
     </div>
   );

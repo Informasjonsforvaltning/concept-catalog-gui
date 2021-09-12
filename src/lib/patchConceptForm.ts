@@ -8,7 +8,10 @@ import {
   conceptPatchIsSavingAction
 } from '../app/reducers/stateReducer';
 
-export const patchConceptFromForm = (values, { concept, dispatch, lastPatchedResponse = {}, isSaving }): void => {
+export const patchConceptFromForm = (
+  values,
+  { concept, dispatch, lastPatchedResponse = {}, isSaving }
+): void => {
   const diff = compare(
     omit(lastPatchedResponse, 'endringslogelement'),
     omit({ ...lastPatchedResponse, ...values }, 'endringslogelement')
@@ -19,7 +22,9 @@ export const patchConceptFromForm = (values, { concept, dispatch, lastPatchedRes
     dispatch(conceptPatchIsSavingAction(conceptId));
     patchConcept(conceptId, diff)
       .then(response => {
-        dispatch(conceptPatchSuccessAction(conceptId, !!values.status, response));
+        dispatch(
+          conceptPatchSuccessAction(conceptId, !!values.status, response)
+        );
       })
       .catch(error => {
         dispatch(conceptPatchErrorAction(conceptId, error));

@@ -5,11 +5,9 @@ interface Props {
   title: string;
 }
 
-export const ConceptTitle = ({ title }: Props): JSX.Element | null => {
-  return (
-    <div>
-      <h1>{localization.conceptCatalog}</h1>
-      <p>{title}</p>
-    </div>
-  );
-};
+export const ConceptTitle = ({ title }: Props): JSX.Element | null => (
+  <div>
+    <h1>{localization.conceptCatalog}</h1>
+    <p>{title}</p>
+  </div>
+);

@@ -81,6 +81,7 @@ export const AutosuggestConcepts: FC<Props> = ({
   const lastRequestId = null;
 
   const onChange = (event, { newValue }) => {
+    event.preventDefault();
     setFieldValue(newValue);
   };
 
@@ -117,6 +118,7 @@ export const AutosuggestConcepts: FC<Props> = ({
           inputProps={inputProps}
           renderInputComponent={renderInputComponent}
           onSuggestionSelected={(e, { suggestion }) => {
+            e.preventDefault();
             onAddSuggestion(suggestion);
             setFieldValue('');
           }}

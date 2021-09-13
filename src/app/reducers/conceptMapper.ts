@@ -4,10 +4,10 @@ import {
   importConcepts
 } from '../../api/concept-catalogue-api';
 import {
+  Concept,
   ImportErrorMessage,
   InvalidConceptErrorMessage
-} from '../../domain/Common';
-import { Concept } from '../../domain/Concept';
+} from '../../types';
 import ImportError from '../../domain/ImportError';
 import { getTranslateText } from '../../lib/translateText';
 import { schema } from '../../pages/concept-registration-page/form-concept/form-concept.schema';

@@ -4,7 +4,7 @@ import { useDispatch, useGlobalState } from '../../app/context/stateContext';
 import './concept-registration-page-pure.scss';
 import { FormConcept } from './form-concept/form-concept.component';
 import { conceptPatchSuccessAction } from '../../app/reducers/stateReducer';
-import { Concept } from '../../domain/Concept';
+import { Concept } from '../../types';
 
 import { getTranslateText } from '../../lib/translateText';
 import { localization } from '../../lib/localization';

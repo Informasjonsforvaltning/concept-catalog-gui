@@ -1,6 +1,6 @@
 import { SET_INPUT_LANGUAGES, TOGGLE_INPUT_LANGUAGE } from './actionTypes';
 import { localization } from '../../../lib/localization';
-import { Language } from '../../../domain/Language';
+import { Language } from '../../../types';
 
 const NB = 'nb';
 const NN = 'nn';

@@ -1,8 +1,12 @@
 import axios from 'axios';
-import { Concept } from '../domain/Concept';
-import { getConfig } from '../config';
-import { authService } from '../services/auth-service';
+
+import { Concept } from '../types';
+
 import ImportError from '../domain/ImportError';
+
+import { getConfig } from '../config';
+
+import { authService } from '../services/auth-service';
 
 /* utility functions */
 

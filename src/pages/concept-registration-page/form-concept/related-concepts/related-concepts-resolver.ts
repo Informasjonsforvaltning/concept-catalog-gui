@@ -5,7 +5,7 @@ import {
   searchConcepts
 } from '../../../../api/search-fulltext-api/concepts';
 import { getConcept } from '../../../../api/concept-catalogue-api';
-import { Concept } from '../../../../domain/Concept';
+import { Concept } from '../../../../types';
 
 const mapProps = {
   seeAlsoConcepts: async props => {

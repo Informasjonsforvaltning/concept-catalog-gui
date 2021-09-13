@@ -31,13 +31,13 @@
     ],
     "typeRoots": [
       "node_modules/@types",
-      "src/domain/*"
+      "src/types/*"
     ],
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
   "include": [
-    "./images.d.ts",
+    "./src/types/images.d.ts",
     "./src/**/**/*"
   ],
   "exclude": [

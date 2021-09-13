@@ -18,7 +18,7 @@ RUN npm set progress=false && \
 
 RUN npm audit --production --audit-level=moderate
 
-COPY --chown=app:app .babelrc images.d.ts tsconfig.json jest.config.json ./
+COPY --chown=app:app .babelrc tsconfig.json jest.config.json ./
 COPY --chown=app:app webpack ./webpack
 COPY --chown=app:app src ./src
 COPY --chown=app:app test ./test

@@ -13,8 +13,7 @@ import {
 import { Can } from '../../casl/Can';
 import { ImportConceptButton } from '../../components/import-concept-button/import-concept-button.component';
 import { mapConcepts } from '../../app/reducers/conceptMapper';
-import { Concept, Navn } from '../../domain/Concept';
-import { ImportErrorMessage } from '../../domain/Common';
+import { Concept, ImportErrorMessage, Navn } from '../../types';
 
 import SearchBar from '../../components/search-bar';
 import ErrorRow from '../../components/error-row';

@@ -20,7 +20,7 @@ import {
 } from '../../../components/language-picker/reducer/reducer';
 import { deepKeys } from '../../../lib/deep-keys';
 import { LanguagePicker } from '../../../components/language-picker/language-picker.component';
-import { Concept } from '../../../domain/Concept';
+import { Concept } from '../../../types';
 import { Can } from '../../../casl/Can';
 import { authService } from '../../../services/auth-service';
 import { ButtonToggle } from '../../../components/button-toggle/button-toggle.component';

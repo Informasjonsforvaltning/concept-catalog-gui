@@ -8,7 +8,7 @@ import { localization } from '../../../../lib/localization';
 
 import { Source } from './source/source.component';
 import { MultilingualField } from '../../../../components/multilingual-field/multilingual-field.component';
-import { Language } from '../../../../domain/Language';
+import { Language } from '../../../../types';
 
 interface Props {
   languages: Language[];

@@ -2,7 +2,7 @@ import React from 'react';
 import { InputTagsField } from '../../../../components/fields/field-input-tags/field-input-tags.component';
 import { HelpText } from '../../../../components/help-text/help-text.component';
 import { localization } from '../../../../lib/localization';
-import { Language } from '../../../../domain/Language';
+import { Language } from '../../../../types';
 import { MultilingualField } from '../../../../components/multilingual-field/multilingual-field.component';
 
 interface Props {

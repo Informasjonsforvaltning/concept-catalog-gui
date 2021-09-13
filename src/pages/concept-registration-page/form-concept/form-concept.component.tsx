@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { withFormik } from 'formik';
 import { FormConceptPure } from './form-concept-pure.component';
 import { schema } from './form-concept.schema';
-import { Concept } from '../../../domain/Concept';
+import { Concept } from '../../../types';
 import { validateConceptForm } from '../../../lib/validateConceptForm';
 import { patchConceptFromForm } from '../../../lib/patchConceptForm';
 

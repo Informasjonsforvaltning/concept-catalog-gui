@@ -4,7 +4,7 @@ import { Button } from 'reactstrap';
 
 import { localization } from '../../lib/localization';
 import './language-picker.styles.scss';
-import { Language } from '../../domain/Language';
+import { Language } from '../../types';
 
 interface Props {
   languages: Language[];

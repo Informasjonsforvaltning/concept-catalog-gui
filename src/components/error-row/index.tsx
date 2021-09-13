@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { ErrorMessage } from '../../domain/Common';
+import { ErrorMessage } from '../../types';
 import SC from './styled';
 
 interface Props {

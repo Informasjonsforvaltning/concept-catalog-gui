@@ -32,14 +32,15 @@ const handleChangeForholdTilKilde = (form, fieldName, option) => {
   }
 };
 
-const handleAddKilde = (form: any, push: any) => {
+const handleAddKilde = (push: any) => {
   push({ id: v4(), tekst: '', uri: '' });
 };
 
 const handleRemoveKilde = (form, index) => {
   const { kildebeskrivelse } = form.values;
   if (Array.isArray(kildebeskrivelse?.kilde)) {
-    const newSource = kildebeskrivelse?.kilde?.filter((v, i) => i !== index);
+    const removeElement = kildebeskrivelse?.kilde?.[index];
+    const newSource = kildebeskrivelse?.kilde?.filter(v => v !== removeElement);
     form.setFieldValue('kildebeskrivelse', {
       ...kildebeskrivelse,
       kilde: newSource ?? []
@@ -117,7 +118,7 @@ export const SourcePure: FC<Props> = ({ catalogId }) => {
                 <ButtonSource
                   add
                   title={localization.addNewSource}
-                  handleClick={() => handleAddKilde(form, push)}
+                  handleClick={() => handleAddKilde(push)}
                 />
               </Can>
             </div>

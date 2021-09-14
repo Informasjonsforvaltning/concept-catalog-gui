@@ -9,7 +9,7 @@ import { routeConfig } from './routeConfig';
 import { Breadcrumbs } from '../components/breadcrumbs/breadcrumbs.component';
 import { authService } from '../services/auth-service';
 
-import '../assets/style/bootstrap-override.scss';
+import './styles/bootstrap-override.scss';
 import 'designsystemet/fdk-designsystem-bootstrap4/scss/helper.scss';
 import 'designsystemet/fdk-designsystem-bootstrap4/scss/portal.scss';
 import 'designsystemet/fdk-designsystem-bootstrap4/scss/typo.scss';

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ThemeProvider from '@fellesdatakatalog/theme';
 
+import GlobalStyles from '../../app/styles';
 import { App } from '../../app/App';
 import { ErrorBoundary } from '../../components/error-boundary/error-boundary';
 import { authService } from '../../services/auth-service';
@@ -12,7 +13,8 @@ async function main() {
   if (authenticated) {
     initAbilities();
     ReactDOM.render(
-      <ThemeProvider useGlobalStyles={false}>
+      <ThemeProvider>
+        <GlobalStyles />
         <ErrorBoundary>
           <App />
         </ErrorBoundary>

@@ -5,6 +5,8 @@ import cx from 'classnames';
 import { localization } from '../../lib/localization';
 import { convertToSanitizedHtml } from '../../lib/markdown-converter';
 
+import SC from './styled';
+
 interface Props {
   title: string;
   helpTextAbstract?: string;
@@ -32,7 +34,7 @@ export const HelpText = ({
   return (
     <div className='fdk-reg-helptext mb-3 p-3'>
       <div className='d-flex align-items-center'>
-        <h3 className='help-text mb-0'>{title}</h3>
+        <SC.Title className='help-text mb-0'>{title}</SC.Title>
         {showRequired && (
           <span className='fdk-badge badge fdk-bg-color-warning-lightest ml-2'>
             {localization.required}

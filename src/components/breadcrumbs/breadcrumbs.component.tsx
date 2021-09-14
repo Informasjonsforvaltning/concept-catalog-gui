@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
 import { compose } from 'recompose';
 
-import { routeConfig } from '../routeConfig';
+import { routeConfig } from '../../app/routeConfig';
 import { localization } from '../../lib/localization';
 import { getConfig } from '../../config';
 

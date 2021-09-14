@@ -2,7 +2,7 @@ import * as React from 'react';
 import get from 'lodash/get';
 import { localization } from '../../../lib/localization';
 import { getTranslateText } from '../../../lib/translateText';
-import { useGlobalState } from '../../context/stateContext';
+import { useGlobalState } from '../../../app/context/stateContext';
 
 interface ConceptBreadcrumbProps {
   match: any;

@@ -7,11 +7,11 @@ exports[`should render HelpText 1`] = `
   <div
     className="d-flex align-items-center"
   >
-    <h3
+    <styled.h3
       className="help-text mb-0"
     >
       Title
-    </h3>
+    </styled.h3>
   </div>
   <div
     className="d-md-flex"

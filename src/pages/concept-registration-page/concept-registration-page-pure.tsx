@@ -9,6 +9,8 @@ import { Concept } from '../../types';
 import { getTranslateText } from '../../lib/translateText';
 import { localization } from '../../lib/localization';
 
+import SC from './styled';
+
 interface Props {
   concept: Concept;
 }
@@ -26,10 +28,10 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
   return (
     <div className='container'>
       <div className='col-12'>
-        <h1 className='pb-5'>
+        <SC.Title className='pb-5'>
           {getTranslateText(get(globalStateValues, ['anbefaltTerm', 'navn'])) ||
             localization.registerNewConcept}
-        </h1>
+        </SC.Title>
         {globalStateValues && (
           <FormConcept
             concept={copyOfConcept}

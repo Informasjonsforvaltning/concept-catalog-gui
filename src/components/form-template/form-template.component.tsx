@@ -6,6 +6,7 @@ import ErrorIcon from '../../images/icon-alert-danger-md.svg';
 
 import { localization } from '../../lib/localization';
 import './form-template.scss';
+import SC from './styled';
 
 interface Props {
   title: string;
@@ -49,7 +50,7 @@ export const FormTemplate = ({
         onClick={() => toggle(!collapse)}
       >
         <div className='d-flex align-items-center'>
-          <h2 className='mb-0 text-ellipsis'>{title}</h2>
+          <SC.Title className='mb-0 text-ellipsis'>{title}</SC.Title>
           {showRequired && (
             <span className='fdk-badge badge fdk-bg-color-warning-lightest ml-2'>
               {localization.required}

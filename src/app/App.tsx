@@ -6,7 +6,7 @@ import Header from '@fellesdatakatalog/internal-header';
 import Link from '@fellesdatakatalog/link';
 
 import { routeConfig } from './routeConfig';
-import { Breadcrumbs } from './breadcrumbs/breadcrumbs.component';
+import { Breadcrumbs } from '../components/breadcrumbs/breadcrumbs.component';
 import { authService } from '../services/auth-service';
 
 import '../assets/style/bootstrap-override.scss';

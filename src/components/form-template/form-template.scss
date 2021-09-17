@@ -1,28 +1,4 @@
-.fdk-syncError-icon {
-  flex-grow: 1;
-}
-
-.fdk-reg_collapse {
-  margin: 0.8rem 0;
-  border-radius: 5px;
-  display: block;
-  button.fdk-btn-no-border {
-    background-color: transparent;
-    border: none;
-  }
-  hr {
-    margin-left: -30px;
-    margin-right: -30px;
-  }
-}
-
-.fdk-reg_collapse_open {
-  box-shadow: 0 3px 12px rgba(35, 55, 65, 0.55);
-}
-
-.fdk-error-icon {
-  height: 30px;
-  width: 30px;
-  margin-left: 10px;
-  margin-right: 10px;
+button.fdk-btn-no-border {
+  background-color: transparent;
+  border: none;
 }

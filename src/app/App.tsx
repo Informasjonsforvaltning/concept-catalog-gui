@@ -23,30 +23,24 @@ import { getConfig } from '../config';
 export const App: React.FC = () => (
   <Router>
     <StateProvider>
-      <div className='d-flex flex-column site theme-fdk'>
-        <Header
-          homeUrl={getConfig().registrationHost}
-          username={authService.getUser()?.name}
-          onLogout={authService.logout}
-        >
-          <Link href={`${getConfig().searchHost}/guidance`}>
-            Registrere data
-          </Link>
-          <Link href={getConfig().adminGui.host}>Høste data</Link>
-          <Link href={getConfig().searchHost} external>
-            Søk i Felles datakatalog
-          </Link>
-        </Header>
-        <Breadcrumbs />
-        <div className='site-content d-flex flex-column pt-5'>
-          <Switch>
-            {routeConfig.map((route, i) => (
-              <Route key={`${i}-${_.get(route, 'path', '')}`} {...route} />
-            ))}
-          </Switch>
-        </div>
-        <Footer />
-      </div>
+      <Header
+        homeUrl={getConfig().registrationHost}
+        username={authService.getUser()?.name}
+        onLogout={authService.logout}
+      >
+        <Link href={`${getConfig().searchHost}/guidance`}>Registrere data</Link>
+        <Link href={getConfig().adminGui.host}>Høste data</Link>
+        <Link href={getConfig().searchHost} external>
+          Søk i Felles datakatalog
+        </Link>
+      </Header>
+      <Breadcrumbs />
+      <Switch>
+        {routeConfig.map((route, i) => (
+          <Route key={`${i}-${_.get(route, 'path', '')}`} {...route} />
+        ))}
+      </Switch>
+      <Footer />
     </StateProvider>
   </Router>
 );

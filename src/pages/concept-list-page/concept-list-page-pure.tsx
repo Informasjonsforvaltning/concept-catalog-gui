@@ -15,8 +15,11 @@ import { ImportConceptButton } from '../../components/import-concept-button/impo
 import { mapConcepts } from '../../app/reducers/conceptMapper';
 import { Concept, ImportErrorMessage, Navn } from '../../types';
 
+import Root from '../../components/root';
 import SearchBar from '../../components/search-bar';
 import ErrorRow from '../../components/error-row';
+
+import SC from './styled';
 
 interface Props {
   history: any;
@@ -85,64 +88,68 @@ export const ConceptListPagePure = ({
   }, []);
 
   return (
-    <div className='container'>
-      <div className='row mb-2'>
-        <ConceptTitle title={getTranslateText(prefLabel) || name} />
-      </div>
-      <Can
-        I='create a concept'
-        of={{ __type: 'Concept', publisher: catalogId }}
-      >
-        <div className='d-flex flex-row justify-content-start align-items-center row'>
-          <div className='p-2'>
-            <AddConceptButton
-              parentOnClick={() =>
-                createNewConceptAndNavigate({ history, catalogId })
-              }
-            />
-          </div>
-          <div className='p-2'>
-            <ImportConceptButton
-              onUpload={event =>
-                mapConcepts(
-                  event,
-                  setFileParsingError,
-                  setConceptImportSuccess,
-                  catalogId,
-                  setConcepts
-                )
-              }
-            />
-          </div>
-          <div className='p-2'>
-            <Link
-              href='https://informasjonsforvaltning.github.io/felles-datakatalog/begrepskatalog/hvordan_publisere/'
-              external
-              className='mb-2'
-            >
-              Retningslinjer for import av begrep
-            </Link>
-          </div>
+    <Root>
+      <SC.Container>
+        <div className='row mb-2'>
+          <ConceptTitle title={getTranslateText(prefLabel) || name} />
         </div>
-        {fileParsingError.thrown && (
-          <ErrorRow
-            errorTitle='Feil ved import av fil.'
-            errorMessage={fileParsingError}
+        <Can
+          I='create a concept'
+          of={{ __type: 'Concept', publisher: catalogId }}
+        >
+          <div className='d-flex flex-row justify-content-start align-items-center row'>
+            <div className='p-2'>
+              <AddConceptButton
+                parentOnClick={() =>
+                  createNewConceptAndNavigate({ history, catalogId })
+                }
+              />
+            </div>
+            <div className='p-2'>
+              <ImportConceptButton
+                onUpload={event =>
+                  mapConcepts(
+                    event,
+                    setFileParsingError,
+                    setConceptImportSuccess,
+                    catalogId,
+                    setConcepts
+                  )
+                }
+              />
+            </div>
+            <div className='p-2'>
+              <Link
+                href='https://informasjonsforvaltning.github.io/felles-datakatalog/begrepskatalog/hvordan_publisere/'
+                external
+                className='mb-2'
+              >
+                Retningslinjer for import av begrep
+              </Link>
+            </div>
+          </div>
+          {fileParsingError.thrown && (
+            <ErrorRow
+              errorTitle='Feil ved import av fil.'
+              errorMessage={fileParsingError}
+            />
+          )}
+          {conceptImportSuccess && (
+            <div className='row alert alert-success'>
+              {conceptImportSuccess}
+            </div>
+          )}
+        </Can>
+        <div className='row mb-4'>
+          <SearchBar placeholder='Søk etter begrep' onChange={filterConcepts} />
+        </div>
+        <div className='mb-2'>
+          <ConceptList
+            items={previousQuery.length > 0 ? filteredConcepts : concepts}
+            catalogId={catalogId}
           />
-        )}
-        {conceptImportSuccess && (
-          <div className='row alert alert-success'>{conceptImportSuccess}</div>
-        )}
-      </Can>
-      <div className='row mb-4'>
-        <SearchBar placeholder='Søk etter begrep' onChange={filterConcepts} />
-      </div>
-      <div className='mb-2'>
-        <ConceptList
-          items={previousQuery.length > 0 ? filteredConcepts : concepts}
-          catalogId={catalogId}
-        />
-      </div>
-    </div>
+        </div>
+      </SC.Container>
+    </Root>
   );
 };

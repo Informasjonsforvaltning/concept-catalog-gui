@@ -1,10 +1,10 @@
 import React from 'react';
-import cx from 'classnames';
-import { Button } from 'reactstrap';
 
 import { localization } from '../../lib/localization';
 import './language-picker.styles.scss';
 import { Language } from '../../types';
+
+import SC from './styled';
 
 interface Props {
   languages: Language[];
@@ -25,22 +25,15 @@ export const LanguagePicker = ({
       <p>{`${localization.langChoose}:`}</p>
       <div className='language-button-group'>
         {languages.map(({ code, title, selected }) => (
-          <Button
+          <SC.Button
             key={code}
-            className={cx('fdk-button border-0', {
-              'fdk-bg-color-primary-lighter': !selected,
-              'fdk-color-link-darker': !selected,
-              'no-shadow': selected
-            })}
-            color={shouldDisableLanguage(code) ? 'secondary' : 'primary'}
             disabled={shouldDisableLanguage(code)}
             onClick={() => toggleInputLanguage(code)}
+            $selected={selected}
           >
-            {selected && (
-              <img src='./img/icon-checked-white-sm.svg' alt='icon' />
-            )}
+            {selected && <SC.Icon />}
             {title}
-          </Button>
+          </SC.Button>
         ))}
       </div>
     </div>

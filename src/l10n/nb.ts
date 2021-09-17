@@ -1,6 +1,6 @@
 export const nb = {
-  addNewConcept: 'Registrer nytt begrep',
-  importNewConcept: 'Importer begreper',
+  addNewConcept: 'Legg til nytt begrep',
+  importNewConcept: 'Importer begrep',
   addNewSource: 'Legg til ny kilde',
   removeSource: 'Slett kilde',
   relationToSource: 'Forhold til kilde',

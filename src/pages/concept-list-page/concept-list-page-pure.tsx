@@ -4,7 +4,6 @@ import Link from '@fellesdatakatalog/link';
 import { getTranslateText } from '../../lib/translateText';
 import { ConceptList } from './concept-list/concept-list.component';
 import { ConceptTitle } from './concept-title/concept-title.component';
-import { AddConceptButton } from '../../components/add-concept-button/add-concept-button.component';
 import {
   postConcept,
   getConceptsForCatalog
@@ -20,6 +19,7 @@ import SearchBar from '../../components/search-bar';
 import ErrorRow from '../../components/error-row';
 
 import SC from './styled';
+import { localization } from '../../lib/localization';
 
 interface Props {
   history: any;
@@ -97,13 +97,16 @@ export const ConceptListPagePure = ({
           I='create a concept'
           of={{ __type: 'Concept', publisher: catalogId }}
         >
-          <div className='d-flex flex-row justify-content-start align-items-center row'>
-            <div className='p-2'>
-              <AddConceptButton
-                parentOnClick={() =>
+          <div className='d-flex flex-row justify-content-start align-items-center row mb-4'>
+            <div>
+              <SC.AddConceptButton
+                onClick={() =>
                   createNewConceptAndNavigate({ history, catalogId })
                 }
-              />
+              >
+                <SC.AddIcon />
+                {localization.addNewConcept}
+              </SC.AddConceptButton>
             </div>
             <div className='p-2'>
               <ImportConceptButton

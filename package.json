@@ -36,6 +36,7 @@
   "dependencies": {
     "@casl/ability": "^3.4.0",
     "@casl/react": "^1.0.4",
+    "@fellesdatakatalog/button": "^0.2.4",
     "@fellesdatakatalog/internal-footer": "^0.3.7",
     "@fellesdatakatalog/internal-header": "^0.4.8",
     "@fellesdatakatalog/link": "^0.2.6",

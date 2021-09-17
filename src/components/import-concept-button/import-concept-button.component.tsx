@@ -1,7 +1,8 @@
 import React from 'react';
 import { localization } from '../../lib/localization';
 import './import-concept-button.scss';
-import { ReactComponent as IconAdd } from '../../assets/img/icon-add-cicle-sm.svg';
+
+import SC from './styled';
 
 const allowedMimeTypes = [
   'text/csv',
@@ -14,13 +15,11 @@ const allowedMimeTypes = [
 ];
 
 export const ImportConceptButton = ({ onUpload }): JSX.Element | null => (
-  <label
+  <SC.ImportConceptButton
     htmlFor='file-upload'
     aria-haspopup='true'
     aria-expanded='false'
-    className='custom-file-upload fdk-button fdk-button-import-concept btn btn-light mb-4'
   >
-    <IconAdd className='fdk-icon-import mr-2' />
     {localization.importNewConcept}
     <input
       id='file-upload'
@@ -28,7 +27,7 @@ export const ImportConceptButton = ({ onUpload }): JSX.Element | null => (
       accept={allowedMimeTypes.join(', ')}
       onChange={onUpload}
     />
-  </label>
+  </SC.ImportConceptButton>
 );
 
 export default ImportConceptButton;

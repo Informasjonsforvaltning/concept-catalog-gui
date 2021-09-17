@@ -1,24 +1,17 @@
-import React from 'react';
-import './button-toggle.scss';
+import React, { FC } from 'react';
+import { Variant } from '@fellesdatakatalog/button';
 import { localization } from '../../lib/localization';
+
+import SC from './styled';
 
 interface Props {
   expanded: boolean;
   toggle: any;
 }
 
-export const ButtonToggle = ({ expanded, toggle }: Props): JSX.Element => {
-  const icon = expanded
-    ? 'icon-collapse-text-sm.svg'
-    : 'icon-expand-text-sm.svg';
-  return (
-    <button
-      type='button'
-      className='toggleExpandButton d-flex align-items-center'
-      onClick={toggle}
-    >
-      <img className='chevronIcon' src={`/img/${icon}`} alt='icon' />
-      {expanded ? localization.collapse : localization.expand}
-    </button>
-  );
-};
+export const ButtonToggle: FC<Props> = ({ expanded, toggle }) => (
+  <SC.ButtonToggle variant={Variant.TERTIARY} onClick={toggle}>
+    {expanded ? <SC.CollapseIcon /> : <SC.ExpandIcon />}
+    {expanded ? localization.collapse : localization.expand}
+  </SC.ButtonToggle>
+);

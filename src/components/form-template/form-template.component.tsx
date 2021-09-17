@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import cx from 'classnames';
+import React, { FC, PropsWithChildren, useState, useEffect } from 'react';
 import { Collapse } from 'reactstrap';
-
-import ErrorIcon from '../../images/icon-alert-danger-md.svg';
 
 import { localization } from '../../lib/localization';
 import './form-template.scss';
@@ -10,19 +7,18 @@ import SC from './styled';
 
 interface Props {
   title: string;
-  children: any;
   showRequired?: boolean;
   showInitially?: boolean;
   error?: boolean;
 }
 
-export const FormTemplate = ({
+export const FormTemplate: FC<PropsWithChildren<Props>> = ({
   title,
   children,
   showRequired = false,
   showInitially = false,
   error = false
-}: Props): JSX.Element => {
+}) => {
   const [collapse, setCollapse] = useState(showInitially);
 
   const toggle = (changeProp): void => {
@@ -33,40 +29,22 @@ export const FormTemplate = ({
     toggle(showInitially);
   }, [showInitially]);
 
-  const collapseClass = cx('fdk-reg_collapse', 'fdk-bg-color-white', 'p-5', {
-    'fdk-reg_collapse_open': collapse
-  });
-
-  const collapseIconClass = cx('fa', 'fa-2x', 'fdk-color-link-dark', {
-    'fa-angle-down': !collapse,
-    'fa-angle-up': collapse
-  });
-
   return (
-    <div className={collapseClass}>
-      <button
-        type='button'
-        className='fdk-collapseButton fdk-btn-no-border w-100 p-0'
-        onClick={() => toggle(!collapse)}
-      >
-        <div className='d-flex align-items-center'>
-          <SC.Title className='mb-0 text-ellipsis'>{title}</SC.Title>
-          {showRequired && (
-            <span className='fdk-badge badge fdk-bg-color-warning-lightest ml-2'>
-              {localization.required}
-            </span>
-          )}
-          <div className='ml-auto'>
-            {error && <ErrorIcon className='fdk-error-icon' />}
-
-            <i className={collapseIconClass} />
-          </div>
+    <SC.FormTemplate>
+      <SC.CollapseButton type='button' onClick={() => toggle(!collapse)}>
+        <SC.Title className='mb-0 text-ellipsis'>{title}</SC.Title>
+        {showRequired && (
+          <SC.RequiredBadge>{localization.required}</SC.RequiredBadge>
+        )}
+        <div className='ml-auto'>
+          {error && <SC.ErrorIcon />}
+          {collapse ? <SC.CollapseIcon /> : <SC.ExpandIcon />}
         </div>
-      </button>
+      </SC.CollapseButton>
       <Collapse isOpen={collapse}>
         <hr />
         {children}
       </Collapse>
-    </div>
+    </SC.FormTemplate>
   );
 };

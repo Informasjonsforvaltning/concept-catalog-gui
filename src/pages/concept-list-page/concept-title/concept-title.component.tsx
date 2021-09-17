@@ -8,8 +8,8 @@ interface Props {
 }
 
 export const ConceptTitle = ({ title }: Props): JSX.Element | null => (
-  <div>
+  <SC.ConceptTitle>
     <SC.Title>{localization.conceptCatalog}</SC.Title>
-    <div>{title}</div>
-  </div>
+    <SC.SubTitle>{title}</SC.SubTitle>
+  </SC.ConceptTitle>
 );

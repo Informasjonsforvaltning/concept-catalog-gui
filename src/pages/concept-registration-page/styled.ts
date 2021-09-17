@@ -5,7 +5,7 @@ import { theme } from '@fellesdatakatalog/theme';
 import ContainerSC from '../../components/container/styled';
 
 const Title = styled.h1`
-  font-size: ${theme.fontSize('FS28')};
+  font-size: ${theme.fontSize('FS48')};
 `;
 
 const Container = styled(ContainerSC.Container)`

@@ -2,14 +2,14 @@ import React, { FC, useState, useEffect, useReducer } from 'react';
 import { compose } from 'redux';
 import { Form, FormikProps, WithFormikConfig, withFormik } from 'formik';
 import pick from 'lodash/pick';
-import get from 'lodash/get';
 import throttle from 'lodash/throttle';
 
-import { Term } from './term/term.component';
-import { AllowedAndDiscouraged } from './allowed-and-discouraged-term/allowed-and-discouraged-term.component';
-import { UseOfTerm } from './use-of-concept/useOfConcept.component';
-import { ContactInfo } from './contactInfo/contactInfo.component';
+import { Concept } from '../../../types';
+import { Can } from '../../../casl/Can';
+import { deepKeys } from '../../../lib/deep-keys';
 import { localization } from '../../../lib/localization';
+import { authService } from '../../../services/auth-service';
+
 import { FormTemplate } from '../../../components/form-template/form-template.component';
 import { StatusBar } from '../../../components/status-bar/status-bar.component';
 import {
@@ -20,16 +20,18 @@ import {
   languagePickerReducer,
   initialState
 } from '../../../components/language-picker/reducer/reducer';
-import { deepKeys } from '../../../lib/deep-keys';
 import { LanguagePicker } from '../../../components/language-picker/language-picker.component';
-import { Concept } from '../../../types';
-import { Can } from '../../../casl/Can';
-import { authService } from '../../../services/auth-service';
 import { ButtonToggle } from '../../../components/button-toggle/button-toggle.component';
+
 import { Validity } from './validity/validity.component';
 import { RelatedConcepts } from './related-concepts/related-concepts.component';
-import { schema as validationSchema } from './form-concept.schema';
+import { Term } from './term/term.component';
+import { AllowedAndDiscouraged } from './allowed-and-discouraged-term/allowed-and-discouraged-term.component';
+import { UseOfTerm } from './use-of-concept/useOfConcept.component';
+import { ContactInfo } from './contactInfo/contactInfo.component';
 import { patchWithPreProcess } from './utils';
+
+import { schema as validationSchema } from './form-concept.schema';
 
 export type FormValues = Pick<
   Concept,
@@ -99,7 +101,7 @@ export const FormConceptPure: FC<Props> = ({
     }
   }, [concept]);
 
-  const publisherId = get(concept, ['ansvarligVirksomhet', 'id']);
+  const publisherId = concept?.ansvarligVirksomhet?.id;
   const isReadOnly = !authService.hasOrganizationWritePermission(publisherId);
 
   const [expandAll, setExpandAll] = useState(false);
@@ -209,10 +211,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     seOgså
   }),
   validationSchema,
-  validate: (
-    values,
-    props: { concept; dispatch; lastPatchedResponse; isSaving }
-  ) => throttle(patchWithPreProcess, 1500)(values, props),
+  validate: throttle(patchWithPreProcess, 1500),
   validateOnMount: true,
   validateOnBlur: false,
   handleSubmit: () => {}

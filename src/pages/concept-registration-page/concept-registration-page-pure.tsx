@@ -3,7 +3,7 @@ import get from 'lodash/get';
 
 import { useDispatch, useGlobalState } from '../../app/context/stateContext';
 import './concept-registration-page-pure.scss';
-import { FormConcept } from './form-concept/form-concept.component';
+import { FormConcept } from './form-concept';
 import { conceptPatchSuccessAction } from '../../app/reducers/stateReducer';
 import { Concept } from '../../types';
 

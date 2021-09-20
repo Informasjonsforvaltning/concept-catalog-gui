@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useReducer } from 'react';
-import { Form } from 'formik';
+import React, { FC, useState, useEffect, useReducer } from 'react';
+import { compose } from 'redux';
+import { Form, FormikProps, WithFormikConfig, withFormik } from 'formik';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
+import throttle from 'lodash/throttle';
 
 import { Term } from './term/term.component';
 import { AllowedAndDiscouraged } from './allowed-and-discouraged-term/allowed-and-discouraged-term.component';
@@ -26,15 +28,37 @@ import { authService } from '../../../services/auth-service';
 import { ButtonToggle } from '../../../components/button-toggle/button-toggle.component';
 import { Validity } from './validity/validity.component';
 import { RelatedConcepts } from './related-concepts/related-concepts.component';
+import { schema as validationSchema } from './form-concept.schema';
+import { patchWithPreProcess } from './utils';
 
-interface Props {
+export type FormValues = Pick<
+  Concept,
+  | 'anbefaltTerm'
+  | 'definisjon'
+  | 'kildebeskrivelse'
+  | 'merknad'
+  | 'tillattTerm'
+  | 'frarådetTerm'
+  | 'eksempel'
+  | 'fagområde'
+  | 'bruksområde'
+  | 'omfang'
+  | 'kontaktpunkt'
+  | 'gyldigFom'
+  | 'gyldigTom'
+  | 'seOgså'
+>;
+
+interface ExternalProps {
   concept: Concept;
-  isValid: boolean;
+  dispatch: any;
   lastPatchedResponse: any;
-  errors: any;
+  isSaving: boolean;
 }
 
-export const FormConceptPure: React.FC<Props> = ({
+interface Props extends ExternalProps, FormikProps<FormValues> {}
+
+export const FormConceptPure: FC<Props> = ({
   concept,
   isValid,
   lastPatchedResponse = {},
@@ -103,7 +127,7 @@ export const FormConceptPure: React.FC<Props> = ({
         title={localization.formTerm}
         showRequired={!isReadOnly}
         showInitially={isExpandAllDirty ? expandAll : true}
-        error={termError || definitionError || sourceError}
+        error={!!termError || !!definitionError || !!sourceError}
       >
         <Term languages={state.languages} isReadOnly={isReadOnly} />
       </FormTemplate>
@@ -116,7 +140,7 @@ export const FormConceptPure: React.FC<Props> = ({
       <FormTemplate
         title={localization.formUseOfConcept}
         showInitially={expandAll}
-        error={useOfConceptError}
+        error={!!useOfConceptError}
       >
         <UseOfTerm languages={state.languages} />
       </FormTemplate>
@@ -132,7 +156,7 @@ export const FormConceptPure: React.FC<Props> = ({
       <FormTemplate
         title={localization.formContactPoint}
         showInitially={expandAll}
-        error={contactPointError}
+        error={!!contactPointError}
       >
         <ContactInfo />
       </FormTemplate>
@@ -149,3 +173,51 @@ export const FormConceptPure: React.FC<Props> = ({
     </Form>
   );
 };
+
+const formikConfig: WithFormikConfig<Props, FormValues> = {
+  mapPropsToValues: ({
+    concept: {
+      anbefaltTerm = { navn: {} },
+      definisjon = { tekst: {} },
+      kildebeskrivelse = null,
+      merknad = {},
+      tillattTerm = {},
+      frarådetTerm = {},
+      eksempel = {},
+      fagområde = {},
+      bruksområde = {},
+      omfang = null,
+      kontaktpunkt = null,
+      gyldigFom = null,
+      gyldigTom = null,
+      seOgså = []
+    }
+  }: Props) => ({
+    anbefaltTerm,
+    definisjon,
+    kildebeskrivelse,
+    merknad,
+    tillattTerm,
+    frarådetTerm,
+    eksempel,
+    fagområde,
+    bruksområde,
+    omfang,
+    kontaktpunkt,
+    gyldigFom,
+    gyldigTom,
+    seOgså
+  }),
+  validationSchema,
+  validate: (
+    values,
+    props: { concept; dispatch; lastPatchedResponse; isSaving }
+  ) => throttle(patchWithPreProcess, 1500)(values, props),
+  validateOnMount: true,
+  validateOnBlur: false,
+  handleSubmit: () => {}
+};
+
+export const FormConcept = compose<FC<ExternalProps>>(withFormik(formikConfig))(
+  FormConceptPure
+);

@@ -7,6 +7,7 @@ import throttle from 'lodash/throttle';
 import { Concept } from '../../../types';
 import { Can } from '../../../casl/Can';
 import { deepKeys } from '../../../lib/deep-keys';
+import { getTranslateText } from '../../../lib/translateText';
 import { localization } from '../../../lib/localization';
 import { authService } from '../../../services/auth-service';
 
@@ -32,6 +33,8 @@ import { ContactInfo } from './contactInfo/contactInfo.component';
 import { patchWithPreProcess } from './utils';
 
 import { schema as validationSchema } from './form-concept.schema';
+
+import SC from './styled';
 
 export type FormValues = Pick<
   Concept,
@@ -113,66 +116,75 @@ export const FormConceptPure: FC<Props> = ({
   };
 
   return (
-    <Form>
-      <Can I='edit' of={{ __type: 'Language', publisher: publisherId }}>
-        <LanguagePicker
-          languages={state.languages}
-          toggleInputLanguage={language =>
-            dispatch(toggleInputLanguage(language))
-          }
-        />
-      </Can>
-      <div className='d-flex justify-content-end'>
-        <ButtonToggle expanded={expandAll} toggle={toggleExpand} />
-      </div>
-      <FormTemplate
-        title={localization.formTerm}
-        showRequired={!isReadOnly}
-        showInitially={isExpandAllDirty ? expandAll : true}
-        error={!!termError || !!definitionError || !!sourceError}
-      >
-        <Term languages={state.languages} isReadOnly={isReadOnly} />
-      </FormTemplate>
-      <FormTemplate
-        title={localization.formAllowedAndDiscouraged}
-        showInitially={expandAll}
-      >
-        <AllowedAndDiscouraged languages={state.languages} />
-      </FormTemplate>
-      <FormTemplate
-        title={localization.formUseOfConcept}
-        showInitially={expandAll}
-        error={!!useOfConceptError}
-      >
-        <UseOfTerm languages={state.languages} />
-      </FormTemplate>
-      <FormTemplate title={localization.formValidity} showInitially={expandAll}>
-        <Validity />
-      </FormTemplate>
-      <FormTemplate
-        title={localization.formRelatedConcepts}
-        showInitially={expandAll}
-      >
-        <RelatedConcepts />
-      </FormTemplate>
-      <FormTemplate
-        title={localization.formContactPoint}
-        showInitially={expandAll}
-        error={!!contactPointError}
-      >
-        <ContactInfo />
-      </FormTemplate>
-      <Can
-        I='view a statusBar'
-        of={{ __type: 'StatusBar', publisher: publisherId }}
-      >
-        <StatusBar
-          concept={concept}
-          isInitialInValidForm={!isValid}
-          lastPatchedResponse={lastPatchedResponse}
-        />
-      </Can>
-    </Form>
+    <SC.Page>
+      <SC.Title className='pb-5'>
+        {getTranslateText(concept?.anbefaltTerm?.navn) ||
+          localization.registerNewConcept}
+      </SC.Title>
+      <Form>
+        <Can I='edit' of={{ __type: 'Language', publisher: publisherId }}>
+          <LanguagePicker
+            languages={state.languages}
+            toggleInputLanguage={language =>
+              dispatch(toggleInputLanguage(language))
+            }
+          />
+        </Can>
+        <div className='d-flex justify-content-end'>
+          <ButtonToggle expanded={expandAll} toggle={toggleExpand} />
+        </div>
+        <FormTemplate
+          title={localization.formTerm}
+          showRequired={!isReadOnly}
+          showInitially={isExpandAllDirty ? expandAll : true}
+          error={!!termError || !!definitionError || !!sourceError}
+        >
+          <Term languages={state.languages} isReadOnly={isReadOnly} />
+        </FormTemplate>
+        <FormTemplate
+          title={localization.formAllowedAndDiscouraged}
+          showInitially={expandAll}
+        >
+          <AllowedAndDiscouraged languages={state.languages} />
+        </FormTemplate>
+        <FormTemplate
+          title={localization.formUseOfConcept}
+          showInitially={expandAll}
+          error={!!useOfConceptError}
+        >
+          <UseOfTerm languages={state.languages} />
+        </FormTemplate>
+        <FormTemplate
+          title={localization.formValidity}
+          showInitially={expandAll}
+        >
+          <Validity />
+        </FormTemplate>
+        <FormTemplate
+          title={localization.formRelatedConcepts}
+          showInitially={expandAll}
+        >
+          <RelatedConcepts />
+        </FormTemplate>
+        <FormTemplate
+          title={localization.formContactPoint}
+          showInitially={expandAll}
+          error={!!contactPointError}
+        >
+          <ContactInfo />
+        </FormTemplate>
+        <Can
+          I='view a statusBar'
+          of={{ __type: 'StatusBar', publisher: publisherId }}
+        >
+          <StatusBar
+            concept={concept}
+            isInitialInValidForm={!isValid}
+            lastPatchedResponse={lastPatchedResponse}
+          />
+        </Can>
+      </Form>
+    </SC.Page>
   );
 };
 

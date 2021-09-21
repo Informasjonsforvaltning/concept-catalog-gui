@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { Form, FormikProps, WithFormikConfig, withFormik } from 'formik';
 import pick from 'lodash/pick';
 import throttle from 'lodash/throttle';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 import { Concept } from '../../../types';
 import { Can } from '../../../casl/Can';
@@ -23,6 +24,7 @@ import {
 } from '../../../components/language-picker/reducer/reducer';
 import { LanguagePicker } from '../../../components/language-picker/language-picker.component';
 import { ButtonToggle } from '../../../components/button-toggle/button-toggle.component';
+import FormControl from '../../../components/form-control';
 
 import { Validity } from './validity/validity.component';
 import { RelatedConcepts } from './related-concepts/related-concepts.component';
@@ -30,7 +32,7 @@ import { Term } from './term/term.component';
 import { AllowedAndDiscouraged } from './allowed-and-discouraged-term/allowed-and-discouraged-term.component';
 import { UseOfTerm } from './use-of-concept/useOfConcept.component';
 import { ContactInfo } from './contactInfo/contactInfo.component';
-import { patchWithPreProcess } from './utils';
+import { patchWithPreProcess, postWithPreProcess } from './utils';
 
 import { schema as validationSchema } from './form-concept.schema';
 
@@ -54,6 +56,11 @@ export type FormValues = Pick<
   | 'seOgså'
 >;
 
+interface RouteParams {
+  catalogId: string;
+  conceptId: string;
+}
+
 interface ExternalProps {
   concept: Concept;
   dispatch: any;
@@ -61,13 +68,22 @@ interface ExternalProps {
   isSaving: boolean;
 }
 
-interface Props extends ExternalProps, FormikProps<FormValues> {}
+interface Props
+  extends ExternalProps,
+    FormikProps<FormValues>,
+    RouteComponentProps<RouteParams> {}
 
 export const FormConceptPure: FC<Props> = ({
   concept,
   isValid,
+  dirty,
+  values,
   lastPatchedResponse = {},
-  errors
+  errors,
+  history,
+  match: {
+    params: { catalogId, conceptId }
+  }
 }) => {
   const {
     anbefaltTerm: termError,
@@ -76,7 +92,6 @@ export const FormConceptPure: FC<Props> = ({
     omfang: useOfConceptError,
     kontaktpunkt: contactPointError
   } = errors;
-
   const [languagesDetermined, setLanguagesDetermined] = useState(false);
 
   const [state, dispatch] = useReducer(languagePickerReducer, initialState);
@@ -115,12 +130,29 @@ export const FormConceptPure: FC<Props> = ({
     setExpandAllDirty(true);
   };
 
+  const createNewConceptRevisionAndNavigate = () =>
+    postWithPreProcess(conceptId, values).then(resourceId => {
+      history.push(`/${catalogId}/${resourceId}`);
+    });
+
   return (
     <SC.Page>
-      <SC.Title className='pb-5'>
+      <FormControl
+        isFormDirty={dirty}
+        status={concept.status ?? ''}
+        erSistPublisert={concept.erSistPublisert}
+        createNewConceptRevisionAndNavigate={
+          createNewConceptRevisionAndNavigate
+        }
+      />
+      <SC.Title>
         {getTranslateText(concept?.anbefaltTerm?.navn) ||
           localization.registerNewConcept}
       </SC.Title>
+      <SC.Version>
+        {localization.version} {concept.versjonsnr?.major}.
+        {concept.versjonsnr?.minor}.{concept.versjonsnr?.patch}
+      </SC.Version>
       <Form>
         <Can I='edit' of={{ __type: 'Language', publisher: publisherId }}>
           <LanguagePicker
@@ -229,6 +261,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
   handleSubmit: () => {}
 };
 
-export const FormConcept = compose<FC<ExternalProps>>(withFormik(formikConfig))(
-  FormConceptPure
-);
+export const FormConcept = compose<FC<ExternalProps>>(
+  withRouter,
+  withFormik(formikConfig)
+)(FormConceptPure);

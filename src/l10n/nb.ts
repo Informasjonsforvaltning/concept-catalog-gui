@@ -77,5 +77,6 @@ export const nb = {
   formRelatedConcepts: 'Relasjoner',
   seeAlso: 'Se også',
   searchConcepts: 'Søk etter begrep',
-  version: "Versjon"
+  saveDraft: 'Lagre som nytt utkast',
+  version: 'Versjon'
 };

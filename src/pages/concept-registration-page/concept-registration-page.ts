@@ -1,8 +1,7 @@
 import _ from 'lodash';
 import { compose, withProps } from 'recompose';
 
-import { ConceptRegistrationPagePure } from './concept-registration-page-pure';
-import { conceptRegistrationResolver } from './concept-registration-resolver';
+import ConceptRegistrationPagePure from './concept-registration-page-pure';
 import { requirePredicate } from '../../lib/require-predicate';
 import { authService } from '../../services/auth-service';
 
@@ -15,7 +14,6 @@ const enhance = compose(
   requirePredicate(
     ({ catalogId }) => authService.hasOrganizationReadPermission(catalogId),
     () => authService.logout()
-  ),
-  conceptRegistrationResolver
+  )
 );
 export const ConceptRegistrationPage = enhance(ConceptRegistrationPagePure);

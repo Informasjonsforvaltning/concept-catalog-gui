@@ -1,36 +1,50 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { compose } from 'redux';
 import get from 'lodash/get';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+
+import { Concept } from '../../types';
 
 import { useDispatch, useGlobalState } from '../../app/context/stateContext';
 import './concept-registration-page-pure.scss';
 import { FormConcept } from './form-concept';
 import { conceptPatchSuccessAction } from '../../app/reducers/stateReducer';
-import { Concept } from '../../types';
 
 import Root from '../../components/root';
 
 import SC from './styled';
+import { getConcept } from '../../api/concept-catalogue-api';
 
-interface Props {
-  concept: Concept;
+interface RouteParams {
+  conceptId: string;
 }
 
-export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
-  const globalStateValues = useGlobalState(concept.id);
+interface Props extends RouteComponentProps<RouteParams> {}
+
+const ConceptRegistrationPagePure: FC<Props> = ({
+  match: {
+    params: { conceptId }
+  }
+}) => {
+  const [concept, setConcept] = useState<Concept>();
+  const globalStateValues = useGlobalState(conceptId);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(conceptPatchSuccessAction(concept.id, false, concept));
-  }, []);
-
-  const copyOfConcept = JSON.parse(JSON.stringify(concept));
+    getConcept(conceptId).then(fetchedConcept => {
+      setConcept(fetchedConcept);
+      dispatch(
+        conceptPatchSuccessAction(fetchedConcept.id, false, fetchedConcept)
+      );
+    });
+  }, [conceptId]);
 
   return (
     <Root>
       <SC.Container>
-        {globalStateValues && (
+        {concept && globalStateValues && (
           <FormConcept
-            concept={copyOfConcept}
+            concept={concept}
             dispatch={dispatch}
             lastPatchedResponse={get(globalStateValues, 'lastPatchedResponse')}
             isSaving={globalStateValues.isSaving}
@@ -40,3 +54,5 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
     </Root>
   );
 };
+
+export default compose<FC<Props>>(withRouter)(ConceptRegistrationPagePure);

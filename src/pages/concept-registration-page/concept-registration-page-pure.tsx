@@ -28,19 +28,14 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
   return (
     <Root>
       <SC.Container>
-        <div className='col-12'>
-          {globalStateValues && (
-            <FormConcept
-              concept={copyOfConcept}
-              dispatch={dispatch}
-              lastPatchedResponse={get(
-                globalStateValues,
-                'lastPatchedResponse'
-              )}
-              isSaving={globalStateValues.isSaving}
-            />
-          )}
-        </div>
+        {globalStateValues && (
+          <FormConcept
+            concept={copyOfConcept}
+            dispatch={dispatch}
+            lastPatchedResponse={get(globalStateValues, 'lastPatchedResponse')}
+            isSaving={globalStateValues.isSaving}
+          />
+        )}
       </SC.Container>
     </Root>
   );

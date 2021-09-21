@@ -11,4 +11,9 @@ const Title = styled.h1`
   margin-bottom: ${theme.spacing('S10')};
 `;
 
-export default { Page, Title };
+const Version = styled.div`
+  display: flex;
+  margin-bottom: ${theme.spacing('S10')};
+`;
+
+export default { Page, Title, Version };

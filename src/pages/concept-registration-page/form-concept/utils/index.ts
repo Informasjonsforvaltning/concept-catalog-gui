@@ -1,5 +1,7 @@
 import { patchConceptFromForm } from '../../../../lib/patchConceptForm';
 import { validateConceptForm } from '../../../../lib/validateConceptForm';
+import { postConceptRevision } from '../../../../api/concept-catalogue-api';
+
 import { schema } from '../form-concept.schema';
 
 const pruneEmptySources = kildebeskrivelse =>
@@ -72,4 +74,9 @@ export const patchWithPreProcess = (
     isSaving
   });
   validateConceptForm(processedValues, schema, concept, dispatch);
+};
+
+export const postWithPreProcess = async (id: string, values): Promise<void> => {
+  const processedValues = preProcessValues(values);
+  return postConceptRevision(id, processedValues);
 };

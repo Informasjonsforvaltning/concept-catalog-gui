@@ -42,6 +42,8 @@ const conceptListPath = '/begreper';
 
 const conceptListImportPath = '/begreper/import';
 
+const conceptRevisionPath = (id: string) => `/begreper/${id}/revisjon`;
+
 const conceptPath = (conceptId): string => `${conceptListPath}/${conceptId}`;
 
 /* high level api */
@@ -56,6 +58,9 @@ export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
 
 export const postConcept = (body): Promise<void> =>
   conceptCatalogueApiPost(conceptListPath, body);
+
+export const postConceptRevision = (id: string, body): Promise<void> =>
+  conceptCatalogueApiPost(conceptRevisionPath(id), body);
 
 export const importConcepts = async (
   body: Array<Omit<Concept, 'id'>>

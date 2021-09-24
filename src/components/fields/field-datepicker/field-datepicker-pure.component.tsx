@@ -9,6 +9,8 @@ import { localization } from '../../../lib/localization';
 interface Props extends FieldProps {
   showLabel: boolean;
   label: string;
+  type: string;
+  language: string;
   catalogId: string;
   minDate?: string;
   maxDate?: string;
@@ -39,7 +41,14 @@ export const DatePickerFieldPure: FC<Props> = ({
               showYearDropdown
               yearDropdownItemNumber={5}
               selected={new Date(value)}
-              onChange={date => setFieldValue(name, date)}
+              onChange={date => {
+                setFieldValue(
+                  name,
+                  date instanceof Date
+                    ? DateTime.fromJSDate(date).toFormat('yyyy-MM-dd')
+                    : null
+                );
+              }}
               minDate={minDate ? new Date(minDate) : null}
               maxDate={maxDate ? new Date(maxDate) : null}
             />
@@ -51,7 +60,14 @@ export const DatePickerFieldPure: FC<Props> = ({
               dateFormat='dd.MM.yyyy'
               showYearDropdown
               yearDropdownItemNumber={5}
-              onChange={date => setFieldValue(name, date)}
+              onChange={date => {
+                setFieldValue(
+                  name,
+                  date instanceof Date
+                    ? DateTime.fromJSDate(date).toFormat('yyyy-MM-dd')
+                    : null
+                );
+              }}
               minDate={minDate ? new Date(minDate) : null}
               maxDate={maxDate ? new Date(maxDate) : null}
             />

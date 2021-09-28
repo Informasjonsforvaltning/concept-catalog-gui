@@ -77,8 +77,17 @@ export interface Navn {
   en?: any;
 }
 
+export interface Version {
+  major: number;
+  minor: number;
+  patch: number;
+}
+
 export interface Concept {
   id: string;
+  originaltBegrep: string;
+  versjonsnr: Version;
+  revisjonAv: string;
   anbefaltTerm?: AnbefaltTerm;
   definisjon?: Definisjon;
   ansvarligVirksomhet: { id: string };

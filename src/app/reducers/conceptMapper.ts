@@ -100,9 +100,19 @@ function mapKilde(csvMap: Record<string, string[]>) {
 function mapCsvTextToConcept(
   columnHeaders: string[],
   data: string[]
-): Omit<Concept, 'id' | 'ansvarligVirksomhet'> {
+): Omit<
+  Concept,
+  'id' | 'ansvarligVirksomhet'
+> {
   const csvMap = createCsvMap(columnHeaders, data);
   return {
+    originaltBegrep: mapToSingleValue(csvMap, 'originaltBegrep') ?? '',
+    versjonsnr: {
+      major: parseInt(mapToSingleValue(csvMap, 'major') ?? '0', 10),
+      minor: parseInt(mapToSingleValue(csvMap, 'minor') ?? '0', 10),
+      patch: parseInt(mapToSingleValue(csvMap, 'patch') ?? '0', 10)
+    },
+    revisjonAv: mapToSingleValue(csvMap, 'revisjonAv') ?? '',
     anbefaltTerm: { navn: mapRowToLanguageValue(csvMap, 'anbefaltterm') },
     tillattTerm: mapRowToLanguageValueList(csvMap, 'tillattterm'),
     frarådetTerm: mapRowToLanguageValueList(csvMap, 'frarådetterm'),
@@ -128,7 +138,13 @@ function mapCsvTextToConcept(
 
 function attemptToParseJsonFile(
   text: string
-): Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] | null {
+):
+  | Omit<
+      Concept,
+      | 'id'
+      | 'ansvarligVirksomhet'
+    >[]
+  | null {
   try {
     const json = JSON.parse(text);
 
@@ -140,7 +156,13 @@ function attemptToParseJsonFile(
 
 function attemptToParseCsvFile(
   text: string
-): Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] | null {
+):
+  | Omit<
+      Concept,
+      | 'id'
+      | 'ansvarligVirksomhet'
+    >[]
+  | null {
   try {
     const {
       data: [columnHeaders, ...rows],

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import cx from 'classnames';
 
-import { localization } from '../../../../lib/localization';
+import { localization } from '../../../../../lib/localization';
 import './list-item.scss';
 
 interface Props {
@@ -13,13 +13,7 @@ interface Props {
   path: string;
 }
 
-export const ListItem = ({
-  col1,
-  col2,
-  col3,
-  status,
-  path
-}: Props): JSX.Element | null => {
+export const ListItem: FC<Props> = ({ col1, col2, col3, status, path }) => {
   if (!(col1 || status)) {
     return null;
   }

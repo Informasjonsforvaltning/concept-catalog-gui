@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from '@fellesdatakatalog/link';
 
 import { getTranslateText } from '../../lib/translateText';
-import { ConceptList } from './concept-list/concept-list.component';
+import { ConceptList } from './concept-list/components/concept-list';
 import { ConceptTitle } from './concept-title/concept-title.component';
 import {
   postConcept,

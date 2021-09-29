@@ -58,9 +58,7 @@ export const postConcept = (body): Promise<void> =>
   conceptCatalogueApiPost(conceptListPath, body);
 
 export const importConcepts = async (
-  body: Array<
-    Omit<Concept, 'id'>
-  >
+  body: Array<Omit<Concept, 'id'>>
 ): Promise<void> => {
   try {
     return await conceptCatalogueApiPost(conceptListImportPath, body);

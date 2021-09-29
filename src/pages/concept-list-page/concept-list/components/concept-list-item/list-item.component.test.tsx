@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ListItem } from './list-item.component';
+import { ListItem } from './index';
 
 let defaultProps;
 

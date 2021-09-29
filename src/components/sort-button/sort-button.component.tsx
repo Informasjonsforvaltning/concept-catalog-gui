@@ -1,11 +1,13 @@
 import React from 'react';
+
+import { SortDirection } from '../../types/enums';
 import './sort-button.scss';
 
 interface Props {
   field: string;
   sortField: string;
-  sortType: string;
-  onSortField: (field: string, sortDirection: string) => void;
+  sortType: SortDirection;
+  onSortField: (field: string, sortDirection: SortDirection) => void;
 }
 
 export const SortButtons = ({
@@ -19,12 +21,14 @@ export const SortButtons = ({
       type='button'
       name={`${field}asc`}
       className={`d-flex sortButton ${
-        sortField === `${field}` && sortType === 'asc' ? 'visibilityHidden' : ''
+        sortField === `${field}` && sortType === SortDirection.ASC
+          ? 'visibilityHidden'
+          : ''
       }`}
-      onClick={(): void => onSortField(`${field}`, 'asc')}
+      onClick={(): void => onSortField(`${field}`, SortDirection.ASC)}
       title='Stigende'
     >
-      <i className='fa fa-sort-up fdk-color-white' />
+      <i className='fa fa-sort-up' />
     </button>
     <button
       type='button'
@@ -34,10 +38,10 @@ export const SortButtons = ({
           ? 'visibilityHidden'
           : ''
       }`}
-      onClick={(): void => onSortField(`${field}`, 'desc')}
+      onClick={(): void => onSortField(`${field}`, SortDirection.DESC)}
       title='Synkende'
     >
-      <i className='fa fa-sort-down fdk-color-white' />
+      <i className='fa fa-sort-down' />
     </button>
   </div>
 );

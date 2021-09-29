@@ -146,10 +146,9 @@ export const ConceptListPagePure = ({
         <div className='row mb-4'>
           <SearchBar placeholder='Søk etter begrep' onChange={filterConcepts} />
         </div>
-        <div className='mb-2'>
+        <div className='row mb-2'>
           <ConceptList
             items={previousQuery.length > 0 ? filteredConcepts : concepts}
-            catalogId={catalogId}
           />
         </div>
       </SC.Container>

@@ -1,20 +1,35 @@
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { compose } from 'redux';
+import {
+  Link as RouterLink,
+  RouteComponentProps,
+  withRouter
+} from 'react-router-dom';
 import cx from 'classnames';
 
+import { Concept } from '../../../../../types';
 import { localization } from '../../../../../lib/localization';
-import './list-item.scss';
+import { getTranslateText } from '../../../../../lib/translateText';
 
-interface Props {
-  col1: string | null;
-  col2: string | null;
-  col3: string | null;
-  status: string;
-  path: string;
+import { determineValidity } from '../../utils/determine-validity';
+import SC from './styled';
+
+interface RouteParams {
+  catalogId: string;
 }
 
-export const ListItem: FC<Props> = ({ col1, col2, col3, status, path }) => {
-  if (!(col1 || status)) {
+interface ExternalProps {
+  concept: Concept;
+}
+interface Props extends ExternalProps, RouteComponentProps<RouteParams> {}
+
+const ListItem: FC<Props> = ({
+  concept,
+  match: {
+    params: { catalogId }
+  }
+}) => {
+  if (!concept) {
     return null;
   }
 
@@ -24,15 +39,21 @@ export const ListItem: FC<Props> = ({ col1, col2, col3, status, path }) => {
   });
 
   return (
-    <Link to={path} className='row fdk-list-item'>
-      <span className='col-3'>{col1}</span>
-      <span className='col-3'>{col2}</span>
-      <span className='col-3'>{col3}</span>
-      <span className='col-3'>
+    <SC.ListItem to={`${catalogId}/${concept.id}`} as={RouterLink}>
+      <SC.Column>{getTranslateText(concept.anbefaltTerm?.navn)}</SC.Column>
+      <SC.Column>{getTranslateText(concept.fagområde)}</SC.Column>
+      <SC.Column>
+        {determineValidity(concept.gyldigFom, concept.gyldigTom)}
+      </SC.Column>
+      <SC.Column>
         <i className={statusClass} />
-        {status === 'publisert' && <span>{localization.published}</span>}
-        {status === 'utkast' && <span>{localization.draft}</span>}
-      </span>
-    </Link>
+        {concept.status === 'publisert' && (
+          <span>{localization.published}</span>
+        )}
+        {concept.status === 'utkast' && <span>{localization.draft}</span>}
+      </SC.Column>
+    </SC.ListItem>
   );
 };
+
+export default compose<FC<ExternalProps>>(withRouter)(ListItem);

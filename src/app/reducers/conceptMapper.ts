@@ -100,10 +100,7 @@ function mapKilde(csvMap: Record<string, string[]>) {
 function mapCsvTextToConcept(
   columnHeaders: string[],
   data: string[]
-): Omit<
-  Concept,
-  'id' | 'ansvarligVirksomhet'
-> {
+): Omit<Concept, 'id' | 'ansvarligVirksomhet'> {
   const csvMap = createCsvMap(columnHeaders, data);
   return {
     originaltBegrep: mapToSingleValue(csvMap, 'originaltBegrep') ?? '',
@@ -138,13 +135,7 @@ function mapCsvTextToConcept(
 
 function attemptToParseJsonFile(
   text: string
-):
-  | Omit<
-      Concept,
-      | 'id'
-      | 'ansvarligVirksomhet'
-    >[]
-  | null {
+): Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] | null {
   try {
     const json = JSON.parse(text);
 
@@ -156,13 +147,7 @@ function attemptToParseJsonFile(
 
 function attemptToParseCsvFile(
   text: string
-):
-  | Omit<
-      Concept,
-      | 'id'
-      | 'ansvarligVirksomhet'
-    >[]
-  | null {
+): Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] | null {
   try {
     const {
       data: [columnHeaders, ...rows],

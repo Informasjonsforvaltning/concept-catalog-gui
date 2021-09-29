@@ -49,6 +49,16 @@ const ConceptListHeader: FC<Props> = ({
     </SC.Column>
 
     <SC.Column>
+      <span className='header-item mr-1'>{localization.version}</span>
+      <SortButtons
+        field='versjonsnr'
+        sortField={sortField}
+        sortType={sortDirection}
+        onSortField={onSortField}
+      />
+    </SC.Column>
+
+    <SC.Column>
       <span className='header-item mr-1'>{localization.status}</span>
       <SortButtons
         field='status'

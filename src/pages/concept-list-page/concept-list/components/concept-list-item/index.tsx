@@ -46,6 +46,10 @@ const ListItem: FC<Props> = ({
         {determineValidity(concept.gyldigFom, concept.gyldigTom)}
       </SC.Column>
       <SC.Column>
+        {concept.versjonsnr.major}.{concept.versjonsnr.minor}.
+        {concept.versjonsnr.patch}
+      </SC.Column>
+      <SC.Column>
         <i className={statusClass} />
         {concept.status === 'publisert' && (
           <span>{localization.published}</span>

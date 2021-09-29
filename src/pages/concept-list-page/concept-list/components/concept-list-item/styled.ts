@@ -16,8 +16,8 @@ const ListItem = styled(Link)`
 const Column = styled.div`
   align-items: center;
   display: flex;
-  flex: 0 0 25%;
-  max-width: 25%;
+  flex: 0 0 20%;
+  max-width: 20%;
 `;
 
 export default { ListItem, Column };

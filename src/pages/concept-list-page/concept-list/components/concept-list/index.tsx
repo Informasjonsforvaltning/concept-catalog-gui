@@ -1,54 +1,34 @@
 import React, { FC, useState } from 'react';
 import _ from 'lodash';
 
+import { Concept } from '../../../../../types';
+import { SortDirection } from '../../../../../types/enums';
 import { getTranslateText } from '../../../../../lib/translateText';
 
-import { ListItem } from '../concept-list-item';
-import { determineValidity } from '../../utils/determine-validity';
-import './concept-list.scss';
+import ListItem from '../concept-list-item';
 import ConceptListHeader from '../concept-list-header';
 
 interface Props {
-  items: any;
-  catalogId: string;
+  items: Concept[];
 }
 
-const renderListItems = (
-  items,
-  catalogId,
-  sortField,
-  sortDirection
-): JSX.Element[] | null => {
-  if (!items) {
-    return null;
-  }
+export const ConceptList: FC<Props> = ({ items }) => {
+  const [sortField, setSortField] = useState<string>('');
+  const [sortDirection, setSortDirection] = useState<SortDirection>(
+    SortDirection.ASC
+  );
+
+  const onSortField = (
+    field: string,
+    updatedSortDirection: SortDirection
+  ): void => {
+    setSortField(field);
+    setSortDirection(updatedSortDirection);
+  };
 
   const iteratees = i => {
     const f: any = getTranslateText(_.get(i, sortField));
     return f instanceof Array ? f[0]?.toLowerCase() : f?.toLowerCase();
-  };
-
-  return _.orderBy(items, [iteratees], [sortDirection]).map(
-    ({ id, fagområde, status, anbefaltTerm, gyldigFom, gyldigTom }, index) => (
-      <ListItem
-        key={`${id}-${index}`}
-        col1={getTranslateText(anbefaltTerm.navn)}
-        col2={getTranslateText(fagområde)}
-        col3={determineValidity(gyldigFom, gyldigTom)}
-        status={status}
-        path={`${catalogId}/${id}`}
-      />
-    )
-  );
-};
-
-export const ConceptList: FC<Props> = ({ items, catalogId }) => {
-  const [sortField, setSortField] = useState<string>('');
-  const [sortDirection, setSortDirection] = useState<string>('asc');
-
-  const onSortField = (field: string, updatedSortDirection: string): void => {
-    setSortField(field);
-    setSortDirection(updatedSortDirection);
   };
 
   return (
@@ -58,7 +38,10 @@ export const ConceptList: FC<Props> = ({ items, catalogId }) => {
         sortDirection={sortDirection}
         onSortField={onSortField}
       />
-      {renderListItems(items, catalogId, sortField, sortDirection)}
+      {items &&
+        _.orderBy(items, [iteratees], [sortDirection]).map((concept, index) => (
+          <ListItem key={`${concept?.id}-${index}`} concept={concept} />
+        ))}
     </div>
   );
 };

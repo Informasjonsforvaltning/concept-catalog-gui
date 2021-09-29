@@ -1,11 +1,15 @@
 import React, { FC, memo } from 'react';
+
+import { SortDirection } from '../../../../../types/enums';
 import { localization } from '../../../../../lib/localization';
 import { SortButtons } from '../../../../../components/sort-button/sort-button.component';
 
+import SC from './styled';
+
 interface Props {
   sortField: string;
-  sortDirection: string;
-  onSortField: (field: string, updatedSortDirection: string) => void;
+  sortDirection: SortDirection;
+  onSortField: (field: string, updatedSortDirection: SortDirection) => void;
 }
 
 const ConceptListHeader: FC<Props> = ({
@@ -13,8 +17,8 @@ const ConceptListHeader: FC<Props> = ({
   sortDirection,
   onSortField
 }) => (
-  <div className='row fdk-list-header'>
-    <div className='col-3 d-flex align-items-center'>
+  <SC.ConceptListHeader>
+    <SC.Column>
       <span className='header-item mr-1'>{localization.preferredTerm}</span>
       <SortButtons
         field='anbefaltTerm.navn.nb'
@@ -22,9 +26,9 @@ const ConceptListHeader: FC<Props> = ({
         sortType={sortDirection}
         onSortField={onSortField}
       />
-    </div>
+    </SC.Column>
 
-    <div className='col-3 d-flex align-items-center'>
+    <SC.Column>
       <span className='header-item mr-1'>{localization.fieldOfStudy}</span>
       <SortButtons
         field='fagområde'
@@ -32,9 +36,9 @@ const ConceptListHeader: FC<Props> = ({
         sortType={sortDirection}
         onSortField={onSortField}
       />
-    </div>
+    </SC.Column>
 
-    <div className='col-3 d-flex align-items-center'>
+    <SC.Column>
       <span className='header-item mr-1'>{localization.validity}</span>
       <SortButtons
         field='valid'
@@ -42,9 +46,9 @@ const ConceptListHeader: FC<Props> = ({
         sortType={sortDirection}
         onSortField={onSortField}
       />
-    </div>
+    </SC.Column>
 
-    <div className='col-3 d-flex align-items-center'>
+    <SC.Column>
       <span className='header-item mr-1'>{localization.status}</span>
       <SortButtons
         field='status'
@@ -52,8 +56,8 @@ const ConceptListHeader: FC<Props> = ({
         sortType={sortDirection}
         onSortField={onSortField}
       />
-    </div>
-  </div>
+    </SC.Column>
+  </SC.ConceptListHeader>
 );
 
 export default memo(ConceptListHeader);

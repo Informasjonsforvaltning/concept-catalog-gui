@@ -1,6 +1,13 @@
 [
   {
     "id": "083c8716-6006-428f-be3b-39bc01dcc58b",
+    "originaltBegrep": "083c8716-6006-428f-be3b-39bc01dcc58b",
+    "versjonsnr": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "revisjonAv": "083c8716-6006-428f-be3b-39bc01dcc58b",
     "status": "utkast",
     "anbefaltTerm": {
       "navn": {
@@ -18,8 +25,8 @@
     },
     "kilde": "Forskrift om tinglysing § 11 tredje ledd og § 16 annet ledd bokstav e). _Forskrift 3. november 1995 nr. 875 om tinglysing_ https://lovdata.no/forskrift/1995-11-03-875",
     "merknad": {
-      "nb": "Lorem",
-      "nn": "Lorem NN"
+      "nb": ["Lorem"],
+      "nn": ["Lorem NN"]
     },
     "ansvarligVirksomhet": {
       "uri": "http://data.brreg.no/enhetsregisteret/enhet/910244132",
@@ -29,9 +36,9 @@
       "prefLabel": "Brønnøysundregistrene"
     },
     "eksempel": {
-      "nb": "Eksempel lorem ipsum.",
-      "nn": "Eksempel lorem ipsum NN.",
-      "en": "Eksempel lorem ipsum EN."
+      "nb": ["Eksempel lorem ipsum."],
+      "nn": ["Eksempel lorem ipsum NN."],
+      "en": ["Eksempel lorem ipsum EN."]
     },
     "fagområde": {
       "nb": "Dokument",
@@ -71,6 +78,7 @@
           "Særs frarådet"
         ],
         "en": ["discouraged 1 EN", "discouraged 2 EN"]
-    }
+    },
+    "seOgså": []
   }
 ]

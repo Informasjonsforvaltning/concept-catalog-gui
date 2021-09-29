@@ -78,5 +78,6 @@ export const nb = {
   seeAlso: 'Se også',
   searchConcepts: 'Søk etter begrep',
   saveDraft: 'Lagre som nytt utkast',
-  version: 'Versjon'
+  version: 'Versjon',
+  exPublished: 'Ekspublisert'
 };

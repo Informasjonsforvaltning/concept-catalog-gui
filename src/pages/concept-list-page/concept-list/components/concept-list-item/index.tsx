@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import { Concept } from '../../../../../types';
+import { ConceptStatus } from '../../../../../types/enums';
 import { localization } from '../../../../../lib/localization';
 import { getTranslateText } from '../../../../../lib/translateText';
 
@@ -21,6 +22,36 @@ interface ExternalProps {
   concept: Concept;
 }
 interface Props extends ExternalProps, RouteComponentProps<RouteParams> {}
+
+const getStatusIcon = (
+  status: string | null | undefined,
+  erSistPublisert: boolean = false
+) => {
+  if (status === ConceptStatus.PUBLISERT && erSistPublisert) {
+    return (
+      <>
+        <SC.PublishedIcon /> <span>{localization.published}</span>
+      </>
+    );
+  }
+  if (status === ConceptStatus.UTKAST) {
+    return (
+      <>
+        <SC.DraftIcon />
+        <span>{localization.draft}</span>
+      </>
+    );
+  }
+  if (status === ConceptStatus.PUBLISERT && !erSistPublisert) {
+    return (
+      <>
+        <SC.ExPublishedIcon />
+        <span>{localization.exPublished}</span>
+      </>
+    );
+  }
+  return null;
+};
 
 const ListItem: FC<Props> = ({
   concept,
@@ -48,11 +79,7 @@ const ListItem: FC<Props> = ({
         )}
       </SC.Column>
       <SC.Column>
-        {concept.status === 'utkast' ? <SC.DraftIcon /> : <SC.PublishedIcon />}
-        {concept.status === 'publisert' && (
-          <span>{localization.published}</span>
-        )}
-        {concept.status === 'utkast' && <span>{localization.draft}</span>}
+        {getStatusIcon(concept.status, concept.erSistPublisert)}
       </SC.Column>
     </SC.ListItem>
   );

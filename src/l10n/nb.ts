@@ -76,5 +76,6 @@ export const nb = {
   validToTitle: 'Gyldig til og med',
   formRelatedConcepts: 'Relasjoner',
   seeAlso: 'Se også',
-  searchConcepts: 'Søk etter begrep'
+  searchConcepts: 'Søk etter begrep',
+  version: "Versjon"
 };

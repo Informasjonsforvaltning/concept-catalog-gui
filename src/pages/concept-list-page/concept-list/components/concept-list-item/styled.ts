@@ -3,7 +3,7 @@ import { Colour, theme } from '@fellesdatakatalog/theme';
 import Link from '@fellesdatakatalog/link';
 
 import DraftIconBase from '../../../../../images/icon-draft-circle-md.svg';
-import PublishedIconBase from '../../../../../images/icon-alert-success.svg';
+import PublishedIconBase from '../../../../../images/icon-status-published-md.svg';
 
 const ListItem = styled(Link)`
   align-items: center;
@@ -46,8 +46,24 @@ const PublishedIcon = styled(PublishedIconBase)`
   margin-right: ${theme.spacing('S4')};
 
   & > path {
+    fill: ${theme.colour(Colour.NEUTRAL, 'N0')};
+  }
+  & > circle {
     fill: ${theme.colour(Colour.GREEN, 'G60')};
   }
 `;
 
-export default { ListItem, Column, DraftIcon, PublishedIcon };
+const ExPublishedIcon = styled(PublishedIconBase)`
+  width: 30px;
+  height: 30px;
+  margin-right: ${theme.spacing('S4')};
+
+  & > path {
+    fill: ${theme.colour(Colour.GREEN, 'G60')};
+  }
+  & > circle {
+    fill: ${theme.colour(Colour.NEUTRAL, 'N0')};
+  }
+`;
+
+export default { ListItem, Column, DraftIcon, PublishedIcon, ExPublishedIcon };

@@ -4,8 +4,14 @@ import { Concept } from '../../../../../types';
 import { SortDirection } from '../../../../../types/enums';
 import { sortConceptsByKey } from '../../../../../utils/sort';
 
+import {
+  findOriginalConcepts,
+  findRevisionsOfConcept,
+  hasConceptAnyRevisions
+} from '../../utils/concepts';
 import ListItem from '../concept-list-item';
 import ConceptListHeader from '../concept-list-header';
+import CollapseItem from '../concept-list-collapse-item';
 
 interface Props {
   items: Concept[];
@@ -33,11 +39,26 @@ export const ConceptList: FC<Props> = ({ items }) => {
         onSortField={onSortField}
       />
       {items &&
-        items
+        findOriginalConcepts(items)
           .sort(sortConceptsByKey(sortField, sortDirection))
-          .map((concept, index) => (
-            <ListItem key={`${concept?.id}-${index}`} concept={concept} />
-          ))}
+          .map((concept, index) =>
+            hasConceptAnyRevisions(concept.originaltBegrep, items) ? (
+              <CollapseItem
+                key={index}
+                concepts={findRevisionsOfConcept(
+                  concept.originaltBegrep,
+                  items
+                ).sort(
+                  (
+                    { erSistPublisert: a = false }: Concept,
+                    { erSistPublisert: b = false }: Concept
+                  ) => Number(b) - Number(a)
+                )}
+              />
+            ) : (
+              <ListItem key={`${concept?.id}-${index}`} concept={concept} />
+            )
+          )}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { Colour, theme } from '@fellesdatakatalog/theme';
 import ButtonBase from '@fellesdatakatalog/button';
 
-import { ReactComponent as IconBase } from '../../assets/img/icon-checked-white-sm.svg';
+import IconBase from '../../images/icon-checked-white-sm.svg';
 
 interface Props {
   $selected: boolean;

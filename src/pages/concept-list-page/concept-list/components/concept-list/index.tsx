@@ -1,9 +1,8 @@
 import React, { FC, useState } from 'react';
-import _ from 'lodash';
 
 import { Concept } from '../../../../../types';
 import { SortDirection } from '../../../../../types/enums';
-import { getTranslateText } from '../../../../../lib/translateText';
+import { sortConceptsByKey } from '../../../../../utils/sort';
 
 import ListItem from '../concept-list-item';
 import ConceptListHeader from '../concept-list-header';
@@ -26,11 +25,6 @@ export const ConceptList: FC<Props> = ({ items }) => {
     setSortDirection(updatedSortDirection);
   };
 
-  const iteratees = i => {
-    const f: any = getTranslateText(_.get(i, sortField));
-    return f instanceof Array ? f[0]?.toLowerCase() : f?.toLowerCase();
-  };
-
   return (
     <div className='d-flex flex-column flex-fill'>
       <ConceptListHeader
@@ -39,9 +33,11 @@ export const ConceptList: FC<Props> = ({ items }) => {
         onSortField={onSortField}
       />
       {items &&
-        _.orderBy(items, [iteratees], [sortDirection]).map((concept, index) => (
-          <ListItem key={`${concept?.id}-${index}`} concept={concept} />
-        ))}
+        items
+          .sort(sortConceptsByKey(sortField, sortDirection))
+          .map((concept, index) => (
+            <ListItem key={`${concept?.id}-${index}`} concept={concept} />
+          ))}
     </div>
   );
 };

@@ -5,7 +5,6 @@ import {
   RouteComponentProps,
   withRouter
 } from 'react-router-dom';
-import cx from 'classnames';
 
 import { Concept } from '../../../../../types';
 import { localization } from '../../../../../lib/localization';
@@ -33,11 +32,6 @@ const ListItem: FC<Props> = ({
     return null;
   }
 
-  const statusClass = cx('fa', 'fa-circle', 'mr-2', 'd-none', 'd-sm-inline', {
-    'fdk-color-primary': status === 'publisert',
-    'fdk-color-neutral-dark': status === 'utkast'
-  });
-
   return (
     <SC.ListItem to={`${catalogId}/${concept.id}`} as={RouterLink}>
       <SC.Column>{getTranslateText(concept.anbefaltTerm?.navn)}</SC.Column>
@@ -50,7 +44,7 @@ const ListItem: FC<Props> = ({
         {concept.versjonsnr.patch}
       </SC.Column>
       <SC.Column>
-        <i className={statusClass} />
+        {concept.status === 'utkast' ? <SC.DraftIcon /> : <SC.PublishedIcon />}
         {concept.status === 'publisert' && (
           <span>{localization.published}</span>
         )}

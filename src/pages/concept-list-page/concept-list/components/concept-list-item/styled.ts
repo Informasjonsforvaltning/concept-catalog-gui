@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { Colour, theme } from '@fellesdatakatalog/theme';
 import Link from '@fellesdatakatalog/link';
 
+import DraftIconBase from '../../../../../images/icon-draft-circle-md.svg';
+import PublishedIconBase from '../../../../../images/icon-alert-success.svg';
+
 const ListItem = styled(Link)`
   align-items: center;
   background-color: ${theme.colour(Colour.NEUTRAL, 'N0')};
@@ -11,6 +14,10 @@ const ListItem = styled(Link)`
   border-radius: 3px;
   padding: ${theme.spacing('S12')} ${theme.spacing('S16')};
   text-decoration: none;
+  transition: background-color 150ms ease;
+  &:hover {
+    background-color: ${theme.colour(Colour.NEUTRAL, 'N10')};
+  }
 `;
 
 const Column = styled.div`
@@ -20,4 +27,27 @@ const Column = styled.div`
   max-width: 20%;
 `;
 
-export default { ListItem, Column };
+const DraftIcon = styled(DraftIconBase)`
+  width: 30px;
+  height: 30px;
+  margin-right: ${theme.spacing('S4')};
+
+  & > path {
+    fill: ${theme.colour(Colour.GREEN, 'G60')};
+  }
+  & > circle {
+    fill: ${theme.colour(Colour.GREEN, 'G15')};
+  }
+`;
+
+const PublishedIcon = styled(PublishedIconBase)`
+  width: 30px;
+  height: 30px;
+  margin-right: ${theme.spacing('S4')};
+
+  & > path {
+    fill: ${theme.colour(Colour.GREEN, 'G60')};
+  }
+`;
+
+export default { ListItem, Column, DraftIcon, PublishedIcon };

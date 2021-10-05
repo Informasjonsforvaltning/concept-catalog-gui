@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { Button } from 'reactstrap';
 import { DateTime } from 'luxon';
 
+import { Concept } from '../../types';
 import { localization } from '../../lib/localization';
 import { useDispatch, useGlobalState } from '../../app/context/stateContext';
 import { patchConceptFromForm } from '../../lib/patchConceptForm';
@@ -57,7 +58,7 @@ const renderConfirmDeleteOverlayDialog = ({
 );
 
 interface Props {
-  concept: any;
+  concept: Concept;
   isInitialInValidForm: boolean;
   lastPatchedResponse: any;
 }
@@ -104,7 +105,6 @@ export const StatusBarPure = ({
     isInitialInValidForm
   );
   const endringstidspunkt = _.get(stateConcept, 'endringstidspunkt');
-
   let messageClass;
   let message;
 
@@ -167,7 +167,11 @@ export const StatusBarPure = ({
                 patchConceptFromForm(
                   {
                     status: CONCEPT_STATUS_PUBLISHED,
-                    versjonsnr: { major: 1, minor: 0, patch: 0 }
+                    ...(concept.versjonsnr?.major === 0 &&
+                      concept.versjonsnr?.minor === 0 &&
+                      concept.versjonsnr?.patch === 1 && {
+                        versjonsnr: { major: 1, minor: 0, patch: 0 }
+                      })
                   },
                   { concept, dispatch, lastPatchedResponse, isSaving }
                 )

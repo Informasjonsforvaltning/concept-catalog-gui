@@ -9,8 +9,8 @@ export const sortConceptsByVersion = (
   b: Concept,
   direction: SortDirection = SortDirection.DESC
 ) => {
-  const a1 = Object.values(a.versjonsnr);
-  const b1 = Object.values(b.versjonsnr);
+  const a1 = Object.values(a.versjonsnr ?? '');
+  const b1 = Object.values(b.versjonsnr ?? '');
   const len = Math.min(a1.length, b1.length);
   for (let i = 0; i < len; i++) {
     const a2 = +a1[i] || 0;

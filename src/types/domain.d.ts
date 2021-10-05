@@ -85,9 +85,9 @@ export interface Version {
 
 export interface Concept {
   id: string;
-  originaltBegrep: string;
-  versjonsnr: Version;
-  revisjonAv: string;
+  originaltBegrep?: string;
+  versjonsnr?: Version | null;
+  revisjonAv?: string;
   anbefaltTerm?: AnbefaltTerm;
   definisjon?: Definisjon;
   ansvarligVirksomhet: { id: string };

@@ -40,8 +40,12 @@ const ListItem: FC<Props> = ({
         {determineValidity(concept.gyldigFom, concept.gyldigTom)}
       </SC.Column>
       <SC.Column>
-        {concept.versjonsnr.major}.{concept.versjonsnr.minor}.
-        {concept.versjonsnr.patch}
+        {concept?.versjonsnr && (
+          <span>
+            {concept.versjonsnr?.major}.{concept.versjonsnr?.minor}.
+            {concept.versjonsnr?.patch}
+          </span>
+        )}
       </SC.Column>
       <SC.Column>
         {concept.status === 'utkast' ? <SC.DraftIcon /> : <SC.PublishedIcon />}

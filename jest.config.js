@@ -1,9 +1,15 @@
 module.exports = {
+  testEnvironment: 'jsdom',
   preset: 'ts-jest/presets/js-with-babel',
-  setupFilesAfterEnv: ['<rootDir>/test/setupTest.ts'],
-  transform: {
-    '^.+\\.svg$': 'jest-svg-transformer'
+  globals: {
+    'ts-jest': {
+      tsconfig: 'tsconfig.json'
+    }
   },
+  transform: {
+    '^.+\\.svg$': 'jest-transform-stub'
+  },
+  setupFilesAfterEnv: ['<rootDir>/test/setupTest.ts'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   moduleNameMapper: {
     '^.+\\.(css|less|scss)$': 'identity-obj-proxy'

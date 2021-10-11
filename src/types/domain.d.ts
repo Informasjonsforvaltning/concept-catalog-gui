@@ -108,4 +108,5 @@ export interface Concept {
   seOgså: string[];
   status?: string | null;
   erSistPublisert?: boolean;
+  revisjonAvSistPublisert?: boolean;
 }

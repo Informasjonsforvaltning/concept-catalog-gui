@@ -162,7 +162,10 @@ export const StatusBarPure = ({
               id='dataset-setPublish-button'
               className='fdk-button mr-3'
               color='primary'
-              disabled={validationError}
+              disabled={
+                validationError ||
+                (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
+              }
               onClick={() =>
                 patchConceptFromForm(
                   {

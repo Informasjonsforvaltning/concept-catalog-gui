@@ -65,12 +65,15 @@ export const stateReducer = (state, action: Action): any => {
       const endringstidspunkt =
         patchResponse?.endringslogelement?.endringstidspunkt;
       const anbefaltTerm = patchResponse?.anbefaltTerm;
+      const revisjonAvSistPublisert =
+        patchResponse?.revisjonAvSistPublisert ?? true;
       return {
         ...state,
         [conceptId]: {
           ...state?.[conceptId],
           isSaving: false,
           status,
+          revisjonAvSistPublisert,
           justPublishedOrUnPublished,
           endringstidspunkt,
           anbefaltTerm,

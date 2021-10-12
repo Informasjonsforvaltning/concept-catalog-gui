@@ -11,7 +11,7 @@ RUN npm set progress=false && \
   npm ci
 RUN check-audit --production --audit-level=moderate
 
-COPY .babelrc tsconfig.json jest.config.js ./
+COPY babel.config.js tsconfig.json tsconfig.webpack.json jest.config.js ./
 COPY webpack ./webpack
 COPY src ./src
 COPY test ./test

@@ -11,12 +11,13 @@ RUN addgroup -g 1001 -S app && \
 USER app:app
 WORKDIR /app
 
-COPY --chown=app:app package.json package-lock.json ./
+COPY --chown=app:app package.json package-lock.json audit-resolve.json ./
+RUN npm install -g npm-audit-resolver
 RUN npm set progress=false && \
   npm config set depth 0 && \
   npm ci
 
-RUN npm audit --production --audit-level=moderate
+RUN check-audit --production --audit-level=moderate
 
 COPY --chown=app:app .babelrc tsconfig.json jest.config.js ./
 COPY --chown=app:app webpack ./webpack

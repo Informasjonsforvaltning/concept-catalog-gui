@@ -1,6 +1,6 @@
 import React from 'react';
 import { localization } from '../../lib/localization';
-import { ReactComponent as IconAdd } from '../../assets/img/icon-add-cicle-sm.svg';
+import { ReactComponent as IconAdd } from '../../images/icon-add-cicle-sm.svg';
 import './add-concept-button.scss';
 
 export const AddConceptButton = ({ parentOnClick }): JSX.Element | null => (

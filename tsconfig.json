@@ -8,8 +8,9 @@
       "esnext",
       "dom"
     ],
-    "sourceMap": true,
     "outDir": "dist",
+    "allowJs": true,
+    "sourceMap": true,
     "esModuleInterop": true,
     "isolatedModules": false,
     "downlevelIteration": true,
@@ -23,8 +24,11 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
     "resolveJsonModule": true,
+    "moduleResolution": "node",
     "types": [
       "node",
       "jest"
@@ -32,9 +36,7 @@
     "typeRoots": [
       "node_modules/@types",
       "src/types/*"
-    ],
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
+    ]
   },
   "include": [
     "./src/types/images.d.ts",

@@ -3,26 +3,18 @@ FROM node:14.17.5-alpine AS build
 #the only reason why we need git here, is that we have designsystem in another github repo
 RUN apk add --no-cache git
 
-RUN mkdir /app
-RUN addgroup -g 1001 -S app && \
-  adduser -u 1001 -S app -G app && \
-  chown -R app:app /app && \
-  chmod 770 /app
-USER app:app
 WORKDIR /app
-
-COPY --chown=app:app package.json package-lock.json audit-resolve.json ./
+COPY package.json package-lock.json audit-resolve.json ./
 RUN npm install -g npm-audit-resolver
 RUN npm set progress=false && \
   npm config set depth 0 && \
   npm ci
-
 RUN check-audit --production --audit-level=moderate
 
-COPY --chown=app:app .babelrc tsconfig.json jest.config.js ./
-COPY --chown=app:app webpack ./webpack
-COPY --chown=app:app src ./src
-COPY --chown=app:app test ./test
+COPY .babelrc tsconfig.json jest.config.js ./
+COPY webpack ./webpack
+COPY src ./src
+COPY test ./test
 
 RUN npm test
 RUN npm run build:prod

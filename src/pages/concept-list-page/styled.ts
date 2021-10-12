@@ -5,7 +5,7 @@ import Button from '@fellesdatakatalog/button';
 
 import ContainerSC from '../../components/container/styled';
 
-import { ReactComponent as AddIconBase } from '../../assets/img/icon-add-cicle-sm.svg';
+import AddIconBase from '../../images/icon-add-cicle-sm.svg';
 
 const Container = styled(ContainerSC.Container)`
   padding-top: ${theme.spacing('S48')};

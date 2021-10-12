@@ -1,7 +1,7 @@
 import React from 'react';
 import './button-source.scss';
-import { ReactComponent as IconAdd } from '../../assets/img/icon-add-cicle-sm.svg';
-import { ReactComponent as IconRemove } from '../../assets/img/icon-remove-circle-sm.svg';
+import IconAdd from '../../images/icon-add-cicle-sm.svg';
+import IconRemove from '../../images/icon-remove-circle-sm.svg';
 
 interface Props {
   add?: boolean;

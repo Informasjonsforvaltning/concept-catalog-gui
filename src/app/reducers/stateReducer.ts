@@ -67,6 +67,7 @@ export const stateReducer = (state, action: Action): any => {
       const anbefaltTerm = patchResponse?.anbefaltTerm;
       const revisjonAvSistPublisert =
         patchResponse?.revisjonAvSistPublisert ?? true;
+      const erSistPublisert = patchResponse?.erSistPublisert ?? false;
       return {
         ...state,
         [conceptId]: {
@@ -74,6 +75,7 @@ export const stateReducer = (state, action: Action): any => {
           isSaving: false,
           status,
           revisjonAvSistPublisert,
+          erSistPublisert,
           justPublishedOrUnPublished,
           endringstidspunkt,
           anbefaltTerm,

@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
+import { useParams } from 'react-router-dom';
 import get from 'lodash/get';
 import isUrl from 'is-url';
 import { Can } from '../../../casl/Can';
+import { useGlobalState } from '../../../app/context/stateContext';
+import { isConceptEditable } from '../../../lib/concept';
 
 interface Props {
   field: {
@@ -27,46 +30,61 @@ export const InputFieldPure: FC<Props> = ({
   language,
   isOnlyOneSelectedLanguage,
   catalogId
-}) => (
-  <div className='px-3'>
-    <div className='d-flex align-items-center'>
-      <Can I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
-        <label
-          className='fdk-form-label w-100 fdk-text-strong position-relative'
-          htmlFor={field.name}
-        >
-          {showLabel ? label : null}
-          {!!language && !isOnlyOneSelectedLanguage && (
-            <span className='language-indicator'>{language}</span>
-          )}
-          <input
-            {...field}
-            type={type}
-            className='form-control'
-            autoComplete='off'
-          />
-        </label>
-      </Can>
-      <Can not I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
-        <div className='d-flex align-items-baseline mb-2'>
-          {showLabel ? <div className='fdk-text-strong'>{label}</div> : null}
-          {!!language && !isOnlyOneSelectedLanguage && get(field, 'value') && (
-            <span className='badge fdk-bg-color-primary-lighter fdk-text-size-small mr-2'>
-              {language}
-            </span>
-          )}
-          <span>
-            {isUrl(get(field, 'value')) ? (
-              <a href={get(field, 'value')}>{get(field, 'value')}</a>
-            ) : (
-              get(field, 'value')
-            )}
-          </span>
-        </div>
-      </Can>
+}) => {
+  const { conceptId } = useParams<{ conceptId: string }>();
+  const stateConcept = useGlobalState(conceptId);
+
+  const renderReadOnlyField = () => (
+    <div className='d-flex align-items-baseline mb-2'>
+      {showLabel ? <div className='fdk-text-strong'>{label}</div> : null}
+      {!!language && !isOnlyOneSelectedLanguage && get(field, 'value') && (
+        <span className='badge fdk-bg-color-primary-lighter fdk-text-size-small mr-2'>
+          {language}
+        </span>
+      )}
+      <span>
+        {isUrl(get(field, 'value')) ? (
+          <a href={get(field, 'value')}>{get(field, 'value')}</a>
+        ) : (
+          get(field, 'value')
+        )}
+      </span>
     </div>
-    {get(errors, field.name) && (
-      <div className='alert alert-danger mt-2'>{get(errors, field.name)}</div>
-    )}
-  </div>
-);
+  );
+
+  const renderEditField = () => (
+    <label
+      className='fdk-form-label w-100 fdk-text-strong position-relative'
+      htmlFor={field.name}
+    >
+      {showLabel ? label : null}
+      {!!language && !isOnlyOneSelectedLanguage && (
+        <span className='language-indicator'>{language}</span>
+      )}
+      <input
+        {...field}
+        type={type}
+        className='form-control'
+        autoComplete='off'
+      />
+    </label>
+  );
+
+  return (
+    <div className='px-3'>
+      <div className='d-flex align-items-center'>
+        <Can I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
+          {isConceptEditable(stateConcept)
+            ? renderEditField()
+            : renderReadOnlyField()}
+        </Can>
+        <Can not I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
+          {renderReadOnlyField()}
+        </Can>
+      </div>
+      {get(errors, field.name) && (
+        <div className='alert alert-danger mt-2'>{get(errors, field.name)}</div>
+      )}
+    </div>
+  );
+};

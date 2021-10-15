@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 export const CONCEPT_STATUS_PATCH_SUCCESS: string =
   'CONCEPT_STATUS_PATCH_SUCCESS';
 export const CONCEPT_STATUS_IS_SAVING: string = 'CONCEPT_STATUS_IS_SAVING';
@@ -55,7 +53,7 @@ export const stateReducer = (state, action: Action): any => {
       return {
         ...state,
         [conceptId]: {
-          ..._.get(state, [conceptId]),
+          ...state?.[conceptId],
           isSaving: true
         }
       };
@@ -63,16 +61,14 @@ export const stateReducer = (state, action: Action): any => {
     case CONCEPT_STATUS_PATCH_SUCCESS: {
       const { conceptId, justPublishedOrUnPublished, patchResponse } =
         action.payload;
-      const status = _.get(patchResponse, 'status');
-      const endringstidspunkt = _.get(patchResponse, [
-        'endringslogelement',
-        'endringstidspunkt'
-      ]);
-      const anbefaltTerm = _.get(patchResponse, 'anbefaltTerm');
+      const status = patchResponse?.status;
+      const endringstidspunkt =
+        patchResponse?.endringslogelement?.endringstidspunkt;
+      const anbefaltTerm = patchResponse?.anbefaltTerm;
       return {
         ...state,
         [conceptId]: {
-          ..._.get(state, [conceptId]),
+          ...state?.[conceptId],
           isSaving: false,
           status,
           justPublishedOrUnPublished,
@@ -88,7 +84,7 @@ export const stateReducer = (state, action: Action): any => {
       return {
         ...state,
         [conceptId]: {
-          ..._.get(state, [conceptId]),
+          ...state?.[conceptId],
           isSaving: false,
           error
         }
@@ -99,7 +95,7 @@ export const stateReducer = (state, action: Action): any => {
       return {
         ...state,
         [conceptId]: {
-          ..._.get(state, [conceptId]),
+          ...state?.[conceptId],
           validationError: error
         }
       };

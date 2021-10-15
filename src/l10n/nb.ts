@@ -89,5 +89,6 @@ export const nb = {
   exPublished: 'Ekspublisert',
   deleteDraft: 'Slett utkast',
   confirm: 'Bekreft',
-  cancel: 'Avbryt'
+  cancel: 'Avbryt',
+  unsavedPrompt: 'Endringene er ikke lagret, vil du forkaste endringene?'
 };

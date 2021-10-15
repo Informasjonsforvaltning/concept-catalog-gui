@@ -3,9 +3,10 @@ import { compose } from 'redux';
 import { Form, FormikProps, WithFormikConfig, withFormik } from 'formik';
 import pick from 'lodash/pick';
 import throttle from 'lodash/throttle';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { Prompt, RouteComponentProps, withRouter } from 'react-router-dom';
 
 import { Concept } from '../../../types';
+import { ConceptStatus } from '../../../types/enums';
 import { Can } from '../../../casl/Can';
 import { deepKeys } from '../../../lib/deep-keys';
 import { getTranslateText } from '../../../lib/translateText';
@@ -92,6 +93,7 @@ export const FormConceptPure: FC<Props> = ({
     kontaktpunkt: contactPointError
   } = errors;
   const [languagesDetermined, setLanguagesDetermined] = useState(false);
+  const [showUserPrompt, setShowUserPrompt] = useState<boolean>(true);
 
   const [state, dispatch] = useReducer(languagePickerReducer, initialState);
 
@@ -131,11 +133,18 @@ export const FormConceptPure: FC<Props> = ({
 
   const createNewConceptRevisionAndNavigate = () =>
     postWithPreProcess(conceptId, values).then(resourceId => {
+      setShowUserPrompt(false);
       history.push(`/${catalogId}/${resourceId}`);
     });
 
   return (
     <SC.Page>
+      <Prompt
+        when={
+          dirty && concept.status === ConceptStatus.PUBLISERT && showUserPrompt
+        }
+        message={localization.unsavedPrompt}
+      />
       <Can
         I='view a statusBar'
         of={{ __type: 'StatusBar', publisher: publisherId }}

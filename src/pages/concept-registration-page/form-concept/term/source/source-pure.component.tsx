@@ -1,8 +1,11 @@
 import React, { FC } from 'react';
+import { useParams } from 'react-router-dom';
 import { Field, FieldArray, useField } from 'formik';
 import { v4 } from 'uuid';
 import _ from 'lodash';
 
+import { useGlobalState } from '../../../../../app/context/stateContext';
+import { isConceptEditable } from '../../../../../lib/concept';
 import { localization } from '../../../../../lib/localization';
 import { InputField } from '../../../../../components/fields/field-input/field-input.component';
 import { ButtonSource } from '../../../../../components/button-source/button-source.component';
@@ -58,6 +61,9 @@ export const SourcePure: FC<Props> = ({ catalogId }) => {
   const [field] = useField('kildebeskrivelse');
   const forholdTilKilde = _.get(field, ['value', 'forholdTilKilde']);
 
+  const { conceptId } = useParams<{ conceptId: string }>();
+  const stateConcept = useGlobalState(conceptId);
+
   return (
     <div>
       <div className='row d-flex'>
@@ -105,21 +111,25 @@ export const SourcePure: FC<Props> = ({ catalogId }) => {
                       I='edit'
                       of={{ __type: 'Field', publisher: catalogId }}
                     >
-                      <ButtonSource
-                        remove
-                        title={localization.removeSource}
-                        handleClick={() => handleRemoveKilde(form, index)}
-                      />
+                      {isConceptEditable(stateConcept) && (
+                        <ButtonSource
+                          remove
+                          title={localization.removeSource}
+                          handleClick={() => handleRemoveKilde(form, index)}
+                        />
+                      )}
                     </Can>
                   </div>
                 </div>
               ))}
               <Can I='edit' of={{ __type: 'Field', publisher: catalogId }}>
-                <ButtonSource
-                  add
-                  title={localization.addNewSource}
-                  handleClick={() => handleAddKilde(push)}
-                />
+                {isConceptEditable(stateConcept) && (
+                  <ButtonSource
+                    add
+                    title={localization.addNewSource}
+                    handleClick={() => handleAddKilde(push)}
+                  />
+                )}
               </Can>
             </div>
           )}

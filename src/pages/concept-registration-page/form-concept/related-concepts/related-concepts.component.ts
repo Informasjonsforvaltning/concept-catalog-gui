@@ -3,12 +3,11 @@ import { compose, withProps } from 'recompose';
 
 import { withRouter } from 'react-router-dom';
 import { RelatedConceptsPure } from './related-concepts-pure.component';
-import { seeAlsoConceptResolver } from './related-concepts-resolver';
 
 const mapRouteParams = withProps(({ match: { params } }) =>
   pick(params, 'catalogId')
 );
 
-const enhance = compose(withRouter, mapRouteParams, seeAlsoConceptResolver);
+const enhance = compose(withRouter, mapRouteParams);
 
 export const RelatedConcepts = enhance(RelatedConceptsPure);

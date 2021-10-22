@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { FieldArray } from 'formik';
+import { FieldArray, useFormikContext, FormikValues } from 'formik';
 
 import { localization } from '../../../../lib/localization';
 import { HelpText } from '../../../../components/help-text/help-text.component';
@@ -9,6 +9,11 @@ import { AutosuggestConcepts } from '../../../../components/autosuggest-concepts
 import { getTranslateText } from '../../../../lib/translateText';
 import { useGlobalState } from '../../../../app/context/stateContext';
 import { isConceptEditable } from '../../../../lib/concept';
+import {
+  extractConcepts,
+  paramsToSearchBody,
+  searchConcepts
+} from '../../../../api/search-fulltext-api/concepts';
 
 interface Suggestion {
   identifier: string;
@@ -37,15 +42,24 @@ interface SkosConcept {
 
 interface Props {
   catalogId: string;
-  seeAlsoConcepts?: SkosConcept[];
 }
 
-export const RelatedConceptsPure: FC<Props> = ({
-  catalogId,
-  seeAlsoConcepts = []
-}) => {
+export const RelatedConceptsPure: FC<Props> = ({ catalogId }) => {
   const { conceptId } = useParams<{ conceptId: string }>();
   const stateConcept = useGlobalState(conceptId);
+
+  const formik: FormikValues = useFormikContext();
+
+  const [seeAlsoConcepts, setSeeAlsoConcepts] = useState<SkosConcept[]>([]);
+
+  useEffect(() => {
+    const seOgsaa = formik?.values?.seOgså ?? [];
+    seOgsaa.length > 0
+      ? searchConcepts(paramsToSearchBody({ identifier: seOgsaa }))
+          .then(extractConcepts)
+          .then(response => setSeeAlsoConcepts(response))
+      : setSeeAlsoConcepts([]);
+  }, [formik?.values?.seOgså]);
 
   return (
     <div>

@@ -47,7 +47,8 @@ export const nb = {
   help: 'Hjelp',
   moreRecomendations: 'Flere anbefalinger',
   lessRecomendations: 'Færre anbefalinger',
-  confirmDeleteMessage: 'Bekreft slette begrep',
+  confirmDeleteTitle: 'Bekreft sletting',
+  confirmDeleteMessage: 'Bekreft at du vil slette dette begrepet.',
   cancelDelete: 'Avbryt',
   requiredFieldsMissing: 'Obligatoriske felt mangler',
   concept: 'Begrep',
@@ -55,7 +56,7 @@ export const nb = {
   isSaving: 'Lagrer',
   changesUpdated: 'Sist oppdatert',
   savedAsDraft: 'Lagret som utkast',
-  publish: 'Publiser begrepsbeskrivelsen',
+  publish: 'Publiser',
   unPublish: 'Avpubliser begrepsbeskrivelsen',
   delete: 'Slett',
   errorSaving: 'Kunne ikke lagre endring',
@@ -65,7 +66,6 @@ export const nb = {
   conceptPublished: 'Begrepet er publisert.',
   conceptUnPublished: 'Begrepet er avpublisert.',
   select: 'Velg',
-  timeStampPattern: 'DDDD kl. HH:mm',
   langChoose: 'Velg språk',
   ENG: 'Engelsk (EN)',
   NO_NB: 'Norsk bokmål (NB)',
@@ -80,5 +80,8 @@ export const nb = {
   searchConcepts: 'Søk etter begrep',
   saveDraft: 'Lagre som nytt utkast',
   version: 'Versjon',
-  exPublished: 'Ekspublisert'
+  exPublished: 'Ekspublisert',
+  deleteDraft: 'Slett utkast',
+  confirm: 'Bekreft',
+  cancel: 'Avbryt'
 };

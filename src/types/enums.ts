@@ -16,3 +16,8 @@ export enum ConceptField {
   MODIFY_TIME = 'endringslogelement.endringstidspunkt',
   STATUS = 'status'
 }
+
+
+export enum TimeFormat {
+  dateAndHour = 'DDDD kl. HH:mm'
+}

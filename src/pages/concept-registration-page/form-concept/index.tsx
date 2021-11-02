@@ -13,7 +13,6 @@ import { localization } from '../../../lib/localization';
 import { authService } from '../../../services/auth-service';
 
 import { FormTemplate } from '../../../components/form-template/form-template.component';
-import { StatusBar } from '../../../components/status-bar/status-bar.component';
 import {
   setInputLanguages,
   toggleInputLanguage
@@ -137,14 +136,22 @@ export const FormConceptPure: FC<Props> = ({
 
   return (
     <SC.Page>
-      <FormControl
-        isFormDirty={dirty}
-        status={concept.status ?? ''}
-        erSistPublisert={concept.erSistPublisert}
-        createNewConceptRevisionAndNavigate={
-          createNewConceptRevisionAndNavigate
-        }
-      />
+      <Can
+        I='view a statusBar'
+        of={{ __type: 'StatusBar', publisher: publisherId }}
+      >
+        <FormControl
+          isFormDirty={dirty}
+          status={concept.status ?? ''}
+          erSistPublisert={concept.erSistPublisert}
+          createNewConceptRevisionAndNavigate={
+            createNewConceptRevisionAndNavigate
+          }
+          concept={concept}
+          lastPatchedResponse={lastPatchedResponse}
+          isInitialInValidForm={!isValid}
+        />
+      </Can>
       <SC.Title>
         {getTranslateText(concept?.anbefaltTerm?.navn) ||
           localization.registerNewConcept}
@@ -205,16 +212,6 @@ export const FormConceptPure: FC<Props> = ({
         >
           <ContactInfo />
         </FormTemplate>
-        <Can
-          I='view a statusBar'
-          of={{ __type: 'StatusBar', publisher: publisherId }}
-        >
-          <StatusBar
-            concept={concept}
-            isInitialInValidForm={!isValid}
-            lastPatchedResponse={lastPatchedResponse}
-          />
-        </Can>
       </Form>
     </SC.Page>
   );

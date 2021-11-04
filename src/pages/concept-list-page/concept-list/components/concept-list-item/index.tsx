@@ -51,6 +51,22 @@ const getStatusIcon = (
       </>
     );
   }
+  if (status === ConceptStatus.HOERING) {
+    return (
+      <>
+        <SC.HearingIcon />
+        <span>{localization.hoering}</span>
+      </>
+    );
+  }
+  if (status === ConceptStatus.GODKJENT) {
+    return (
+      <>
+        <SC.ApprovedIcon />
+        <span>{localization.approved}</span>
+      </>
+    );
+  }
   return null;
 };
 

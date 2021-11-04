@@ -30,7 +30,11 @@ export const patchConceptFromForm = (
   );
   if (!isSaving && diff.length > 0) {
     const conceptId = _.get(concept, 'id');
-    if (concept.status === ConceptStatus.UTKAST) {
+    if (
+      concept.status === ConceptStatus.UTKAST ||
+      concept.status === ConceptStatus.HOERING ||
+      concept.status === ConceptStatus.GODKJENT
+    ) {
       dispatch(conceptPatchIsSavingAction(conceptId));
       patchConcept(conceptId, diff)
         .then(response => {

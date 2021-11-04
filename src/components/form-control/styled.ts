@@ -22,6 +22,10 @@ export const slideDown = keyframes`
   }
 `;
 
+interface StatusButtonProps {
+  $active?: boolean;
+}
+
 const FormControl = styled.div<Props>`
   background-color: ${theme.colour(Colour.CYAN, 'C20')};
   margin-bottom: ${theme.spacing('S24')};
@@ -64,7 +68,7 @@ const Button = styled(ButtonBase)`
   }
 `;
 
-const PublishButton = styled(Button)`
+const StatusButton = styled(Button)<StatusButtonProps>`
   background-color: ${theme.colour(Colour.GREEN, 'G55')};
   color: ${theme.colour(Colour.NEUTRAL, 'N0')};
 
@@ -72,6 +76,13 @@ const PublishButton = styled(Button)`
     background-color: ${theme.colour(Colour.GREEN, 'G30')};
     color: ${theme.colour(Colour.GREEN, 'G60')};
   }
+
+  ${({ $active }) =>
+    $active &&
+    css`
+      background-color: ${theme.colour(Colour.NEUTRAL, 'N70')};
+      color: ${theme.colour(Colour.NEUTRAL, 'N0')};
+    `}
 `;
 
 const DeleteButton = styled(Button)`
@@ -95,7 +106,7 @@ export default {
   FormControl,
   FormControlContent,
   Button,
-  PublishButton,
+  StatusButton,
   DeleteButton,
   DraftIcon
 };

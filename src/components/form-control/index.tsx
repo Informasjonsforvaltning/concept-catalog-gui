@@ -63,7 +63,7 @@ const FormControl: FC<Props> = ({
   const history = useHistory();
   const stateConcept = useGlobalState(conceptId);
   const dispatch = useDispatch();
-  const published = concept?.status === ConceptStatus.PUBLISERT ?? false;
+  const published = stateConcept?.status === ConceptStatus.PUBLISERT ?? false;
 
   const validationError = stateConcept?.validationError || isInitialInValidForm;
   const isSaving = stateConcept?.isSaving ?? false;
@@ -75,7 +75,12 @@ const FormControl: FC<Props> = ({
       if (status === ConceptStatus.PUBLISERT) {
         return localization.conceptPublished;
       }
-      return localization.conceptUnPublished;
+      if (stateConcept?.status === ConceptStatus.HOERING) {
+        return localization.conceptHoering;
+      }
+      if (stateConcept?.status === ConceptStatus.GODKJENT) {
+        return localization.conceptApproval;
+      }
     }
     if (isSaving) {
       return `${localization.isSaving}...`;
@@ -86,7 +91,7 @@ const FormControl: FC<Props> = ({
         TimeFormat.dateAndHour
       )}.`;
     }
-    return `${localization.savedAsDraft} ${formatTime(
+    return `${localization.saved} ${formatTime(
       endringstidspunkt || concept?.endringslogelement?.endringstidspunkt,
       TimeFormat.dateAndHour
     )}.`;
@@ -109,7 +114,7 @@ const FormControl: FC<Props> = ({
               </SC.Button>
             )}
           {!published && (
-            <SC.PublishButton
+            <SC.StatusButton
               disabled={
                 validationError ||
                 (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
@@ -129,7 +134,55 @@ const FormControl: FC<Props> = ({
               }
             >
               {localization.publish}
-            </SC.PublishButton>
+            </SC.StatusButton>
+          )}
+          {!published && (
+            <SC.StatusButton
+              $active={lastPatchedResponse?.status === ConceptStatus.HOERING}
+              disabled={
+                validationError ||
+                (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
+              }
+              onClick={() =>
+                patchConceptFromForm(
+                  {
+                    status: ConceptStatus.HOERING,
+                    ...(concept.versjonsnr?.major === 0 &&
+                      concept.versjonsnr?.minor === 0 &&
+                      concept.versjonsnr?.patch === 1 && {
+                        versjonsnr: { major: 1, minor: 0, patch: 0 }
+                      })
+                  },
+                  { concept, dispatch, lastPatchedResponse, isSaving }
+                )
+              }
+            >
+              {localization.setToHoering}
+            </SC.StatusButton>
+          )}
+          {!published && (
+            <SC.StatusButton
+              $active={lastPatchedResponse?.status === ConceptStatus.GODKJENT}
+              disabled={
+                validationError ||
+                (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
+              }
+              onClick={() =>
+                patchConceptFromForm(
+                  {
+                    status: ConceptStatus.GODKJENT,
+                    ...(concept.versjonsnr?.major === 0 &&
+                      concept.versjonsnr?.minor === 0 &&
+                      concept.versjonsnr?.patch === 1 && {
+                        versjonsnr: { major: 1, minor: 0, patch: 0 }
+                      })
+                  },
+                  { concept, dispatch, lastPatchedResponse, isSaving }
+                )
+              }
+            >
+              {localization.setToApproval}
+            </SC.StatusButton>
           )}
           <div>
             <SC.DraftIcon />

@@ -4,6 +4,8 @@ import Link from '@fellesdatakatalog/link';
 
 import DraftIconBase from '../../../../../images/icon-draft-circle-md.svg';
 import PublishedIconBase from '../../../../../images/icon-status-published-md.svg';
+import HearingIconBase from '../../../../../images/icon-status-hearing-circle-md.svg';
+import ApprovedIconBase from '../../../../../images/icon-status-approved-md.svg';
 
 const ListItem = styled(Link)`
   align-items: center;
@@ -66,4 +68,38 @@ const ExPublishedIcon = styled(PublishedIconBase)`
   }
 `;
 
-export default { ListItem, Column, DraftIcon, PublishedIcon, ExPublishedIcon };
+const ApprovedIcon = styled(ApprovedIconBase)`
+  width: 30px;
+  height: 30px;
+  margin-right: ${theme.spacing('S4')};
+
+  & > path {
+    fill: ${theme.colour(Colour.NEUTRAL, 'N0')};
+  }
+  & > circle {
+    fill: ${theme.colour(Colour.GREEN, 'G60')};
+  }
+`;
+
+const HearingIcon = styled(HearingIconBase)`
+  width: 30px;
+  height: 30px;
+  margin-right: ${theme.spacing('S4')};
+
+  & > path {
+    fill: ${theme.colour(Colour.NEUTRAL, 'N0')};
+  }
+  & > circle {
+    fill: ${theme.colour(Colour.GREEN, 'G60')};
+  }
+`;
+
+export default {
+  ListItem,
+  Column,
+  DraftIcon,
+  PublishedIcon,
+  ExPublishedIcon,
+  ApprovedIcon,
+  HearingIcon
+};

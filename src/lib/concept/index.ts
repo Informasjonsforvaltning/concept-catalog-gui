@@ -7,4 +7,7 @@ export const isConceptEditable = ({
   revisjonAvSistPublisert
 }: Concept) =>
   (status === ConceptStatus.PUBLISERT && erSistPublisert) ||
-  (status === ConceptStatus.UTKAST && revisjonAvSistPublisert);
+  ((status === ConceptStatus.UTKAST ||
+    status === ConceptStatus.HOERING ||
+    status === ConceptStatus.GODKJENT) &&
+    revisjonAvSistPublisert);

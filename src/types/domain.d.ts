@@ -83,6 +83,11 @@ export interface Version {
   patch: number;
 }
 
+export interface Endringslogelement {
+  brukerId: string;
+  endringstidspunkt: string;
+}
+
 export interface Concept {
   id: string;
   originaltBegrep?: string;
@@ -109,4 +114,5 @@ export interface Concept {
   status?: string | null;
   erSistPublisert?: boolean;
   revisjonAvSistPublisert?: boolean;
+  endringslogelement?: Endringslogelement;
 }

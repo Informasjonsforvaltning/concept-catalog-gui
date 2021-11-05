@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react';
+import { DateTime } from 'luxon';
 
 import { Concept } from '../../../../../types';
 import { ConceptStatus } from '../../../../../types/enums';
@@ -19,6 +20,15 @@ const CollapseItem: FC<Props> = ({ concepts }) => {
   const highestPublishedVersionConcept = concepts.find(
     ({ erSistPublisert }) => erSistPublisert
   );
+  const newestChange = concepts.reduce(
+    (minDate: number, { endringslogelement }) => {
+      const modifiedDate = endringslogelement?.endringstidspunkt
+        ? DateTime.fromISO(endringslogelement.endringstidspunkt).toMillis()
+        : undefined;
+      return Math.min(minDate, modifiedDate ?? Infinity);
+    },
+    Infinity
+  );
   return (
     <SC.CollapseItem type='button' onClick={() => setIsOpen(!isOpen)}>
       <SC.CollapseItemHeader>
@@ -38,6 +48,11 @@ const CollapseItem: FC<Props> = ({ concepts }) => {
           {highestPublishedVersionConcept?.versjonsnr?.major}.
           {highestPublishedVersionConcept?.versjonsnr?.minor}.
           {highestPublishedVersionConcept?.versjonsnr?.patch}
+        </SC.Column>
+        <SC.Column>
+          {newestChange !== Infinity
+            ? DateTime.fromMillis(newestChange).toLocaleString()
+            : 'Ingen dato'}
         </SC.Column>
         <SC.Column>
           {highestPublishedVersionConcept?.status === ConceptStatus.UTKAST ? (

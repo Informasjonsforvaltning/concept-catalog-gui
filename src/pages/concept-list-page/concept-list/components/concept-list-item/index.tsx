@@ -6,6 +6,7 @@ import {
   withRouter
 } from 'react-router-dom';
 
+import { DateTime } from 'luxon';
 import { Concept } from '../../../../../types';
 import { ConceptStatus } from '../../../../../types/enums';
 import { localization } from '../../../../../lib/localization';
@@ -77,6 +78,12 @@ const ListItem: FC<Props> = ({
             {concept.versjonsnr?.patch}
           </span>
         )}
+      </SC.Column>
+      <SC.Column>
+        {concept.endringslogelement?.endringstidspunkt &&
+          DateTime.fromISO(
+            concept.endringslogelement?.endringstidspunkt
+          ).toLocaleString()}
       </SC.Column>
       <SC.Column>
         {getStatusIcon(concept.status, concept.erSistPublisert)}

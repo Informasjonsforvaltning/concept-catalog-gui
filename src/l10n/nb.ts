@@ -13,6 +13,7 @@ export const nb = {
   new: 'Ny',
   newConcept: 'Nytt begrep',
   preferredTerm: 'Anbefalt term',
+  modifiedAt: 'Sist endret',
   fieldOfStudy: 'Fagområde',
   validity: 'Gyldighet',
   valid: 'Gyldig',

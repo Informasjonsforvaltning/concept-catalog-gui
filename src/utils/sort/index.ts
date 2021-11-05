@@ -1,7 +1,8 @@
 import get from 'lodash/get';
 
+import { DateTime } from 'luxon';
 import { Concept } from '../../types';
-import { SortDirection } from '../../types/enums';
+import { ConceptField, SortDirection } from '../../types/enums';
 import { getTranslateText } from '../../lib/translateText';
 
 export const sortConceptsByVersion = (
@@ -26,10 +27,32 @@ export const sortConceptsByVersion = (
   return b1.length - a1.length;
 };
 
+export const sortConceptsByDate = (
+  a: Concept,
+  b: Concept,
+  direction: SortDirection = SortDirection.DESC
+) => {
+  const aDate = DateTime.fromISO(
+    a.endringslogelement?.endringstidspunkt ?? '',
+    { zone: 'Europe/Oslo' }
+  );
+  const bDate = DateTime.fromISO(
+    b.endringslogelement?.endringstidspunkt ?? '',
+    { zone: 'Europe/Oslo' }
+  );
+
+  return direction === SortDirection.DESC
+    ? aDate.toMillis() - bDate.toMillis()
+    : bDate.toMillis() - aDate.toMillis();
+};
+
 export const sortConceptsByKey =
   (key: string, direction: SortDirection) => (a: Concept, b: Concept) => {
-    if (key === 'versjonsnr') {
+    if (key === ConceptField.VERSION) {
       return sortConceptsByVersion(a, b, direction);
+    }
+    if (key === ConceptField.MODIFY_TIME) {
+      return sortConceptsByDate(a, b, direction);
     }
     const a1 = getTranslateText(get(a, key))?.toLowerCase();
     const b1 = getTranslateText(get(b, key))?.toLowerCase();

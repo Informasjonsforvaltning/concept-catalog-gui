@@ -1,6 +1,6 @@
 import React, { FC, memo } from 'react';
 
-import { SortDirection } from '../../../../../types/enums';
+import { ConceptField, SortDirection } from '../../../../../types/enums';
 import { localization } from '../../../../../lib/localization';
 import { SortButtons } from '../../../../../components/sort-button/sort-button.component';
 
@@ -21,7 +21,7 @@ const ConceptListHeader: FC<Props> = ({
     <SC.Column>
       <span className='header-item mr-1'>{localization.preferredTerm}</span>
       <SortButtons
-        field='anbefaltTerm.navn.nb'
+        field={ConceptField.TERM}
         sortField={sortField}
         sortType={sortDirection}
         onSortField={onSortField}
@@ -31,7 +31,7 @@ const ConceptListHeader: FC<Props> = ({
     <SC.Column>
       <span className='header-item mr-1'>{localization.fieldOfStudy}</span>
       <SortButtons
-        field='fagområde'
+        field={ConceptField.FAGOMRÅDE}
         sortField={sortField}
         sortType={sortDirection}
         onSortField={onSortField}
@@ -41,7 +41,7 @@ const ConceptListHeader: FC<Props> = ({
     <SC.Column>
       <span className='header-item mr-1'>{localization.validity}</span>
       <SortButtons
-        field='valid'
+        field={ConceptField.VALID}
         sortField={sortField}
         sortType={sortDirection}
         onSortField={onSortField}
@@ -51,7 +51,17 @@ const ConceptListHeader: FC<Props> = ({
     <SC.Column>
       <span className='header-item mr-1'>{localization.version}</span>
       <SortButtons
-        field='versjonsnr'
+        field={ConceptField.VERSION}
+        sortField={sortField}
+        sortType={sortDirection}
+        onSortField={onSortField}
+      />
+    </SC.Column>
+
+    <SC.Column>
+      <span className='header-item mr-1'>{localization.modifiedAt}</span>
+      <SortButtons
+        field={ConceptField.MODIFY_TIME}
         sortField={sortField}
         sortType={sortDirection}
         onSortField={onSortField}
@@ -61,7 +71,7 @@ const ConceptListHeader: FC<Props> = ({
     <SC.Column>
       <span className='header-item mr-1'>{localization.status}</span>
       <SortButtons
-        field='status'
+        field={ConceptField.STATUS}
         sortField={sortField}
         sortType={sortDirection}
         onSortField={onSortField}

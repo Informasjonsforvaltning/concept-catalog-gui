@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
 import { Concept } from '../../../../../types';
-import { SortDirection } from '../../../../../types/enums';
+import { ConceptField, SortDirection } from '../../../../../types/enums';
 import { sortConceptsByKey } from '../../../../../utils/sort';
 
 import {
@@ -18,7 +18,7 @@ interface Props {
 }
 
 export const ConceptList: FC<Props> = ({ items }) => {
-  const [sortField, setSortField] = useState<string>('');
+  const [sortField, setSortField] = useState<string>(ConceptField.MODIFY_TIME);
   const [sortDirection, setSortDirection] = useState<SortDirection>(
     SortDirection.ASC
   );
@@ -45,15 +45,14 @@ export const ConceptList: FC<Props> = ({ items }) => {
             hasConceptAnyRevisions(concept.originaltBegrep, items) ? (
               <CollapseItem
                 key={index}
-                concepts={findRevisionsOfConcept(
-                  concept.originaltBegrep,
-                  items
-                ).sort(
-                  (
-                    { erSistPublisert: a = false }: Concept,
-                    { erSistPublisert: b = false }: Concept
-                  ) => Number(b) - Number(a)
-                )}
+                concepts={findRevisionsOfConcept(concept.originaltBegrep, items)
+                  .sort(sortConceptsByKey(sortField, sortDirection))
+                  .sort(
+                    (
+                      { erSistPublisert: a = false }: Concept,
+                      { erSistPublisert: b = false }: Concept
+                    ) => Number(b) - Number(a)
+                  )}
               />
             ) : (
               <ListItem key={`${concept?.id}-${index}`} concept={concept} />

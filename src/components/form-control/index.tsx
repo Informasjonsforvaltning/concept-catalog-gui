@@ -1,4 +1,4 @@
-import React, { FC, memo, useState } from 'react';
+import React, { FC, memo, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { Concept } from '../../types';
@@ -32,6 +32,29 @@ const FormControl: FC<Props> = ({
   isInitialInValidForm
 }) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
+  const [isSticky, setSticky] = useState(false);
+
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
+    currentScrollPos > 198 ? setSticky(true) : setSticky(false);
+  };
+
+  function debounce(fn, delay) {
+    return function deb() {
+      clearTimeout(fn._tId);
+      fn._tId = setTimeout(() => {
+        fn();
+      }, delay);
+    };
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', debounce(handleScroll, 50));
+    return () => {
+      window.removeEventListener('scroll', () => handleScroll);
+    };
+  }, [debounce, handleScroll]);
+
   const toggleShowConfirmDelete = (): void =>
     setShowConfirmDelete(!showConfirmDelete);
 
@@ -76,44 +99,53 @@ const FormControl: FC<Props> = ({
   };
 
   return (
-    <SC.FormControl>
-      {isFormDirty && status === ConceptStatus.PUBLISERT && erSistPublisert && (
-        <SC.Button onClick={createNewConceptRevisionAndNavigate}>
-          {localization.saveDraft}
-        </SC.Button>
-      )}
-      {!published && (
-        <SC.PublishButton
-          disabled={
-            validationError ||
-            (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
-          }
-          onClick={() =>
-            patchConceptFromForm(
-              {
-                status: ConceptStatus.PUBLISERT,
-                ...(concept.versjonsnr?.major === 0 &&
-                  concept.versjonsnr?.minor === 0 &&
-                  concept.versjonsnr?.patch === 1 && {
-                    versjonsnr: { major: 1, minor: 0, patch: 0 }
-                  })
-              },
-              { concept, dispatch, lastPatchedResponse, isSaving }
-            )
-          }
-        >
-          {localization.publish}
-        </SC.PublishButton>
-      )}
-      <div>
-        <SC.DraftIcon />
-        <span>{createMessage()}</span>
-      </div>
-      {!published && (
-        <SC.DeleteButton disabled={isSaving} onClick={toggleShowConfirmDelete}>
-          {localization.deleteDraft}
-        </SC.DeleteButton>
-      )}
+    <>
+      <SC.FormControl $isSticky={isSticky}>
+        <SC.FormControlContent>
+          {isFormDirty &&
+            status === ConceptStatus.PUBLISERT &&
+            erSistPublisert && (
+              <SC.Button onClick={createNewConceptRevisionAndNavigate}>
+                {localization.saveDraft}
+              </SC.Button>
+            )}
+          {!published && (
+            <SC.PublishButton
+              disabled={
+                validationError ||
+                (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
+              }
+              onClick={() =>
+                patchConceptFromForm(
+                  {
+                    status: ConceptStatus.PUBLISERT,
+                    ...(concept.versjonsnr?.major === 0 &&
+                      concept.versjonsnr?.minor === 0 &&
+                      concept.versjonsnr?.patch === 1 && {
+                        versjonsnr: { major: 1, minor: 0, patch: 0 }
+                      })
+                  },
+                  { concept, dispatch, lastPatchedResponse, isSaving }
+                )
+              }
+            >
+              {localization.publish}
+            </SC.PublishButton>
+          )}
+          <div>
+            <SC.DraftIcon />
+            <span>{createMessage()}</span>
+          </div>
+          {!published && (
+            <SC.DeleteButton
+              disabled={isSaving}
+              onClick={toggleShowConfirmDelete}
+            >
+              {localization.deleteDraft}
+            </SC.DeleteButton>
+          )}
+        </SC.FormControlContent>
+      </SC.FormControl>
       {showConfirmDelete && (
         <ConfirmDialog
           title={localization.confirmDeleteTitle}
@@ -122,7 +154,7 @@ const FormControl: FC<Props> = ({
           onCancel={toggleShowConfirmDelete}
         />
       )}
-    </SC.FormControl>
+    </>
   );
 };
 

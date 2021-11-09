@@ -32,6 +32,18 @@ export const DatePickerFieldPure: FC<Props> = ({
   const { conceptId } = useParams<{ conceptId: string }>();
   const stateConcept = useGlobalState(conceptId);
 
+  const parseDateAndSetValue = (dateValue?: string) => {
+    const parsedDate = DateTime.fromFormat(dateValue ?? '', 'dd.MM.yyyy');
+
+    if (!dateValue) {
+      setFieldValue(name, null);
+    }
+
+    if (parsedDate.isValid) {
+      setFieldValue(name, parsedDate.toFormat('yyyy-MM-dd'));
+    }
+  };
+
   const renderReadOnlyField = () => (
     <div className='d-flex align-items-baseline mb-2'>
       {showLabel ? <div className='fdk-text-strong'>{label}</div> : null}
@@ -50,46 +62,23 @@ export const DatePickerFieldPure: FC<Props> = ({
       className='fdk-form-label fdk-text-strong position-relative'
       htmlFor={name}
     >
-      {showLabel ? label : null}
-      {value && value !== 'Invalid date' && (
-        <DatePicker
-          id={name}
-          className='form-control fdk-datepicker'
-          dateFormat='dd.MM.yyyy'
-          showYearDropdown
-          yearDropdownItemNumber={5}
-          selected={new Date(value)}
-          onChange={date => {
-            setFieldValue(
-              name,
-              date instanceof Date
-                ? DateTime.fromJSDate(date).toFormat('yyyy-MM-dd')
-                : null
-            );
-          }}
-          minDate={minDate ? new Date(minDate) : null}
-          maxDate={maxDate ? new Date(maxDate) : null}
-        />
-      )}
-      {(!value || (value && value === 'Invalid date')) && (
-        <DatePicker
-          id={name}
-          className='form-control fdk-datepicker'
-          dateFormat='dd.MM.yyyy'
-          showYearDropdown
-          yearDropdownItemNumber={5}
-          onChange={date => {
-            setFieldValue(
-              name,
-              date instanceof Date
-                ? DateTime.fromJSDate(date).toFormat('yyyy-MM-dd')
-                : null
-            );
-          }}
-          minDate={minDate ? new Date(minDate) : null}
-          maxDate={maxDate ? new Date(maxDate) : null}
-        />
-      )}
+      {showLabel && label}
+      <DatePicker
+        id={name}
+        className='form-control fdk-datepicker'
+        dateFormat='dd.MM.yyyy'
+        showYearDropdown
+        yearDropdownItemNumber={5}
+        selected={value ? new Date(value) : null}
+        onSelect={date =>
+          setFieldValue(name, DateTime.fromJSDate(date).toFormat('yyyy-MM-dd'))
+        }
+        onChangeRaw={event => parseDateAndSetValue(event.target.value)}
+        onChange={date => date}
+        minDate={minDate ? new Date(minDate) : null}
+        maxDate={maxDate ? new Date(maxDate) : null}
+      />
+
       <i className='fa fa-calendar fdk-date' />
     </label>
   );

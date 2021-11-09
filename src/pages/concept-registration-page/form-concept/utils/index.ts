@@ -67,10 +67,11 @@ export const patchWithPreProcess = (
   { concept, dispatch, lastPatchedResponse, isSaving }
 ) => {
   const processedValues = preProcessValues(values);
+  const processedLastPatchedResponse = preProcessValues(lastPatchedResponse);
   patchConceptFromForm(processedValues, {
     concept,
     dispatch,
-    lastPatchedResponse,
+    lastPatchedResponse: processedLastPatchedResponse,
     isSaving
   });
   validateConceptForm(processedValues, schema, concept, dispatch);

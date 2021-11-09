@@ -95,6 +95,7 @@
     "react/jsx-curly-newline": "off",
     "no-use-before-define": "off",
     "no-restricted-globals": "off",
+    "no-underscore-dangle": "off",
     "no-param-reassign": "off",
     "no-plusplus": "off",
     "no-shadow": "off",

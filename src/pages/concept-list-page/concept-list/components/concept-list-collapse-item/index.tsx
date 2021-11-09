@@ -25,10 +25,11 @@ const CollapseItem: FC<Props> = ({ concepts }) => {
       const modifiedDate = endringslogelement?.endringstidspunkt
         ? DateTime.fromISO(endringslogelement.endringstidspunkt).toMillis()
         : undefined;
-      return Math.min(minDate, modifiedDate ?? Infinity);
+      return Math.max(minDate, modifiedDate ?? Infinity);
     },
-    Infinity
+    -Infinity
   );
+
   return (
     <SC.CollapseItem type='button' onClick={() => setIsOpen(!isOpen)}>
       <SC.CollapseItemHeader>
@@ -50,7 +51,7 @@ const CollapseItem: FC<Props> = ({ concepts }) => {
           {highestPublishedVersionConcept?.versjonsnr?.patch}
         </SC.Column>
         <SC.Column>
-          {newestChange !== Infinity
+          {newestChange !== -Infinity
             ? DateTime.fromMillis(newestChange).toLocaleString()
             : 'Ingen dato'}
         </SC.Column>

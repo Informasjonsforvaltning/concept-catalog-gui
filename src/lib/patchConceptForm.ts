@@ -15,10 +15,18 @@ export const patchConceptFromForm = (
   { concept, dispatch, lastPatchedResponse = {}, isSaving }
 ): void => {
   const diff = compare(
-    omit(lastPatchedResponse, 'endringslogelement'),
-    omit({ ...lastPatchedResponse, ...values }, 'endringslogelement')
+    omit(lastPatchedResponse, [
+      'endringslogelement',
+      'ansvarligVirksomhet',
+      'status',
+      'revisjonAvSistPublisert',
+      'erSistPublisert',
+      'versjonsnr',
+      'originaltBegrep',
+      'id'
+    ]),
+    values
   );
-
   if (!isSaving && diff.length > 0) {
     const conceptId = _.get(concept, 'id');
     if (concept.status === ConceptStatus.UTKAST) {

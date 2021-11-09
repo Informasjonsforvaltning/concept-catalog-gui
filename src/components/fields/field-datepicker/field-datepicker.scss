@@ -5,6 +5,7 @@ $datepicker__margin: 0.6rem;
 @import '../../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
 
 .fdk-date {
-  position: relative;
-  margin-left: -2.5rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
 }

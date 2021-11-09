@@ -17,7 +17,6 @@ export enum ConceptField {
   STATUS = 'status'
 }
 
-
 export enum TimeFormat {
   dateAndHour = 'DDDD kl. HH:mm'
 }

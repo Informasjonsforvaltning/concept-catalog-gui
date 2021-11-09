@@ -1,16 +1,54 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import { Colour, theme } from '@fellesdatakatalog/theme';
 import ButtonBase from '@fellesdatakatalog/button';
 
+import ContainerSC from '../container/styled';
+
 import DraftIconBase from '../../images/icon-draft-circle-md.svg';
 
-const FormControl = styled.div`
+interface Props {
+  $isSticky?: boolean;
+}
+
+export const slideDown = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
+`;
+
+const FormControl = styled.div<Props>`
+  background-color: ${theme.colour(Colour.CYAN, 'C20')};
+  margin-bottom: ${theme.spacing('S24')};
+  opacity: 0.95;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  will-change: transform, opacity, visibility;
+
+  ${({ $isSticky }) =>
+    $isSticky &&
+    css`
+      animation-duration: 500ms;
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards;
+      animation-name: ${slideDown};
+      position: fixed;
+    `}
+`;
+
+const FormControlContent = styled(ContainerSC.Container)`
   align-items: center;
   border-bottom: 1px solid ${theme.colour(Colour.GREEN, 'G30')};
   display: flex;
-  margin-bottom: ${theme.spacing('S24')};
-  padding-bottom: ${theme.spacing('S10')};
+  flex-direction: row;
+  padding: ${theme.spacing('S10')} 0;
 `;
 
 const Button = styled(ButtonBase)`
@@ -53,4 +91,11 @@ const DraftIcon = styled(DraftIconBase)`
   }
 `;
 
-export default { FormControl, Button, PublishButton, DeleteButton, DraftIcon };
+export default {
+  FormControl,
+  FormControlContent,
+  Button,
+  PublishButton,
+  DeleteButton,
+  DraftIcon
+};

@@ -15,6 +15,7 @@ const env = (window as any).env || {
 // env.SEARCH_FULLTEXT_HOST = 'https://search.staging.fellesdatakatalog.digdir.no';
 // env.SEARCH_HOST = 'https://www.staging.fellesdatakatalog.digdir.no';
 // env.ADMIN_GUI_HOST = 'https://admin.staging.fellesdatakatalog.digdir.no';
+// env.CATALOG_COMMENTS_SERVICE_HOST = 'https://catalog-comments.staging.fellesdatakatalog.digdir.no';
 
 const config = {
   auth: {
@@ -45,6 +46,9 @@ const config = {
   searchHost: env.SEARCH_HOST || 'https://fellesdatakatalog.digdir.no',
   adminGui: {
     host: env.ADMIN_GUI_HOST
+  },
+  commentsApi: {
+    host: env.CATALOG_COMMENTS_SERVICE_HOST
   }
 };
 

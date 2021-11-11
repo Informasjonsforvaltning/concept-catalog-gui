@@ -116,3 +116,31 @@ export interface Concept {
   revisjonAvSistPublisert?: boolean;
   endringslogelement?: Endringslogelement;
 }
+
+export interface User {
+  id: string;
+  name?: string;
+  email?: string;
+}
+
+export interface Reply {
+  id: string;
+  createdDate: string;
+  lastChangedDate: string;
+  topicId: string;
+  commentId: string;
+  orgNumber: string;
+  user: User;
+  comment: string;
+}
+
+export interface Comment {
+  id: string;
+  createdDate: string;
+  lastChangedDate?: string;
+  topicId: string;
+  orgNumber: string;
+  user?: User;
+  comment: string;
+  replies?: Reply[];
+}

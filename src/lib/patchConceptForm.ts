@@ -23,7 +23,8 @@ export const patchConceptFromForm = (
       'erSistPublisert',
       'versjonsnr',
       'originaltBegrep',
-      'id'
+      'id',
+      'revisjonAv'
     ]),
     values
   );

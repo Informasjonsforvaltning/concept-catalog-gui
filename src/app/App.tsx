@@ -1,4 +1,5 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import _ from 'lodash';
 import Footer from '@fellesdatakatalog/internal-footer';
@@ -11,29 +12,34 @@ import { authService } from '../services/auth-service';
 
 import { StateProvider } from './context/stateContext';
 import { getConfig } from '../config';
+import { store } from './redux/store';
 
 export const App: React.FC = () => (
-  <Router>
-    <StateProvider>
-      <Header
-        homeUrl={getConfig().registrationHost}
-        username={authService.getUser()?.name}
-        onLogout={authService.logout}
-        useDemoLogo={getConfig().useDemoLogo}
-      >
-        <Link href={`${getConfig().searchHost}/guidance`}>Registrere data</Link>
-        <Link href={getConfig().adminGui.host}>Høste data</Link>
-        <Link href={getConfig().searchHost} external>
-          Søk i Felles datakatalog
-        </Link>
-      </Header>
-      <Breadcrumbs />
-      <Switch>
-        {routeConfig.map((route, i) => (
-          <Route key={`${i}-${_.get(route, 'path', '')}`} {...route} />
-        ))}
-      </Switch>
-      <Footer />
-    </StateProvider>
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <StateProvider>
+        <Header
+          homeUrl={getConfig().registrationHost}
+          username={authService.getUser()?.name}
+          onLogout={authService.logout}
+          useDemoLogo={getConfig().useDemoLogo}
+        >
+          <Link href={`${getConfig().searchHost}/guidance`}>
+            Registrere data
+          </Link>
+          <Link href={getConfig().adminGui.host}>Høste data</Link>
+          <Link href={getConfig().searchHost} external>
+            Søk i Felles datakatalog
+          </Link>
+        </Header>
+        <Breadcrumbs />
+        <Switch>
+          {routeConfig.map((route, i) => (
+            <Route key={`${i}-${_.get(route, 'path', '')}`} {...route} />
+          ))}
+        </Switch>
+        <Footer />
+      </StateProvider>
+    </Router>
+  </Provider>
 );

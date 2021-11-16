@@ -10,23 +10,23 @@ import {
   conceptPatchIsSavingAction
 } from '../app/reducers/stateReducer';
 
+const metaDataFieldsToOmit = [
+  'endringslogelement',
+  'ansvarligVirksomhet',
+  'revisjonAvSistPublisert',
+  'erSistPublisert',
+  'originaltBegrep',
+  'id',
+  'revisjonAv'
+];
+
 export const patchConceptFromForm = (
   values,
   { concept, dispatch, lastPatchedResponse = {}, isSaving }
 ): void => {
   const diff = compare(
-    omit(lastPatchedResponse, [
-      'endringslogelement',
-      'ansvarligVirksomhet',
-      'status',
-      'revisjonAvSistPublisert',
-      'erSistPublisert',
-      'versjonsnr',
-      'originaltBegrep',
-      'id',
-      'revisjonAv'
-    ]),
-    values
+    omit(lastPatchedResponse, metaDataFieldsToOmit),
+    omit({ ...lastPatchedResponse, ...values }, metaDataFieldsToOmit)
   );
   if (!isSaving && diff.length > 0) {
     const conceptId = _.get(concept, 'id');

@@ -90,5 +90,11 @@ export const nb = {
   deleteDraft: 'Slett utkast',
   confirm: 'Bekreft',
   cancel: 'Avbryt',
-  unsavedPrompt: 'Endringene er ikke lagret, vil du forkaste endringene?'
+  unsavedPrompt: 'Endringene er ikke lagret, vil du forkaste endringene?',
+  confirmDeleteComment: 'Bekreft at du vil slette denne kommentaren.',
+  changeComment: 'Rediger kommentar',
+  deleteComment: 'Slett kommentar',
+  commentInputFieldLabel: 'Skriv en kommentar',
+  addCommentLabel: 'Legg til en kommentar',
+  showAllComments: 'Vis alle tidligere kommentarer'
 };

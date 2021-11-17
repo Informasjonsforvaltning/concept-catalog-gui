@@ -67,12 +67,11 @@ const FormControl: FC<Props> = ({
 
   const validationError = stateConcept?.validationError || isInitialInValidForm;
   const isSaving = stateConcept?.isSaving ?? false;
-  const justPublishedOrUnPublished =
-    stateConcept?.justPublishedOrUnPublished ?? false;
+  const justChangedStatus = stateConcept?.justChangedStatus ?? false;
   const endringstidspunkt = stateConcept?.endringstidspunkt;
 
   const createMessage = () => {
-    if (justPublishedOrUnPublished) {
+    if (justChangedStatus) {
       if (status === ConceptStatus.PUBLISERT) {
         return localization.conceptPublished;
       }

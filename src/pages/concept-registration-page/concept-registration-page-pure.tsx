@@ -14,6 +14,7 @@ import Root from '../../components/root';
 
 import SC from './styled';
 import { getConcept } from '../../api/concept-catalogue-api';
+import { CommentList } from '../../components/commentList';
 
 interface RouteParams {
   conceptId: string;
@@ -50,6 +51,7 @@ const ConceptRegistrationPagePure: FC<Props> = ({
             isSaving={globalStateValues.isSaving}
           />
         )}
+        <CommentList />
       </SC.Container>
     </Root>
   );

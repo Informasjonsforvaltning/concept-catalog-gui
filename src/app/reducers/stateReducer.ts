@@ -7,13 +7,13 @@ export const CONCEPT_STATUS_VALIDATION_ERROR: string =
 
 export const conceptPatchSuccessAction = (
   conceptId: string,
-  justPublishedOrUnPublished: boolean,
+  justChangedStatus: boolean,
   patchResponse: any
 ) => ({
   type: CONCEPT_STATUS_PATCH_SUCCESS,
   payload: {
     conceptId,
-    justPublishedOrUnPublished,
+    justChangedStatus,
     patchResponse
   }
 });
@@ -59,8 +59,7 @@ export const stateReducer = (state, action: Action): any => {
       };
     }
     case CONCEPT_STATUS_PATCH_SUCCESS: {
-      const { conceptId, justPublishedOrUnPublished, patchResponse } =
-        action.payload;
+      const { conceptId, justChangedStatus, patchResponse } = action.payload;
       const status = patchResponse?.status;
       const endringstidspunkt =
         patchResponse?.endringslogelement?.endringstidspunkt;
@@ -76,7 +75,7 @@ export const stateReducer = (state, action: Action): any => {
           status,
           revisjonAvSistPublisert,
           erSistPublisert,
-          justPublishedOrUnPublished,
+          justChangedStatus,
           endringstidspunkt,
           anbefaltTerm,
           error: false,

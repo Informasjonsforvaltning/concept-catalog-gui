@@ -19,6 +19,7 @@ export const App: React.FC = () => (
         homeUrl={getConfig().registrationHost}
         username={authService.getUser()?.name}
         onLogout={authService.logout}
+        useDemoLogo={getConfig().useDemoLogo}
       >
         <Link href={`${getConfig().searchHost}/guidance`}>Registrere data</Link>
         <Link href={getConfig().adminGui.host}>Høste data</Link>

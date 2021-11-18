@@ -7,13 +7,13 @@
     },
     "1002401|showdown>yargs>string-width>strip-ansi>ansi-regex": {
       "decision": "ignore",
-      "madeAt": 1636462070321,
-      "expiresAt": 1639054057629
+      "madeAt": 1637229969668,
+      "expiresAt": 1639821930129
     },
     "1002401|showdown>yargs>cliui>string-width>strip-ansi>ansi-regex": {
       "decision": "ignore",
-      "madeAt": 1636462070321,
-      "expiresAt": 1639054057629
+      "madeAt": 1637229969668,
+      "expiresAt": 1639821930129
     },
     "1002401|node-sass>sass-graph>yargs>cliui>string-width>strip-ansi>ansi-regex": {
       "decision": "ignore",
@@ -39,6 +39,41 @@
       "decision": "ignore",
       "madeAt": 1636462095777,
       "expiresAt": 1639054057629
+    },
+    "1002401|showdown>yargs>cliui>wrap-ansi>string-width>strip-ansi>ansi-regex": {
+      "decision": "ignore",
+      "madeAt": 1637229969668,
+      "expiresAt": 1639821930129
+    },
+    "1004946|showdown>yargs>string-width>strip-ansi>ansi-regex": {
+      "decision": "ignore",
+      "madeAt": 1637252519229,
+      "expiresAt": 1639844452601
+    },
+    "1004946|showdown>yargs>cliui>string-width>strip-ansi>ansi-regex": {
+      "decision": "ignore",
+      "madeAt": 1637252519230,
+      "expiresAt": 1639844452601
+    },
+    "1004946|showdown>yargs>cliui>wrap-ansi>string-width>strip-ansi>ansi-regex": {
+      "decision": "ignore",
+      "madeAt": 1637252519230,
+      "expiresAt": 1639844452601
+    },
+    "1005018|@fellesdatakatalog/internal-footer>@fellesdatakatalog/skatteetaten-frontend-components>axios": {
+      "decision": "ignore",
+      "madeAt": 1637252524908,
+      "expiresAt": 1639844452601
+    },
+    "1005417|@fellesdatakatalog/internal-footer>@fellesdatakatalog/skatteetaten-frontend-components>react-i18next>html-parse-stringify2": {
+      "decision": "ignore",
+      "madeAt": 1637252528912,
+      "expiresAt": 1639844452601
+    },
+    "1005560|recompose>fbjs>isomorphic-fetch>node-fetch": {
+      "decision": "ignore",
+      "madeAt": 1637252532800,
+      "expiresAt": 1639844452601
     }
   },
   "rules": {},

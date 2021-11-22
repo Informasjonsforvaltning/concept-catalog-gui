@@ -115,29 +115,6 @@ const FormControl: FC<Props> = ({
             )}
           {!published && (
             <SC.StatusButton
-              disabled={
-                validationError ||
-                (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
-              }
-              onClick={() =>
-                patchConceptFromForm(
-                  {
-                    status: ConceptStatus.PUBLISERT,
-                    ...(concept.versjonsnr?.major === 0 &&
-                      concept.versjonsnr?.minor === 0 &&
-                      concept.versjonsnr?.patch === 1 && {
-                        versjonsnr: { major: 1, minor: 0, patch: 0 }
-                      })
-                  },
-                  { concept, dispatch, lastPatchedResponse, isSaving }
-                )
-              }
-            >
-              {localization.publish}
-            </SC.StatusButton>
-          )}
-          {!published && (
-            <SC.StatusButton
               $active={lastPatchedResponse?.status === ConceptStatus.HOERING}
               disabled={
                 validationError ||
@@ -182,6 +159,29 @@ const FormControl: FC<Props> = ({
               }
             >
               {localization.setToApproval}
+            </SC.StatusButton>
+          )}
+          {!published && (
+            <SC.StatusButton
+              disabled={
+                validationError ||
+                (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
+              }
+              onClick={() =>
+                patchConceptFromForm(
+                  {
+                    status: ConceptStatus.PUBLISERT,
+                    ...(concept.versjonsnr?.major === 0 &&
+                      concept.versjonsnr?.minor === 0 &&
+                      concept.versjonsnr?.patch === 1 && {
+                        versjonsnr: { major: 1, minor: 0, patch: 0 }
+                      })
+                  },
+                  { concept, dispatch, lastPatchedResponse, isSaving }
+                )
+              }
+            >
+              {localization.publish}
             </SC.StatusButton>
           )}
           <div>

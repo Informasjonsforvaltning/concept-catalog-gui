@@ -131,7 +131,10 @@ function mapCsvTextToConcept(
       harEpost: mapToSingleValue(csvMap, 'kontaktpunkt_epost'),
       harTelefon: mapToSingleValue(csvMap, 'kontaktpunkt_telefon')
     },
-    status: mapToSingleValue(csvMap, 'status') ?? ConceptStatus.UTKAST
+    status: mapToSingleValue(csvMap, 'status') ?? ConceptStatus.UTKAST,
+    tildeltBruker: {
+      id: mapToSingleValue(csvMap, 'tildeltBruker_id') ?? ''
+    }
   };
 }
 

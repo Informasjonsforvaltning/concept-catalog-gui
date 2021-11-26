@@ -96,5 +96,8 @@ export const nb = {
   deleteComment: 'Slett kommentar',
   commentInputFieldLabel: 'Skriv en kommentar',
   addCommentLabel: 'Legg til en kommentar',
-  showAllComments: 'Vis alle tidligere kommentarer'
+  showAllComments: 'Vis alle tidligere kommentarer',
+  assignToUser: 'Hvem skal begrepet tildeles?',
+  editName: 'Oppgi navn',
+  assignedUser: 'Tildelt'
 };

@@ -82,6 +82,7 @@ const ListItem: FC<Props> = ({
   return (
     <SC.ListItem to={`${catalogId}/${concept.id}`} as={RouterLink}>
       <SC.Column>{getTranslateText(concept.anbefaltTerm?.navn)}</SC.Column>
+      <SC.Column>{getTranslateText(concept.tildeltBruker?.id)}</SC.Column>
       <SC.Column>
         {concept.endringslogelement?.endringstidspunkt &&
           DateTime.fromISO(

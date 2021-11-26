@@ -32,6 +32,7 @@ import { patchWithPreProcess, postWithPreProcess } from './utils';
 import { schema as validationSchema } from './form-concept.schema';
 
 import SC from './styled';
+import { AssignUser } from './assign-user';
 
 export type FormValues = Pick<
   Concept,
@@ -49,6 +50,7 @@ export type FormValues = Pick<
   | 'gyldigFom'
   | 'gyldigTom'
   | 'seOgså'
+  | 'tildeltBruker'
 >;
 
 interface RouteParams {
@@ -210,6 +212,7 @@ export const FormConceptPure: FC<Props> = ({
         >
           <ContactInfo />
         </FormTemplate>
+        <AssignUser />
       </Form>
     </SC.Page>
   );
@@ -231,7 +234,8 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
       kontaktpunkt = null,
       gyldigFom = null,
       gyldigTom = null,
-      seOgså = []
+      seOgså = [],
+      tildeltBruker = { id: '' }
     }
   }: Props) => ({
     anbefaltTerm,
@@ -247,7 +251,8 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     kontaktpunkt,
     gyldigFom,
     gyldigTom,
-    seOgså
+    seOgså,
+    tildeltBruker
   }),
   validationSchema,
   validate: throttle(patchWithPreProcess, 1500),

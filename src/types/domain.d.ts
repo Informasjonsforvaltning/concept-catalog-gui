@@ -88,6 +88,12 @@ export interface Endringslogelement {
   endringstidspunkt: string;
 }
 
+export interface User {
+  id: string;
+  name?: string;
+  email?: string;
+}
+
 export interface Concept {
   id: string;
   originaltBegrep?: string;
@@ -115,12 +121,7 @@ export interface Concept {
   erSistPublisert?: boolean;
   revisjonAvSistPublisert?: boolean;
   endringslogelement?: Endringslogelement;
-}
-
-export interface User {
-  id: string;
-  name?: string;
-  email?: string;
+  tildeltBruker?: User;
 }
 
 export interface Comment {

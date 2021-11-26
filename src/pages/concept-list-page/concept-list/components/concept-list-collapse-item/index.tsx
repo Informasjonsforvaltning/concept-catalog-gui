@@ -36,6 +36,9 @@ const CollapseItem: FC<Props> = ({ concepts }) => {
           {getTranslateText(highestPublishedVersionConcept?.anbefaltTerm?.navn)}
         </SC.Column>
         <SC.Column>
+          {getTranslateText(highestPublishedVersionConcept?.tildeltBruker?.id)}
+        </SC.Column>
+        <SC.Column>
           {newestChange !== -Infinity
             ? DateTime.fromMillis(newestChange).toLocaleString()
             : 'Ingen dato'}

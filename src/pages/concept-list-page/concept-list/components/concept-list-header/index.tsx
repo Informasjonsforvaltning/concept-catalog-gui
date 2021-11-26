@@ -28,6 +28,16 @@ const ConceptListHeader: FC<Props> = ({
       />
     </SC.Column>
     <SC.Column>
+      <span className='header-item mr-1'>{localization.assignedUser}</span>
+      <SortButtons
+        field={ConceptField.ASSIGNED_USER}
+        sortField={sortField}
+        sortType={sortDirection}
+        onSortField={onSortField}
+      />
+    </SC.Column>
+
+    <SC.Column>
       <span className='header-item mr-1'>{localization.modifiedAt}</span>
       <SortButtons
         field={ConceptField.MODIFY_TIME}

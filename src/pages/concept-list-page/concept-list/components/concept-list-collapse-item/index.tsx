@@ -5,7 +5,6 @@ import { Concept } from '../../../../../types';
 import { ConceptStatus } from '../../../../../types/enums';
 import { getTranslateText } from '../../../../../lib/translateText';
 import { localization } from '../../../../../lib/localization';
-import { determineValidity } from '../../utils/determine-validity';
 
 import ListItem from '../concept-list-item';
 
@@ -37,23 +36,14 @@ const CollapseItem: FC<Props> = ({ concepts }) => {
           {getTranslateText(highestPublishedVersionConcept?.anbefaltTerm?.navn)}
         </SC.Column>
         <SC.Column>
-          {getTranslateText(highestPublishedVersionConcept?.fagområde)}
-        </SC.Column>
-        <SC.Column>
-          {determineValidity(
-            highestPublishedVersionConcept?.gyldigFom,
-            highestPublishedVersionConcept?.gyldigTom
-          )}
+          {newestChange !== -Infinity
+            ? DateTime.fromMillis(newestChange).toLocaleString()
+            : 'Ingen dato'}
         </SC.Column>
         <SC.Column>
           {highestPublishedVersionConcept?.versjonsnr?.major}.
           {highestPublishedVersionConcept?.versjonsnr?.minor}.
           {highestPublishedVersionConcept?.versjonsnr?.patch}
-        </SC.Column>
-        <SC.Column>
-          {newestChange !== -Infinity
-            ? DateTime.fromMillis(newestChange).toLocaleString()
-            : 'Ingen dato'}
         </SC.Column>
         <SC.Column>
           {highestPublishedVersionConcept?.status === ConceptStatus.UTKAST ? (

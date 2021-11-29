@@ -12,9 +12,9 @@ const ConceptListHeader = styled.div`
 const Column = styled.div`
   display: flex;
   align-items: center;
-  flex: 0 0 16%;
+  flex: 0 0 25%;
   font-weight: ${theme.fontWeight('FW500')};
-  max-width: 16%;
+  max-width: 25%;
 `;
 
 export default { ConceptListHeader, Column };

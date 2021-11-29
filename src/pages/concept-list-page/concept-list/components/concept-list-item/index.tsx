@@ -12,7 +12,6 @@ import { ConceptStatus } from '../../../../../types/enums';
 import { localization } from '../../../../../lib/localization';
 import { getTranslateText } from '../../../../../lib/translateText';
 
-import { determineValidity } from '../../utils/determine-validity';
 import SC from './styled';
 
 interface RouteParams {
@@ -83,9 +82,11 @@ const ListItem: FC<Props> = ({
   return (
     <SC.ListItem to={`${catalogId}/${concept.id}`} as={RouterLink}>
       <SC.Column>{getTranslateText(concept.anbefaltTerm?.navn)}</SC.Column>
-      <SC.Column>{getTranslateText(concept.fagområde)}</SC.Column>
       <SC.Column>
-        {determineValidity(concept.gyldigFom, concept.gyldigTom)}
+        {concept.endringslogelement?.endringstidspunkt &&
+          DateTime.fromISO(
+            concept.endringslogelement?.endringstidspunkt
+          ).toLocaleString()}
       </SC.Column>
       <SC.Column>
         {concept?.versjonsnr && (
@@ -94,12 +95,6 @@ const ListItem: FC<Props> = ({
             {concept.versjonsnr?.patch}
           </span>
         )}
-      </SC.Column>
-      <SC.Column>
-        {concept.endringslogelement?.endringstidspunkt &&
-          DateTime.fromISO(
-            concept.endringslogelement?.endringstidspunkt
-          ).toLocaleString()}
       </SC.Column>
       <SC.Column>
         {getStatusIcon(concept.status, concept.erSistPublisert)}

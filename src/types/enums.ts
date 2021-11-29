@@ -16,7 +16,8 @@ export enum ConceptField {
   VALID = 'valid',
   VERSION = 'versjonsnr',
   MODIFY_TIME = 'endringslogelement.endringstidspunkt',
-  STATUS = 'status'
+  STATUS = 'status',
+  ASSIGNED_USER = 'tildeltBruker.id'
 }
 
 export enum TimeFormat {

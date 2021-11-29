@@ -27,21 +27,10 @@ const ConceptListHeader: FC<Props> = ({
         onSortField={onSortField}
       />
     </SC.Column>
-
     <SC.Column>
-      <span className='header-item mr-1'>{localization.fieldOfStudy}</span>
+      <span className='header-item mr-1'>{localization.modifiedAt}</span>
       <SortButtons
-        field={ConceptField.FAGOMRÅDE}
-        sortField={sortField}
-        sortType={sortDirection}
-        onSortField={onSortField}
-      />
-    </SC.Column>
-
-    <SC.Column>
-      <span className='header-item mr-1'>{localization.validity}</span>
-      <SortButtons
-        field={ConceptField.VALID}
+        field={ConceptField.MODIFY_TIME}
         sortField={sortField}
         sortType={sortDirection}
         onSortField={onSortField}
@@ -52,16 +41,6 @@ const ConceptListHeader: FC<Props> = ({
       <span className='header-item mr-1'>{localization.version}</span>
       <SortButtons
         field={ConceptField.VERSION}
-        sortField={sortField}
-        sortType={sortDirection}
-        onSortField={onSortField}
-      />
-    </SC.Column>
-
-    <SC.Column>
-      <span className='header-item mr-1'>{localization.modifiedAt}</span>
-      <SortButtons
-        field={ConceptField.MODIFY_TIME}
         sortField={sortField}
         sortType={sortDirection}
         onSortField={onSortField}

@@ -25,8 +25,8 @@ const ListItem = styled(Link)`
 const Column = styled.div`
   align-items: center;
   display: flex;
-  flex: 0 0 16%;
-  max-width: 16%;
+  flex: 0 0 25%;
+  max-width: 25%;
 `;
 
 const DraftIcon = styled(DraftIconBase)`

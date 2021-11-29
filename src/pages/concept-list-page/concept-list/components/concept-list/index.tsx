@@ -5,7 +5,7 @@ import { ConceptField, SortDirection } from '../../../../../types/enums';
 import { sortConceptsByKey } from '../../../../../utils/sort';
 
 import {
-  findOriginalConcepts,
+  findOriginalConceptsWithHighestPublishedVersion,
   findRevisionsOfConcept,
   hasConceptAnyRevisions
 } from '../../utils/concepts';
@@ -39,8 +39,8 @@ export const ConceptList: FC<Props> = ({ items }) => {
         onSortField={onSortField}
       />
       {items &&
-        findOriginalConcepts(items)
-          .sort(sortConceptsByKey(sortField, sortDirection))
+        findOriginalConceptsWithHighestPublishedVersion(items)
+          ?.sort(sortConceptsByKey(sortField, sortDirection))
           .map((concept, index) =>
             hasConceptAnyRevisions(concept.originaltBegrep, items) ? (
               <CollapseItem

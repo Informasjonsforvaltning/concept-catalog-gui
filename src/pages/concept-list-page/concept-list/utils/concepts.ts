@@ -18,3 +18,16 @@ export const hasConceptAnyRevisions = (
     ({ id, originaltBegrep }) =>
       id !== originaltBegrep && conceptId === originaltBegrep
   ).length > 0;
+
+export const findHighestPublishedVersionConcept = (concepts: Concept[]) =>
+  concepts.find(({ erSistPublisert }) => erSistPublisert);
+
+export const findOriginalConceptsWithHighestPublishedVersion = (
+  concepts: Concept[]
+) =>
+  findOriginalConcepts(concepts)?.map(
+    concept =>
+      findHighestPublishedVersionConcept(
+        findRevisionsOfConcept(concept.id, concepts)
+      ) ?? concept
+  );

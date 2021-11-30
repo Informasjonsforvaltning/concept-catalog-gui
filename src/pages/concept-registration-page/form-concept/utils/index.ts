@@ -4,23 +4,16 @@ import { postConceptRevision } from '../../../../api/concept-catalogue-api';
 
 import { schema } from '../form-concept.schema';
 
-const pruneEmptySources = kildebeskrivelse =>
-  kildebeskrivelse?.kilde
-    ? {
-        ...kildebeskrivelse,
-        kilde: kildebeskrivelse.kilde.filter(
-          ({ uri, tekst }) => !!(uri || tekst)
-        )
-      }
-    : null;
-
-const wrapStrings = ({ nb, nn, en }) => ({
+const stringsToArray = ({ nb, nn, en }) => ({
   ...(nb && { nb: Array.isArray(nb) ? nb : [nb] }),
   ...(nn && { nn: Array.isArray(nn) ? nn : [nn] }),
   ...(en && { en: Array.isArray(en) ? en : [en] })
 });
 
 const pruneEmptyProperties = (obj: any, reduceAsArray = false) => {
+  if (!obj) {
+    return null;
+  }
   const filteredKeys = Object.keys(obj).filter(
     key => obj[key] != null && obj[key] !== '' && obj[key] !== []
   );
@@ -52,26 +45,28 @@ const preProcessValues = ({
   merknad,
   eksempel,
   bruksområde,
+  omfang,
+  kontaktpunkt,
   ...conceptValues
-}) =>
-  pruneEmptyProperties({
-    ...conceptValues,
-    kildebeskrivelse: pruneEmptySources(kildebeskrivelse),
-    merknad: wrapStrings(merknad),
-    eksempel: wrapStrings(eksempel),
-    bruksområde: wrapStrings(bruksområde)
-  });
+}) => ({
+  ...conceptValues,
+  kildebeskrivelse: pruneEmptyProperties(kildebeskrivelse),
+  merknad: stringsToArray(merknad),
+  eksempel: stringsToArray(eksempel),
+  bruksområde: stringsToArray(bruksområde),
+  omfang: pruneEmptyProperties(omfang),
+  kontaktpunkt: pruneEmptyProperties(kontaktpunkt)
+});
 
 export const patchWithPreProcess = (
   values,
   { concept, dispatch, lastPatchedResponse, isSaving }
 ) => {
   const processedValues = preProcessValues(values);
-  const processedLastPatchedResponse = preProcessValues(lastPatchedResponse);
   patchConceptFromForm(processedValues, {
     concept,
     dispatch,
-    lastPatchedResponse: processedLastPatchedResponse,
+    lastPatchedResponse,
     isSaving
   });
   validateConceptForm(processedValues, schema, concept, dispatch);

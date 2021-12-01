@@ -47,13 +47,13 @@
     },
     "1004946|showdown>yargs>string-width>strip-ansi>ansi-regex": {
       "decision": "ignore",
-      "madeAt": 1637252519229,
-      "expiresAt": 1639844452601
+      "madeAt": 1638348092022,
+      "expiresAt": 1640940079683
     },
     "1004946|showdown>yargs>cliui>string-width>strip-ansi>ansi-regex": {
       "decision": "ignore",
-      "madeAt": 1637252519230,
-      "expiresAt": 1639844452601
+      "madeAt": 1638348092022,
+      "expiresAt": 1640940079683
     },
     "1004946|showdown>yargs>cliui>wrap-ansi>string-width>strip-ansi>ansi-regex": {
       "decision": "ignore",
@@ -74,6 +74,21 @@
       "decision": "ignore",
       "madeAt": 1637252532800,
       "expiresAt": 1639844452601
+    },
+    "1004967|@svgr/webpack>@svgr/plugin-svgo>svgo>css-select>nth-check": {
+      "decision": "ignore",
+      "madeAt": 1638348089785,
+      "expiresAt": 1640940079683
+    },
+    "1004946|node-sass>sass-graph>yargs>cliui>string-width>strip-ansi>ansi-regex": {
+      "decision": "ignore",
+      "madeAt": 1638348092022,
+      "expiresAt": 1640940079683
+    },
+    "1004946|node-sass>sass-graph>yargs>cliui>wrap-ansi>string-width>strip-ansi>ansi-regex": {
+      "decision": "ignore",
+      "madeAt": 1638348092022,
+      "expiresAt": 1640940079683
     }
   },
   "rules": {},

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { compose } from 'redux';
+import { compose } from '@reduxjs/toolkit';
 import {
   Link as RouterLink,
   RouteComponentProps,

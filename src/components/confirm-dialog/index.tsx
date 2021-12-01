@@ -1,5 +1,5 @@
 import React, { memo, FC } from 'react';
-import { compose } from 'redux';
+import { compose } from '@reduxjs/toolkit';
 import { Variant } from '@fellesdatakatalog/button';
 
 import { localization } from '../../lib/localization';

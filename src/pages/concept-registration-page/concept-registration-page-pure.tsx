@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { compose } from 'redux';
+import { compose } from '@reduxjs/toolkit';
 import get from 'lodash/get';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 

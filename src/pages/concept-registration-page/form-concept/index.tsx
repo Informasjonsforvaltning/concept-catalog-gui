@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect, useReducer } from 'react';
-import { compose } from 'redux';
+import { compose } from '@reduxjs/toolkit';
 import { Form, FormikProps, WithFormikConfig, withFormik } from 'formik';
 import pick from 'lodash/pick';
 import throttle from 'lodash/throttle';

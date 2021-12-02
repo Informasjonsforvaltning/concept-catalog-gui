@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useReducer } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { compose } from '@reduxjs/toolkit';
 import { Form, FormikProps, WithFormikConfig, withFormik } from 'formik';
 import pick from 'lodash/pick';
@@ -13,15 +13,10 @@ import { getTranslateText } from '../../../lib/translateText';
 import { localization } from '../../../lib/localization';
 import { authService } from '../../../services/auth-service';
 
+import { useAppSelector, useAppDispatch } from '../../../app/redux/hooks';
+import { setLanguage, toggleLanguage } from '../../../features/language';
+
 import { FormTemplate } from '../../../components/form-template/form-template.component';
-import {
-  setInputLanguages,
-  toggleInputLanguage
-} from '../../../components/language-picker/reducer/actions';
-import {
-  languagePickerReducer,
-  initialState
-} from '../../../components/language-picker/reducer/reducer';
 import { LanguagePicker } from '../../../components/language-picker/language-picker.component';
 import { ButtonToggle } from '../../../components/button-toggle/button-toggle.component';
 import FormControl from '../../../components/form-control';
@@ -92,10 +87,10 @@ export const FormConceptPure: FC<Props> = ({
     omfang: useOfConceptError,
     kontaktpunkt: contactPointError
   } = errors;
-  const [languagesDetermined, setLanguagesDetermined] = useState(false);
   const [showUserPrompt, setShowUserPrompt] = useState<boolean>(true);
 
-  const [state, dispatch] = useReducer(languagePickerReducer, initialState);
+  const languageEntities = useAppSelector(state => state.languages.entities);
+  const appDispatch = useAppDispatch();
 
   const translatableFields = [
     'anbefaltTerm',
@@ -114,9 +109,8 @@ export const FormConceptPure: FC<Props> = ({
       : [];
 
   useEffect(() => {
-    if (concept && !languagesDetermined) {
-      dispatch(setInputLanguages(getUsedLanguages()));
-      setLanguagesDetermined(true);
+    if (concept) {
+      appDispatch(setLanguage(getUsedLanguages()));
     }
   }, [concept]);
 
@@ -172,9 +166,9 @@ export const FormConceptPure: FC<Props> = ({
       <Form>
         <Can I='edit' of={{ __type: 'Language', publisher: publisherId }}>
           <LanguagePicker
-            languages={state.languages}
+            languages={languageEntities}
             toggleInputLanguage={language =>
-              dispatch(toggleInputLanguage(language))
+              appDispatch(toggleLanguage(language))
             }
           />
         </Can>
@@ -187,20 +181,20 @@ export const FormConceptPure: FC<Props> = ({
           showInitially={isExpandAllDirty ? expandAll : true}
           error={!!termError || !!definitionError || !!sourceError}
         >
-          <Term languages={state.languages} isReadOnly={isReadOnly} />
+          <Term languages={languageEntities} isReadOnly={isReadOnly} />
         </FormTemplate>
         <FormTemplate
           title={localization.formAllowedAndDiscouraged}
           showInitially={expandAll}
         >
-          <AllowedAndDiscouraged languages={state.languages} />
+          <AllowedAndDiscouraged languages={languageEntities} />
         </FormTemplate>
         <FormTemplate
           title={localization.formUseOfConcept}
           showInitially={expandAll}
           error={!!useOfConceptError}
         >
-          <UseOfTerm languages={state.languages} />
+          <UseOfTerm languages={languageEntities} />
         </FormTemplate>
         <FormTemplate
           title={localization.formValidity}

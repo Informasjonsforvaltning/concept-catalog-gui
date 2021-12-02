@@ -23,3 +23,9 @@ export enum ConceptField {
 export enum TimeFormat {
   dateAndHour = 'DDDD kl. HH:mm'
 }
+
+export enum LanguageCode {
+  NB = 'nb',
+  NN = 'nn',
+  EN = 'en'
+}

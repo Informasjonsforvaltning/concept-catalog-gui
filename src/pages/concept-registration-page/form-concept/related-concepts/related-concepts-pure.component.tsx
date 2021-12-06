@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { FieldArray, useFormikContext, FormikValues } from 'formik';
 
 import { localization } from '../../../../lib/localization';
@@ -7,13 +6,13 @@ import { HelpText } from '../../../../components/help-text/help-text.component';
 import { Can } from '../../../../casl/Can';
 import { AutosuggestConcepts } from '../../../../components/autosuggest-concepts/autosuggest-concepts.component';
 import { getTranslateText } from '../../../../lib/translateText';
-import { useGlobalState } from '../../../../app/context/stateContext';
 import { isConceptEditable } from '../../../../lib/concept';
 import {
   extractConcepts,
   paramsToSearchBody,
   searchConcepts
 } from '../../../../api/search-fulltext-api/concepts';
+import { useAppSelector } from '../../../../app/redux/hooks';
 
 interface Suggestion {
   identifier: string;
@@ -45,8 +44,7 @@ interface Props {
 }
 
 export const RelatedConceptsPure: FC<Props> = ({ catalogId }) => {
-  const { conceptId } = useParams<{ conceptId: string }>();
-  const stateConcept = useGlobalState(conceptId);
+  const conceptForm = useAppSelector(state => state.conceptForm);
 
   const formik: FormikValues = useFormikContext();
 
@@ -74,7 +72,7 @@ export const RelatedConceptsPure: FC<Props> = ({ catalogId }) => {
           render={({ form }) => (
             <>
               <Can I='edit' of={{ __type: 'Field', publisher: catalogId }}>
-                {isConceptEditable(stateConcept) && (
+                {isConceptEditable(conceptForm.concept) && (
                   <AutosuggestConcepts
                     onAddSuggestion={(suggestion: Suggestion) =>
                       addSeeAlso(suggestion, form)
@@ -93,7 +91,7 @@ export const RelatedConceptsPure: FC<Props> = ({ catalogId }) => {
                       I='edit'
                       of={{ __type: 'Field', publisher: catalogId }}
                     >
-                      {isConceptEditable(stateConcept) && (
+                      {isConceptEditable(conceptForm.concept) && (
                         <button
                           type='button'
                           className='fdk-btn-no-border'

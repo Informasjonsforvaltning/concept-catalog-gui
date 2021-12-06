@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { commentsReducer } from '../../features/comments';
 import { languageReducer } from '../../features/language';
+import { conceptFormReducer } from '../../features/conceptForm';
 
 export const store = configureStore({
   reducer: {
     comments: commentsReducer,
-    languages: languageReducer
+    languages: languageReducer,
+    conceptForm: conceptFormReducer
   }
 });
 

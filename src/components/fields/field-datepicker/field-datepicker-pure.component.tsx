@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import { useParams } from 'react-router-dom';
 import { FieldProps } from 'formik';
 import DatePicker from 'react-datepicker';
 import { DateTime } from 'luxon';
 
-import { useGlobalState } from '../../../app/context/stateContext';
+import { useAppSelector } from '../../../app/redux/hooks';
 import { isConceptEditable } from '../../../lib/concept';
 import { Can } from '../../../casl/Can';
 import './field-datepicker.scss';
@@ -29,8 +28,7 @@ export const DatePickerFieldPure: FC<Props> = ({
   minDate,
   maxDate
 }) => {
-  const { conceptId } = useParams<{ conceptId: string }>();
-  const stateConcept = useGlobalState(conceptId);
+  const conceptForm = useAppSelector(state => state.conceptForm);
 
   const parseDateAndSetValue = (dateValue?: string) => {
     const parsedDate = DateTime.fromFormat(dateValue ?? '', 'dd.MM.yyyy');
@@ -88,7 +86,7 @@ export const DatePickerFieldPure: FC<Props> = ({
     <div className='px-3'>
       <div className='d-flex align-items-center'>
         <Can I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
-          {isConceptEditable(stateConcept)
+          {isConceptEditable(conceptForm?.concept)
             ? renderEditField()
             : renderReadOnlyField()}
         </Can>

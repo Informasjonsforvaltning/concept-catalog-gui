@@ -69,7 +69,7 @@ export const patchWithPreProcess = (
     lastPatchedResponse,
     isSaving
   });
-  validateConceptForm(processedValues, schema, concept, dispatch);
+  validateConceptForm(processedValues, schema, dispatch);
 };
 
 export const postWithPreProcess = async (id: string, values): Promise<void> => {

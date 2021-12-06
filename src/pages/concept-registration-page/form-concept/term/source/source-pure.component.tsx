@@ -1,10 +1,8 @@
 import React, { FC } from 'react';
-import { useParams } from 'react-router-dom';
 import { Field, FieldArray, useField } from 'formik';
 import { v4 } from 'uuid';
 import _ from 'lodash';
 
-import { useGlobalState } from '../../../../../app/context/stateContext';
 import { isConceptEditable } from '../../../../../lib/concept';
 import { localization } from '../../../../../lib/localization';
 import { InputField } from '../../../../../components/fields/field-input/field-input.component';
@@ -12,6 +10,7 @@ import { ButtonSource } from '../../../../../components/button-source/button-sou
 import { SelectField } from '../../../../../components/fields/field-select/field-select.component';
 import './source.scss';
 import { Can } from '../../../../../casl/Can';
+import { useAppSelector } from '../../../../../app/redux/hooks';
 
 const options = [
   { value: 'egendefinert', label: localization.custom },
@@ -61,8 +60,7 @@ export const SourcePure: FC<Props> = ({ catalogId }) => {
   const [field] = useField('kildebeskrivelse');
   const forholdTilKilde = _.get(field, ['value', 'forholdTilKilde']);
 
-  const { conceptId } = useParams<{ conceptId: string }>();
-  const stateConcept = useGlobalState(conceptId);
+  const conceptForm = useAppSelector(state => state.conceptForm);
 
   return (
     <div>
@@ -111,7 +109,7 @@ export const SourcePure: FC<Props> = ({ catalogId }) => {
                       I='edit'
                       of={{ __type: 'Field', publisher: catalogId }}
                     >
-                      {isConceptEditable(stateConcept) && (
+                      {isConceptEditable(conceptForm.concept) && (
                         <ButtonSource
                           remove
                           title={localization.removeSource}
@@ -123,7 +121,7 @@ export const SourcePure: FC<Props> = ({ catalogId }) => {
                 </div>
               ))}
               <Can I='edit' of={{ __type: 'Field', publisher: catalogId }}>
-                {isConceptEditable(stateConcept) && (
+                {isConceptEditable(conceptForm.concept) && (
                   <ButtonSource
                     add
                     title={localization.addNewSource}

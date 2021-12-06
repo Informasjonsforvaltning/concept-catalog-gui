@@ -3,12 +3,7 @@ import { compare } from 'fast-json-patch';
 import omit from 'lodash/omit';
 
 import { ConceptStatus } from '../types/enums';
-import { patchConcept } from '../api/concept-catalogue-api';
-import {
-  conceptPatchSuccessAction,
-  conceptPatchErrorAction,
-  conceptPatchIsSavingAction
-} from '../app/reducers/stateReducer';
+import { patchConceptById, setIsSaving } from '../features/conceptForm';
 
 const metaDataFieldsToOmit = [
   'endringslogelement',
@@ -22,7 +17,7 @@ const metaDataFieldsToOmit = [
 
 export const patchConceptFromForm = (
   values,
-  { concept, dispatch, lastPatchedResponse = {}, isSaving }
+  { concept, dispatch, lastPatchedResponse, isSaving }
 ): void => {
   const diff = compare(
     omit(lastPatchedResponse, metaDataFieldsToOmit),
@@ -31,20 +26,18 @@ export const patchConceptFromForm = (
   if (!isSaving && diff.length > 0) {
     const conceptId = _.get(concept, 'id');
     if (
-      concept.status === ConceptStatus.UTKAST ||
-      concept.status === ConceptStatus.HOERING ||
-      concept.status === ConceptStatus.GODKJENT
+      lastPatchedResponse.status === ConceptStatus.UTKAST ||
+      lastPatchedResponse.status === ConceptStatus.HOERING ||
+      lastPatchedResponse.status === ConceptStatus.GODKJENT
     ) {
-      dispatch(conceptPatchIsSavingAction(conceptId));
-      patchConcept(conceptId, diff)
-        .then(response => {
-          dispatch(
-            conceptPatchSuccessAction(conceptId, !!values.status, response)
-          );
+      dispatch(setIsSaving());
+      dispatch(
+        patchConceptById({
+          conceptId,
+          diff,
+          justChangedStatus: !!values.status
         })
-        .catch(error => {
-          dispatch(conceptPatchErrorAction(conceptId, error));
-        });
+      );
     }
   }
 };

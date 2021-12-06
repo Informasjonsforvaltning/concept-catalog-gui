@@ -1,13 +1,12 @@
 import React, { FC } from 'react';
-import { useParams } from 'react-router-dom';
 import _ from 'lodash';
 import TagsInput from 'react-tagsinput';
 import get from 'lodash/get';
 
-import { useGlobalState } from '../../../app/context/stateContext';
 import { isConceptEditable } from '../../../lib/concept';
 import './field-input-tags.scss';
 import { Can } from '../../../casl/Can';
+import { useAppSelector } from '../../../app/redux/hooks';
 
 interface Props {
   field: {
@@ -37,8 +36,7 @@ export const InputTagsFieldPure: FC<Props> = ({
 }) => {
   const tagNodes = _.get(field, 'value', []).map(item => item);
 
-  const { conceptId } = useParams<{ conceptId: string }>();
-  const stateConcept = useGlobalState(conceptId);
+  const conceptForm = useAppSelector(state => state.conceptForm);
 
   const renderReadOnlyField = () => (
     <div className='d-flex align-items-baseline fdk-text-size-small mb-2'>
@@ -74,7 +72,7 @@ export const InputTagsFieldPure: FC<Props> = ({
   return (
     <div className='px-2'>
       <Can I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
-        {isConceptEditable(stateConcept)
+        {isConceptEditable(conceptForm.concept)
           ? renderEditField()
           : renderReadOnlyField()}
       </Can>

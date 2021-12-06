@@ -73,7 +73,6 @@ export const FormConceptPure: FC<Props> = ({
   isValid,
   dirty,
   values,
-  lastPatchedResponse = {},
   errors,
   history,
   match: {
@@ -145,13 +144,9 @@ export const FormConceptPure: FC<Props> = ({
       >
         <FormControl
           isFormDirty={dirty}
-          status={concept.status ?? ''}
-          erSistPublisert={concept.erSistPublisert}
           createNewConceptRevisionAndNavigate={
             createNewConceptRevisionAndNavigate
           }
-          concept={concept}
-          lastPatchedResponse={lastPatchedResponse}
           isInitialInValidForm={!isValid}
         />
       </Can>

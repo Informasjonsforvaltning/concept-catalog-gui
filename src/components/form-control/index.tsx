@@ -1,10 +1,9 @@
 import React, { FC, memo, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
-import { Concept } from '../../types';
 import { ConceptStatus, TimeFormat } from '../../types/enums';
 import { formatTime } from '../../utils/date';
-import { useDispatch, useGlobalState } from '../../app/context/stateContext';
+import { useAppDispatch, useAppSelector } from '../../app/redux/hooks';
 import { localization } from '../../lib/localization';
 import { patchConceptFromForm } from '../../lib/patchConceptForm';
 import { deleteConcept } from '../../api/concept-catalogue-api';
@@ -14,21 +13,13 @@ import SC from './styled';
 
 interface Props {
   isFormDirty: boolean;
-  status: string;
-  erSistPublisert: boolean | undefined | null;
   createNewConceptRevisionAndNavigate: () => void;
-  concept: Concept;
-  lastPatchedResponse: any;
   isInitialInValidForm: boolean;
 }
 
 const FormControl: FC<Props> = ({
   isFormDirty,
-  status,
-  erSistPublisert = false,
   createNewConceptRevisionAndNavigate,
-  concept,
-  lastPatchedResponse,
   isInitialInValidForm
 }) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
@@ -61,24 +52,27 @@ const FormControl: FC<Props> = ({
   const { catalogId, conceptId } =
     useParams<{ catalogId: string; conceptId: string }>();
   const history = useHistory();
-  const stateConcept = useGlobalState(conceptId);
-  const dispatch = useDispatch();
-  const published = stateConcept?.status === ConceptStatus.PUBLISERT ?? false;
+  const dispatch = useAppDispatch();
+  const conceptForm = useAppSelector(state => state.conceptForm);
+  const { concept } = conceptForm;
+  const erSistPublisert = concept?.erSistPublisert ?? false;
+  const status = concept?.status;
+  const published = concept?.status === ConceptStatus.PUBLISERT ?? false;
+  const validationError = conceptForm.isValidationError || isInitialInValidForm;
+  const isSaving = conceptForm.isSaving ?? false;
+  const justChangedStatus = conceptForm.justChangedStatus ?? false;
 
-  const validationError = stateConcept?.validationError || isInitialInValidForm;
-  const isSaving = stateConcept?.isSaving ?? false;
-  const justChangedStatus = stateConcept?.justChangedStatus ?? false;
-  const endringstidspunkt = stateConcept?.endringstidspunkt;
+  const endringstidspunkt = concept?.endringslogelement?.endringstidspunkt;
 
   const createMessage = () => {
     if (justChangedStatus) {
       if (status === ConceptStatus.PUBLISERT) {
         return localization.conceptPublished;
       }
-      if (stateConcept?.status === ConceptStatus.HOERING) {
+      if (concept?.status === ConceptStatus.HOERING) {
         return localization.conceptHoering;
       }
-      if (stateConcept?.status === ConceptStatus.GODKJENT) {
+      if (concept?.status === ConceptStatus.GODKJENT) {
         return localization.conceptApproval;
       }
     }
@@ -102,7 +96,7 @@ const FormControl: FC<Props> = ({
     history.push(`/${catalogId}`);
   };
 
-  return (
+  return concept ? (
     <>
       <SC.FormControl $isSticky={isSticky}>
         <SC.FormControlContent>
@@ -115,7 +109,7 @@ const FormControl: FC<Props> = ({
             )}
           {!published && (
             <SC.StatusButton
-              $active={lastPatchedResponse?.status === ConceptStatus.HOERING}
+              $active={concept?.status === ConceptStatus.HOERING}
               disabled={
                 validationError ||
                 (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
@@ -130,7 +124,12 @@ const FormControl: FC<Props> = ({
                         versjonsnr: { major: 1, minor: 0, patch: 0 }
                       })
                   },
-                  { concept, dispatch, lastPatchedResponse, isSaving }
+                  {
+                    concept,
+                    dispatch,
+                    lastPatchedResponse: concept,
+                    isSaving
+                  }
                 )
               }
             >
@@ -139,7 +138,7 @@ const FormControl: FC<Props> = ({
           )}
           {!published && (
             <SC.StatusButton
-              $active={lastPatchedResponse?.status === ConceptStatus.GODKJENT}
+              $active={concept?.status === ConceptStatus.GODKJENT}
               disabled={
                 validationError ||
                 (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
@@ -154,7 +153,12 @@ const FormControl: FC<Props> = ({
                         versjonsnr: { major: 1, minor: 0, patch: 0 }
                       })
                   },
-                  { concept, dispatch, lastPatchedResponse, isSaving }
+                  {
+                    concept,
+                    dispatch,
+                    lastPatchedResponse: concept,
+                    isSaving
+                  }
                 )
               }
             >
@@ -177,7 +181,12 @@ const FormControl: FC<Props> = ({
                         versjonsnr: { major: 1, minor: 0, patch: 0 }
                       })
                   },
-                  { concept, dispatch, lastPatchedResponse, isSaving }
+                  {
+                    concept,
+                    dispatch,
+                    lastPatchedResponse: concept,
+                    isSaving
+                  }
                 )
               }
             >
@@ -207,7 +216,7 @@ const FormControl: FC<Props> = ({
         />
       )}
     </>
-  );
+  ) : null;
 };
 
 export default memo(FormControl);

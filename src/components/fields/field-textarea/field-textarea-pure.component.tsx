@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import { useParams } from 'react-router-dom';
 import get from 'lodash/get';
 
 import { Can } from '../../../casl/Can';
-import { useGlobalState } from '../../../app/context/stateContext';
 import { isConceptEditable } from '../../../lib/concept';
+import { useAppSelector } from '../../../app/redux/hooks';
 
 interface Props {
   rows: number;
@@ -31,8 +30,7 @@ export const TextAreaFieldPure: FC<Props> = ({
   isOnlyOneSelectedLanguage,
   catalogId
 }) => {
-  const { conceptId } = useParams<{ conceptId: string }>();
-  const stateConcept = useGlobalState(conceptId);
+  const conceptForm = useAppSelector(state => state.conceptForm);
 
   const renderReadOnlyField = () => (
     <div className='d-flex align-items-baseline mb-2'>
@@ -64,7 +62,7 @@ export const TextAreaFieldPure: FC<Props> = ({
   return (
     <div className='px-2'>
       <Can I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
-        {isConceptEditable(stateConcept)
+        {isConceptEditable(conceptForm.concept)
           ? renderEditField()
           : renderReadOnlyField()}
       </Can>

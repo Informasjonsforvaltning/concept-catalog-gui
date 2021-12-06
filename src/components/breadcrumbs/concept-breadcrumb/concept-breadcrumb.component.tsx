@@ -1,19 +1,16 @@
 import * as React from 'react';
-import get from 'lodash/get';
+
 import { localization } from '../../../lib/localization';
 import { getTranslateText } from '../../../lib/translateText';
-import { useGlobalState } from '../../../app/context/stateContext';
+import { useAppSelector } from '../../../app/redux/hooks';
 
 interface ConceptBreadcrumbProps {
   match: any;
 }
 
-export const ConceptBreadcrumb: React.FC<ConceptBreadcrumbProps> = ({
-  match
-}) => {
-  const conceptId = get(match, ['params', 'conceptId']);
-  const stateConcept = useGlobalState(conceptId);
-  const anbefaltTerm = get(stateConcept, ['anbefaltTerm', 'navn']);
+export const ConceptBreadcrumb: React.FC<ConceptBreadcrumbProps> = () => {
+  const conceptForm = useAppSelector(state => state.conceptForm);
+  const anbefaltTerm = conceptForm.concept?.anbefaltTerm?.navn;
   return (
     <span>
       {getTranslateText(anbefaltTerm) || localization.registerNewConcept}

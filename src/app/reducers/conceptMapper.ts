@@ -8,6 +8,7 @@ import {
   ImportErrorMessage,
   InvalidConceptErrorMessage
 } from '../../types';
+import { ConceptStatus } from '../../types/enums';
 import ImportError from '../../domain/ImportError';
 import { getTranslateText } from '../../lib/translateText';
 import { schema } from '../../pages/concept-registration-page/form-concept/form-concept.schema';
@@ -129,7 +130,8 @@ function mapCsvTextToConcept(
     kontaktpunkt: {
       harEpost: mapToSingleValue(csvMap, 'kontaktpunkt_epost'),
       harTelefon: mapToSingleValue(csvMap, 'kontaktpunkt_telefon')
-    }
+    },
+    status: mapToSingleValue(csvMap, 'status') ?? ConceptStatus.UTKAST
   };
 }
 

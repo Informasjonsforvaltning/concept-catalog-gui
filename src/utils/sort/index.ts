@@ -54,8 +54,10 @@ export const sortConceptsByKey =
     if (key === ConceptField.MODIFY_TIME) {
       return sortConceptsByDate(a, b, direction);
     }
-    const a1 = getTranslateText(get(a, key))?.toLowerCase();
-    const b1 = getTranslateText(get(b, key))?.toLowerCase();
+    const a1 = getTranslateText(get(a, key)).toString().toLowerCase();
+    const b1 = getTranslateText(get(b, key)).toString().toLowerCase();
+    if (a1 === '' || a1 === null) return 1;
+    if (b1 === '' || b1 === null) return -1;
     if (a1 !== b1) {
       if (direction === SortDirection.ASC) {
         return a1 > b1 ? 1 : -1;

@@ -11,7 +11,7 @@ export enum ConceptStatus {
 }
 
 export enum ConceptField {
-  TERM = 'anbefaltTerm.navn.nb',
+  TERM = 'anbefaltTerm.navn',
   FAGOMRÅDE = 'fagområde',
   VALID = 'valid',
   VERSION = 'versjonsnr',

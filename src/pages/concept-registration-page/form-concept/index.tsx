@@ -52,6 +52,7 @@ export type FormValues = Pick<
   | 'seOgså'
   | 'erstattesAv'
   | 'tildeltBruker'
+  | 'begrepsRelasjon'
 >;
 
 interface RouteParams {
@@ -87,7 +88,8 @@ export const FormConceptPure: FC<Props> = ({
     definisjon: definitionError,
     kildebeskrivelse: sourceError,
     omfang: useOfConceptError,
-    kontaktpunkt: contactPointError
+    kontaktpunkt: contactPointError,
+    begrepsRelasjon: begrepsRelasjonError
   } = errors;
   const [showUserPrompt, setShowUserPrompt] = useState<boolean>(true);
 
@@ -202,9 +204,12 @@ export const FormConceptPure: FC<Props> = ({
         </FormTemplate>
         <FormTemplate
           title={localization.formRelatedConcepts}
-          showInitially={expandAll}
+          error={!!begrepsRelasjonError}
         >
-          <RelatedConcepts />
+          <RelatedConcepts
+            languages={languageEntities}
+            isReadOnly={isReadOnly}
+          />
         </FormTemplate>
         <FormTemplate
           title={localization.formContactPoint}
@@ -237,7 +242,8 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
       gyldigTom = null,
       seOgså = [],
       erstattesAv = [],
-      tildeltBruker = { id: '' }
+      tildeltBruker = { id: '' },
+      begrepsRelasjon = []
     }
   }: Props) => ({
     anbefaltTerm,
@@ -255,7 +261,8 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     gyldigTom,
     seOgså,
     erstattesAv,
-    tildeltBruker
+    tildeltBruker,
+    begrepsRelasjon
   }),
   validationSchema,
   validate: debounce(patchWithPreProcess, 500),

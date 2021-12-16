@@ -91,5 +91,8 @@ Se mer om ‘kontaktinformasjon’ i [veileder for begrepsbeskrivelser](https://
   seOgsaaAbstract: 'Referanse til et beslektet begrep.',
   assignUserTitle: 'Hvem skal begrepet tildeles?',
   assignUserAbstract: 'Oppgi fullt navn for hvem begrepet skal tildeles.',
-  replacedByAbstract: 'Referanse til begrep som erstatter gjeldende begrep.'
+  replacedByAbstract: 'Referanse til begrep som erstatter gjeldende begrep.',
+  relationsTitle: 'Relasjoner',
+  descriptionTitle: 'Beskrivelse',
+  inndelingskriteriumTitle: 'Inndelingskriterium',
 };

@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon';
 import * as Yup from 'yup';
 import { localization } from '../../../lib/localization';
+import { Relation } from '../../../types/enums';
 
 const tekstMedSpraakKodeArray = Yup.object()
   .nullable()
@@ -168,5 +169,20 @@ export const schema = Yup.object().shape({
       }
     }),
   seOgså: Yup.array().of(Yup.string().nullable()).nullable(),
-  erstattesAv: Yup.array().of(Yup.string().nullable()).nullable()
+  erstattesAv: Yup.array().of(Yup.string().nullable()).nullable(),
+  begrepsRelasjon: Yup.array()
+    .of(
+      Yup.object().shape({
+        relasjon: Yup.string().required('Feltet må fylles ut'),
+        relasjonsType: Yup.string()
+          .nullable()
+          .when('relasjon', {
+            is: relasjon =>
+              relasjon === Relation.PARTITIV || relasjon === Relation.GENERISK,
+            then: Yup.string().required()
+          }),
+        relatertBegrep: Yup.string().required()
+      })
+    )
+    .nullable()
 });

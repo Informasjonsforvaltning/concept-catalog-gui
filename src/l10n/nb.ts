@@ -109,5 +109,18 @@ export const nb = {
   internalInfo: "Interne opplysninger",
   internalSubText: "Opplysningene under er til intern bruk og vil ikke publiseres ut i Felles datakatalog.",
   enterFullName: "Oppgi fullt navn",
-  replacedBy: 'Erstattes av'
+  replacedBy: 'Erstattes av',
+  relation: 'Relasjon',
+  relationType: 'Type relasjon',
+  description: 'Beskrivelse',
+  relatedConcept: 'Relatert begrep',
+  generic: 'Generisk',
+  partitive: 'Partitiv',
+  associative: 'Assosiativ',
+  overall: 'Overordnet',
+  subordinate: 'Underordnet',
+  partOf: 'Er en del av',
+  includes: 'Omfatter',
+  removeRelation: 'Slett relasjon',
+  addRelation: 'Legg til relasjon'
 };

@@ -9,6 +9,7 @@ import {
 } from 'formik';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
+import { Language } from '../../../../types';
 import { localization } from '../../../../lib/localization';
 import { HelpText } from '../../../../components/help-text/help-text.component';
 import { useAppDispatch, useAppSelector } from '../../../../app/redux/hooks';
@@ -16,7 +17,6 @@ import {
   fetchConcepts,
   selectAllConceptEntities
 } from '../../../../features/concepts';
-
 import {
   OptionProps,
   SelectField
@@ -26,14 +26,26 @@ import {
   selectAllConceptSuggestions
 } from '../../../../features/concept-suggestions';
 import { getTranslateText } from '../../../../lib/translateText';
+import Relations from './components/relations';
 
 interface RouteParams {
   catalogId: string;
 }
 
-interface Props extends RouteComponentProps<RouteParams> {}
+interface ExternalProps {
+  languages: Language[];
+  isReadOnly: boolean;
+}
 
-const RelatedConceptsPure: FC<Props> = () => {
+interface Props extends ExternalProps, RouteComponentProps<RouteParams> {}
+
+const RelatedConceptsPure: FC<Props> = ({
+  languages,
+  isReadOnly,
+  match: {
+    params: { catalogId }
+  }
+}) => {
   const [field] = useField('seOgså');
   const dispatch = useAppDispatch();
   const relatedConcepts = useAppSelector(selectAllConceptEntities);
@@ -48,8 +60,8 @@ const RelatedConceptsPure: FC<Props> = () => {
     }
   }, [seOgsaaField]);
 
-  const executeConceptSuggestionSearch = (q: string) => {
-    dispatch(fetchConceptSuggestions({ q }));
+  const executeConceptSuggestionSearch = (q: string, publisherId?: string) => {
+    dispatch(fetchConceptSuggestions({ q, publisherId }));
   };
 
   useEffect(() => {
@@ -78,6 +90,15 @@ const RelatedConceptsPure: FC<Props> = () => {
   return (
     <div>
       <div className='form-group'>
+        <HelpText title={localization.relationsTitle} />
+        <Relations
+          catalogId={catalogId}
+          languages={languages}
+          isReadOnly={isReadOnly}
+          conceptSuggestionsMap={conceptSuggestionsMap}
+          executeConceptSuggestionSearch={executeConceptSuggestionSearch}
+        />
+
         <HelpText
           title={localization.seeAlso}
           helpTextAbstract={localization.seOgsaaAbstract}
@@ -88,8 +109,6 @@ const RelatedConceptsPure: FC<Props> = () => {
             <Field
               name={field.name}
               component={SelectField}
-              label={localization.relatedConcept}
-              showLabel
               placeHolder={localization.searchConcepts}
               showCustomOption
               options={conceptSuggestionsMap}
@@ -111,4 +130,5 @@ const RelatedConceptsPure: FC<Props> = () => {
   );
 };
 
-export const RelatedConcepts = compose<FC>(withRouter)(RelatedConceptsPure);
+export const RelatedConcepts =
+  compose<FC<ExternalProps>>(withRouter)(RelatedConceptsPure);

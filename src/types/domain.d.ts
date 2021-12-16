@@ -94,6 +94,14 @@ export interface User {
   email?: string;
 }
 
+export interface Relasjon {
+  relasjon?: string;
+  relasjonsType?: string;
+  beskrivelse?: TekstMedSpraakKode;
+  inndelingskriterium?: TekstMedSpraakKode;
+  relatertBegrep?: string;
+}
+
 export interface Concept {
   id: string;
   originaltBegrep?: string;
@@ -123,6 +131,7 @@ export interface Concept {
   revisjonAvSistPublisert?: boolean;
   endringslogelement?: Endringslogelement;
   tildeltBruker?: User;
+  begrepsRelasjon?: Relasjon[];
 }
 
 export interface Comment {

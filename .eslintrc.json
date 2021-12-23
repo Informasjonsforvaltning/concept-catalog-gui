@@ -91,6 +91,11 @@
     "react/jsx-indent": "off",
     "react/prop-types": "off",
     "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/label-has-associated-control": [ "error", {
+      "required": {
+        "some": [ "nesting", "id"  ]
+      }
+    }],
     "react/require-default-props": "off",
     "react/jsx-curly-newline": "off",
     "no-use-before-define": "off",

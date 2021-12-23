@@ -161,15 +161,15 @@ export const FormConceptPure: FC<Props> = ({
         {concept.versjonsnr?.minor}.{concept.versjonsnr?.patch}
       </SC.Version>
       <Form>
-        <Can I='edit' of={{ __type: 'Language', publisher: publisherId }}>
-          <LanguagePicker
-            languages={languageEntities}
-            toggleInputLanguage={language =>
-              appDispatch(toggleLanguage(language))
-            }
-          />
-        </Can>
-        <div className='d-flex justify-content-end'>
+        <div className='d-flex justify-content-between align-items-center'>
+          <Can I='edit' of={{ __type: 'Language', publisher: publisherId }}>
+            <LanguagePicker
+              languages={languageEntities}
+              toggleInputLanguage={language =>
+                appDispatch(toggleLanguage(language))
+              }
+            />
+          </Can>
           <ButtonToggle expanded={expandAll} toggle={toggleExpand} />
         </div>
         <FormTemplate

@@ -1,31 +1,17 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import { Colour, theme } from '@fellesdatakatalog/theme';
-import ButtonBase from '@fellesdatakatalog/button';
+import { theme } from '@fellesdatakatalog/theme';
 
-import IconBase from '../../images/icon-checked-white-sm.svg';
+const LanguagePicker = styled.div`
+  display: flex;
+`;
 
-interface Props {
-  $selected: boolean;
-}
-const Button = styled(ButtonBase)<Props>`
-  ${({ $selected }) =>
-    !$selected &&
-    css`
-      background-color: ${theme.colour(Colour.GREEN, 'G30')};
-      color: ${theme.colour(Colour.GREEN, 'G60')};
-    `}
-  &:hover {
-    ${({ $selected }) =>
-      !$selected &&
-      css`
-        color: ${theme.colour(Colour.NEUTRAL, 'N0')};
-      `}
+const Label = styled.label`
+  margin-right: ${theme.spacing('S12')};
+
+  & > span {
+    margin-left: ${theme.spacing('S6')};
   }
 `;
 
-const Icon = styled(IconBase)`
-  height: 18px;
-`;
-
-export default { Button, Icon };
+export default { LanguagePicker, Label };

@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { localization } from '../../lib/localization';
-import './language-picker.styles.scss';
+// import { localization } from '../../lib/localization';
 import { Language } from '../../types';
+
+import { Checkbox } from '../checkbox';
 
 import SC from './styled';
 
@@ -21,21 +22,21 @@ export const LanguagePicker = ({
   };
 
   return (
-    <div className='language-picker'>
-      <p>{`${localization.langChoose}:`}</p>
-      <div className='language-button-group'>
-        {languages.map(({ code, title, selected }) => (
-          <SC.Button
-            key={code}
+    <SC.LanguagePicker>
+      {languages.map(({ code, title, selected }) => (
+        <SC.Label htmlFor={code}>
+          <Checkbox
+            id={code}
+            title={code}
+            checked={selected}
             disabled={shouldDisableLanguage(code)}
-            onClick={() => toggleInputLanguage(code)}
-            $selected={selected}
-          >
-            {selected && <SC.Icon />}
-            {title}
-          </SC.Button>
-        ))}
-      </div>
-    </div>
+            onChange={() => toggleInputLanguage(code)}
+          />
+          <>
+            <span>{title}</span>
+          </>
+        </SC.Label>
+      ))}
+    </SC.LanguagePicker>
   );
 };

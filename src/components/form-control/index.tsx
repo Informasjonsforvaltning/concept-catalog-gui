@@ -1,5 +1,6 @@
 import React, { FC, memo, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { Variant } from '@fellesdatakatalog/button';
 
 import { ConceptStatus, TimeFormat } from '../../types/enums';
 import { formatTime } from '../../utils/date';
@@ -104,6 +105,7 @@ const FormControl: FC<Props> = ({
             status === ConceptStatus.PUBLISERT &&
             erSistPublisert && (
               <SC.Button onClick={createNewConceptRevisionAndNavigate}>
+                <SC.StatusDraftIcon />
                 {localization.saveDraft}
               </SC.Button>
             )}
@@ -133,6 +135,7 @@ const FormControl: FC<Props> = ({
                 )
               }
             >
+              <SC.StatusHearingIcon />
               {localization.setToHoering}
             </SC.StatusButton>
           )}
@@ -162,6 +165,7 @@ const FormControl: FC<Props> = ({
                 )
               }
             >
+              <SC.StatusApprovedIcon />
               {localization.setToApproval}
             </SC.StatusButton>
           )}
@@ -190,18 +194,20 @@ const FormControl: FC<Props> = ({
                 )
               }
             >
+              <SC.StatusPublishedIcon />
               {localization.publish}
             </SC.StatusButton>
           )}
           <div>
-            <SC.DraftIcon />
             <span>{createMessage()}</span>
           </div>
           {!published && (
             <SC.DeleteButton
+              variant={Variant.TERTIARY}
               disabled={isSaving}
               onClick={toggleShowConfirmDelete}
             >
+              <SC.RemoveIcon />
               {localization.deleteDraft}
             </SC.DeleteButton>
           )}

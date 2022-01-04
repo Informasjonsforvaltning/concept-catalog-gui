@@ -6,6 +6,11 @@ import ButtonBase from '@fellesdatakatalog/button';
 import ContainerSC from '../container/styled';
 
 import DraftIconBase from '../../images/icon-status-draft-circle-md.svg';
+import StatusHearingIconBase from '../../images/icon-status-hearing-sm.svg';
+import StatusApprovedIconBase from '../../images/icon-status-approved-sm.svg';
+import StatusPublishedIconBase from '../../images/icon-status-published-sm.svg';
+import StatusDraftIconBase from '../../images/icon-status-draft-sm.svg';
+import RemoveIconBase from '../../images/icon-remove-circle-sm.svg';
 
 interface Props {
   $isSticky?: boolean;
@@ -55,6 +60,51 @@ const FormControlContent = styled(ContainerSC.Container)`
   padding: ${theme.spacing('S10')} 0;
 `;
 
+const StatusHearingIcon = styled(StatusHearingIconBase)`
+  width: 25px;
+  margin-right: ${theme.spacing('S6')};
+
+  & > path {
+    fill: ${theme.colour(Colour.GREEN, 'G60')};
+  }
+`;
+
+const StatusApprovedIcon = styled(StatusApprovedIconBase)`
+  width: 25px;
+  margin-right: ${theme.spacing('S6')};
+
+  & > path {
+    fill: ${theme.colour(Colour.GREEN, 'G60')};
+  }
+`;
+
+const StatusPublishedIcon = styled(StatusPublishedIconBase)`
+  width: 25px;
+  margin-right: ${theme.spacing('S6')};
+
+  & > path {
+    fill: ${theme.colour(Colour.GREEN, 'G60')};
+  }
+`;
+
+const StatusDraftIcon = styled(StatusDraftIconBase)`
+  width: 25px;
+  margin-right: ${theme.spacing('S6')};
+
+  & > path {
+    fill: ${theme.colour(Colour.GREEN, 'G60')};
+  }
+`;
+
+const RemoveIcon = styled(RemoveIconBase)`
+  width: 20px;
+  margin-right: ${theme.spacing('S6')};
+
+  & > path {
+    fill: ${theme.colour(Colour.GREEN, 'G60')};
+  }
+`;
+
 const Button = styled(ButtonBase)`
   background-color: ${theme.colour(Colour.GREEN, 'G30')};
   color: ${theme.colour(Colour.GREEN, 'G60')};
@@ -63,29 +113,34 @@ const Button = styled(ButtonBase)`
   transition: all 150ms ease;
 
   &:hover {
-    background-color: ${theme.colour(Colour.GREEN, 'G55')};
+    background-color: ${theme.colour(Colour.NEUTRAL, 'N70')};
     color: ${theme.colour(Colour.NEUTRAL, 'N0')};
+
+    & > svg {
+      & > path {
+        fill: ${theme.colour(Colour.NEUTRAL, 'N0')};
+      }
+    }
   }
 `;
 
 const StatusButton = styled(Button)<StatusButtonProps>`
-  background-color: ${theme.colour(Colour.GREEN, 'G55')};
-  color: ${theme.colour(Colour.NEUTRAL, 'N0')};
-
-  &:hover {
-    background-color: ${theme.colour(Colour.GREEN, 'G30')};
-    color: ${theme.colour(Colour.GREEN, 'G60')};
-  }
-
   ${({ $active }) =>
     $active &&
     css`
       background-color: ${theme.colour(Colour.NEUTRAL, 'N70')};
       color: ${theme.colour(Colour.NEUTRAL, 'N0')};
+
+      & > svg {
+        & > path {
+          fill: ${theme.colour(Colour.NEUTRAL, 'N0')};
+        }
+      }
     `}
 `;
 
-const DeleteButton = styled(Button)`
+const DeleteButton = styled(ButtonBase)`
+  color: ${theme.colour(Colour.GREEN, 'G60')};
   margin-left: auto;
 `;
 
@@ -108,5 +163,10 @@ export default {
   Button,
   StatusButton,
   DeleteButton,
-  DraftIcon
+  DraftIcon,
+  StatusHearingIcon,
+  StatusApprovedIcon,
+  StatusPublishedIcon,
+  StatusDraftIcon,
+  RemoveIcon
 };

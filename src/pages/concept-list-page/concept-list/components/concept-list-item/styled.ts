@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { Colour, theme } from '@fellesdatakatalog/theme';
 import Link from '@fellesdatakatalog/link';
 
-import DraftIconBase from '../../../../../images/icon-draft-circle-md.svg';
-import PublishedIconBase from '../../../../../images/icon-status-published-md.svg';
+import DraftIconBase from '../../../../../images/icon-status-draft-circle-md.svg';
+import PublishedIconBase from '../../../../../images/icon-status-published-circle-md.svg';
 import HearingIconBase from '../../../../../images/icon-status-hearing-circle-md.svg';
-import ApprovedIconBase from '../../../../../images/icon-status-approved-md.svg';
+import ApprovedIconBase from '../../../../../images/icon-status-approved-circle-md.svg';
 
 const ListItem = styled(Link)`
   align-items: center;

@@ -3,8 +3,8 @@ import { Collapse as CollapseBase } from 'reactstrap';
 import { Colour, theme } from '@fellesdatakatalog/theme';
 
 import ListItemSC from '../concept-list-item/styled';
-import DraftIconBase from '../../../../../images/icon-draft-circle-md.svg';
-import PublishedIconBase from '../../../../../images/icon-status-published-md.svg';
+import DraftIconBase from '../../../../../images/icon-status-draft-circle-md.svg';
+import PublishedIconBase from '../../../../../images/icon-status-published-circle-md.svg';
 import ExpandIconBase from '../../../../../images/icon-expand-md.svg';
 import CollapseIconBase from '../../../../../images/icon-collapse-md.svg';
 

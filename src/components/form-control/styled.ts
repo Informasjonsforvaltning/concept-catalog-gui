@@ -5,7 +5,7 @@ import ButtonBase from '@fellesdatakatalog/button';
 
 import ContainerSC from '../container/styled';
 
-import DraftIconBase from '../../images/icon-draft-circle-md.svg';
+import DraftIconBase from '../../images/icon-status-draft-circle-md.svg';
 
 interface Props {
   $isSticky?: boolean;

@@ -6,11 +6,14 @@ import { localization } from '../../../lib/localization';
 import { Can } from '../../../casl/Can';
 import { useAppSelector } from '../../../app/redux/hooks';
 
+import SC from './styled';
+
 interface Props {
   field: any;
   options: any[];
   form: any;
   showLabel: boolean;
+  showRequired: boolean;
   label: string;
   onClear: () => void;
   onChange: () => void;
@@ -31,6 +34,7 @@ export const SelectFieldPure: FC<Props> = ({
   options,
   form: { touched, errors }, // also values, dirty, isValid, status, etc.
   showLabel,
+  showRequired,
   label,
   form,
   onClear,
@@ -51,7 +55,10 @@ export const SelectFieldPure: FC<Props> = ({
       className='fdk-form-label w-100 fdk-text-strong'
       htmlFor={field.name}
     >
-      {showLabel ? label : null}
+      <SC.Labels>
+        {showLabel ? label : null}
+        {showRequired && <SC.Required>{localization.required}</SC.Required>}
+      </SC.Labels>
 
       <Select
         options={options}

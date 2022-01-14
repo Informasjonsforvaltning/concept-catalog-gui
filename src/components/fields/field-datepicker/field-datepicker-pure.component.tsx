@@ -9,8 +9,11 @@ import { Can } from '../../../casl/Can';
 import './field-datepicker.scss';
 import { localization } from '../../../lib/localization';
 
+import SC from './styled';
+
 interface Props extends FieldProps {
   showLabel: boolean;
+  showRequired: boolean;
   label: string;
   type: string;
   language: string;
@@ -23,6 +26,7 @@ export const DatePickerFieldPure: FC<Props> = ({
   field: { name, value },
   form: { setFieldValue },
   showLabel,
+  showRequired,
   label,
   catalogId,
   minDate,
@@ -60,7 +64,12 @@ export const DatePickerFieldPure: FC<Props> = ({
       className='fdk-form-label fdk-text-strong position-relative'
       htmlFor={name}
     >
-      {showLabel && label}
+      {showLabel && (
+        <SC.Labels>
+          {label}
+          {showRequired && <SC.Required>{localization.required}</SC.Required>}
+        </SC.Labels>
+      )}
       <DatePicker
         id={name}
         className='form-control fdk-datepicker'

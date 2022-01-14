@@ -32,14 +32,10 @@ export const HelpText = ({
   };
 
   return (
-    <div className='fdk-reg-helptext mb-3 p-3'>
+    <SC.HelpText>
       <div className='d-flex align-items-center'>
         <SC.Title className='help-text mb-0'>{title}</SC.Title>
-        {showRequired && (
-          <span className='fdk-badge badge fdk-bg-color-warning-lightest ml-2'>
-            {localization.required}
-          </span>
-        )}
+        {showRequired && <SC.Required>{localization.required}</SC.Required>}
       </div>
 
       <div className='d-md-flex'>
@@ -52,16 +48,12 @@ export const HelpText = ({
           />
         )}
         {helpTextDescription && (
-          <button
-            type='button'
-            className='fdk-btn-no-border text-left p-0 ml-1 fdk-reg-helptext-more align-self-start'
-            onClick={toggle}
-          >
+          <SC.ShowMoreButton type='button' onClick={toggle}>
             <i className={collapseClass} />
             {collapse
               ? localization.lessRecomendations
               : localization.moreRecomendations}
-          </button>
+          </SC.ShowMoreButton>
         )}
       </div>
 
@@ -75,7 +67,7 @@ export const HelpText = ({
           />
         </Collapse>
       )}
-    </div>
+    </SC.HelpText>
   );
 };
 /* eslint-enable react/no-danger */

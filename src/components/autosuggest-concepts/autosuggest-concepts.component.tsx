@@ -9,6 +9,8 @@ import {
   extractSuggestions
 } from '../../api/search-fulltext-api/suggestions';
 
+import SC from './styled';
+
 const renderSuggestionContainer = (containerProps, children) => (
   <div {...containerProps}>
     <div className='d-flex mb-3 react_autosuggest__suggestions-heading'>
@@ -67,12 +69,14 @@ const loadSuggestions = (value, setSuggestions, lastRequestId) => {
 interface Props {
   showLabel?: boolean;
   label?: string;
+  showRequired?: boolean;
   onAddSuggestion: (suggestion) => void;
 }
 
 export const AutosuggestConcepts: FC<Props> = ({
   showLabel = false,
   label = '',
+  showRequired = false,
   onAddSuggestion
 }) => {
   const [fieldValue, setFieldValue] = useState<any>('');
@@ -98,9 +102,13 @@ export const AutosuggestConcepts: FC<Props> = ({
   );
 
   return (
-    <div className='d-flex align-items-center pl-2'>
-      <div className='flex-fill'>
-        {showLabel ? label : null}
+    <SC.AutosuggestConcepts>
+      <SC.Content>
+        <SC.Labels>
+          {showLabel && label}
+          {showRequired && <SC.Required>{localization.required}</SC.Required>}
+        </SC.Labels>
+
         <Autosuggest
           suggestions={suggestions}
           shouldRenderSuggestions={value => !!(value && value.length > 0)}
@@ -123,7 +131,7 @@ export const AutosuggestConcepts: FC<Props> = ({
             setFieldValue('');
           }}
         />
-      </div>
-    </div>
+      </SC.Content>
+    </SC.AutosuggestConcepts>
   );
 };

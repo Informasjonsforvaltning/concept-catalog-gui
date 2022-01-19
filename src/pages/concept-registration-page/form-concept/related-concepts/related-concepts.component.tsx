@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { compose } from '@reduxjs/toolkit';
 import { FieldArray, useFormikContext, FormikValues } from 'formik';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
@@ -9,13 +9,11 @@ import { Can } from '../../../../casl/Can';
 import { AutosuggestConcepts } from '../../../../components/autosuggest-concepts/autosuggest-concepts.component';
 import { getTranslateText } from '../../../../lib/translateText';
 import { isConceptEditable } from '../../../../lib/concept';
+import { useAppDispatch, useAppSelector } from '../../../../app/redux/hooks';
 import {
-  extractConcepts,
-  paramsToSearchBody,
-  searchConcepts
-} from '../../../../api/search-fulltext-api/concepts';
-import { useAppSelector } from '../../../../app/redux/hooks';
-import { SkosConcept } from '../../../../types';
+  fetchConcepts,
+  selectAllConceptEntities
+} from '../../../../features/concepts';
 
 interface Suggestion {
   identifier: string;
@@ -43,20 +41,18 @@ const RelatedConceptsPure: FC<Props> = ({
     params: { catalogId }
   }
 }) => {
+  const dispatch = useAppDispatch();
   const conceptForm = useAppSelector(state => state.conceptForm);
+  const relatedConcepts = useAppSelector(selectAllConceptEntities);
 
   const formik: FormikValues = useFormikContext();
-
-  const [seeAlsoConcepts, setSeeAlsoConcepts] = useState<SkosConcept[]>([]);
+  const seOgsaaField = formik?.values?.seOgså;
 
   useEffect(() => {
-    const seOgsaa = formik?.values?.seOgså ?? [];
-    seOgsaa.length > 0
-      ? searchConcepts(paramsToSearchBody({ identifier: seOgsaa }))
-          .then(extractConcepts)
-          .then(response => setSeeAlsoConcepts(response))
-      : setSeeAlsoConcepts([]);
-  }, [formik?.values?.seOgså]);
+    if (seOgsaaField?.length > 0) {
+      dispatch(fetchConcepts(seOgsaaField));
+    }
+  }, [seOgsaaField]);
 
   return (
     <div>
@@ -80,12 +76,14 @@ const RelatedConceptsPure: FC<Props> = ({
                 )}
               </Can>
               <div className='pl-2'>
-                {seeAlsoConcepts.map((seeAlso, index) => (
+                {seOgsaaField.map((identifier, index) => (
                   <div
-                    key={`${seeAlso}-${index}`}
+                    key={`${identifier}-${index}`}
                     className='badge badge-dark mt-3 mr-3 p-3'
                   >
-                    <span>{getTranslateText(seeAlso.prefLabel)}</span>
+                    <span>
+                      {getTranslateText(relatedConcepts[identifier]?.prefLabel)}
+                    </span>
                     <Can
                       I='edit'
                       of={{ __type: 'Field', publisher: catalogId }}
@@ -94,9 +92,7 @@ const RelatedConceptsPure: FC<Props> = ({
                         <button
                           type='button'
                           className='fdk-btn-no-border'
-                          onClick={() =>
-                            removeSeeAlso(seeAlso.identifier, form)
-                          }
+                          onClick={() => removeSeeAlso(identifier, form)}
                         >
                           <i className='fa fa-times-circle ml-2 fdk-color-white' />
                         </button>

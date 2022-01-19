@@ -133,3 +133,13 @@ export interface Comment {
   user?: User;
   comment: string;
 }
+
+export interface SkosConcept {
+  id: string;
+  identifier: string;
+  prefLabel: {
+    nb?: string;
+    nn?: string;
+    en?: string;
+  };
+}

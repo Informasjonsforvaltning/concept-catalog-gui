@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
+import { compose } from '@reduxjs/toolkit';
 import { FieldArray, useFormikContext, FormikValues } from 'formik';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 import { localization } from '../../../../lib/localization';
 import { HelpText } from '../../../../components/help-text/help-text.component';
@@ -30,11 +32,17 @@ const removeSeeAlso = (identifier: string, form): void => {
   form.setFieldValue('seOgså', filteredValues);
 };
 
-interface Props {
+interface RouteParams {
   catalogId: string;
 }
 
-export const RelatedConceptsPure: FC<Props> = ({ catalogId }) => {
+interface Props extends RouteComponentProps<RouteParams> {}
+
+const RelatedConceptsPure: FC<Props> = ({
+  match: {
+    params: { catalogId }
+  }
+}) => {
   const conceptForm = useAppSelector(state => state.conceptForm);
 
   const formik: FormikValues = useFormikContext();
@@ -104,3 +112,5 @@ export const RelatedConceptsPure: FC<Props> = ({ catalogId }) => {
     </div>
   );
 };
+
+export const RelatedConcepts = compose<FC>(withRouter)(RelatedConceptsPure);

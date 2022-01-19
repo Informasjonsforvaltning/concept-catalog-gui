@@ -13,6 +13,7 @@ import {
   searchConcepts
 } from '../../../../api/search-fulltext-api/concepts';
 import { useAppSelector } from '../../../../app/redux/hooks';
+import { SkosConcept } from '../../../../types';
 
 interface Suggestion {
   identifier: string;
@@ -28,16 +29,6 @@ const removeSeeAlso = (identifier: string, form): void => {
   const filteredValues = seeAlsoValues.filter(el => el !== identifier);
   form.setFieldValue('seOgså', filteredValues);
 };
-
-interface SkosConcept {
-  id: string;
-  identifier: string;
-  prefLabel: {
-    nb?: string;
-    nn?: string;
-    en?: string;
-  };
-}
 
 interface Props {
   catalogId: string;

@@ -24,7 +24,7 @@ export const LanguagePicker = ({
   return (
     <SC.LanguagePicker>
       {languages.map(({ code, title, selected }) => (
-        <SC.Label htmlFor={code}>
+        <SC.Label key={code} htmlFor={code}>
           <Checkbox
             id={code}
             title={code}

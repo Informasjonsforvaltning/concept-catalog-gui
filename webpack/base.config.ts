@@ -27,32 +27,6 @@ const configuration: Configuration = {
       util: false
     }
   },
-  optimization: {
-    runtimeChunk: 'single',
-    splitChunks: {
-      hidePathInfo: true,
-      chunks: 'all',
-      maxInitialRequests: Infinity,
-      maxAsyncRequests: Infinity,
-      minSize: 0,
-      automaticNameDelimiter: '.',
-      cacheGroups: {
-        default: false,
-        mainVendors: {
-          test: ({ resource = '' }: any) => resource.includes('node_modules'),
-          name: 'main.vendors',
-          filename: '[name].bundle.js',
-          chunks: ({ name }) => name === 'main'
-        },
-        styles: {
-          name: 'styles',
-          test: /\.s?css$/,
-          chunks: 'all',
-          enforce: true
-        }
-      }
-    }
-  },
   module: {
     rules: [
       {

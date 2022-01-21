@@ -12,6 +12,8 @@ import StatusPublishedIconBase from '../../images/icon-status-published-sm.svg';
 import StatusDraftIconBase from '../../images/icon-status-draft-sm.svg';
 import RemoveIconBase from '../../images/icon-remove-circle-sm.svg';
 
+const onMobileView = '@media (max-width: 900px)';
+
 interface Props {
   $isSticky?: boolean;
 }
@@ -43,6 +45,7 @@ const FormControl = styled.div<Props>`
 
   ${({ $isSticky }) =>
     $isSticky &&
+    !onMobileView &&
     css`
       animation-duration: 500ms;
       animation-timing-function: ease-out;
@@ -57,6 +60,7 @@ const FormControlContent = styled(ContainerSC.Container)`
   border-bottom: 1px solid ${theme.colour(Colour.GREEN, 'G30')};
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   padding: ${theme.spacing('S10')} 0;
 `;
 
@@ -110,6 +114,7 @@ const Button = styled(ButtonBase)`
   color: ${theme.colour(Colour.GREEN, 'G60')};
   font-weight: ${theme.fontWeight('FW400')};
   margin-right: ${theme.spacing('S10')};
+  margin-bottom: ${theme.spacing('S10')};
   transition: all 150ms ease;
 
   &:hover {

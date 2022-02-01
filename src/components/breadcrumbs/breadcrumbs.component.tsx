@@ -12,8 +12,7 @@ import { getConfig } from '../../config';
 import SC from './styled';
 
 const options = {
-  disableDefaults: true,
-  excludePaths: ['']
+  disableDefaults: true
 };
 
 // map & render your breadcrumb components however you want.

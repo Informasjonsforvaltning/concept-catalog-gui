@@ -28,6 +28,7 @@ export const nb = {
   breadCrumbsAllCatalogs: 'Alle kataloger',
   breadCrumbsPublisherList: '{0} sine begrepsbeskrivelser',
   breadCrumbsConceptCatalog: 'Begrepskatalog',
+  breadCrumbsConceptCollections: 'Alle begrepskataloger',
   registerNewConcept: 'Registrer ny begrepsbeskrivelse',
   required: 'Obligatorisk',
   formTerm: 'Term, definisjon og kilde',
@@ -99,5 +100,8 @@ export const nb = {
   showAllComments: 'Vis alle tidligere kommentarer',
   assignToUser: 'Hvem skal begrepet tildeles?',
   editName: 'Oppgi navn',
-  assignedUser: 'Tildelt'
+  assignedUser: 'Tildelt',
+  none: 'Ingen',
+  concepts: 'begreper',
+  missingTitle: "Mangler tittel"
 };

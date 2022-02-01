@@ -143,3 +143,14 @@ export interface SkosConcept {
     en?: string;
   };
 }
+
+export interface Collection {
+  id: string;
+  antallBegrep: number;
+}
+
+export interface Publisher {
+  organizationId: string;
+  name?: string;
+  prefLabel?: TekstMedSpraakKode;
+}

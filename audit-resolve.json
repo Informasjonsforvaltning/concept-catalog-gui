@@ -76,24 +76,34 @@
       "expiresAt": 1645607154316
     },
     "1004967|@svgr/webpack>@svgr/plugin-svgo>svgo>css-select>nth-check": {
-      "decision": "ignore",
-      "madeAt": 1638348089785,
-      "expiresAt": 1640940079683
+      "decision": "fix",
+      "madeAt": 1643727832831
     },
     "1004946|node-sass>sass-graph>yargs>cliui>string-width>strip-ansi>ansi-regex": {
-      "decision": "ignore",
-      "madeAt": 1638348092022,
-      "expiresAt": 1640940079683
+      "decision": "fix",
+      "madeAt": 1643727816779
     },
     "1004946|node-sass>sass-graph>yargs>cliui>wrap-ansi>string-width>strip-ansi>ansi-regex": {
-      "decision": "ignore",
-      "madeAt": 1638348092022,
-      "expiresAt": 1640940079683
+      "decision": "fix",
+      "madeAt": 1643727816779
     },
     "1006899|recompose>fbjs>isomorphic-fetch>node-fetch": {
       "decision": "ignore",
       "madeAt": 1643015169700,
       "expiresAt": 1645607154316
+    },
+    "1006846|resolve-url-loader>postcss": {
+      "decision": "fix",
+      "madeAt": 1643727844752
+    },
+    "1004946|node-sass>node-gyp>npmlog>gauge>wide-align>string-width>strip-ansi>ansi-regex": {
+      "decision": "fix",
+      "madeAt": 1643727866595
+    },
+    "1004967|react-svg-loader>react-svg-core>svgo>css-select>nth-check": {
+      "decision": "ignore",
+      "madeAt": 1643727880486,
+      "expiresAt": 1644332649483
     }
   },
   "rules": {},

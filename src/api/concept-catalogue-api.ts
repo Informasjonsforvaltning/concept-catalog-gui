@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Concept } from '../types';
+import { Collection, Concept } from '../types';
 
 import ImportError from '../domain/ImportError';
 
@@ -46,7 +46,12 @@ const conceptRevisionPath = (id: string) => `/begreper/${id}/revisjon`;
 
 const conceptPath = (conceptId): string => `${conceptListPath}/${conceptId}`;
 
+const collectionsPath = '/begrepssamlinger';
+
 /* high level api */
+
+export const getCollections = (): Promise<Collection[]> =>
+  conceptCatalogueApiGet(collectionsPath);
 
 export const getConcept = (catalogId): Promise<Concept> =>
   conceptCatalogueApiGet(conceptPath(catalogId));

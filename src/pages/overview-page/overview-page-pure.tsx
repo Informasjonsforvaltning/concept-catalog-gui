@@ -9,7 +9,7 @@ import SC from './styled';
 import { useAppDispatch, useAppSelector } from '../../app/redux/hooks';
 import {
   fetchCollections,
-  selectAllCollectionEntities
+  selectAllCollections
 } from '../../features/collections';
 import {
   fetchPublishers,
@@ -19,7 +19,7 @@ import { localization } from '../../lib/localization';
 
 export const OverviewPagePure = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const collections = useAppSelector(selectAllCollectionEntities);
+  const collections = useAppSelector(selectAllCollections);
   const publishers = useAppSelector(selectAllPublisherEntities);
 
   useEffect(() => {
@@ -27,36 +27,34 @@ export const OverviewPagePure = (): JSX.Element => {
     dispatch(fetchPublishers());
   }, []);
 
-  const catalogTitle = (id: string | undefined): string => {
-    if (id) {
-      const name = publishers[id]?.prefLabel
-        ? getTranslateText(publishers[id]?.prefLabel)
-        : publishers[id]?.name;
-      return name || localization.missingTitle;
-    }
-    return localization.missingTitle;
+  const catalogTitle = (id: string): string => {
+    const name = publishers[id]?.prefLabel
+      ? getTranslateText(publishers[id]?.prefLabel)
+      : publishers[id]?.name;
+    return name || localization.missingTitle;
   };
 
   return (
     <Root>
       <SC.Container>
         <div>
-          {collections &&
-            Object.values(collections)?.map(collection => (
-              <div key={collection?.id} className='row mb-2 mb-md-5'>
-                <div className='col-12'>
-                  <div className='mb-3'>
-                    <SC.CatalogTitle>
-                      {catalogTitle(collection?.id)}
-                    </SC.CatalogTitle>
-                    <CatalogItem
-                      itemsCount={collection?.antallBegrep}
-                      linkUri={`/${collection?.id}`}
-                    />
-                  </div>
+          {collections.map(collection => (
+            <div key={collection.id} className='row mb-2 mb-md-5'>
+              <div className='col-12'>
+                <div className='mb-3'>
+                  <SC.CatalogTitle>
+                    {collection?.id
+                      ? catalogTitle(collection.id)
+                      : localization.missingTitle}
+                  </SC.CatalogTitle>
+                  <CatalogItem
+                    itemsCount={collection?.antallBegrep}
+                    catalogId={collection.id}
+                  />
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       </SC.Container>
     </Root>

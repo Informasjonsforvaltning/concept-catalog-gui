@@ -28,6 +28,6 @@ const collectionsSelector = collectionsAdapter.getSelectors<RootState>(
   state => state.collections
 );
 
-export const selectAllCollectionEntities = collectionsSelector.selectEntities;
+export const selectAllCollections = collectionsSelector.selectAll;
 
 export const { reducer: collectionsReducer } = collectionsSlice;

@@ -1,7 +1,7 @@
 import React from 'react';
-import './button-source.scss';
-import IconAdd from '../../images/icon-add-cicle-sm.svg';
-import IconRemove from '../../images/icon-remove-circle-sm.svg';
+import { Variant } from '@fellesdatakatalog/button';
+
+import SC from './styled';
 
 interface Props {
   add?: boolean;
@@ -16,18 +16,15 @@ export const ButtonSource = ({
   remove = false,
   add = false
 }: Props): JSX.Element => (
-  <button
-    type='button'
+  <SC.ButtonSource
+    variant={Variant.TERTIARY}
     aria-haspopup='true'
     aria-expanded='false'
-    className='fdk-btn-no-border color-link-dark mb-2'
     onClick={handleClick}
   >
-    {remove && <IconRemove className='remove mr-2' />}
-    {add && <IconAdd className='fdk-color-link2 add mr-2' />}
+    {remove && <SC.IconRemove />}
+    {add && <SC.IconAdd />}
 
-    <span className={`${add ? 'fdk-color-link' : 'fdk-color-danger'}`}>
-      {title}
-    </span>
-  </button>
+    <span>{title}</span>
+  </SC.ButtonSource>
 );

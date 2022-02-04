@@ -1,8 +1,12 @@
-@import '../../../node_modules/designsystemet/fdk-designsystem-bootstrap4/scss/colors';
-
 /***************  **************************/
 /*********** Bootstrap overrides **********/
 /*****************************************/
+$color-link: #0069A5;
+$color-neutral-darkest: #2D3741;
+$color-success-lighter: #D9EBE8;
+$color-warning: #FFBE3C;
+$color-danger: #D70A5A;
+
 $primary: $color-link !default;
 $secondary: $color-neutral-darkest !default;
 $success: $color-success-lighter !default;

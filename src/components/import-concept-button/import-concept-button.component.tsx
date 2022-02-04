@@ -1,6 +1,5 @@
 import React from 'react';
 import { localization } from '../../lib/localization';
-import './import-concept-button.scss';
 
 import SC from './styled';
 

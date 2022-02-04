@@ -26,6 +26,7 @@ const CollapseButton = styled.button`
 const Title = styled.h2`
   color: ${theme.colour(Colour.GREEN, 'G60')};
   font-size: ${theme.fontSize('FS24')};
+  font-weight: ${theme.fontWeight('FW500')};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

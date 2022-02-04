@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { Collapse } from 'reactstrap';
-import './help-text.scss';
 import cx from 'classnames';
 import { localization } from '../../lib/localization';
 import { convertToSanitizedHtml } from '../../lib/markdown-converter';
@@ -22,26 +20,25 @@ export const HelpText = ({
 }: Props): JSX.Element => {
   const [collapse, setCollapse] = useState(false);
 
-  const collapseClass = cx('fa', 'fdk-fa-left', {
+  const collapseClass = cx('fa', 'mr-2', {
     'fa-angle-double-down': !collapse,
     'fa-angle-double-up': collapse
   });
 
   const toggle = (): void => {
-    collapse ? setCollapse(false) : setCollapse(true);
+    setCollapse(!collapse);
   };
 
   return (
     <SC.HelpText>
-      <div className='d-flex align-items-center'>
+      <div>
         <SC.Title className='help-text mb-0'>{title}</SC.Title>
         {showRequired && <SC.Required>{localization.required}</SC.Required>}
       </div>
 
-      <div className='d-md-flex'>
+      <div>
         {helpTextAbstract && (
           <p
-            className='help-text mb-0'
             dangerouslySetInnerHTML={{
               __html: convertToSanitizedHtml(helpTextAbstract)
             }}
@@ -58,14 +55,13 @@ export const HelpText = ({
       </div>
 
       {helpTextDescription && (
-        <Collapse className='mt-3' isOpen={collapse}>
+        <SC.CollapseDescription isOpen={collapse}>
           <p
-            className='help-text mb-0'
             dangerouslySetInnerHTML={{
               __html: convertToSanitizedHtml(helpTextDescription)
             }}
           />
-        </Collapse>
+        </SC.CollapseDescription>
       )}
     </SC.HelpText>
   );

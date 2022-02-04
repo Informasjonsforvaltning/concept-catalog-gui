@@ -8,6 +8,7 @@ const Page = styled.div`
 
 const Title = styled.h1`
   font-size: ${theme.fontSize('FS48')};
+  font-weight: ${theme.fontWeight('FW700')};
   margin-bottom: ${theme.spacing('S10')};
 `;
 

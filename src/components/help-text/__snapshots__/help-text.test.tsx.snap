@@ -2,20 +2,15 @@
 
 exports[`should render HelpText 1`] = `
 <styled.div>
-  <div
-    className="d-flex align-items-center"
-  >
+  <div>
     <styled.h3
       className="help-text mb-0"
     >
       Title
     </styled.h3>
   </div>
-  <div
-    className="d-md-flex"
-  >
+  <div>
     <p
-      className="help-text mb-0"
       dangerouslySetInnerHTML={
         Object {
           "__html": "<p>Abstract</p>",
@@ -27,37 +22,21 @@ exports[`should render HelpText 1`] = `
       type="button"
     >
       <i
-        className="fa fdk-fa-left fa-angle-double-down"
+        className="fa mr-2 fa-angle-double-down"
       />
       Flere anbefalinger
     </styled.button>
   </div>
-  <Collapse
-    appear={false}
-    className="mt-3"
-    enter={true}
-    exit={true}
-    in={false}
+  <Styled(Collapse)
     isOpen={false}
-    mountOnEnter={false}
-    onEnter={[Function]}
-    onEntered={[Function]}
-    onEntering={[Function]}
-    onExit={[Function]}
-    onExited={[Function]}
-    onExiting={[Function]}
-    tag="div"
-    timeout={350}
-    unmountOnExit={false}
   >
     <p
-      className="help-text mb-0"
       dangerouslySetInnerHTML={
         Object {
           "__html": "<p>Description</p>",
         }
       }
     />
-  </Collapse>
+  </Styled(Collapse)>
 </styled.div>
 `;

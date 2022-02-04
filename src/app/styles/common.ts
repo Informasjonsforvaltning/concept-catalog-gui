@@ -21,4 +21,12 @@ export default css`
   body.no-scroll {
     overflow: hidden;
   }
+
+  .fdk-text-size-small {
+    font-size: 1.4rem;
+  }
+
+  .fdk-text-strong {
+    font-weight: 500;
+  }
 `;

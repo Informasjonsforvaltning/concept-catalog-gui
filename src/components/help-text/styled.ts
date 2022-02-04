@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { Collapse } from 'reactstrap';
 import { Colour, theme } from '@fellesdatakatalog/theme';
 
 const HelpText = styled.div`
@@ -8,10 +8,16 @@ const HelpText = styled.div`
   font-size: ${theme.fontSize('FS14')};
   margin-bottom: ${theme.spacing('S12')};
   padding: ${theme.spacing('S10')};
+
+  & > div {
+    align-items: center;
+    display: flex;
+  }
 `;
 
 const Title = styled.h3`
   font-size: ${theme.fontSize('FS20')};
+  font-weight: ${theme.fontWeight('FW500')};
 `;
 
 const Required = styled.div`
@@ -32,4 +38,29 @@ const ShowMoreButton = styled.button`
   white-space: nowrap;
 `;
 
-export default { HelpText, Title, Required, ShowMoreButton };
+const CollapseDescription = styled(Collapse)`
+  margin-bottom: 0;
+  margin-top: ${theme.spacing('S10')};
+
+  & > a {
+    color: ${theme.colour(Colour.BLUE, 'B45')};
+
+    &:after {
+      content: ' ';
+      background-image: url('../../assets/img/icon-external-link-xs.svg');
+      position: relative;
+      width: 1.4em;
+      height: 1.4em;
+      top: +0.3em;
+      display: inline-flex;
+    }
+  }
+`;
+
+export default {
+  HelpText,
+  Title,
+  Required,
+  ShowMoreButton,
+  CollapseDescription
+};

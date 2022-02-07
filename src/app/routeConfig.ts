@@ -8,8 +8,7 @@ export const routeConfig = [
   {
     path: '/',
     component: OverviewPage,
-    exact: true,
-    breadcrumb: localization.breadCrumbsConceptCollections
+    exact: true
   },
   {
     path: '/:catalogId',

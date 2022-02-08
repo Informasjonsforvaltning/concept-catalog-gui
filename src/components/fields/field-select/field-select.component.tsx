@@ -1,24 +1,34 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
+import { compose } from '@reduxjs/toolkit';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import Select from 'react-select';
+import { FieldProps } from 'formik';
 
+import { useAppSelector } from '../../../app/redux/hooks';
+import { Can } from '../../../casl/Can';
 import { isConceptEditable } from '../../../lib/concept';
 import { localization } from '../../../lib/localization';
-import { Can } from '../../../casl/Can';
-import { useAppSelector } from '../../../app/redux/hooks';
 
 import SC from './styled';
 
-interface Props {
-  field: any;
+interface RouteParams {
+  catalogId: string;
+}
+
+interface ExternalProps {
   options: any[];
-  form: any;
   showLabel: boolean;
   showRequired: boolean;
   label: string;
   onClear: () => void;
   onChange: () => void;
-  catalogId: string;
+  onInputChange?: (arg: string) => void;
 }
+
+interface Props
+  extends ExternalProps,
+    RouteComponentProps<RouteParams>,
+    FieldProps {}
 
 const onChangeField = (fieldName, option, form, onClear, onChange) => {
   onChange(form, fieldName, option);
@@ -29,49 +39,48 @@ const onChangeField = (fieldName, option, form, onClear, onChange) => {
   }
 };
 
-export const SelectFieldPure: FC<Props> = ({
-  field, // { name, value, onChange, onBlur }
+const SelectFieldPure: FC<Props> = ({
+  field: { name, value, onBlur },
+  form,
   options,
-  form: { touched, errors }, // also values, dirty, isValid, status, etc.
   showLabel,
   showRequired,
   label,
-  form,
   onClear,
   onChange,
-  catalogId
+  onInputChange,
+  match: {
+    params: { catalogId }
+  }
 }) => {
   const conceptForm = useAppSelector(state => state.conceptForm);
 
   const renderReadOnlyField = () => (
     <div>
       <div className='fdk-text-strong'>{label}</div>
-      <span>{options.find(option => option.value === field.value)?.label}</span>
+      <span>{options.find(option => option.value === value)?.label}</span>
     </div>
   );
 
   const renderEditField = () => (
-    <label
-      className='fdk-form-label w-100 fdk-text-strong'
-      htmlFor={field.name}
-    >
+    <label className='fdk-form-label w-100 fdk-text-strong' htmlFor={name}>
       <SC.Labels>
         {showLabel ? label : null}
         {showRequired && <SC.Required>{localization.required}</SC.Required>}
       </SC.Labels>
 
       <Select
+        maxMenuHeight={450}
         options={options}
         isClearable
         placeholder={localization.select}
-        name={field.name}
-        value={
-          options ? options.find(option => option.value === field.value) : null
-        }
+        name={name}
+        value={options ? options.find(option => option.value === value) : null}
         onChange={option =>
-          onChangeField(field.name, option, form, onClear, onChange)
+          onChangeField(name, option, form, onClear, onChange)
         }
-        onBlur={field.onBlur}
+        onInputChange={onInputChange}
+        onBlur={onBlur}
       />
     </label>
   );
@@ -84,7 +93,7 @@ export const SelectFieldPure: FC<Props> = ({
             ? renderEditField()
             : renderReadOnlyField()}
         </Can>
-        {showLabel && field.value && (
+        {showLabel && value && (
           <Can
             not
             I='edit field'
@@ -94,9 +103,11 @@ export const SelectFieldPure: FC<Props> = ({
           </Can>
         )}
       </div>
-      {touched[field.name] && errors[field.name] && (
-        <div className='alert alert-danger mt-2'>{errors[field.name]}</div>
+      {form.touched[name] && form.errors[name] && (
+        <div className='alert alert-danger mt-2'>{form.errors[name]}</div>
       )}
     </div>
   );
 };
+
+export const SelectField = compose(memo, withRouter)(SelectFieldPure);

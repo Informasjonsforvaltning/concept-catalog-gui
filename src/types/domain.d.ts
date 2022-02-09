@@ -142,6 +142,10 @@ export interface SkosConcept {
     nn?: string;
     en?: string;
   };
+  definition: {
+    text?: string;
+  };
+  publisher: Publisher;
 }
 
 export interface Collection {

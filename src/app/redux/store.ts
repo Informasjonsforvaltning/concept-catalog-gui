@@ -6,6 +6,7 @@ import { conceptFormReducer } from '../../features/conceptForm';
 import { conceptsReducer } from '../../features/concepts';
 import { collectionsReducer } from '../../features/collections';
 import { publishersReducer } from '../../features/publishers';
+import { conceptSuggestionsReducer } from '../../features/concept-suggestions';
 
 export const store = configureStore({
   reducer: {
@@ -14,7 +15,8 @@ export const store = configureStore({
     conceptForm: conceptFormReducer,
     concepts: conceptsReducer,
     collections: collectionsReducer,
-    publishers: publishersReducer
+    publishers: publishersReducer,
+    conceptSuggestions: conceptSuggestionsReducer
   }
 });
 

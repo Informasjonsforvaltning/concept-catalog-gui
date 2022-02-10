@@ -52,13 +52,13 @@
     },
     "1004946|showdown>yargs>cliui>string-width>strip-ansi>ansi-regex": {
       "decision": "ignore",
-      "madeAt": 1641199328531,
-      "expiresAt": 1643791313152
+      "madeAt": 1644487377558,
+      "expiresAt": 1647079368657
     },
     "1004946|showdown>yargs>cliui>wrap-ansi>string-width>strip-ansi>ansi-regex": {
       "decision": "ignore",
-      "madeAt": 1641199328531,
-      "expiresAt": 1643791313152
+      "madeAt": 1644487377558,
+      "expiresAt": 1647079368657
     },
     "1005018|@fellesdatakatalog/internal-footer>@fellesdatakatalog/skatteetaten-frontend-components>axios": {
       "decision": "ignore",
@@ -104,6 +104,11 @@
       "decision": "ignore",
       "madeAt": 1643727880486,
       "expiresAt": 1644332649483
+    },
+    "1004946|showdown>yargs>cliui>strip-ansi>ansi-regex": {
+      "decision": "ignore",
+      "madeAt": 1644487377558,
+      "expiresAt": 1647079368657
     }
   },
   "rules": {},

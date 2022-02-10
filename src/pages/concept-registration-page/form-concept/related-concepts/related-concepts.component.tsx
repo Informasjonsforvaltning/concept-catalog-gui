@@ -90,6 +90,7 @@ const RelatedConceptsPure: FC<Props> = () => {
               component={SelectField}
               label={localization.relatedConcept}
               showLabel
+              placeHolder={localization.searchConcepts}
               showCustomOption
               options={conceptSuggestionsMap}
               onClear={() => form.setFieldValue(field.name, '')}

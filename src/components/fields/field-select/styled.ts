@@ -37,12 +37,12 @@ const Option = styled.div`
   }
 
   div:nth-child(2) {
-    flex-basis: 35%;
+    flex-basis: 50%;
+    padding: 0 ${theme.spacing('S24')};
   }
 
   div:nth-child(3) {
-    flex-basis: 35%;
-    justify-content: flex-end;
+    flex-basis: 20%;
   }
 `;
 
@@ -51,7 +51,6 @@ const OptionLabel = styled.div`
   flex-grow: 0;
   flex-shrink: 0;
   flex-wrap: wrap;
-  padding: ${theme.spacing('S10')};
   word-break: break-word;
 `;
 

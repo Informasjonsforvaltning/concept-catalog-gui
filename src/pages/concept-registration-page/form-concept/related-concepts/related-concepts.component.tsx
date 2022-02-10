@@ -1,34 +1,31 @@
 import React, { FC, useEffect } from 'react';
 import { compose } from '@reduxjs/toolkit';
-import { FieldArray, useFormikContext, FormikValues } from 'formik';
+import {
+  FieldArray,
+  useFormikContext,
+  FormikValues,
+  Field,
+  useField
+} from 'formik';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 import { localization } from '../../../../lib/localization';
 import { HelpText } from '../../../../components/help-text/help-text.component';
-import { Can } from '../../../../casl/Can';
-import { AutosuggestConcepts } from '../../../../components/autosuggest-concepts/autosuggest-concepts.component';
-import { getTranslateText } from '../../../../lib/translateText';
-import { isConceptEditable } from '../../../../lib/concept';
 import { useAppDispatch, useAppSelector } from '../../../../app/redux/hooks';
 import {
   fetchConcepts,
   selectAllConceptEntities
 } from '../../../../features/concepts';
 
-interface Suggestion {
-  identifier: string;
-}
-
-const addSeeAlso = (suggestion: Suggestion, form): void => {
-  const seeAlsoValues: string[] = form.values.seOgså;
-  form.setFieldValue('seOgså', [...seeAlsoValues, suggestion.identifier]);
-};
-
-const removeSeeAlso = (identifier: string, form): void => {
-  const seeAlsoValues: string[] = form.values.seOgså;
-  const filteredValues = seeAlsoValues.filter(el => el !== identifier);
-  form.setFieldValue('seOgså', filteredValues);
-};
+import {
+  OptionProps,
+  SelectField
+} from '../../../../components/fields/field-select/field-select.component';
+import {
+  fetchConceptSuggestions,
+  selectAllConceptSuggestions
+} from '../../../../features/concept-suggestions';
+import { getTranslateText } from '../../../../lib/translateText';
 
 interface RouteParams {
   catalogId: string;
@@ -36,14 +33,11 @@ interface RouteParams {
 
 interface Props extends RouteComponentProps<RouteParams> {}
 
-const RelatedConceptsPure: FC<Props> = ({
-  match: {
-    params: { catalogId }
-  }
-}) => {
+const RelatedConceptsPure: FC<Props> = () => {
+  const [field] = useField('seOgså');
   const dispatch = useAppDispatch();
-  const conceptForm = useAppSelector(state => state.conceptForm);
   const relatedConcepts = useAppSelector(selectAllConceptEntities);
+  const conceptSuggestions = useAppSelector(selectAllConceptSuggestions);
 
   const formik: FormikValues = useFormikContext();
   const seOgsaaField = formik?.values?.seOgså;
@@ -54,6 +48,33 @@ const RelatedConceptsPure: FC<Props> = ({
     }
   }, [seOgsaaField]);
 
+  const executeConceptSuggestionSearch = (q: string) => {
+    dispatch(fetchConceptSuggestions(q));
+  };
+
+  useEffect(() => {
+    executeConceptSuggestionSearch('');
+  }, []);
+
+  const addRelatedConcept = (form, fieldName, option): void => {
+    form.setFieldValue(
+      fieldName,
+      option.map(item => item.value)
+    );
+    option?.value && dispatch(fetchConcepts([option.value]));
+  };
+
+  const conceptSuggestionsMap = conceptSuggestions.map(
+    ({ identifier, prefLabel, definition, publisher }) =>
+      ({
+        value: identifier,
+        label: getTranslateText(prefLabel),
+        description: getTranslateText(definition?.text),
+        publisher:
+          getTranslateText(publisher?.prefLabel) ?? publisher?.name ?? ''
+      } as OptionProps)
+  );
+
   return (
     <div>
       <div className='form-group'>
@@ -61,47 +82,27 @@ const RelatedConceptsPure: FC<Props> = ({
           title={localization.seeAlso}
           helpTextAbstract={localization.seOgsaaAbstract}
         />
-
         <FieldArray
           name='seOgså'
           render={({ form }) => (
-            <>
-              <Can I='edit' of={{ __type: 'Field', publisher: catalogId }}>
-                {isConceptEditable(conceptForm.concept) && (
-                  <AutosuggestConcepts
-                    onAddSuggestion={(suggestion: Suggestion) =>
-                      addSeeAlso(suggestion, form)
-                    }
-                  />
-                )}
-              </Can>
-              <div className='pl-2'>
-                {seOgsaaField.map((identifier, index) => (
-                  <div
-                    key={`${identifier}-${index}`}
-                    className='badge badge-dark mt-3 mr-3 p-3'
-                  >
-                    <span>
-                      {getTranslateText(relatedConcepts[identifier]?.prefLabel)}
-                    </span>
-                    <Can
-                      I='edit'
-                      of={{ __type: 'Field', publisher: catalogId }}
-                    >
-                      {isConceptEditable(conceptForm.concept) && (
-                        <button
-                          type='button'
-                          className='fdk-btn-no-border'
-                          onClick={() => removeSeeAlso(identifier, form)}
-                        >
-                          <i className='fa fa-times-circle ml-2 fdk-color-white' />
-                        </button>
-                      )}
-                    </Can>
-                  </div>
-                ))}
-              </div>
-            </>
+            <Field
+              name={field.name}
+              component={SelectField}
+              label={localization.relatedConcept}
+              showLabel
+              showCustomOption
+              options={conceptSuggestionsMap}
+              onClear={() => form.setFieldValue(field.name, '')}
+              onChange={addRelatedConcept}
+              onInputChange={executeConceptSuggestionSearch}
+              defaultValue={form?.values?.seOgså.map(item => ({
+                value: item,
+                label:
+                  getTranslateText(relatedConcepts[item]?.prefLabel) ??
+                  'default'
+              }))}
+              isMulti
+            />
           )}
         />
       </div>

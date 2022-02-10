@@ -7,7 +7,10 @@ import { isConceptEditable } from '../../../../../lib/concept';
 import { localization } from '../../../../../lib/localization';
 import { InputField } from '../../../../../components/fields/field-input/field-input.component';
 import { ButtonSource } from '../../../../../components/button-source/button-source.component';
-import { SelectField } from '../../../../../components/fields/field-select/field-select.component';
+import {
+  OptionProps,
+  SelectField
+} from '../../../../../components/fields/field-select/field-select.component';
 import './source.scss';
 import { Can } from '../../../../../casl/Can';
 import { useAppSelector } from '../../../../../app/redux/hooks';
@@ -16,7 +19,7 @@ const options = [
   { value: 'egendefinert', label: localization.custom },
   { value: 'basertPaaKilde', label: localization.basedOnSource },
   { value: 'sitatFraKilde', label: localization.quoteFromSource }
-];
+] as OptionProps[];
 
 const handleClearKildebeskrivelse = form => {
   form.setFieldValue('kildebeskrivelse', null);
@@ -73,6 +76,9 @@ export const SourcePure: FC<Props> = ({ catalogId }) => {
             label={localization.relationToSource}
             showLabel
             options={options}
+            defaultValue={options.find(
+              option => option.value === forholdTilKilde
+            )}
             onClear={handleClearKildebeskrivelse}
             onChange={handleChangeForholdTilKilde}
           />

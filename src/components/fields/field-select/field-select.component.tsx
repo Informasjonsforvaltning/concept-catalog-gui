@@ -11,18 +11,28 @@ import { localization } from '../../../lib/localization';
 
 import SC from './styled';
 
+export interface OptionProps {
+  value: string;
+  label: string;
+  description: string;
+  publisher: string;
+}
+
 interface RouteParams {
   catalogId: string;
 }
 
 interface ExternalProps {
-  options: any[];
+  options: OptionProps[];
+  showCustomOption: boolean;
   showLabel: boolean;
   showRequired: boolean;
   label: string;
   onClear: () => void;
   onChange: () => void;
   onInputChange?: (arg: string) => void;
+  defaultValue: OptionProps | OptionProps[];
+  isMulti?: boolean;
 }
 
 interface Props
@@ -31,82 +41,95 @@ interface Props
     FieldProps {}
 
 const onChangeField = (fieldName, option, form, onClear, onChange) => {
-  onChange(form, fieldName, option);
-  if (option == null) {
+  if (!option) {
     onClear(form);
   } else {
-    form.setFieldValue(fieldName, option.value);
+    onChange(form, fieldName, option);
   }
 };
 
 const SelectFieldPure: FC<Props> = ({
-  field: { name, value, onBlur },
+  field: { name, onBlur },
   form,
   options,
+  showCustomOption = false,
   showLabel,
   showRequired,
+  defaultValue,
   label,
   onClear,
   onChange,
   onInputChange,
   match: {
     params: { catalogId }
-  }
+  },
+  isMulti
 }) => {
   const conceptForm = useAppSelector(state => state.conceptForm);
 
   const renderReadOnlyField = () => (
     <div>
-      <div className='fdk-text-strong'>{label}</div>
-      <span>{options.find(option => option.value === value)?.label}</span>
+      <SC.ReadOnlyLabel>{label}</SC.ReadOnlyLabel>
+      {Array.isArray(defaultValue) &&
+        defaultValue?.map(item => <div>{item.label}</div>)}
+      {!Array.isArray(defaultValue) && <div>{defaultValue?.label}</div>}
     </div>
   );
 
+  const renderFormatOptionLabel = (
+    { label: optionLabel, description, publisher },
+    { context }
+  ) => {
+    if (context === 'value' || !showCustomOption) {
+      return <div>{optionLabel}</div>;
+    }
+    return (
+      <SC.Option>
+        <SC.OptionLabel>{optionLabel}</SC.OptionLabel>
+        <SC.OptionLabel>{description}</SC.OptionLabel>
+        <SC.OptionLabel>{publisher}</SC.OptionLabel>
+      </SC.Option>
+    );
+  };
+
   const renderEditField = () => (
-    <label className='fdk-form-label w-100 fdk-text-strong' htmlFor={name}>
+    <SC.EditField htmlFor={name}>
       <SC.Labels>
         {showLabel ? label : null}
         {showRequired && <SC.Required>{localization.required}</SC.Required>}
       </SC.Labels>
-
       <Select
+        isMulti={!!isMulti}
+        formatOptionLabel={renderFormatOptionLabel}
         maxMenuHeight={450}
         options={options}
         isClearable
-        placeholder={localization.select}
+        placeholder={localization.searchConcepts}
         name={name}
-        value={options ? options.find(option => option.value === value) : null}
+        value={defaultValue}
         onChange={option =>
           onChangeField(name, option, form, onClear, onChange)
         }
         onInputChange={onInputChange}
         onBlur={onBlur}
       />
-    </label>
+    </SC.EditField>
   );
 
   return (
-    <div className='px-2'>
-      <div className='d-flex align-items-center'>
-        <Can I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
-          {isConceptEditable(conceptForm.concept)
-            ? renderEditField()
-            : renderReadOnlyField()}
-        </Can>
-        {showLabel && value && (
-          <Can
-            not
-            I='edit field'
-            of={{ __type: 'Field', publisher: catalogId }}
-          >
-            {renderReadOnlyField()}
-          </Can>
-        )}
-      </div>
+    <SC.SelectField>
+      <Can I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
+        {isConceptEditable(conceptForm.concept)
+          ? renderEditField()
+          : renderReadOnlyField()}
+      </Can>
+      <Can not I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
+        {renderReadOnlyField()}
+      </Can>
       {form.touched[name] && form.errors[name] && (
         <div className='alert alert-danger mt-2'>{form.errors[name]}</div>
       )}
-    </div>
+    </SC.SelectField>
   );
 };
 

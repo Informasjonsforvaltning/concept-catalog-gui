@@ -167,5 +167,6 @@ export const schema = Yup.object().shape({
         });
       }
     }),
-  seOgså: Yup.array().of(Yup.string().nullable()).nullable()
+  seOgså: Yup.array().of(Yup.string().nullable()).nullable(),
+  erstattesAv: Yup.array().of(Yup.string().nullable()).nullable()
 });

@@ -50,6 +50,7 @@ export type FormValues = Pick<
   | 'gyldigFom'
   | 'gyldigTom'
   | 'seOgså'
+  | 'erstattesAv'
   | 'tildeltBruker'
 >;
 
@@ -235,6 +236,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
       gyldigFom = null,
       gyldigTom = null,
       seOgså = [],
+      erstattesAv = [],
       tildeltBruker = { id: '' }
     }
   }: Props) => ({
@@ -252,6 +254,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     gyldigFom,
     gyldigTom,
     seOgså,
+    erstattesAv,
     tildeltBruker
   }),
   validationSchema,

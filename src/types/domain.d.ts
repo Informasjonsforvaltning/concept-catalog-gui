@@ -117,6 +117,7 @@ export interface Concept {
   gyldigFom?: string | null;
   gyldigTom?: string | null;
   seOgså: string[];
+  erstattesAv?: string[];
   status?: string | null;
   erSistPublisert?: boolean;
   revisjonAvSistPublisert?: boolean;

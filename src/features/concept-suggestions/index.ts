@@ -11,9 +11,15 @@ import {
   extractSuggestions
 } from '../../api/search-fulltext-api/suggestions';
 
-export const fetchConceptSuggestions = createAsyncThunk<SkosConcept[], string>(
-  'conceptForm/fetchConceptSuggestions',
-  async query => getConceptSuggestions({ q: query }).then(extractSuggestions)
+interface SuggestionsAttributes {
+  q: string;
+  publisherId?: string;
+}
+export const fetchConceptSuggestions = createAsyncThunk<
+  SkosConcept[],
+  SuggestionsAttributes
+>('conceptForm/fetchConceptSuggestions', async ({ q, publisherId }) =>
+  getConceptSuggestions({ q, publisherId }).then(extractSuggestions)
 );
 
 const conceptSuggestionsAdapter = createEntityAdapter<SkosConcept>({

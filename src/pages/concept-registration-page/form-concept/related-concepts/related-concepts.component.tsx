@@ -49,7 +49,7 @@ const RelatedConceptsPure: FC<Props> = () => {
   }, [seOgsaaField]);
 
   const executeConceptSuggestionSearch = (q: string) => {
-    dispatch(fetchConceptSuggestions(q));
+    dispatch(fetchConceptSuggestions({ q }));
   };
 
   useEffect(() => {

@@ -95,7 +95,7 @@ const RelatedConceptsPure: FC<Props> = () => {
               options={conceptSuggestionsMap}
               onClear={() => form.setFieldValue(field.name, '')}
               onChange={addRelatedConcept}
-              onInputChange={executeConceptSuggestionSearch}
+              onInputChange={value => executeConceptSuggestionSearch(value)}
               defaultValue={form?.values?.seOgså.map(item => ({
                 value: item,
                 label:

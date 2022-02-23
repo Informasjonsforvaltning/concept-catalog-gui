@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { compose } from '@reduxjs/toolkit';
 import { Form, FormikProps, WithFormikConfig, withFormik } from 'formik';
 import pick from 'lodash/pick';
-import throttle from 'lodash/throttle';
+import debounce from 'lodash/debounce';
 import { Prompt, RouteComponentProps, withRouter } from 'react-router-dom';
 
 import { Concept } from '../../../types';
@@ -255,7 +255,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     tildeltBruker
   }),
   validationSchema,
-  validate: throttle(patchWithPreProcess, 1500),
+  validate: debounce(patchWithPreProcess, 500),
   validateOnMount: true,
   validateOnBlur: false,
   handleSubmit: () => {}

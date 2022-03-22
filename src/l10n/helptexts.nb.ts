@@ -88,5 +88,7 @@ Epost: informasjonsforvaltning@brreg.no 
 Telefon: +4775007500 
 Se mer om ‘kontaktinformasjon’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#_12_ansvarlig_virksomhet_og_kontaktpunkt)`,
   seOgsaaTitle: 'Se også',
-  seOgsaaAbstract: 'Referanse til et beslektet begrep.'
+  seOgsaaAbstract: 'Referanse til et beslektet begrep.',
+  assignUserTitle: 'Hvem skal begrepet tildeles?',
+  assignUserAbstract: 'Oppgi fullt navn for hvem begrepet skal tildeles.'
 };

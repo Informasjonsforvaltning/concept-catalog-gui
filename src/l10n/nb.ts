@@ -98,10 +98,16 @@ export const nb = {
   commentInputFieldLabel: 'Skriv en kommentar',
   addCommentLabel: 'Legg til en kommentar',
   showAllComments: 'Vis alle tidligere kommentarer',
+  comments: 'Kommentarer',
+  noComments: 'Beskrivelsen har ingen kommentarer ennå.',
   assignToUser: 'Hvem skal begrepet tildeles?',
   editName: 'Oppgi navn',
   assignedUser: 'Tildelt',
   none: 'Ingen',
   concepts: 'begreper',
-  missingTitle: "Mangler tittel"
+  missingTitle: "Mangler tittel",
+  internalInfo: "Interne opplysninger",
+  internalSubText: "Opplysningene under er til intern bruk og vil ikke publiseres ut i Felles datakatalog.",
+  enterFullName: "Oppgi fullt navn",
+
 };

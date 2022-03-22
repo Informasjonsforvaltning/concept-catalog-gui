@@ -40,6 +40,10 @@ export const CommentList: FC<Props> = ({ catalogId, topicId, comments }) => {
 
   return (
     <SC.CommentList>
+      <SC.CommentListTitle>{localization.comments}</SC.CommentListTitle>
+      {comments.length === 0 && (
+        <SC.CommentListEmpty>{localization.noComments}</SC.CommentListEmpty>
+      )}
       {!showAllComments && comments.length > INITIAL_COUNT_SHOW_COMMENTS && (
         <SC.ShowMoreCommentsButton onClick={() => setShowAllComments(true)}>
           {localization.showAllComments}

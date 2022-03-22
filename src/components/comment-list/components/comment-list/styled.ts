@@ -3,10 +3,22 @@ import { Colour, theme } from '@fellesdatakatalog/theme';
 import Button from '@fellesdatakatalog/button';
 
 const CommentList = styled.div`
+  background-color: ${theme.colour(Colour.GREEN, 'G30')};
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   display: flex;
   flex-direction: column;
-  margin-top: ${theme.spacing('S48')};
   margin-bottom: ${theme.spacing('S48')};
+  padding: ${theme.spacing('S32')};
+`;
+
+const CommentListTitle = styled.div`
+  font-size: ${theme.fontSize('FS20')};
+  font-weight: ${theme.fontWeight('FW700')};
+`;
+
+const CommentListEmpty = styled.div`
+  font-size: ${theme.fontSize('FS20')};
 `;
 
 const ShowMoreCommentsButton = styled(Button)`
@@ -38,6 +50,8 @@ const AddComment = styled(Button)`
 
 export default {
   CommentList,
+  CommentListTitle,
+  CommentListEmpty,
   ShowMoreCommentsButton,
   CommentForm,
   CommentInput,

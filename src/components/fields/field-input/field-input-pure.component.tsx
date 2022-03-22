@@ -19,6 +19,7 @@ interface Props {
   language: string;
   isOnlyOneSelectedLanguage: boolean;
   catalogId: string;
+  placeholder?: string;
 }
 
 export const InputFieldPure: FC<Props> = ({
@@ -29,7 +30,8 @@ export const InputFieldPure: FC<Props> = ({
   type,
   language,
   isOnlyOneSelectedLanguage,
-  catalogId
+  catalogId,
+  placeholder = ''
 }) => {
   const conceptForm = useAppSelector(state => state.conceptForm);
 
@@ -62,6 +64,7 @@ export const InputFieldPure: FC<Props> = ({
       )}
       <input
         {...field}
+        placeholder={placeholder}
         type={type}
         className='form-control'
         autoComplete='off'

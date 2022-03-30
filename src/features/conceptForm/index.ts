@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { Concept } from '../../types';
-import { getConcept, patchConcept } from '../../api/concept-catalogue-api';
+import { getConcept, patchConcept } from '../../api/concept-catalog-api';
 
 interface PatchAttributes {
   conceptId: string;

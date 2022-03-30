@@ -2,14 +2,14 @@
 A React (Typescript) application using webpack.
 
 # Run with docker
-## backend (concept-catalogue)
-git clone https://github.com/Informasjonsforvaltning/concept-catalogue
-cd concept-catalogue
+## backend (concept-catalog)
+git clone https://github.com/Informasjonsforvaltning/concept-catalog
+cd concept-catalog
 mvn clean install
 
-## frontend (concept-catalogue-gui)
-git clone https://github.com/Informasjonsforvaltning/concept-catalogue-gui
-cd concept-catalogue-gui
+## frontend (concept-catalog-gui)
+git clone https://github.com/Informasjonsforvaltning/concept-catalog-gui
+cd concept-catalog-gui
 docker-compose up -d --build
 
 Open browser localhost:8083 
@@ -26,19 +26,19 @@ npm run build
 * https://hackernoon.com/react-with-typescript-and-webpack-654f93f34db6
 
 ## exec/run container
-* docker-compose exec concept-catalogue-gui sh
-* docker-compose exec concept-catalogue-gui sh
+* docker-compose exec concept-catalog-gui sh
+* docker-compose exec concept-catalog-gui sh
 
 ## Log from container
-docker-compose logs -f concept-catalogue-gui
+docker-compose logs -f concept-catalog-gui
 
 ## Build in container
 docker-compose down ; 
-docker-compose build concept-catalogue-gui ; 
+docker-compose build concept-catalog-gui ; 
 docker-compose up -d
 
 ## Run command in container
-docker-compose exec concept-catalogue-gui sh -c "pm2 restart stop
+docker-compose exec concept-catalog-gui sh -c "pm2 restart stop
 
 ## Editing server/view/index.ejs
 For changes to take effect you need to delete the concept-client image and restart it.

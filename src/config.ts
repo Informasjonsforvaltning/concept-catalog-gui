@@ -13,7 +13,7 @@ const env = (window as any).env || {
 //   'https://registrering-begrep-api.staging.fellesdatakatalog.digdir.no';
 // env.SSO_HOST = 'https://sso.staging.fellesdatakatalog.digdir.no';
 // env.ORGANIZATION_API =
-//   'https://organization-catalogue.staging.fellesdatakatalog.digdir.no';
+//   'https://organization-catalog.staging.fellesdatakatalog.digdir.no';
 // env.CONCEPT_API = 'https://www.staging.fellesdatakatalog.digdir.no';
 // env.SEARCH_FULLTEXT_HOST = 'https://search.staging.fellesdatakatalog.digdir.no';
 // env.SEARCH_HOST = 'https://www.staging.fellesdatakatalog.digdir.no';
@@ -25,7 +25,7 @@ const env = (window as any).env || {
 const config = {
   auth: {
     oidcIssuer: `${env.SSO_HOST}/auth/realms/fdk`,
-    oidcClientId: 'concept-catalogue-gui'
+    oidcClientId: 'concept-catalog-gui'
   },
 
   // frontend hosts
@@ -33,7 +33,7 @@ const config = {
     env.REGISTRATION_HOST || 'https://registrering.fellesdatakatalog.digdir.no',
 
   // api modules
-  conceptCatalogueApi: {
+  conceptCatalogApi: {
     host:
       env.CONCEPT_REGISTRATION_API ||
       'https://begrep-registrering.fellesdatakatalog.digdir.no'

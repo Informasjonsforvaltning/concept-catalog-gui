@@ -10,14 +10,14 @@ services:
       - "5432"
 
 
-  concept-catalogue:
-    image: dcatno/concept-catalogue:latest
+  concept-catalog:
+    image: dcatno/concept-catalog:latest
     expose:
       - "8080"
     depends_on:
       - postgres
 
-  concept-catalogue-gui:
-    image: dcatno/concept-catalogue-gui:latest
+  concept-catalog-gui:
+    image: dcatno/concept-catalog-gui:latest
     expose:
       - "8080"

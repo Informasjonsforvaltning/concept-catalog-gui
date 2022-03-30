@@ -7,7 +7,7 @@ import { ConceptTitle } from './concept-title/concept-title.component';
 import {
   postConcept,
   getConceptsForCatalog
-} from '../../api/concept-catalogue-api';
+} from '../../api/concept-catalog-api';
 
 import { Can } from '../../casl/Can';
 import { ImportConceptButton } from '../../components/import-concept-button/import-concept-button.component';

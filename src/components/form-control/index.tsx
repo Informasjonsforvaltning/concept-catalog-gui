@@ -7,7 +7,7 @@ import { formatTime } from '../../utils/date';
 import { useAppDispatch, useAppSelector } from '../../app/redux/hooks';
 import { localization } from '../../lib/localization';
 import { patchConceptFromForm } from '../../lib/patchConceptForm';
-import { deleteConcept } from '../../api/concept-catalogue-api';
+import { deleteConcept } from '../../api/concept-catalog-api';
 import ConfirmDialog from '../confirm-dialog';
 
 import SC from './styled';

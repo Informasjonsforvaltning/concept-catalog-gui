@@ -2,7 +2,7 @@ import { readString } from 'react-papaparse';
 import {
   getConceptsForCatalog,
   importConcepts
-} from '../../api/concept-catalogue-api';
+} from '../../api/concept-catalog-api';
 import {
   Concept,
   ImportErrorMessage,

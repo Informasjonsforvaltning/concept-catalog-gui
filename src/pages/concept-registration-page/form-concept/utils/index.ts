@@ -1,6 +1,6 @@
 import { patchConceptFromForm } from '../../../../lib/patchConceptForm';
 import { validateConceptForm } from '../../../../lib/validateConceptForm';
-import { postConceptRevision } from '../../../../api/concept-catalogue-api';
+import { postConceptRevision } from '../../../../api/concept-catalog-api';
 
 import { schema } from '../form-concept.schema';
 

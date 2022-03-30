@@ -16,9 +16,9 @@ const extractResourseId = response =>
 const extractJsonBody = response => response.data;
 
 /* low level api */
-const conceptCatalogueApiRaw = async (method, path, data?) =>
+const conceptCatalogApiRaw = async (method, path, data?) =>
   axios({
-    url: `${getConfig().conceptCatalogueApi.host}${path}`,
+    url: `${getConfig().conceptCatalogApi.host}${path}`,
     method,
     data,
     headers: {
@@ -26,17 +26,17 @@ const conceptCatalogueApiRaw = async (method, path, data?) =>
     }
   });
 
-const conceptCatalogueApiPost = (path, body) =>
-  conceptCatalogueApiRaw('POST', path, body).then(extractResourseId);
+const conceptCatalogApiPost = (path, body) =>
+  conceptCatalogApiRaw('POST', path, body).then(extractResourseId);
 
-const conceptCatalogueApiGet = path =>
-  conceptCatalogueApiRaw('GET', path).then(extractJsonBody);
+const conceptCatalogApiGet = path =>
+  conceptCatalogApiRaw('GET', path).then(extractJsonBody);
 
-const conceptCatalogueApiPatch = (path, body) =>
-  conceptCatalogueApiRaw('PATCH', path, body).then(extractJsonBody);
+const conceptCatalogApiPatch = (path, body) =>
+  conceptCatalogApiRaw('PATCH', path, body).then(extractJsonBody);
 
-const conceptCatalogueApiDelete = path =>
-  conceptCatalogueApiRaw('DELETE', path).then(() => {});
+const conceptCatalogApiDelete = path =>
+  conceptCatalogApiRaw('DELETE', path).then(() => {});
 
 const conceptListPath = '/begreper';
 
@@ -51,27 +51,27 @@ const collectionsPath = '/begrepssamlinger';
 /* high level api */
 
 export const getCollections = (): Promise<Collection[]> =>
-  conceptCatalogueApiGet(collectionsPath);
+  conceptCatalogApiGet(collectionsPath);
 
 export const getConcept = (catalogId): Promise<Concept> =>
-  conceptCatalogueApiGet(conceptPath(catalogId));
+  conceptCatalogApiGet(conceptPath(catalogId));
 
 export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
-  conceptCatalogueApiGet(
+  conceptCatalogApiGet(
     `${conceptListPath}?orgNummer=${catalogId}`
   ) as Promise<Concept[]>;
 
 export const postConcept = (body): Promise<void> =>
-  conceptCatalogueApiPost(conceptListPath, body);
+  conceptCatalogApiPost(conceptListPath, body);
 
 export const postConceptRevision = (id: string, body): Promise<void> =>
-  conceptCatalogueApiPost(conceptRevisionPath(id), body);
+  conceptCatalogApiPost(conceptRevisionPath(id), body);
 
 export const importConcepts = async (
   body: Array<Omit<Concept, 'id'>>
 ): Promise<void> => {
   try {
-    return await conceptCatalogueApiPost(conceptListImportPath, body);
+    return await conceptCatalogApiPost(conceptListImportPath, body);
   } catch (error: any) {
     throw new ImportError(
       error?.response?.data?.message ?? error.message,
@@ -81,7 +81,7 @@ export const importConcepts = async (
 };
 
 export const patchConcept = (conceptId, patch): Promise<Concept> =>
-  conceptCatalogueApiPatch(conceptPath(conceptId), patch);
+  conceptCatalogApiPatch(conceptPath(conceptId), patch);
 
 export const deleteConcept = (conceptId: string): Promise<void> =>
-  conceptCatalogueApiDelete(conceptPath(conceptId));
+  conceptCatalogApiDelete(conceptPath(conceptId));

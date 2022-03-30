@@ -13,7 +13,7 @@ services:
 
   ### java modules
 
-  concept-catalogue:
+  concept-catalog:
     ports:
       - "8200:8080"
     environment:
@@ -26,9 +26,9 @@ services:
 
   ### nodejs modules
 
-  concept-catalogue-gui:
+  concept-catalog-gui:
     #interestingly, if multiple docker-compose files are combined, then "." gets wrong value
-    build: ../concept-catalogue-gui
+    build: ../concept-catalog-gui
     ports:
       - "8202:8080"
     environment:

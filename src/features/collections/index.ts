@@ -6,7 +6,7 @@ import {
 
 import { Collection } from '../../types';
 import type { RootState } from '../../app/redux/store';
-import { getCollections } from '../../api/concept-catalogue-api';
+import { getCollections } from '../../api/concept-catalog-api';
 
 export const fetchCollections = createAsyncThunk<Collection[]>(
   'collections/fetchCollections',

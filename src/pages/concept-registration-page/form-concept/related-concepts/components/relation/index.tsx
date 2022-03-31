@@ -109,7 +109,7 @@ const RelationItem: FC<Props> = ({
   const handleChangeOptionValue = (form, fieldName, option) => {
     if (
       option?.value === RelationType.OVERORDNET ||
-      option?.value === RelationType.ER_DEL_AV
+      option?.value === RelationType.OMFATTER
     ) {
       setFilterSuggestionsByCatalogId(true);
       form.setFieldValue(

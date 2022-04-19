@@ -76,7 +76,7 @@ export const nb = {
   langChoose: 'Velg språk',
   ENG: 'Vis engelsk (en)',
   NO_NB: 'Vis norsk bokmål (nb)',
-  NO_NN: 'Vis norsk nynorks (nn)',
+  NO_NN: 'Vis norsk nynorsk (nn)',
   expand: 'Åpne alle felter',
   collapse: 'Lukk alle felter',
   formValidity: 'Gyldighet',

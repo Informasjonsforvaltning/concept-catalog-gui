@@ -50,8 +50,10 @@ const FormControl: FC<Props> = ({
   const toggleShowConfirmDelete = (): void =>
     setShowConfirmDelete(!showConfirmDelete);
 
-  const { catalogId, conceptId } =
-    useParams<{ catalogId: string; conceptId: string }>();
+  const { catalogId, conceptId } = useParams<{
+    catalogId: string;
+    conceptId: string;
+  }>();
   const history = useHistory();
   const dispatch = useAppDispatch();
   const conceptForm = useAppSelector(state => state.conceptForm);

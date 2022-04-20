@@ -57,9 +57,9 @@ export const getConcept = (catalogId): Promise<Concept> =>
   conceptCatalogApiGet(conceptPath(catalogId));
 
 export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
-  conceptCatalogApiGet(
-    `${conceptListPath}?orgNummer=${catalogId}`
-  ) as Promise<Concept[]>;
+  conceptCatalogApiGet(`${conceptListPath}?orgNummer=${catalogId}`) as Promise<
+    Concept[]
+  >;
 
 export const postConcept = (body): Promise<void> =>
   conceptCatalogApiPost(conceptListPath, body);

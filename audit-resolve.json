@@ -164,6 +164,16 @@
       "decision": "ignore",
       "madeAt": 1649681110512,
       "expiresAt": 1652273099586
+    },
+    "1070022|recompose>fbjs>isomorphic-fetch>node-fetch": {
+      "decision": "ignore",
+      "madeAt": 1650451613000,
+      "expiresAt": 1653043601395
+    },
+    "1070162|recompose>fbjs>isomorphic-fetch>node-fetch": {
+      "decision": "ignore",
+      "madeAt": 1650451613000,
+      "expiresAt": 1653043601395
     }
   },
   "rules": {},

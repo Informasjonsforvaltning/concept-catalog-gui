@@ -98,7 +98,7 @@
     "@types/enzyme": "^3.10.12",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^27.4.1",
-    "@types/luxon": "^1.27.1",
+    "@types/luxon": "^2.3.1",
     "@types/node": "^12.20.48",
     "@types/react": "^17.0.44",
     "@types/react-autosuggest": "^10.1.5",

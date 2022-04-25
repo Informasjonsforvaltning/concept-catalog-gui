@@ -111,7 +111,7 @@ export const nb = {
   enterFullName: "Oppgi fullt navn",
   replacedBy: 'Erstattes av',
   relation: 'Relasjon',
-  relationType: 'Type relasjon',
+  relationType: 'Nivå',
   description: 'Beskrivelse',
   relatedConcept: 'Relatert begrep',
   generic: 'Generisk',

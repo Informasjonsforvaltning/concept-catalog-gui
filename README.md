@@ -17,6 +17,9 @@ Open browser localhost:8083
 # Run with node (TODO)
 SOME_VAR=https://backend npm start
 
+# Run on host
+Remember to uncomment section "use staging" in config.js to access endpoints in staging.
+
 # Build for prod (creating dist folder)
 npm run build
 

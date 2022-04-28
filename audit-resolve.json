@@ -174,6 +174,11 @@
       "decision": "ignore",
       "madeAt": 1650451613000,
       "expiresAt": 1653043601395
+    },
+    "1070245|@fellesdatakatalog/internal-footer>@skatteetaten/frontend-components>moment": {
+      "decision": "ignore",
+      "madeAt": 1651134746037,
+      "expiresAt": 1653726741539
     }
   },
   "rules": {},

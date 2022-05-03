@@ -9,8 +9,6 @@ images
 .huskyrc
 .lintstagedrc
 
-Dockerfile
-
 *.yml
 *.sh
 *.conf

@@ -11,10 +11,10 @@ RUN npm set progress=false && \
   npm ci
 RUN check-audit --production --audit-level=moderate
 
-COPY babel.config.js tsconfig.json tsconfig.webpack.json jest.config.js ./
+COPY babel.config.js tsconfig.json tsconfig.webpack.json jest.config.js .eslintignore .eslintrc.json ./
 COPY webpack ./webpack
-COPY src ./src
 COPY test ./test
+COPY src ./src
 
 RUN npm test
 RUN npm run build:dev

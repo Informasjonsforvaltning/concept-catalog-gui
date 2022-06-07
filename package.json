@@ -54,7 +54,7 @@
     "buffer": "^6.0.3",
     "classnames": "^2.3.1",
     "clean-deep": "^3.4.0",
-    "core-js": "^3.22.1",
+    "core-js": "^3.22.8",
     "fast-json-patch": "^3.1.1",
     "font-awesome": "^4.7.0",
     "formik": "^2.2.9",

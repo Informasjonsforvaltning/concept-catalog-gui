@@ -150,7 +150,7 @@
     "react-refresh": "^0.10.0",
     "react-svg-loader": "^3.0.3",
     "resolve-url-loader": "^5.0.0",
-    "sass-loader": "^12.6.0",
+    "sass-loader": "^13.0.0",
     "source-map-loader": "^3.0.1",
     "standard-version": "^9.5.0",
     "ts-jest": "^27.1.4",

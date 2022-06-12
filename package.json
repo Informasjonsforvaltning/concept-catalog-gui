@@ -71,7 +71,7 @@
     "react-dom": "^17.0.2",
     "react-localization": "^1.0.19",
     "react-papaparse": "^3.17.2",
-    "react-redux": "^7.2.8",
+    "react-redux": "^8.0.2",
     "react-resolver": "^3.1.2",
     "react-router-breadcrumbs-hoc": "^4.1.0",
     "react-router-dom": "^5.3.1",

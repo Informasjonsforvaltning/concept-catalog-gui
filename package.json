@@ -133,7 +133,7 @@
     "eslint-plugin-markdown": "^2.2.1",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.4.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",

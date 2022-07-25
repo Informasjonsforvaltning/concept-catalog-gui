@@ -167,13 +167,13 @@
     },
     "1070022|recompose>fbjs>isomorphic-fetch>node-fetch": {
       "decision": "ignore",
-      "madeAt": 1654599140854,
-      "expiresAt": 1657191135673
+      "madeAt": 1658743545959,
+      "expiresAt": 1661335541790
     },
     "1070162|recompose>fbjs>isomorphic-fetch>node-fetch": {
       "decision": "ignore",
-      "madeAt": 1654599140854,
-      "expiresAt": 1657191135673
+      "madeAt": 1658743545959,
+      "expiresAt": 1661335541790
     },
     "1070245|@fellesdatakatalog/internal-footer>@skatteetaten/frontend-components>moment": {
       "decision": "ignore",
@@ -182,8 +182,23 @@
     },
     "1070415|react-svg-loader>react-svg-core>svgo>css-select>nth-check": {
       "decision": "ignore",
-      "madeAt": 1654599143460,
-      "expiresAt": 1657191135673
+      "madeAt": 1658743547500,
+      "expiresAt": 1661335541790
+    },
+    "1081698|html-webpack-plugin>html-minifier-terser>terser": {
+      "decision": "ignore",
+      "madeAt": 1658741999991,
+      "expiresAt": 1661333994361
+    },
+    "1081008|@fellesdatakatalog/internal-footer>@skatteetaten/frontend-components>moment": {
+      "decision": "ignore",
+      "madeAt": 1658742001821,
+      "expiresAt": 1661333994361
+    },
+    "1081480|node-sass>sass-graph>scss-tokenizer": {
+      "decision": "ignore",
+      "madeAt": 1658742003748,
+      "expiresAt": 1661333994361
     }
   },
   "rules": {},

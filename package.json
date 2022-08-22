@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@casl/ability": "^3.4.0",
-    "@casl/react": "^1.0.4",
+    "@casl/react": "^3.0.1",
     "@fellesdatakatalog/button": "^0.2.7",
     "@fellesdatakatalog/internal-footer": "^0.3.13",
     "@fellesdatakatalog/internal-header": "^0.5.4",

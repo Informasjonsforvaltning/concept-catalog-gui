@@ -70,7 +70,7 @@
     "react-datepicker": "^4.7.0",
     "react-dom": "^17.0.2",
     "react-localization": "^1.0.19",
-    "react-papaparse": "^3.17.2",
+    "react-papaparse": "^4.1.0",
     "react-redux": "^8.0.2",
     "react-resolver": "^3.1.2",
     "react-router-breadcrumbs-hoc": "^4.1.0",

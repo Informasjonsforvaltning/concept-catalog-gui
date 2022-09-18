@@ -47,7 +47,7 @@
     "@fellesdatakatalog/internal-footer": "^0.3.13",
     "@fellesdatakatalog/internal-header": "^0.5.4",
     "@fellesdatakatalog/link": "^0.2.10",
-    "@fellesdatakatalog/theme": "^0.4.4",
+    "@fellesdatakatalog/theme": "^0.5.1",
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",
     "bootstrap": "^5.1.3",

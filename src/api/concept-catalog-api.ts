@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Collection, Concept } from '../types';
+import { Collection, Concept, SearchOperation } from '../types';
 
 import ImportError from '../domain/ImportError';
 
@@ -65,12 +65,12 @@ export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
 
 export const searchConceptsForCatalog = (
   catalogId,
-  SearchQuery
+  searchOperation: SearchOperation
 ): Promise<Concept[]> =>
   conceptCatalogApiRaw(
     'POST',
     `${conceptSearchPath}?orgNummer=${catalogId}`,
-    SearchQuery
+    searchOperation
   ).then(extractJsonBody) as Promise<Concept[]>;
 
 export const postConcept = (body): Promise<void> =>

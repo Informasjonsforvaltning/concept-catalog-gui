@@ -21,6 +21,7 @@ import ErrorRow from '../../components/error-row';
 
 import SC from './styled';
 import { localization } from '../../lib/localization';
+import { ConceptStatus } from '../../types/enums';
 
 interface Props {
   history: any;
@@ -54,11 +55,19 @@ export const ConceptListPagePure = ({
   const [conceptImportSuccess, setConceptImportSuccess] = useState('');
   const [concepts, setConcepts] = useState<Concept[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
 
   const searchConcepts = async (query: string) => {
-    if (catalogId) {
+    if (catalogId && (query || statusFilter)) {
       setSearchQuery(query);
-      setConcepts(await searchConceptsForCatalog(catalogId, { query }));
+      setConcepts(
+        await searchConceptsForCatalog(catalogId, {
+          query: query || undefined,
+          filters: statusFilter
+            ? { status: { value: statusFilter } }
+            : undefined
+        })
+      );
     }
   };
 
@@ -71,6 +80,10 @@ export const ConceptListPagePure = ({
   useEffect(() => {
     init();
   }, []);
+
+  useEffect(() => {
+    searchConcepts(searchQuery);
+  }, [statusFilter]);
 
   return (
     <Root>
@@ -129,6 +142,17 @@ export const ConceptListPagePure = ({
         </Can>
         <div className='row mb-4'>
           <SearchBar placeholder='Søk etter begrep' onSearch={searchConcepts} />
+          <SC.StatusFilter
+            options={Object.keys(ConceptStatus).map(status => ({
+              value: ConceptStatus[status],
+              label: ConceptStatus[status]
+            }))}
+            isClearable
+            placeholder='Filtrer på status'
+            onChange={(option: any) => {
+              setStatusFilter(option?.value);
+            }}
+          />
         </div>
         <div className='row mb-5'>
           <ConceptList items={concepts} highlight={searchQuery} />

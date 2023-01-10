@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { Colour, theme } from '@fellesdatakatalog/theme';
 import Button from '@fellesdatakatalog/button';
+import Select from 'react-select';
 
 import ContainerSC from '../../components/container/styled';
 
@@ -36,4 +37,8 @@ const AddIcon = styled(AddIconBase)`
   }
 `;
 
-export default { Container, Row, AddConceptButton, AddIcon };
+const StatusFilter = styled(Select)`
+  width: auto;
+`;
+
+export default { Container, Row, AddConceptButton, AddIcon, StatusFilter };

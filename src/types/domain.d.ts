@@ -169,7 +169,15 @@ export interface Publisher {
   prefLabel?: TekstMedSpraakKode;
 }
 
-export interface SearchQuery {
-  query: string;
-  filters?: string[];
+export interface SearchOperation {
+  query?: string;
+  filters?: SearchFilters;
+}
+
+export interface SearchFilters {
+  status: SearchFilter;
+}
+
+export interface SearchFilter {
+  value: string;
 }

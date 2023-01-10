@@ -24,10 +24,15 @@ const SearchField = styled.input`
   }
 `;
 
+const SearchButton = styled.button`
+  border: 0;
+  background: transparent;
+`;
+
 const SearchIcon = styled(SearchSVG)`
   width: ${theme.fontSize('FS24')};
   height: ${theme.fontSize('FS24')};
   margin: ${theme.spacing('S10')};
 `;
 
-export default { SearchContainer, SearchField, SearchIcon };
+export default { SearchContainer, SearchField, SearchButton, SearchIcon };

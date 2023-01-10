@@ -48,6 +48,8 @@ const conceptPath = (conceptId): string => `${conceptListPath}/${conceptId}`;
 
 const collectionsPath = '/begrepssamlinger';
 
+const conceptSearchPath = '/begreper/search';
+
 /* high level api */
 
 export const getCollections = (): Promise<Collection[]> =>
@@ -60,6 +62,16 @@ export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
   conceptCatalogApiGet(`${conceptListPath}?orgNummer=${catalogId}`) as Promise<
     Concept[]
   >;
+
+export const searchConceptsForCatalog = (
+  catalogId,
+  SearchQuery
+): Promise<Concept[]> =>
+  conceptCatalogApiRaw(
+    'POST',
+    `${conceptSearchPath}?orgNummer=${catalogId}`,
+    SearchQuery
+  ).then(extractJsonBody) as Promise<Concept[]>;
 
 export const postConcept = (body): Promise<void> =>
   conceptCatalogApiPost(conceptListPath, body);

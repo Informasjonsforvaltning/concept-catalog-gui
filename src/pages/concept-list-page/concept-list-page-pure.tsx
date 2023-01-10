@@ -6,13 +6,14 @@ import { ConceptList } from './concept-list/components/concept-list';
 import { ConceptTitle } from './concept-title/concept-title.component';
 import {
   postConcept,
-  getConceptsForCatalog
+  getConceptsForCatalog,
+  searchConceptsForCatalog
 } from '../../api/concept-catalog-api';
 
 import { Can } from '../../casl/Can';
 import { ImportConceptButton } from '../../components/import-concept-button/import-concept-button.component';
 import { mapConcepts } from '../../app/reducers/conceptMapper';
-import { Concept, ImportErrorMessage, Navn } from '../../types';
+import { Concept, ImportErrorMessage } from '../../types';
 
 import Root from '../../components/root';
 import SearchBar from '../../components/search-bar';
@@ -52,29 +53,13 @@ export const ConceptListPagePure = ({
   });
   const [conceptImportSuccess, setConceptImportSuccess] = useState('');
   const [concepts, setConcepts] = useState<Concept[]>([]);
-  const [filteredConcepts, setFilteredConcepts] = useState<Concept[]>([]);
-  const [previousQuery, setPreviousQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const multiLangMatch = (query: string, { nb, nn, en }: Navn): boolean => {
-    const regex = new RegExp(`\\b${query}\\w*`, 'i');
-    return (
-      (typeof nb === 'string' && nb.match(regex) != null) ||
-      (typeof nn === 'string' && nn.match(regex) != null) ||
-      (typeof en === 'string' && en.match(regex) != null)
-    );
-  };
-
-  const filterConcepts = (query: string) => {
-    const isExtension =
-      previousQuery.length > 0 && query.slice(0, -1) === previousQuery;
-
-    setFilteredConcepts(
-      (isExtension ? filteredConcepts : concepts).filter(
-        ({ anbefaltTerm }) =>
-          anbefaltTerm?.navn && multiLangMatch(query, anbefaltTerm.navn)
-      )
-    );
-    setPreviousQuery(query);
+  const searchConcepts = async (query: string) => {
+    if (catalogId) {
+      setSearchQuery(query);
+      setConcepts(await searchConceptsForCatalog(catalogId, { query }));
+    }
   };
 
   const init = async () => {
@@ -97,7 +82,7 @@ export const ConceptListPagePure = ({
           I='create a concept'
           of={{ __type: 'Concept', publisher: catalogId }}
         >
-          <div className='d-flex flex-row justify-content-start align-items-center row mb-4'>
+          <div className='d-flex flex-row  justify-content-start align-items-center row mb-4'>
             <div>
               <SC.AddConceptButton
                 onClick={() =>
@@ -107,8 +92,6 @@ export const ConceptListPagePure = ({
                 <SC.AddIcon />
                 {localization.addNewConcept}
               </SC.AddConceptButton>
-            </div>
-            <div className='p-2'>
               <ImportConceptButton
                 onUpload={event =>
                   mapConcepts(
@@ -121,6 +104,7 @@ export const ConceptListPagePure = ({
                 }
               />
             </div>
+            <div className='p-2' />
             <div className='p-2'>
               <Link
                 href='https://informasjonsforvaltning.github.io/felles-datakatalog/begrepskatalog/hvordan_publisere/'
@@ -144,12 +128,10 @@ export const ConceptListPagePure = ({
           )}
         </Can>
         <div className='row mb-4'>
-          <SearchBar placeholder='Søk etter begrep' onChange={filterConcepts} />
+          <SearchBar placeholder='Søk etter begrep' onSearch={searchConcepts} />
         </div>
-        <div className='row mb-2'>
-          <ConceptList
-            items={previousQuery.length > 0 ? filteredConcepts : concepts}
-          />
+        <div className='row mb-5'>
+          <ConceptList items={concepts} highlight={searchQuery} />
         </div>
       </SC.Container>
     </Root>

@@ -168,3 +168,8 @@ export interface Publisher {
   name?: string;
   prefLabel?: TekstMedSpraakKode;
 }
+
+export interface SearchQuery {
+  query: string;
+  filters?: string[];
+}

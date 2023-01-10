@@ -15,9 +15,10 @@ import CollapseItem from '../concept-list-collapse-item';
 
 interface Props {
   items: Concept[];
+  highlight?: string;
 }
 
-export const ConceptList: FC<Props> = ({ items }) => {
+export const ConceptList: FC<Props> = ({ items, highlight }) => {
   const [sortField, setSortField] = useState<string>(ConceptField.MODIFY_TIME);
   const [sortDirection, setSortDirection] = useState<SortDirection>(
     SortDirection.ASC
@@ -55,7 +56,11 @@ export const ConceptList: FC<Props> = ({ items }) => {
                   )}
               />
             ) : (
-              <ListItem key={`${concept?.id}-${index}`} concept={concept} />
+              <ListItem
+                key={`${concept?.id}-${index}`}
+                concept={concept}
+                highlight={highlight}
+              />
             )
           )}
     </div>

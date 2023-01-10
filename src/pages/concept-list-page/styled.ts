@@ -18,6 +18,7 @@ const Row = styled.div`
 const AddConceptButton = styled(Button)`
   background-color: ${theme.colour(Colour.GREEN, 'G60')};
   margin-right: ${theme.spacing('S10')};
+  display: inline;
 
   &:hover {
     background-color: ${theme.colour(Colour.GREEN, 'G55')};

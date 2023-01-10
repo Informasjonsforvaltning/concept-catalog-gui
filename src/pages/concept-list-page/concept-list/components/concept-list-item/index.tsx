@@ -13,6 +13,7 @@ import { localization } from '../../../../../lib/localization';
 import { getTranslateText } from '../../../../../lib/translateText';
 
 import SC from './styled';
+import { highlightText } from '../../../../../utils/text';
 
 interface RouteParams {
   catalogId: string;
@@ -20,6 +21,7 @@ interface RouteParams {
 
 interface ExternalProps {
   concept: Concept;
+  highlight?: string;
 }
 interface Props extends ExternalProps, RouteComponentProps<RouteParams> {}
 
@@ -73,7 +75,8 @@ const ListItem: FC<Props> = ({
   concept,
   match: {
     params: { catalogId }
-  }
+  },
+  highlight
 }) => {
   if (!concept) {
     return null;
@@ -81,7 +84,14 @@ const ListItem: FC<Props> = ({
 
   return (
     <SC.ListItem to={`${catalogId}/${concept.id}`} as={RouterLink}>
-      <SC.Column>{getTranslateText(concept.anbefaltTerm?.navn)}</SC.Column>
+      <SC.Column
+        dangerouslySetInnerHTML={{
+          __html: highlightText(
+            getTranslateText(concept.anbefaltTerm?.navn),
+            highlight
+          )
+        }}
+      />
       <SC.Column>{getTranslateText(concept.tildeltBruker?.id)}</SC.Column>
       <SC.Column>
         {concept.endringslogelement?.endringstidspunkt &&

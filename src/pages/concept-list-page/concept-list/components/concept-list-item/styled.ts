@@ -12,6 +12,7 @@ const ListItem = styled(Link)`
   background-color: ${theme.colour(Colour.NEUTRAL, 'N0')};
   color: ${theme.colour(Colour.NEUTRAL, 'N70')};
   display: flex;
+  flex-direction: column;
   margin-bottom: 0.25em;
   border-radius: 3px;
   padding: ${theme.spacing('S12')} ${theme.spacing('S16')};
@@ -20,6 +21,12 @@ const ListItem = styled(Link)`
   &:hover {
     background-color: ${theme.colour(Colour.NEUTRAL, 'N10')};
   }
+`;
+
+const ListItemRow = styled.div`
+  align-items: center;
+  display: flex;
+  width: 100%;
 `;
 
 const Column = styled.div`
@@ -96,6 +103,7 @@ const HearingIcon = styled(HearingIconBase)`
 
 export default {
   ListItem,
+  ListItemRow,
   Column,
   DraftIcon,
   PublishedIcon,

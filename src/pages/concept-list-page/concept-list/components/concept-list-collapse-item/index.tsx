@@ -9,12 +9,14 @@ import { localization } from '../../../../../lib/localization';
 import ListItem from '../concept-list-item';
 
 import SC from './styled';
+import { highlightText } from '../../../../../utils/text';
 
 interface Props {
   concepts: Concept[];
+  highlight?: string;
 }
 
-const CollapseItem: FC<Props> = ({ concepts }) => {
+const CollapseItem: FC<Props> = ({ concepts, highlight }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const highestPublishedVersionConcept = concepts.find(
     ({ erSistPublisert }) => erSistPublisert
@@ -32,9 +34,16 @@ const CollapseItem: FC<Props> = ({ concepts }) => {
   return (
     <SC.CollapseItem type='button' onClick={() => setIsOpen(!isOpen)}>
       <SC.CollapseItemHeader>
-        <SC.Column>
-          {getTranslateText(highestPublishedVersionConcept?.anbefaltTerm?.navn)}
-        </SC.Column>
+        <SC.Column
+          dangerouslySetInnerHTML={{
+            __html: highlightText(
+              getTranslateText(
+                highestPublishedVersionConcept?.anbefaltTerm?.navn
+              ),
+              highlight
+            )
+          }}
+        />
         <SC.Column>
           {getTranslateText(highestPublishedVersionConcept?.tildeltBruker?.id)}
         </SC.Column>
@@ -66,7 +75,7 @@ const CollapseItem: FC<Props> = ({ concepts }) => {
       </SC.CollapseItemHeader>
       <SC.Collapse isOpen={isOpen}>
         {concepts.map((concept, index) => (
-          <ListItem key={index} concept={concept} />
+          <ListItem key={index} concept={concept} highlight={highlight} />
         ))}
       </SC.Collapse>
     </SC.CollapseItem>

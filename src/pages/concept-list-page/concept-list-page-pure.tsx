@@ -56,19 +56,35 @@ export const ConceptListPagePure = ({
   const [concepts, setConcepts] = useState<Concept[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
+  const [onlyCurrentVersions, setOnlyCurrentVersions] = useState(false);
+  const [searchInTitleOnly, setSearchInTitleOnly] = useState(false);
 
   const searchConcepts = async (query: string) => {
-    if (catalogId && (query || statusFilter)) {
+    if (catalogId) {
       setSearchQuery(query);
-      setConcepts(
-        await searchConceptsForCatalog(catalogId, {
-          query: query || undefined,
-          filters: statusFilter
-            ? { status: { value: statusFilter } }
-            : undefined
-        })
-      );
+      if (query || statusFilter) {
+        setConcepts(
+          await searchConceptsForCatalog(catalogId, {
+            query: query || undefined,
+            searchInTitleOnly,
+            filters: {
+              status: statusFilter ? { value: statusFilter } : undefined,
+              onlyCurrentVersions
+            }
+          })
+        );
+      } else {
+        setConcepts(await getConceptsForCatalog(catalogId));
+      }
     }
+  };
+
+  const handleChangeOnlyCurrentVersions = () => {
+    setOnlyCurrentVersions(current => !current);
+  };
+
+  const handleChangeSearchInTitleOnly = () => {
+    setSearchInTitleOnly(current => !current);
   };
 
   const init = async () => {
@@ -83,7 +99,7 @@ export const ConceptListPagePure = ({
 
   useEffect(() => {
     searchConcepts(searchQuery);
-  }, [statusFilter]);
+  }, [statusFilter, onlyCurrentVersions, searchInTitleOnly]);
 
   return (
     <Root>
@@ -153,6 +169,32 @@ export const ConceptListPagePure = ({
               setStatusFilter(option?.value);
             }}
           />
+        </div>
+        <div className='row mb-4'>
+          <div className='form-check'>
+            <input
+              id='onlyCurrentVersions'
+              type='checkbox'
+              className='form-check-input'
+              onChange={handleChangeOnlyCurrentVersions}
+              checked={onlyCurrentVersions}
+            />
+            <label className='form-check-label' htmlFor='onlyCurrentVersions'>
+              Søk kun i siste versjon eller utkast
+            </label>
+          </div>
+          <div className='form-check'>
+            <input
+              id='searchInTitleOnly'
+              type='checkbox'
+              className='form-check-input'
+              onChange={handleChangeSearchInTitleOnly}
+              checked={searchInTitleOnly}
+            />
+            <label className='form-check-label' htmlFor='searchInTitleOnly'>
+              Søk kun i tittel
+            </label>
+          </div>
         </div>
         <div className='row mb-5'>
           <ConceptList items={concepts} highlight={searchQuery} />

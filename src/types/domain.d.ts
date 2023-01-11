@@ -172,10 +172,12 @@ export interface Publisher {
 export interface SearchOperation {
   query?: string;
   filters?: SearchFilters;
+  searchInTitleOnly?: boolean;
 }
 
 export interface SearchFilters {
-  status: SearchFilter;
+  status?: SearchFilter;
+  onlyCurrentVersions: boolean;
 }
 
 export interface SearchFilter {

@@ -46,6 +46,7 @@ export const ConceptList: FC<Props> = ({ items, highlight }) => {
             hasConceptAnyRevisions(concept.originaltBegrep, items) ? (
               <CollapseItem
                 key={index}
+                highlight={highlight}
                 concepts={findRevisionsOfConcept(concept.originaltBegrep, items)
                   .sort(sortConceptsByKey(sortField, sortDirection))
                   .sort(

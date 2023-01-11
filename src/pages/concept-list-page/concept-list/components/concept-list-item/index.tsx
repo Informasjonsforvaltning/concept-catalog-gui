@@ -84,32 +84,49 @@ const ListItem: FC<Props> = ({
 
   return (
     <SC.ListItem to={`${catalogId}/${concept.id}`} as={RouterLink}>
-      <SC.Column
-        dangerouslySetInnerHTML={{
-          __html: highlightText(
-            getTranslateText(concept.anbefaltTerm?.navn),
-            highlight
-          )
-        }}
-      />
-      <SC.Column>{getTranslateText(concept.tildeltBruker?.id)}</SC.Column>
-      <SC.Column>
-        {concept.endringslogelement?.endringstidspunkt &&
-          DateTime.fromISO(
-            concept.endringslogelement?.endringstidspunkt
-          ).toLocaleString()}
-      </SC.Column>
-      <SC.Column>
-        {concept?.versjonsnr && (
-          <span>
-            {concept.versjonsnr?.major}.{concept.versjonsnr?.minor}.
-            {concept.versjonsnr?.patch}
-          </span>
-        )}
-      </SC.Column>
-      <SC.Column>
-        {getStatusIcon(concept.status, concept.erSistPublisert)}
-      </SC.Column>
+      <SC.ListItemRow>
+        <SC.Column
+          dangerouslySetInnerHTML={{
+            __html: highlightText(
+              getTranslateText(concept.anbefaltTerm?.navn),
+              highlight
+            )
+          }}
+        />
+        <SC.Column>{getTranslateText(concept.tildeltBruker?.id)}</SC.Column>
+        <SC.Column>
+          {concept.endringslogelement?.endringstidspunkt &&
+            DateTime.fromISO(
+              concept.endringslogelement?.endringstidspunkt
+            ).toLocaleString()}
+        </SC.Column>
+        <SC.Column>
+          {concept?.versjonsnr && (
+            <span>
+              {concept.versjonsnr?.major}.{concept.versjonsnr?.minor}.
+              {concept.versjonsnr?.patch}
+            </span>
+          )}
+        </SC.Column>
+        <SC.Column>
+          {getStatusIcon(concept.status, concept.erSistPublisert)}
+        </SC.Column>
+      </SC.ListItemRow>
+      <SC.ListItemRow>
+        <div className='mt-3'>
+          <strong>Definisjon:</strong>
+          <br />
+          <span
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: highlightText(
+                getTranslateText(concept.definisjon?.tekst),
+                highlight
+              )
+            }}
+          />
+        </div>
+      </SC.ListItemRow>
     </SC.ListItem>
   );
 };

@@ -1,5 +1,5 @@
 /* Facade for keycloak */
-import Keycloak, { KeycloakInitOptions, KeycloakInstance } from 'keycloak-js';
+import Keycloak, { KeycloakInitOptions } from 'keycloak-js';
 
 export interface ResourceRole {
   resource: string;
@@ -26,14 +26,14 @@ export interface User {
 }
 
 export class Auth {
-  private readonly kc: KeycloakInstance;
+  private readonly kc: Keycloak;
 
   constructor(private readonly conf: AuthConfiguration) {
     const [url, realm] = conf.oidcIssuer.split('/realms/');
     const kcConfig = { realm, url, clientId: conf.clientId };
 
     this.conf = conf;
-    this.kc = Keycloak(kcConfig);
+    this.kc = new Keycloak(kcConfig);
   }
 
   init: ({ loginRequired }: { loginRequired: boolean }) => Promise<boolean> =

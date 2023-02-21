@@ -17,7 +17,11 @@
     }
   ],
   "license": "Apache-2.0",
-  "private": true,
+  "private": true,  
+  "engines": {
+    "node": "18.14.1"
+  }
+  ,
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
     "start": "run-s start:webpack",
@@ -38,7 +42,8 @@
     "node-fetch": "^2.6.1",
     "ansi-regex": "^5.0.1",
     "nth-check": "^2.0.1",
-    "axios": "^0.21.4"
+    "axios": "^0.21.4",
+    "loader-utils": "1.4.2"
   },
   "dependencies": {
     "@casl/ability": "^3.4.0",
@@ -55,12 +60,13 @@
     "classnames": "^2.3.1",
     "clean-deep": "^3.4.0",
     "core-js": "^3.22.8",
+    "emojis-list": "^3.0.0",
     "fast-json-patch": "^3.1.1",
     "font-awesome": "^4.7.0",
     "formik": "^2.2.9",
     "is-url": "^1.2.4",
     "jquery": "^3.6.1",
-    "keycloak-js": "^19.0.2",
+    "keycloak-js": "^20.0.3",
     "lodash": "^4.17.19",
     "luxon": "^2.5.2",
     "path-browserify": "^1.0.1",

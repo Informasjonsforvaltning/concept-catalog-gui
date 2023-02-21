@@ -1,10 +1,8 @@
-import type { Configuration } from 'webpack';
-import { ProvidePlugin } from 'webpack';
+import { Configuration, ProvidePlugin } from 'webpack';
 import { resolve } from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const configuration: Configuration = {
@@ -12,7 +10,7 @@ const configuration: Configuration = {
     main: './src/entrypoints/main/index.tsx'
   },
   output: {
-    path: resolve(__dirname, '../dist'),
+    path: resolve(__dirname, '..', 'dist'),
     assetModuleFilename: 'images/[hash][ext][query]',
     publicPath: '/',
     clean: true
@@ -35,13 +33,13 @@ const configuration: Configuration = {
           {
             loader: 'babel-loader',
             options: {
-              configFile: resolve(__dirname, '../babel.config.js')
+              configFile: resolve(__dirname, '..', 'babel.config.js')
             }
           },
           {
             loader: 'ts-loader',
             options: {
-              configFile: resolve(__dirname, '../tsconfig.json')
+              configFile: resolve(__dirname, '..', 'tsconfig.json')
             }
           }
         ],
@@ -60,28 +58,27 @@ const configuration: Configuration = {
         ]
       },
       {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: 'babel-loader'
-          },
-          {
-            loader: 'react-svg-loader',
-            options: {
-              jsx: true
-            }
-          }
-        ],
-        include: [resolve(__dirname, '..', 'src', 'images')]
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: [{ loader: '@svgr/webpack', options: { icon: true } }]
       },
       {
         test: /\.(png|jpg|gif)$/,
-        type: 'asset/resource'
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images',
+              publicPath: 'images'
+            }
+          }
+        ]
       },
       {
         test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        type: 'asset/inline',
-        exclude: [resolve(__dirname, '..', 'src', 'images')]
+        loader: 'file-loader',
+        exclude: [resolve(__dirname, '..', 'src', 'utils', 'assets')]
       }
     ]
   },

@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ConceptList 1`] = `
+<div
+  className="d-flex flex-column flex-fill"
+>
+  <Memo(ConceptListHeader)
+    onSortField={[Function]}
+    sortDirection="asc"
+    sortField="endringslogelement.endringstidspunkt"
+  />
+  <withRouter(ListItem)
+    concept={
+      Object {
+        "anbefaltTerm": Object {
+          "navn": Object {
+            "en": "begrep med omfang en",
+            "nb": "begrep med omfang",
+            "nn": "begrep med omfang nn",
+          },
+        },
+        "ansvarligVirksomhet": Object {
+          "id": "910244132",
+          "navn": "RAMSUND OG ROGNAN REVISJON",
+          "orgPath": "/ANNET/910244132",
+          "prefLabel": "Brønnøysundregistrene",
+          "uri": "http://data.brreg.no/enhetsregisteret/enhet/910244132",
+        },
+        "bruksområde": Object {
+          "en": Array [
+            "Bruksområde lorem ipsum EN",
+            "Bruksområde lorem ipsum 2 EN",
+          ],
+          "nb": Array [
+            "Bruksområde lorem ipsum",
+          ],
+        },
+        "definisjon": Object {
+          "tekst": Object {
+            "en": "lorem ipsum EN",
+            "nb": "lorem ipsum",
+            "nn": "lorem ipsum NN",
+          },
+        },
+        "eksempel": Object {
+          "en": Array [
+            "Eksempel lorem ipsum EN.",
+          ],
+          "nb": Array [
+            "Eksempel lorem ipsum.",
+          ],
+          "nn": Array [
+            "Eksempel lorem ipsum NN.",
+          ],
+        },
+        "fagområde": Object {
+          "en": "Dokument EN",
+          "nb": "Dokument",
+          "nn": "Dokument NN",
+        },
+        "forholdTilKilde": "ForholdTilKilde lorem ipsum",
+        "frarådetTerm": Object {
+          "en": Array [
+            "discouraged 1 EN",
+            "discouraged 2 EN",
+          ],
+          "nb": Array [
+            "Frarådet term",
+            "Særs frarådet",
+          ],
+        },
+        "gyldigFom": "2019-03-30",
+        "id": "083c8716-6006-428f-be3b-39bc01dcc58b",
+        "kilde": "Forskrift om tinglysing § 11 tredje ledd og § 16 annet ledd bokstav e). _Forskrift 3. november 1995 nr. 875 om tinglysing_ https://lovdata.no/forskrift/1995-11-03-875",
+        "kontaktpunkt": Object {
+          "harEpost": "a@a.no",
+          "harTelefon": "12345678",
+        },
+        "merknad": Object {
+          "nb": Array [
+            "Lorem",
+          ],
+          "nn": Array [
+            "Lorem NN",
+          ],
+        },
+        "omfang": Object {
+          "tekst": "Tekst for omfang",
+          "uri": "uri for omfang",
+        },
+        "originaltBegrep": "083c8716-6006-428f-be3b-39bc01dcc58b",
+        "revisjonAv": "083c8716-6006-428f-be3b-39bc01dcc58b",
+        "seOgså": Array [],
+        "status": "utkast",
+        "tillattTerm": Object {
+          "en": Array [
+            "allowed 1 EN",
+            "allowed 2 EN",
+          ],
+          "nb": Array [
+            "Tillatt term",
+            "Et annet tillatt term",
+            "Et annet tillatt term",
+            "Et annet tillatt term",
+            "Et annet tillatt term",
+            "Et annet tillatt term",
+            "Et annet tillatt term",
+            "Et annet tillatt term",
+          ],
+        },
+        "versjonsnr": Object {
+          "major": 1,
+          "minor": 0,
+          "patch": 0,
+        },
+      }
+    }
+    key="083c8716-6006-428f-be3b-39bc01dcc58b-0"
+  />
+</div>
+`;

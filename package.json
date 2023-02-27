@@ -60,7 +60,7 @@
     "formik": "^2.2.9",
     "is-url": "^1.2.4",
     "jquery": "^3.6.1",
-    "keycloak-js": "^19.0.2",
+    "keycloak-js": "^20.0.3",
     "lodash": "^4.17.19",
     "luxon": "^2.5.2",
     "path-browserify": "^1.0.1",

@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import _ from 'lodash';
-import Footer from '@fellesdatakatalog/internal-footer';
+import Footer from '@fellesdatakatalog/external-footer';
 import Header from '@fellesdatakatalog/internal-header';
 import Link from '@fellesdatakatalog/link';
 

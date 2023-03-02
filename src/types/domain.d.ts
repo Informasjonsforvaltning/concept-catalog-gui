@@ -168,3 +168,10 @@ export interface Publisher {
   name?: string;
   prefLabel?: TekstMedSpraakKode;
 }
+
+export interface Updates {
+  createdDate: any;
+  id: string;
+  conceptId: string;
+  resourceId: string;
+}

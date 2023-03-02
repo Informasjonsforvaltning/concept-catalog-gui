@@ -8,4 +8,12 @@ const Container = styled(ContainerSC.Container)`
   padding-top: ${theme.spacing('S48')};
 `;
 
-export default { Container };
+const Label = styled.label`
+  margin-right: ${theme.spacing('S12')};
+
+  & > span {
+    margin-left: ${theme.spacing('S6')};
+  }
+`;
+
+export default { Container, Label };

@@ -171,6 +171,8 @@ export interface Publisher {
 
 export interface Updates {
   createdDate: any;
+  editedBy: string;
+  updateDescription: string;
   id: string;
   conceptId: string;
   resourceId: string;

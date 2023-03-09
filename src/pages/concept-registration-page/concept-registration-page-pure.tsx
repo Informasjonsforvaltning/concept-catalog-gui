@@ -95,15 +95,15 @@ const ConceptRegistrationPagePure: FC<Props> = ({
           />
           <span>Vis Kommentarer</span>
         </SC.Label>
-        <SC.Label key='Vis Historikk' htmlFor='showHistory'>
+        <SC.Label key='Endringslogg' htmlFor='showHistory'>
           <Checkbox
             id='showHistory'
-            title='Vis historikk'
+            title='Endringslogg'
             checked={showHistory}
             onChange={handleShowHistory}
             disabled={false}
           />
-          <span>Vis Historikk</span>
+          <span>Endringslogg</span>
         </SC.Label>
         {showComments && concept?.originaltBegrep && (
           <CommentList

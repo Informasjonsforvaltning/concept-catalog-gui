@@ -43,21 +43,6 @@ const History = ({}: HistoryProps) => {
       operations: 'Added a new attribute to the concept'
     }
   ];
-  // const [updates, setUpdates] = useState<Updates[]>([]);
-  // const [updates, setUpdates] = useState<Updates[]>(dummyData);
-
-  /*   useEffect(() => {
-    const fetchUpdates = async () => {
-      try {
-        const response = await getUpdateByConceptId(conceptId);
-        setUpdates(response.data);
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error);
-      }
-    };
-    fetchUpdates();
-  }, [conceptId]); */
 
   return (
     <div>

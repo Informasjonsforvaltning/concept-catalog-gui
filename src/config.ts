@@ -6,7 +6,7 @@ const env = (window as any).env || {
   ORGANIZATION_API: 'http://localhost:8140'
 };
 
-// use staging
+/* // use staging
 env.REGISTRATION_HOST =
   'https://registrering.staging.fellesdatakatalog.digdir.no';
 env.CONCEPT_REGISTRATION_API =
@@ -20,7 +20,7 @@ env.SEARCH_HOST = 'https://www.staging.fellesdatakatalog.digdir.no';
 env.ADMIN_GUI_HOST = 'https://admin.staging.fellesdatakatalog.digdir.no';
 env.CATALOG_COMMENTS_SERVICE_HOST =
   'https://catalog-comments.staging.fellesdatakatalog.digdir.no';
-env.USE_DEMO_LOGO = false;
+env.USE_DEMO_LOGO = false; */
 
 const config = {
   auth: {

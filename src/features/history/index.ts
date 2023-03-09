@@ -32,7 +32,7 @@ export const postupdateByConceptId = createAsyncThunk<Updates, UpdateProps>(
 );
 
 const updateAdapter = createEntityAdapter<Updates>({
-  sortComparer: (a, b) => a.createdDate.localeCompare(b.createdDate)
+  sortComparer: (a, b) => a.datetime.localeCompare(b.datetime)
 });
 
 const updateSlice = createSlice({

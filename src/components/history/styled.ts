@@ -11,7 +11,6 @@ export const Table = styled.table`
 `;
 
 export const TableHeader = styled.thead`
-  background-color: ${theme.colour(Colour.GREEN, 'G60')};
   color: ${theme.colour(Colour.NEUTRAL, 'N0')};
   font-size: ${theme.fontSize('FS20')};
   font-weight: ${theme.fontWeight('FW700')};
@@ -24,6 +23,12 @@ export const TableHeaderCell = styled.th`
   text-align: left;
   padding: 12px;
   border-bottom: 1px solid #ddd;
+  color: ${theme.colour(Colour.GREEN, 'G60')};
+`;
+
+export const HistoryTitle = styled.div`
+  font-size: ${theme.fontSize('FS20')};
+  color: ${theme.colour(Colour.GREEN, 'G60')};
 `;
 
 export const TableBody = styled.tbody``;

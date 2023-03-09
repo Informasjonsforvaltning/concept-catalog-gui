@@ -170,9 +170,9 @@ export interface Publisher {
 }
 
 export interface Updates {
-  createdDate: any;
-  editedBy: string;
-  updateDescription: string;
+  datetime: string;
+  person: string;
+  operations: string;
   id: string;
   conceptId: string;
   resourceId: string;

@@ -7,8 +7,9 @@ interface Props {
 }
 
 const CheckboxContainer = styled.div`
-  display: inline-block;
+  display: flex;
   vertical-align: middle;
+  align-items: center;
 `;
 
 const Icon = styled.svg`

@@ -10,6 +10,8 @@ const Container = styled(ContainerSC.Container)`
 
 const Label = styled.label`
   margin-right: ${theme.spacing('S12')};
+  display: flex;
+  align-items: center;
 
   & > span {
     margin-left: ${theme.spacing('S6')};

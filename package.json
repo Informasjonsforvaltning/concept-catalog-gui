@@ -78,7 +78,7 @@
     "react-select": "^5.4.0",
     "react-tagsinput": "^3.19.0",
     "react-test-renderer": "^18.2.0",
-    "reactstrap": "^9.1.1",
+    "reactstrap": "^9.1.8",
     "recompose": "^0.30.0",
     "regenerator-runtime": "^0.13.9",
     "sanitize-html": "^2.7.0",

@@ -2,9 +2,9 @@ import React, { FC, useState, useEffect } from 'react';
 import { compose } from '@reduxjs/toolkit';
 import { Form, FormikProps, WithFormikConfig, withFormik } from 'formik';
 import pick from 'lodash/pick';
-import debounce from 'lodash/debounce';
 import { Prompt, RouteComponentProps, withRouter } from 'react-router-dom';
 
+import { debounce } from 'lodash';
 import { Concept } from '../../../types';
 import { ConceptStatus } from '../../../types/enums';
 import { Can } from '../../../casl/Can';
@@ -27,7 +27,11 @@ import { Term } from './term/term.component';
 import { AllowedAndDiscouraged } from './allowed-and-discouraged-term/allowed-and-discouraged-term.component';
 import { UseOfTerm } from './use-of-concept/useOfConcept.component';
 import { ContactInfo } from './contactInfo/contactInfo.component';
-import { patchWithPreProcess, postWithPreProcess } from './utils';
+import {
+  patchWithPreProcess,
+  patchWithPreProcessAndValidation,
+  postWithPreProcess
+} from './utils';
 
 import { schema as validationSchema } from './form-concept.schema';
 
@@ -70,7 +74,9 @@ interface ExternalProps {
 interface Props
   extends ExternalProps,
     FormikProps<FormValues>,
-    RouteComponentProps<RouteParams> {}
+    RouteComponentProps<RouteParams> {
+  handleSave: (values: FormValues) => void;
+}
 
 export const FormConceptPure: FC<Props> = ({
   concept,
@@ -135,6 +141,10 @@ export const FormConceptPure: FC<Props> = ({
       history.push(`/${catalogId}/${resourceId}`);
     });
 
+  const handleSave = () => {
+    patchWithPreProcessAndValidation;
+  };
+
   return (
     <SC.Page>
       <Prompt
@@ -148,6 +158,7 @@ export const FormConceptPure: FC<Props> = ({
         of={{ __type: 'StatusBar', publisher: publisherId }}
       >
         <FormControl
+          handleSave={handleSave}
           isFormDirty={dirty}
           createNewConceptRevisionAndNavigate={
             createNewConceptRevisionAndNavigate
@@ -265,10 +276,12 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     begrepsRelasjon
   }),
   validationSchema,
-  validate: debounce(patchWithPreProcess, 500),
+  validate: debounce(patchWithPreProcess, 200),
   validateOnMount: true,
   validateOnBlur: false,
-  handleSubmit: () => {}
+  handleSubmit: (values, { props }) => {
+    props.handleSave(values);
+  }
 };
 
 export const FormConcept = compose<FC<ExternalProps>>(

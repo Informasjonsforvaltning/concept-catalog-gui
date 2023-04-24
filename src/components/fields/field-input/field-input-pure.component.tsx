@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import get from 'lodash/get';
 import isUrl from 'is-url';
 
@@ -12,6 +12,7 @@ interface Props {
   };
   form: {
     errors: any;
+    setFieldValue: (field: string, value: any) => void;
   };
   showLabel: boolean;
   label: string;
@@ -20,6 +21,7 @@ interface Props {
   isOnlyOneSelectedLanguage: boolean;
   catalogId: string;
   placeholder?: string;
+  handleInputChange: (fieldName: string, value: string) => void;
 }
 
 export const InputFieldPure: FC<Props> = ({
@@ -34,6 +36,12 @@ export const InputFieldPure: FC<Props> = ({
   placeholder = ''
 }) => {
   const conceptForm = useAppSelector(state => state.conceptForm);
+
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (_fieldName: string, value: string) => {
+    setInputValue(value);
+  };
 
   const renderReadOnlyField = () => (
     <div className='d-flex align-items-baseline mb-2'>
@@ -64,6 +72,11 @@ export const InputFieldPure: FC<Props> = ({
       )}
       <input
         {...field}
+        value={inputValue}
+        onChange={e => {
+          setInputValue(e.target.value);
+          handleInputChange(field.name, e.target.value); // Call handleInputChange here
+        }}
         placeholder={placeholder}
         type={type}
         className='form-control'

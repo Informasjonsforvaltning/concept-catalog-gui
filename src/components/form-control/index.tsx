@@ -16,6 +16,7 @@ interface Props {
   isFormDirty: boolean;
   createNewConceptRevisionAndNavigate: () => void;
   isInitialInValidForm: boolean;
+  handleSave: () => void;
 }
 
 const FormControl: FC<Props> = ({
@@ -64,7 +65,6 @@ const FormControl: FC<Props> = ({
   const validationError = conceptForm.isValidationError || isInitialInValidForm;
   const isSaving = conceptForm.isSaving ?? false;
   const justChangedStatus = conceptForm.justChangedStatus ?? false;
-
   const endringstidspunkt = concept?.endringslogelement?.endringstidspunkt;
 
   const createMessage = () => {
@@ -78,9 +78,6 @@ const FormControl: FC<Props> = ({
       if (concept?.status === ConceptStatus.GODKJENT) {
         return localization.conceptApproval;
       }
-    }
-    if (isSaving) {
-      return `${localization.isSaving}...`;
     }
     if (published || status === ConceptStatus.PUBLISERT) {
       return `${localization.changesUpdated} ${formatTime(
@@ -171,6 +168,10 @@ const FormControl: FC<Props> = ({
               {localization.setToApproval}
             </SC.StatusButton>
           )}
+          <SC.Button type='button' className='btn btn-primary'>
+            Lagre
+          </SC.Button>
+
           {!published && (
             <SC.StatusButton
               disabled={

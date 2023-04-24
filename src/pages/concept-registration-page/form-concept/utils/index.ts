@@ -69,6 +69,11 @@ export const patchWithPreProcess = (
     lastPatchedResponse,
     isSaving
   });
+};
+
+// new export const with validation of concept
+export const patchWithPreProcessAndValidation = (values, { dispatch }) => {
+  const processedValues = preProcessValues(values);
   validateConceptForm(processedValues, schema, dispatch);
 };
 

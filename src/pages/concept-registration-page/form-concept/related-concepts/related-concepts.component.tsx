@@ -115,7 +115,7 @@ const RelatedConceptsPure: FC<Props> = ({
               onClear={() => form.setFieldValue(field.name, '')}
               onChange={addRelatedConcept}
               onInputChange={value => executeConceptSuggestionSearch(value)}
-              defaultValue={form?.values?.seOgså.map(item => ({
+              defaultValue={form?.values?.seOgså?.map(item => ({
                 value: item,
                 label:
                   getTranslateText(relatedConcepts[item]?.prefLabel) ??

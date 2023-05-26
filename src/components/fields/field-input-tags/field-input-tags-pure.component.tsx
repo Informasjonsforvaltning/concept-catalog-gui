@@ -46,7 +46,7 @@ export const InputTagsFieldPure: FC<Props> = ({
           {language}
         </span>
       )}
-      <span>{get(field, 'value', []).join(', ')}</span>
+      <span>{get(field, 'value', [])?.join(', ')}</span>
     </div>
   );
 

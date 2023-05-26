@@ -34,7 +34,7 @@ export const InputTagsFieldPure: FC<Props> = ({
   isOnlyOneSelectedLanguage,
   catalogId
 }) => {
-  const tagNodes = _.get(field, 'value', []).map(item => item);
+  const tagNodes = _.get(field, 'value', [])?.map(item => item) ?? [];
 
   const conceptForm = useAppSelector(state => state.conceptForm);
 

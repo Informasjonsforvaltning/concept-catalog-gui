@@ -90,7 +90,7 @@ export const SourcePure: FC<Props> = ({ catalogId }) => {
           name='kildebeskrivelse.kilde'
           render={({ form, push }) => (
             <div>
-              {getKilde(form).map((kilde, index) => (
+              {getKilde(form)?.map((kilde, index) => (
                 <div key={`${kilde.id}-${index}`} className='row d-flex mb-4'>
                   <div className='col-sm-5'>
                     <Field

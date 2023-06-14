@@ -6,7 +6,6 @@ import debounce from 'lodash/debounce';
 import { Prompt, RouteComponentProps, withRouter } from 'react-router-dom';
 
 import { Concept } from '../../../types';
-import { ConceptStatus } from '../../../types/enums';
 import { Can } from '../../../casl/Can';
 import { deepKeys } from '../../../lib/deep-keys';
 import { getTranslateText } from '../../../lib/translateText';
@@ -138,9 +137,7 @@ export const FormConceptPure: FC<Props> = ({
   return (
     <SC.Page>
       <Prompt
-        when={
-          dirty && concept.status === ConceptStatus.PUBLISERT && showUserPrompt
-        }
+        when={dirty && concept.erPublisert && showUserPrompt}
         message={localization.unsavedPrompt}
       />
       <Can

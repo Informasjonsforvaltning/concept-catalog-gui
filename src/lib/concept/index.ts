@@ -5,9 +5,10 @@ export const isConceptEditable = (concept: Concept | undefined) => {
   if (!concept) {
     return false;
   }
-  const { status, erSistPublisert, revisjonAvSistPublisert } = concept;
+  const { status, erPublisert, erSistPublisert, revisjonAvSistPublisert } =
+    concept;
   return (
-    (status === ConceptStatus.PUBLISERT && erSistPublisert) ||
+    (erPublisert && erSistPublisert) ||
     ((status === ConceptStatus.UTKAST ||
       status === ConceptStatus.HOERING ||
       status === ConceptStatus.GODKJENT) &&

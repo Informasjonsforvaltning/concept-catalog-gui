@@ -29,6 +29,9 @@ const conceptCatalogApiRaw = async (method, path, data?) =>
 const conceptCatalogApiPost = (path, body) =>
   conceptCatalogApiRaw('POST', path, body).then(extractResourseId);
 
+const conceptCatalogApiPublish = path =>
+  conceptCatalogApiRaw('POST', path).then(extractJsonBody);
+
 const conceptCatalogApiGet = path =>
   conceptCatalogApiRaw('GET', path).then(extractJsonBody);
 
@@ -43,6 +46,8 @@ const conceptListPath = '/begreper';
 const conceptListImportPath = '/begreper/import';
 
 const conceptRevisionPath = (id: string) => `/begreper/${id}/revisjon`;
+
+const conceptPublishPath = (id: string) => `/begreper/${id}/publish`;
 
 const conceptPath = (conceptId): string => `${conceptListPath}/${conceptId}`;
 
@@ -66,6 +71,9 @@ export const postConcept = (body): Promise<void> =>
 
 export const postConceptRevision = (id: string, body): Promise<void> =>
   conceptCatalogApiPost(conceptRevisionPath(id), body);
+
+export const publishConcept = (id: string): Promise<Concept> =>
+  conceptCatalogApiPublish(conceptPublishPath(id));
 
 export const importConcepts = async (
   body: Array<Omit<Concept, 'id'>>

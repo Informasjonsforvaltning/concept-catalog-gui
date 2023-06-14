@@ -107,6 +107,7 @@ export interface Concept {
   originaltBegrep?: string;
   versjonsnr?: Version | null;
   revisjonAv?: string;
+  erPublisert?: boolean;
   anbefaltTerm?: AnbefaltTerm;
   definisjon?: Definisjon;
   ansvarligVirksomhet: { id: string };

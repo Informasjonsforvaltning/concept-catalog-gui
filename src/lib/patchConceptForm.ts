@@ -2,7 +2,6 @@ import _ from 'lodash';
 import { compare } from 'fast-json-patch';
 import omit from 'lodash/omit';
 
-import { ConceptStatus } from '../types/enums';
 import { patchConceptById, setIsSaving } from '../features/conceptForm';
 
 const metaDataFieldsToOmit = [
@@ -25,11 +24,7 @@ export const patchConceptFromForm = (
   );
   if (!isSaving && diff.length > 0) {
     const conceptId = _.get(concept, 'id');
-    if (
-      lastPatchedResponse.status === ConceptStatus.UTKAST ||
-      lastPatchedResponse.status === ConceptStatus.HOERING ||
-      lastPatchedResponse.status === ConceptStatus.GODKJENT
-    ) {
+    if (!lastPatchedResponse.erPublisert) {
       dispatch(setIsSaving());
       dispatch(
         patchConceptById({

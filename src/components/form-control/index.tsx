@@ -7,6 +7,7 @@ import { formatTime } from '../../utils/date';
 import { useAppDispatch, useAppSelector } from '../../app/redux/hooks';
 import { localization } from '../../lib/localization';
 import { patchConceptFromForm } from '../../lib/patchConceptForm';
+import { publishConceptFromForm } from '../../lib/publishConceptFromForm';
 import { deleteConcept } from '../../api/concept-catalog-api';
 import ConfirmDialog from '../confirm-dialog';
 
@@ -59,8 +60,7 @@ const FormControl: FC<Props> = ({
   const conceptForm = useAppSelector(state => state.conceptForm);
   const { concept } = conceptForm;
   const erSistPublisert = concept?.erSistPublisert ?? false;
-  const status = concept?.status;
-  const published = concept?.status === ConceptStatus.PUBLISERT ?? false;
+  const published = concept?.erPublisert ?? false;
   const validationError = conceptForm.isValidationError || isInitialInValidForm;
   const isSaving = conceptForm.isSaving ?? false;
   const justChangedStatus = conceptForm.justChangedStatus ?? false;
@@ -69,7 +69,7 @@ const FormControl: FC<Props> = ({
 
   const createMessage = () => {
     if (justChangedStatus) {
-      if (status === ConceptStatus.PUBLISERT) {
+      if (published) {
         return localization.conceptPublished;
       }
       if (concept?.status === ConceptStatus.HOERING) {
@@ -82,7 +82,7 @@ const FormControl: FC<Props> = ({
     if (isSaving) {
       return `${localization.isSaving}...`;
     }
-    if (published || status === ConceptStatus.PUBLISERT) {
+    if (published) {
       return `${localization.changesUpdated} ${formatTime(
         endringstidspunkt || concept?.endringslogelement?.endringstidspunkt,
         TimeFormat.dateAndHour
@@ -103,14 +103,12 @@ const FormControl: FC<Props> = ({
     <>
       <SC.FormControl $isSticky={isSticky}>
         <SC.FormControlContent>
-          {isFormDirty &&
-            status === ConceptStatus.PUBLISERT &&
-            erSistPublisert && (
-              <SC.Button onClick={createNewConceptRevisionAndNavigate}>
-                <SC.StatusDraftIcon />
-                {localization.saveDraft}
-              </SC.Button>
-            )}
+          {isFormDirty && published && erSistPublisert && (
+            <SC.Button onClick={createNewConceptRevisionAndNavigate}>
+              <SC.StatusDraftIcon />
+              {localization.saveDraft}
+            </SC.Button>
+          )}
           {!published && (
             <SC.StatusButton
               $active={concept?.status === ConceptStatus.HOERING}
@@ -178,22 +176,12 @@ const FormControl: FC<Props> = ({
                 (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
               }
               onClick={() =>
-                patchConceptFromForm(
-                  {
-                    status: ConceptStatus.PUBLISERT,
-                    ...(concept.versjonsnr?.major === 0 &&
-                      concept.versjonsnr?.minor === 0 &&
-                      concept.versjonsnr?.patch === 1 && {
-                        versjonsnr: { major: 1, minor: 0, patch: 0 }
-                      })
-                  },
-                  {
-                    concept,
-                    dispatch,
-                    lastPatchedResponse: concept,
-                    isSaving
-                  }
-                )
+                publishConceptFromForm({
+                  concept,
+                  dispatch,
+                  lastPatchedResponse: concept,
+                  isSaving
+                })
               }
             >
               <SC.StatusPublishedIcon />

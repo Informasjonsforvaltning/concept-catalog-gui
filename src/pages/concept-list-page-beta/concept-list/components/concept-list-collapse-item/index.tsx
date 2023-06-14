@@ -54,8 +54,9 @@ const CollapseItem: FC<Props> = ({ concepts }) => {
           ) : (
             <SC.PublishedIcon />
           )}
-          {highestPublishedVersionConcept?.status ===
-            ConceptStatus.PUBLISERT && <span>{localization.published}</span>}
+          {highestPublishedVersionConcept?.erPublisert && (
+            <span>{localization.published}</span>
+          )}
           {highestPublishedVersionConcept?.status === ConceptStatus.UTKAST && (
             <span>{localization.draft}</span>
           )}

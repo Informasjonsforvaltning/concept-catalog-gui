@@ -1,7 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { Concept } from '../../types';
-import { getConcept, patchConcept } from '../../api/concept-catalog-api';
+import {
+  getConcept,
+  patchConcept,
+  publishConcept
+} from '../../api/concept-catalog-api';
 
 interface PatchAttributes {
   conceptId: string;
@@ -26,6 +30,14 @@ export const patchConceptById = createAsyncThunk<
   'conceptForm/patchConceptById',
   async ({ conceptId, diff }, { rejectWithValue }) =>
     patchConcept(conceptId, diff)
+      .then(response => response)
+      .catch(() => rejectWithValue(true))
+);
+
+export const publishConceptById = createAsyncThunk<Concept, string>(
+  'conceptForm/publishConceptById',
+  async (conceptId, { rejectWithValue }) =>
+    publishConcept(conceptId)
       .then(response => response)
       .catch(() => rejectWithValue(true))
 );
@@ -75,6 +87,19 @@ const conceptFormSlice = createSlice({
       concept: action.payload
     }));
     builder.addCase(patchConceptById.rejected, state => ({
+      ...state,
+      isSaving: false,
+      error: true
+    }));
+    builder.addCase(publishConceptById.fulfilled, (state, action) => ({
+      ...state,
+      isSaving: false,
+      justChangedStatus: true,
+      isValidationError: false,
+      error: false,
+      concept: action.payload
+    }));
+    builder.addCase(publishConceptById.rejected, state => ({
       ...state,
       isSaving: false,
       error: true

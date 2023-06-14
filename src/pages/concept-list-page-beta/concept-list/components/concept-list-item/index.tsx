@@ -25,9 +25,10 @@ interface Props extends ExternalProps, RouteComponentProps<RouteParams> {}
 
 const getStatusIcon = (
   status: string | null | undefined,
+  erPublisert: boolean = false,
   erSistPublisert: boolean = false
 ) => {
-  if (status === ConceptStatus.PUBLISERT && erSistPublisert) {
+  if (erPublisert && erSistPublisert) {
     return (
       <>
         <SC.PublishedIcon /> <span>{localization.published}</span>
@@ -42,7 +43,7 @@ const getStatusIcon = (
       </>
     );
   }
-  if (status === ConceptStatus.PUBLISERT && !erSistPublisert) {
+  if (erPublisert && !erSistPublisert) {
     return (
       <>
         <SC.ExPublishedIcon />
@@ -98,7 +99,11 @@ const ListItem: FC<Props> = ({
         )}
       </SC.Column>
       <SC.Column>
-        {getStatusIcon(concept.status, concept.erSistPublisert)}
+        {getStatusIcon(
+          concept.status,
+          concept.erPublisert,
+          concept.erSistPublisert
+        )}
       </SC.Column>
     </SC.ListItem>
   );

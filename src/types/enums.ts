@@ -5,7 +5,6 @@ export enum SortDirection {
 
 export enum ConceptStatus {
   UTKAST = 'utkast',
-  PUBLISERT = 'publisert',
   HOERING = 'høring',
   GODKJENT = 'godkjent'
 }

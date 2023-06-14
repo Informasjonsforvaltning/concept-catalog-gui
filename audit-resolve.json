@@ -214,6 +214,56 @@
       "decision": "ignore",
       "madeAt": 1660909571745,
       "expiresAt": 1663501564191
+    },
+    "1091186|react-svg-loader>loader-utils": {
+      "decision": "ignore",
+      "madeAt": 1686743184406,
+      "expiresAt": 1689335175625
+    },
+    "1091187|eslint-loader>loader-utils": {
+      "decision": "ignore",
+      "madeAt": 1686743184406,
+      "expiresAt": 1689335175625
+    },
+    "1091250|eslint-loader>loader-utils": {
+      "decision": "ignore",
+      "madeAt": 1686743184407,
+      "expiresAt": 1689335175625
+    },
+    "1091251|react-svg-loader>loader-utils": {
+      "decision": "ignore",
+      "madeAt": 1686743184407,
+      "expiresAt": 1689335175625
+    },
+    "1091567|eslint-loader>loader-utils": {
+      "decision": "ignore",
+      "madeAt": 1686743184407,
+      "expiresAt": 1689335175625
+    },
+    "1091568|react-svg-loader>loader-utils": {
+      "decision": "ignore",
+      "madeAt": 1686743184407,
+      "expiresAt": 1689335175625
+    },
+    "1091239|recompose>fbjs>isomorphic-fetch>node-fetch": {
+      "decision": "ignore",
+      "madeAt": 1686743186870,
+      "expiresAt": 1689335175625
+    },
+    "1091791|recompose>fbjs>isomorphic-fetch>node-fetch": {
+      "decision": "ignore",
+      "madeAt": 1686743186870,
+      "expiresAt": 1689335175625
+    },
+    "1091725|node-sass>request": {
+      "decision": "ignore",
+      "madeAt": 1686743189082,
+      "expiresAt": 1689335175625
+    },
+    "1092100|react-svg-loader>react-svg-core>svgo>css-select>nth-check": {
+      "decision": "ignore",
+      "madeAt": 1686743191154,
+      "expiresAt": 1689335175625
     }
   },
   "rules": {},

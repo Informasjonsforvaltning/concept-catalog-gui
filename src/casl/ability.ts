@@ -20,7 +20,7 @@ const defineRulesFor = (resourceRoles: ResourceRole[]) => {
 
   resourceRoles.forEach(resourceRole => {
     if (resourceRole.resource === 'organization') {
-      if (resourceRole.role === 'admin' || resourceRole.role === 'publish') {
+      if (resourceRole.role === 'admin' || resourceRole.role === 'write') {
         can('create', 'Concept', { publisher: resourceRole.resourceId });
         can('view', 'StatusBar', { publisher: resourceRole.resourceId });
         can('edit', ['Language', 'Field'], {

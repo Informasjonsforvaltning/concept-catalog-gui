@@ -119,10 +119,15 @@ export class Auth {
     );
 
   hasOrganizationWritePermission = (orgNr: string) =>
-    this.hasOrganizationRole({ orgNr, role: 'admin' });
+    this.hasOrganizationRole({ orgNr, role: 'write' }) ||
+    this.hasOrganizationAdminPermission(orgNr);
 
   hasOrganizationAdminPermission = (orgNr: string) =>
     this.hasOrganizationRole({ orgNr, role: 'admin' });
+
+  isReadOnlyUser = (orgNr: string) =>
+    this.hasOrganizationReadPermission(orgNr) &&
+    !this.hasOrganizationWritePermission(orgNr);
 
   hasSystemAdminPermission = () =>
     this.hasResourceRole({

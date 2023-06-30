@@ -118,7 +118,7 @@ export const FormConceptPure: FC<Props> = ({
   }, [concept]);
 
   const publisherId = concept?.ansvarligVirksomhet?.id;
-  const isReadOnly = !authService.hasOrganizationWritePermission(publisherId);
+  const isReadOnly = authService.isReadOnlyUser(publisherId);
 
   const [expandAll, setExpandAll] = useState(false);
   const [isExpandAllDirty, setExpandAllDirty] = useState(false);

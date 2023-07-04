@@ -19,8 +19,6 @@ const env = (window as any).env || {
 // env.SEARCH_HOST = 'https://www.staging.fellesdatakatalog.digdir.no';
 // env.FDK_PORTAL_BASE_URI = 'https://staging.fellesdatakatalog.digdir.no';
 // env.ADMIN_GUI_HOST = 'https://admin.staging.fellesdatakatalog.digdir.no';
-// env.CATALOG_COMMENTS_SERVICE_HOST =
-//   'https://catalog-comments.staging.fellesdatakatalog.digdir.no';
 // env.CONCEPT_CATALOG_FRONTEND_BASE_URI =
 //   'https://begrepskatalog.staging.fellesdatakatalog.digdir.no';
 // env.CATALOG_ADMIN_SERVICE_BASE_URI =
@@ -59,9 +57,6 @@ const config = {
   searchHost: env.SEARCH_HOST || 'https://fellesdatakatalog.digdir.no',
   adminGui: {
     host: env.ADMIN_GUI_HOST
-  },
-  commentsApi: {
-    host: env.CATALOG_COMMENTS_SERVICE_HOST
   },
   conceptCatalogFrontendBaseUri: env.CONCEPT_CATALOG_FRONTEND_BASE_URI,
   catalogAdminServiceBaseUri: env.CATALOG_ADMIN_SERVICE_BASE_URI,

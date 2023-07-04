@@ -9,11 +9,6 @@ import { FormConcept } from './form-concept';
 
 import { useAppSelector, useAppDispatch } from '../../app/redux/hooks';
 import {
-  fetchComments,
-  commentActions,
-  selectAllComments
-} from '../../features/comments';
-import {
   fetchConceptById,
   setConcept,
   resetConceptForm
@@ -22,7 +17,6 @@ import {
 import Root from '../../components/root';
 
 import SC from './styled';
-import { CommentList } from '../../components/comment-list';
 
 interface RouteParams {
   catalogId: string;
@@ -52,8 +46,6 @@ const ConceptRegistrationPagePure: FC<Props> = ({
   const [initialConcept, setInitialConcept] = useState<Concept>();
 
   const dispatch = useAppDispatch();
-  const comments = useAppSelector(selectAllComments);
-  const { resetComments } = commentActions;
 
   const conceptForm = useAppSelector(state => state.conceptForm);
   const { concept, isSaving } = conceptForm;
@@ -63,13 +55,6 @@ const ConceptRegistrationPagePure: FC<Props> = ({
       dispatch(fetchConceptById(conceptId)).then(action => {
         const fetchedConcept: any = action.payload;
         setInitialConcept(fetchedConcept);
-        fetchedConcept?.originaltBegrep &&
-          dispatch(
-            fetchComments({
-              orgNumber: catalogId,
-              topicId: fetchedConcept?.originaltBegrep
-            })
-          );
       });
     } else {
       const newConcept = createConcept(catalogId);
@@ -79,7 +64,6 @@ const ConceptRegistrationPagePure: FC<Props> = ({
 
     return () => {
       setInitialConcept(undefined);
-      dispatch(resetComments());
       dispatch(resetConceptForm());
     };
   }, [conceptId]);
@@ -93,13 +77,6 @@ const ConceptRegistrationPagePure: FC<Props> = ({
             dispatch={dispatch}
             lastPatchedResponse={concept}
             isSaving={isSaving}
-          />
-        )}
-        {concept?.originaltBegrep && (
-          <CommentList
-            catalogId={catalogId}
-            topicId={concept?.originaltBegrep}
-            comments={comments}
           />
         )}
       </SC.Container>

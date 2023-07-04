@@ -147,16 +147,6 @@ export interface Concept {
   interneFelt?: Record<string, InternalField>;
 }
 
-export interface Comment {
-  id: string;
-  createdDate: string;
-  lastChangedDate?: string;
-  topicId: string;
-  orgNumber: string;
-  user?: User;
-  comment: string;
-}
-
 export interface SkosConcept {
   id: string;
   identifier: string;

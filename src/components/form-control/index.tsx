@@ -1,4 +1,4 @@
-import React, { FC, memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Variant } from '@fellesdatakatalog/button';
 
@@ -13,17 +13,19 @@ import ConfirmDialog from '../confirm-dialog';
 
 import SC from './styled';
 
-interface Props {
+interface Props<V> {
   isFormDirty: boolean;
   createNewConceptRevisionAndNavigate: () => void;
   isInitialInValidForm: boolean;
+  values: V;
 }
 
-const FormControl: FC<Props> = ({
+const FormControl = <V,>({
   isFormDirty,
   createNewConceptRevisionAndNavigate,
-  isInitialInValidForm
-}) => {
+  isInitialInValidForm,
+  values
+}: Props<V>) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
   const [isSticky, setSticky] = useState(false);
 
@@ -110,11 +112,28 @@ const FormControl: FC<Props> = ({
             </SC.Button>
           )}
           {!published && (
+            <SC.Button
+              disabled={isSaving || !isFormDirty}
+              onClick={() => {
+                patchConceptFromForm(values, {
+                  concept,
+                  dispatch,
+                  lastPatchedResponse: concept,
+                  isSaving
+                });
+                setTimeout(() => history.go(0), 1000);
+              }}
+            >
+              {localization.save}
+            </SC.Button>
+          )}
+          {!published && (
             <SC.StatusButton
               $active={concept?.status === ConceptStatus.HOERING}
               disabled={
                 validationError ||
-                (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
+                (!!concept.revisjonAv && !concept.revisjonAvSistPublisert) ||
+                isFormDirty
               }
               onClick={() =>
                 patchConceptFromForm(
@@ -144,7 +163,8 @@ const FormControl: FC<Props> = ({
               $active={concept?.status === ConceptStatus.GODKJENT}
               disabled={
                 validationError ||
-                (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
+                (!!concept.revisjonAv && !concept.revisjonAvSistPublisert) ||
+                isFormDirty
               }
               onClick={() =>
                 patchConceptFromForm(
@@ -173,7 +193,8 @@ const FormControl: FC<Props> = ({
             <SC.StatusButton
               disabled={
                 validationError ||
-                (!!concept.revisjonAv && !concept.revisjonAvSistPublisert)
+                (!!concept.revisjonAv && !concept.revisjonAvSistPublisert) ||
+                isFormDirty
               }
               onClick={() =>
                 publishConceptFromForm({
@@ -191,6 +212,7 @@ const FormControl: FC<Props> = ({
           <div>
             <span>{createMessage()}</span>
           </div>
+
           {!published && (
             <SC.DeleteButton
               variant={Variant.TERTIARY}
@@ -215,4 +237,4 @@ const FormControl: FC<Props> = ({
   ) : null;
 };
 
-export default memo(FormControl);
+export default memo(FormControl) as typeof FormControl;

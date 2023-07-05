@@ -133,12 +133,12 @@ const StatusButton = styled(Button)<StatusButtonProps>`
   ${({ $active }) =>
     $active &&
     css`
-      background-color: ${theme.colour(Colour.NEUTRAL, 'N70')};
-      color: ${theme.colour(Colour.NEUTRAL, 'N0')};
+      background-color: ${theme.colour(Colour.NEUTRAL, 'N70')} !important;
+      color: ${theme.colour(Colour.NEUTRAL, 'N0')} !important;
 
       & > svg {
         & > path {
-          fill: ${theme.colour(Colour.NEUTRAL, 'N0')};
+          fill: ${theme.colour(Colour.NEUTRAL, 'N0')} !important;
         }
       }
     `}

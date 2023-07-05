@@ -1,4 +1,3 @@
-import { patchConceptFromForm } from '../../../../lib/patchConceptForm';
 import { validateConceptForm } from '../../../../lib/validateConceptForm';
 import { postConceptRevision } from '../../../../api/concept-catalog-api';
 
@@ -15,7 +14,10 @@ const pruneEmptyProperties = (obj: any, reduceAsArray = false) => {
     return null;
   }
   const filteredKeys = Object.keys(obj).filter(
-    key => obj[key] != null && obj[key] !== '' && obj[key] !== []
+    key =>
+      obj[key] != null &&
+      obj[key] !== '' &&
+      (Array.isArray(obj[key]) ? obj[key].length !== 0 : false)
   );
 
   return reduceAsArray
@@ -56,17 +58,8 @@ const preProcessValues = ({
   kontaktpunkt: pruneEmptyProperties(kontaktpunkt)
 });
 
-export const patchWithPreProcess = (
-  values,
-  { concept, dispatch, lastPatchedResponse, isSaving }
-) => {
+export const validateWithPreProcess = (values, { dispatch }) => {
   const processedValues = preProcessValues(values);
-  patchConceptFromForm(processedValues, {
-    concept,
-    dispatch,
-    lastPatchedResponse,
-    isSaving
-  });
   validateConceptForm(processedValues, schema, dispatch);
 };
 

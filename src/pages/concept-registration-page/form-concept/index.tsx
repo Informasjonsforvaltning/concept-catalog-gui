@@ -135,7 +135,7 @@ export const FormConceptPure: FC<Props> = ({
   return (
     <SC.Page>
       <Prompt
-        when={dirty && concept.erPublisert && showUserPrompt}
+        when={dirty && showUserPrompt}
         message={localization.unsavedPrompt}
       />
       <Can

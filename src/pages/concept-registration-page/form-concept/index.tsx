@@ -26,7 +26,7 @@ import { Term } from './term/term.component';
 import { AllowedAndDiscouraged } from './allowed-and-discouraged-term/allowed-and-discouraged-term.component';
 import { UseOfTerm } from './use-of-concept/useOfConcept.component';
 import { ContactInfo } from './contactInfo/contactInfo.component';
-import { patchWithPreProcess, postWithPreProcess } from './utils';
+import { validateWithPreProcess, postWithPreProcess } from './utils';
 
 import { schema as validationSchema } from './form-concept.schema';
 
@@ -142,12 +142,13 @@ export const FormConceptPure: FC<Props> = ({
         I='view a statusBar'
         of={{ __type: 'StatusBar', publisher: publisherId }}
       >
-        <FormControl
+        <FormControl<FormValues>
           isFormDirty={dirty}
           createNewConceptRevisionAndNavigate={
             createNewConceptRevisionAndNavigate
           }
           isInitialInValidForm={!isValid}
+          values={values}
         />
       </Can>
       <SC.Title>
@@ -258,7 +259,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     begrepsRelasjon
   }),
   validationSchema,
-  validate: debounce(patchWithPreProcess, 500),
+  validate: debounce(validateWithPreProcess, 500),
   validateOnMount: true,
   validateOnBlur: false,
   handleSubmit: () => {}

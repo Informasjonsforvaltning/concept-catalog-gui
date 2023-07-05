@@ -85,6 +85,7 @@ export const nb = {
   formRelatedConcepts: 'Relasjoner',
   seeAlso: 'Se også',
   searchConcepts: 'Søk etter begrep',
+  save: 'Lagre',
   saveDraft: 'Lagre som nytt utkast',
   version: 'Versjon',
   exPublished: 'Ekspublisert',

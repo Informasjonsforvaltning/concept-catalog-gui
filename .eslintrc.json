@@ -101,6 +101,7 @@
         "some": [ "nesting", "id"  ]
       }
     }],
+    "react/function-component-definition": "off",
     "react/require-default-props": "off",
     "react/jsx-curly-newline": "off",
     "no-use-before-define": "off",

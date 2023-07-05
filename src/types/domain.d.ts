@@ -31,21 +31,12 @@ export interface ListItem {
   status: string;
 }
 
-export default class ImportError {
-  constructor(message: string, name?: string) {
-    const error = Error(message);
+export default class ImportError extends Error {
+  constructor(message: string) {
+    super(message);
 
-    Object.defineProperty(error, 'message', {
-      get() {
-        return message;
-      }
-    });
-    Object.defineProperty(error, 'name', {
-      get() {
-        return name ?? 'ImportError';
-      }
-    });
-    return error;
+    // Set the prototype explicitly.
+    Object.setPrototypeOf(this, ImportError.prototype);
   }
 }
 

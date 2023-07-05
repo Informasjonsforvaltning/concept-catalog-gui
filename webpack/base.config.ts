@@ -60,18 +60,9 @@ const configuration: Configuration = {
         ]
       },
       {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: 'babel-loader'
-          },
-          {
-            loader: 'react-svg-loader',
-            options: {
-              jsx: true
-            }
-          }
-        ],
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack'],
         include: [resolve(__dirname, '..', 'src', 'images')]
       },
       {

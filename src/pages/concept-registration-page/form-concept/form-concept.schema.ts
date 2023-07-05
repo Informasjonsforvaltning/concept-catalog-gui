@@ -98,21 +98,23 @@ export const schema = Yup.object().shape({
           return true;
         }
       })
-    })
-  }),
-  kildebeskrivelse: Yup.object()
-    .nullable()
-    .shape({
-      forholdTilKilde: Yup.string().nullable(),
-      kilde: Yup.array()
-        .of(
-          Yup.object().shape({
-            tekst: Yup.string().nullable().min(2, localization.validationMin2),
-            uri: Yup.string().nullable().url(localization.validationUrl)
-          })
-        )
-        .nullable()
     }),
+    kildebeskrivelse: Yup.object()
+      .nullable()
+      .shape({
+        forholdTilKilde: Yup.string().nullable(),
+        kilde: Yup.array()
+          .of(
+            Yup.object().shape({
+              tekst: Yup.string()
+                .nullable()
+                .min(2, localization.validationMin2),
+              uri: Yup.string().nullable().url(localization.validationUrl)
+            })
+          )
+          .nullable()
+      })
+  }),
   merknad: tekstMedSpraakKodeArray,
   eksempel: tekstMedSpraakKodeArray,
   fagområde: tekstMedSpraakKode,

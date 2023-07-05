@@ -114,14 +114,16 @@ function mapCsvTextToConcept(
     anbefaltTerm: { navn: mapRowToLanguageValue(csvMap, 'anbefaltterm') },
     tillattTerm: mapRowToLanguageValueList(csvMap, 'tillattterm'),
     frarådetTerm: mapRowToLanguageValueList(csvMap, 'frarådetterm'),
-    definisjon: { tekst: mapRowToLanguageValue(csvMap, 'definisjon') },
+    definisjon: {
+      tekst: mapRowToLanguageValue(csvMap, 'definisjon'),
+      kildebeskrivelse: mapKilde(csvMap)
+    },
     merknad: mapRowToLanguageValueList(csvMap, 'merknad'),
     eksempel: mapRowToLanguageValueList(csvMap, 'eksempel'),
     fagområde: mapRowToLanguageValue(csvMap, 'fagområde'),
     bruksområde: mapRowToLanguageValueList(csvMap, 'bruksområde'),
     gyldigFom: mapToSingleValue(csvMap, 'gyldigfom'),
     gyldigTom: mapToSingleValue(csvMap, 'gyldigtom'),
-    kildebeskrivelse: mapKilde(csvMap),
     omfang: {
       uri: mapToSingleValue(csvMap, 'omfang_uri'),
       tekst: mapToSingleValue(csvMap, 'omfang_tekst')

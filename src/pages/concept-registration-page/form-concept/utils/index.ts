@@ -41,7 +41,6 @@ const pruneEmptyProperties = (obj: any, reduceAsArray = false) => {
 };
 
 const preProcessValues = ({
-  kildebeskrivelse,
   merknad,
   eksempel,
   bruksområde,
@@ -50,7 +49,6 @@ const preProcessValues = ({
   ...conceptValues
 }) => ({
   ...conceptValues,
-  kildebeskrivelse: pruneEmptyProperties(kildebeskrivelse),
   merknad: stringsToArray(merknad),
   eksempel: stringsToArray(eksempel),
   bruksområde: stringsToArray(bruksområde),

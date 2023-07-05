@@ -37,7 +37,6 @@ export type FormValues = Pick<
   Concept,
   | 'anbefaltTerm'
   | 'definisjon'
-  | 'kildebeskrivelse'
   | 'merknad'
   | 'tillattTerm'
   | 'frarådetTerm'
@@ -85,7 +84,6 @@ export const FormConceptPure: FC<Props> = ({
   const {
     anbefaltTerm: termError,
     definisjon: definitionError,
-    kildebeskrivelse: sourceError,
     omfang: useOfConceptError,
     kontaktpunkt: contactPointError,
     begrepsRelasjon: begrepsRelasjonError
@@ -176,7 +174,7 @@ export const FormConceptPure: FC<Props> = ({
           title={localization.formTerm}
           showRequired={!isReadOnly}
           showInitially={isExpandAllDirty ? expandAll : true}
-          error={!!termError || !!definitionError || !!sourceError}
+          error={!!termError || !!definitionError}
         >
           <Term languages={languageEntities} isReadOnly={isReadOnly} />
         </FormTemplate>
@@ -225,8 +223,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
   mapPropsToValues: ({
     concept: {
       anbefaltTerm = { navn: {} },
-      definisjon = { tekst: {} },
-      kildebeskrivelse = null,
+      definisjon = { tekst: {}, kildebeskrivelse: null },
       merknad = {},
       tillattTerm = {},
       frarådetTerm = {},
@@ -245,7 +242,6 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
   }: Props) => ({
     anbefaltTerm,
     definisjon,
-    kildebeskrivelse,
     merknad,
     tillattTerm,
     frarådetTerm,

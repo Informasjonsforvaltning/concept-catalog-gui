@@ -22,17 +22,20 @@ const options = [
 ] as OptionProps[];
 
 const handleClearKildebeskrivelse = form => {
-  form.setFieldValue('kildebeskrivelse', null);
+  form.setFieldValue('definisjon.kildebeskrivelse', null);
 };
 
 const handleChangeForholdTilKilde = (form, fieldName, option) => {
-  if (fieldName === 'kildebeskrivelse.forholdTilKilde' && option?.value) {
-    form.setFieldValue('kildebeskrivelse', {
+  if (
+    fieldName === 'definisjon.kildebeskrivelse.forholdTilKilde' &&
+    option?.value
+  ) {
+    form.setFieldValue('definisjon.kildebeskrivelse', {
       forholdTilKilde: option.value,
       kilde:
         option.value === 'egendefinert'
           ? []
-          : form.values.kildebeskrivelse?.kilde ?? []
+          : form.values.definisjon?.kildebeskrivelse?.kilde ?? []
     });
   }
 };
@@ -42,11 +45,11 @@ const handleAddKilde = (push: any) => {
 };
 
 const handleRemoveKilde = (form, index) => {
-  const { kildebeskrivelse } = form.values;
+  const { kildebeskrivelse } = form.values.definisjon ?? {};
   if (Array.isArray(kildebeskrivelse?.kilde)) {
     const removeElement = kildebeskrivelse?.kilde?.[index];
     const newSource = kildebeskrivelse?.kilde?.filter(v => v !== removeElement);
-    form.setFieldValue('kildebeskrivelse', {
+    form.setFieldValue('definisjon.kildebeskrivelse', {
       ...kildebeskrivelse,
       kilde: newSource ?? []
     });
@@ -54,13 +57,13 @@ const handleRemoveKilde = (form, index) => {
 };
 
 const getKilde = form =>
-  _.get(form, ['values', 'kildebeskrivelse', 'kilde'], []);
+  _.get(form, ['values', 'definisjon', 'kildebeskrivelse', 'kilde'], []);
 
 interface Props {
   catalogId: string;
 }
 export const SourcePure: FC<Props> = ({ catalogId }) => {
-  const [field] = useField('kildebeskrivelse');
+  const [field] = useField('definisjon.kildebeskrivelse');
   const forholdTilKilde = _.get(field, ['value', 'forholdTilKilde']);
 
   const conceptForm = useAppSelector(state => state.conceptForm);
@@ -71,7 +74,7 @@ export const SourcePure: FC<Props> = ({ catalogId }) => {
         <div className='col-sm-5 mb-4'>
           <Field
             className='col-sm-5'
-            name='kildebeskrivelse.forholdTilKilde'
+            name='definisjon.kildebeskrivelse.forholdTilKilde'
             component={SelectField}
             label={localization.relationToSource}
             showLabel
@@ -87,14 +90,14 @@ export const SourcePure: FC<Props> = ({ catalogId }) => {
       </div>
       {forholdTilKilde && forholdTilKilde !== 'egendefinert' && (
         <FieldArray
-          name='kildebeskrivelse.kilde'
+          name='definisjon.kildebeskrivelse.kilde'
           render={({ form, push }) => (
             <div>
               {getKilde(form)?.map((kilde, index) => (
                 <div key={`${kilde.id}-${index}`} className='row d-flex mb-4'>
                   <div className='col-sm-5'>
                     <Field
-                      name={`kildebeskrivelse.kilde[${index}].tekst`}
+                      name={`definisjon.kildebeskrivelse.kilde[${index}].tekst`}
                       component={InputField}
                       label={localization.titleSource}
                       showLabel
@@ -103,7 +106,7 @@ export const SourcePure: FC<Props> = ({ catalogId }) => {
 
                   <div className='col-sm-5'>
                     <Field
-                      name={`kildebeskrivelse.kilde[${index}].uri`}
+                      name={`definisjon.kildebeskrivelse.kilde[${index}].uri`}
                       component={InputField}
                       label={localization.linkSource}
                       showLabel

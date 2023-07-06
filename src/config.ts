@@ -20,6 +20,8 @@ const env = (window as any).env || {
 // env.ADMIN_GUI_HOST = 'https://admin.staging.fellesdatakatalog.digdir.no';
 // env.CATALOG_COMMENTS_SERVICE_HOST =
 //   'https://catalog-comments.staging.fellesdatakatalog.digdir.no';
+// env.CONCEPT_CATALOG_FRONTEND_BASE_URI =
+//   'https://begrepskatalog.staging.fellesdatakatalog.digdir.no';
 // env.USE_DEMO_LOGO = false;
 
 const config = {
@@ -55,6 +57,7 @@ const config = {
   commentsApi: {
     host: env.CATALOG_COMMENTS_SERVICE_HOST
   },
+  conceptCatalogFrontendBaseUri: env.CONCEPT_CATALOG_FRONTEND_BASE_URI,
   useDemoLogo: env.USE_DEMO_LOGO
 };
 

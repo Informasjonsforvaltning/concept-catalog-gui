@@ -15,6 +15,24 @@ const options = {
   disableDefaults: true
 };
 
+const config = getConfig();
+
+const Breadcrumb = ({ item }) => {
+  const { breadcrumb: label, match: { url: matchUrl } = { url: '' } } = item;
+  return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <>
+      {matchUrl.match('^/\\d+$') ? (
+        <a href={`${config.conceptCatalogFrontendBaseUri}${matchUrl}`}>
+          {label}
+        </a>
+      ) : (
+        <NavLink to={matchUrl}>{label}</NavLink>
+      )}
+    </>
+  );
+};
+
 // map & render your breadcrumb components however you want.
 // each `breadcrumb` has the props `key`, `location`, and `match` included!
 const PureBreadcrumbs = ({ breadcrumbs }) => {
@@ -34,9 +52,7 @@ const PureBreadcrumbs = ({ breadcrumbs }) => {
                   <span key={breadcrumb.key}>
                     {index < breadcrumbs.length - 1 && (
                       <>
-                        <NavLink to={breadcrumb.match.url}>
-                          {breadcrumb.breadcrumb}
-                        </NavLink>
+                        <Breadcrumb item={breadcrumb} />
                         <i className='fa fa-angle-right mx-3' />
                       </>
                     )}

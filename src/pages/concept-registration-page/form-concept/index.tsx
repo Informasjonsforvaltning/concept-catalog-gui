@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { compose } from '@reduxjs/toolkit';
 import { Form, FormikProps, WithFormikConfig, withFormik } from 'formik';
 import pick from 'lodash/pick';
-import debounce from 'lodash/debounce';
+// TODO import debounce from 'lodash/debounce';
 import { Prompt, RouteComponentProps, withRouter } from 'react-router-dom';
 
 import { Concept } from '../../../types';
@@ -31,7 +31,7 @@ import { validateWithPreProcess, postWithPreProcess } from './utils';
 import { schema as validationSchema } from './form-concept.schema';
 
 import SC from './styled';
-import { AssignUser } from './assign-user';
+import { InternalInfo } from './internal-info';
 
 export type FormValues = Pick<
   Concept,
@@ -214,7 +214,7 @@ export const FormConceptPure: FC<Props> = ({
         >
           <ContactInfo />
         </FormTemplate>
-        <AssignUser />
+        <InternalInfo errors={errors} />
       </Form>
     </SC.Page>
   );
@@ -223,6 +223,7 @@ export const FormConceptPure: FC<Props> = ({
 const formikConfig: WithFormikConfig<Props, FormValues> = {
   mapPropsToValues: ({
     concept: {
+      id,
       anbefaltTerm = { navn: {} },
       definisjon = { tekst: {}, kildebeskrivelse: null },
       merknad = {},
@@ -238,9 +239,11 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
       seOgså = [],
       erstattesAv = [],
       tildeltBruker = { id: '' },
-      begrepsRelasjon = []
+      begrepsRelasjon = [],
+      versjonsnr = { major: 0, minor: 0, patch: 0 }
     }
   }: Props) => ({
+    id,
     anbefaltTerm,
     definisjon,
     merknad,
@@ -256,10 +259,11 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     seOgså,
     erstattesAv,
     tildeltBruker,
-    begrepsRelasjon
+    begrepsRelasjon,
+    versjonsnr
   }),
   validationSchema,
-  validate: debounce(validateWithPreProcess, 500),
+  validate: validateWithPreProcess,
   validateOnMount: true,
   validateOnBlur: false,
   handleSubmit: () => {}

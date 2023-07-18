@@ -51,6 +51,9 @@ const conceptPublishPath = (id: string) => `/begreper/${id}/publish`;
 
 const conceptPath = (conceptId): string => `${conceptListPath}/${conceptId}`;
 
+const revisionsPath = (conceptId): string =>
+  `${conceptPath(conceptId)}/revisions`;
+
 const collectionsPath = '/begrepssamlinger';
 
 /* high level api */
@@ -58,13 +61,16 @@ const collectionsPath = '/begrepssamlinger';
 export const getCollections = (): Promise<Collection[]> =>
   conceptCatalogApiGet(collectionsPath);
 
-export const getConcept = (catalogId): Promise<Concept> =>
-  conceptCatalogApiGet(conceptPath(catalogId));
+export const getConcept = (conceptId): Promise<Concept> =>
+  conceptCatalogApiGet(conceptPath(conceptId));
 
 export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
   conceptCatalogApiGet(`${conceptListPath}?orgNummer=${catalogId}`) as Promise<
     Concept[]
   >;
+
+export const getRevisions = (conceptId): Promise<Concept[]> =>
+  conceptCatalogApiGet(revisionsPath(conceptId));
 
 export const postConcept = (body): Promise<void> =>
   conceptCatalogApiPost(conceptListPath, body);

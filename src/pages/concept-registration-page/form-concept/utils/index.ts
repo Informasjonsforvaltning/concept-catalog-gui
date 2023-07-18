@@ -60,7 +60,7 @@ const preProcessValues = ({
 
 export const validateWithPreProcess = (values, { dispatch }) => {
   const processedValues = preProcessValues(values);
-  validateConceptForm(processedValues, schema, dispatch);
+  return validateConceptForm(processedValues, schema, dispatch);
 };
 
 export const postWithPreProcess = async (id: string, values): Promise<void> => {

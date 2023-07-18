@@ -1,7 +1,11 @@
 import { DateTime } from 'luxon';
 import * as Yup from 'yup';
+// import { values } from 'lodash';
 import { localization } from '../../../lib/localization';
 import { Relation } from '../../../types/enums';
+import { getRevisions } from '../../../api/concept-catalog-api';
+import { compareVersion } from '../../../utils/version';
+// import { Version } from '../../../types';
 
 const tekstMedSpraakKodeArray = Yup.object()
   .nullable()
@@ -186,5 +190,31 @@ export const schema = Yup.object().shape({
         relatertBegrep: Yup.string().required()
       })
     )
-    .nullable()
+    .nullable(),
+  versjonsnr: Yup.object()
+    .test(
+      'version-check',
+      'Version must be greater than latest published version',
+      (value, context) =>
+        getRevisions(context.parent.id)
+          .then(revisions => {
+            const latestPublishedRevision = revisions.find(
+              rev => rev.erSistPublisert
+            );
+            return (
+              compareVersion(
+                latestPublishedRevision?.id !== context.parent.id
+                  ? latestPublishedRevision?.versjonsnr
+                  : null,
+                value as any
+              ) < 0
+            );
+          })
+          .catch(() => false)
+    )
+    .shape({
+      major: Yup.number(),
+      minor: Yup.number(),
+      patch: Yup.number()
+    })
 });

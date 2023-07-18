@@ -123,5 +123,8 @@ export const nb = {
   partOf: 'Er en del av',
   includes: 'Omfatter',
   removeRelation: 'Slett relasjon',
-  addRelation: 'Legg til relasjon'
+  addRelation: 'Legg til relasjon',
+  versionNumberMajor: 'Major',
+  versionNumberMinor: 'Minor',
+  versionNumberPatch: 'Patch',
 };

@@ -20,6 +20,7 @@ interface Props {
   isOnlyOneSelectedLanguage: boolean;
   catalogId: string;
   placeholder?: string;
+  hideError?: boolean;
 }
 
 export const InputFieldPure: FC<Props> = ({
@@ -31,7 +32,8 @@ export const InputFieldPure: FC<Props> = ({
   language,
   isOnlyOneSelectedLanguage,
   catalogId,
-  placeholder = ''
+  placeholder = '',
+  hideError = false
 }) => {
   const conceptForm = useAppSelector(state => state.conceptForm);
 
@@ -84,7 +86,7 @@ export const InputFieldPure: FC<Props> = ({
           {renderReadOnlyField()}
         </Can>
       </div>
-      {get(errors, field.name) && (
+      {!hideError && get(errors, field.name) && (
         <div className='alert alert-danger mt-2'>{get(errors, field.name)}</div>
       )}
     </div>

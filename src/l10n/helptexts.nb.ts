@@ -95,4 +95,6 @@ Se mer om ‘kontaktinformasjon’ i [veileder for begrepsbeskrivelser](https://
   relationsTitle: 'Relasjoner',
   descriptionTitle: 'Beskrivelse',
   inndelingskriteriumTitle: 'Inndelingskriterium',
+  versionTitle: 'Versjonsnummer',
+  versionAbstract: 'Oppgi versjonsnummer for begrepet.'
 };

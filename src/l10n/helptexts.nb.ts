@@ -27,6 +27,50 @@ Om definisjonen er hentet ordrett fra en kilden, velger du ‘sitat fra kilde’
 Om definisjonen består av egne ordvalg basert på en kilde, velger du ‘basert på kilde’.
 
 Se mer om ‘kildebeskrivelse’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
+  folkeligForklaringTitle: 'Folkelig forklaring',
+  folkeligForklaringAbstract:
+    'En folkelig forklaring skal være en kort forklaring som tydelig avgrenser til andre, nærliggende begrep, eventuelt tydeliggjør forskjellen mellom dette begrepet og andre nærliggende begrep.',
+  folkeligForklaringDescription: `Registrer meningsinnholdet til begrepet uttrykt gjennom en setning. 
+En definisjon er en beskrivelse som avgrenser begrepet mot beslektede begrep. Definisjonen er altså begrepet forklart med ord. 
+Definisjonen skal ikke være en utfyllende innføring i begrepet. 
+Et eksempel er bonus i arbeidsforhold, som av Skatteetaten blir definert som ‘godtgjørelse som kan knyttes direkte til innsats eller resultater i en virksomhet’. 
+Fagområder vil også sette begrensninger i hvilken sammenheng begrepet og definisjonen skal forstås. 
+Se mer om ‘definisjon’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#definisjon)`,
+  folkeligForklaringKildeTitle: 'Kilde til folkelig forklaring',
+  folkeligForklaringKildeAbstract: 'Her registrerer du hvor du har hentet folkelig forklaringen fra. ',
+  folkeligForklaringKildeDescription: `Her kan du legge til én eller flere kilder til folkelig forklaringen. 
+
+Kilden til folkelig forklaringen kan være enten lov eller forskrift, et leksikon, en ordbok e.l.  Har virksomheten definert begrepet selv, velger du "Egendefinert".
+
+Har du en oppslagsbar ressurs kan du lenke til denne.
+
+Om definisjonen er hentet ordrett fra en kilden, velger du ‘sitat fra kilde’.
+
+Om definisjonen består av egne ordvalg basert på en kilde, velger du ‘basert på kilde’.
+
+Se mer om ‘kildebeskrivelse’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
+  rettsligForklaringTitle: 'Rettslig forklaring',
+  rettsligForklaringAbstract:
+    'En rettslig forklaring skal være en kort forklaring som tydelig avgrenser til andre, nærliggende begrep, eventuelt tydeliggjør forskjellen mellom dette begrepet og andre nærliggende begrep.',
+  rettsligForklaringDescription: `Registrer meningsinnholdet til begrepet uttrykt gjennom en setning. 
+En rettslig forklaring er en beskrivelse som avgrenser begrepet mot beslektede begrep. Definisjonen er altså begrepet forklart med ord. 
+Definisjonen skal ikke være en utfyllende innføring i begrepet. 
+Et eksempel er bonus i arbeidsforhold, som av Skatteetaten blir definert som ‘godtgjørelse som kan knyttes direkte til innsats eller resultater i en virksomhet’. 
+Fagområder vil også sette begrensninger i hvilken sammenheng begrepet og definisjonen skal forstås. 
+Se mer om ‘definisjon’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#definisjon)`,
+  rettsligForklaringKildeTitle: 'Kilde til rettslig forklaring',
+  rettsligForklaringKildeAbstract: 'Her registrerer du hvor du har hentet rettslig forklaringen fra. ',
+  rettsligForklaringKildeDescription: `Her kan du legge til én eller flere kilder til rettslig forklaringen. 
+
+Kilden til rettslig forklaring kan være enten lov eller forskrift, et leksikon, en ordbok e.l.  Har virksomheten definert begrepet selv, velger du "Egendefinert".
+
+Har du en oppslagsbar ressurs kan du lenke til denne.
+
+Om definisjonen er hentet ordrett fra en kilden, velger du ‘sitat fra kilde’.
+
+Om definisjonen består av egne ordvalg basert på en kilde, velger du ‘basert på kilde’.
+
+Se mer om ‘kildebeskrivelse’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
   merknadTitle: 'Merknad',
   merknadAbstract: 'Tilleggsopplysninger om begrepets betydning som ikke hører hjemme i definisjonsfeltet.',
   merknadDescription: `En merknad til definisjonen er en eller flere utdypende forklaringer til definisjon eller alternativ formulering. 

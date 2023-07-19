@@ -105,6 +105,8 @@ export interface Concept {
   erPublisert?: boolean;
   anbefaltTerm?: AnbefaltTerm;
   definisjon?: Definisjon;
+  folkeligForklaring?: Definisjon;
+  rettsligForklaring?: Definisjon;
   ansvarligVirksomhet: { id: string };
   merknad?: Record<string, string[]>;
   eksempel?: Record<string, string[]>;

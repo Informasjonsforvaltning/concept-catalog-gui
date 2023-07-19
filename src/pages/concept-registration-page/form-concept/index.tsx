@@ -225,6 +225,8 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     concept: {
       anbefaltTerm = { navn: {} },
       definisjon = { tekst: {}, kildebeskrivelse: null },
+      folkeligForklaring = { tekst: {}, kildebeskrivelse: null },
+      rettsligForklaring = { tekst: {}, kildebeskrivelse: null },
       merknad = {},
       tillattTerm = {},
       frarådetTerm = {},
@@ -243,6 +245,8 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
   }: Props) => ({
     anbefaltTerm,
     definisjon,
+    folkeligForklaring,
+    rettsligForklaring,
     merknad,
     tillattTerm,
     frarådetTerm,

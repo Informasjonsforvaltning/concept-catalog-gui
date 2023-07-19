@@ -51,7 +51,51 @@ export const Term = ({ languages, isReadOnly = false }: Props): JSX.Element => (
         helpTextAbstract={localization.kildeAbstract}
         helpTextDescription={localization.kildeDescription}
       />
-      <Source />
+      <Source fieldName='definisjon' />
+    </div>
+    <div className='form-group'>
+      <HelpText
+        title={localization.folkeligForklaringTitle}
+        showRequired={!isReadOnly}
+        helpTextAbstract={localization.folkeligForklaringAbstract}
+        helpTextDescription={localization.folkeligForklaringDescription}
+      />
+      <MultilingualField
+        name='folkeligForklaring.tekst'
+        component={TextAreaField}
+        label='folkeligForklaring'
+        languages={languages}
+      />
+    </div>
+    <div className='form-group'>
+      <HelpText
+        title={localization.folkeligForklaringKildeTitle}
+        helpTextAbstract={localization.folkeligForklaringKildeAbstract}
+        helpTextDescription={localization.folkeligForklaringKildeDescription}
+      />
+      <Source fieldName='folkeligForklaring' />
+    </div>
+    <div className='form-group'>
+      <HelpText
+        title={localization.rettsligForklaringTitle}
+        showRequired={!isReadOnly}
+        helpTextAbstract={localization.rettsligForklaringAbstract}
+        helpTextDescription={localization.rettsligForklaringDescription}
+      />
+      <MultilingualField
+        name='rettsligForklaring.tekst'
+        component={TextAreaField}
+        label='rettsligForklaring'
+        languages={languages}
+      />
+    </div>
+    <div className='form-group'>
+      <HelpText
+        title={localization.rettsligForklaringKildeTitle}
+        helpTextAbstract={localization.rettsligForklaringKildeAbstract}
+        helpTextDescription={localization.rettsligForklaringKildeDescription}
+      />
+      <Source fieldName='rettsligForklaring' />
     </div>
     <div className='form-group'>
       <HelpText

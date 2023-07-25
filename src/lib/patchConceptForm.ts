@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import { compare } from 'fast-json-patch';
-import omit from 'lodash/omit';
 
 import { patchConceptById, setIsSaving } from '../features/conceptForm';
 
@@ -19,9 +18,16 @@ export const patchConceptFromForm = (
   { concept, dispatch, lastPatchedResponse, isSaving }
 ): void => {
   const diff = compare(
-    omit(lastPatchedResponse, metaDataFieldsToOmit),
-    omit({ ...lastPatchedResponse, ...values }, metaDataFieldsToOmit)
+    _(lastPatchedResponse).omit(metaDataFieldsToOmit).omitBy(_.isNull).value(),
+    _({
+      ...lastPatchedResponse,
+      ...values
+    })
+      .omit(metaDataFieldsToOmit)
+      .omitBy(_.isNull)
+      .value()
   );
+
   if (!isSaving && diff.length > 0) {
     const conceptId = _.get(concept, 'id');
     if (!lastPatchedResponse.erPublisert) {

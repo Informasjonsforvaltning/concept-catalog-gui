@@ -82,3 +82,4 @@ curl http://localhost:8200/begreper?orgNummer=910244132
 A beta version of concept is under development and can be reached by adding `/beta` at the end of the URL.
 See the example below:  
  `https://registrering-begrep.fellesdatakatalog.digdir.no/910244132/beta`
+ 

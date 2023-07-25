@@ -70,7 +70,7 @@ export const InputTagsFieldPure: FC<Props> = ({
   );
 
   return (
-    <div className='px-2'>
+    <div className='px-3'>
       <Can I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
         {isConceptEditable(conceptForm.concept)
           ? renderEditField()

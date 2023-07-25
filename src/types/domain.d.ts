@@ -83,10 +83,23 @@ export interface Endringslogelement {
   endringstidspunkt: string;
 }
 
-export interface User {
-  id: string;
+export interface BaseUser {
   name?: string;
   email?: string;
+}
+
+export interface User extends BaseUser {
+  id: string;
+}
+
+export interface CatalogUsersResponse {
+  users: CatalogUser[];
+}
+
+export interface CatalogUser extends BaseUser {
+  userId: string;
+  catalogId: string;
+  telephoneNumber?: number;
 }
 
 export interface Relasjon {
@@ -126,6 +139,7 @@ export interface Concept {
   endringslogelement?: Endringslogelement;
   tildeltBruker?: User;
   begrepsRelasjon?: Relasjon[];
+  interneFelt?: Record<string, InternalField>;
 }
 
 export interface Comment {
@@ -161,4 +175,51 @@ export interface Publisher {
   organizationId: string;
   name?: string;
   prefLabel?: TekstMedSpraakKode;
+}
+
+export interface CatalogFields {
+  editable: EditableFields;
+  internal: InternalField[];
+}
+
+interface EditableFields {
+  catalogId: string;
+  domainCodeListId: string;
+}
+
+export interface InternalField {
+  id: string;
+  type: InternalFieldType;
+  location: InternalFieldLocation;
+  label: Record<string, string>;
+  description: Record<string, string>;
+  codeListId: string;
+  value: string;
+}
+
+export type InternalFieldType =
+  | 'text_short'
+  | 'text_long'
+  | 'boolean'
+  | 'user_list'
+  | 'code_list';
+
+export type InternalFieldLocation = 'main_column' | 'right_column';
+
+export interface CodeListResponse {
+  codeLists: CodeList[];
+}
+
+export interface CodeList {
+  id: string;
+  name: string;
+  catalogId: string;
+  description: string;
+  codes: List<Code>;
+}
+
+export interface Code {
+  id: number;
+  name: Record<string, string>;
+  parentID?: number;
 }

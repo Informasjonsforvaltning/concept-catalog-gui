@@ -1,11 +1,9 @@
 import { DateTime } from 'luxon';
 import * as Yup from 'yup';
-// import { values } from 'lodash';
 import { localization } from '../../../lib/localization';
 import { Relation } from '../../../types/enums';
 import { getRevisions } from '../../../api/concept-catalog-api';
 import { compareVersion } from '../../../utils/version';
-// import { Version } from '../../../types';
 
 const tekstMedSpraakKodeArray = Yup.object()
   .nullable()

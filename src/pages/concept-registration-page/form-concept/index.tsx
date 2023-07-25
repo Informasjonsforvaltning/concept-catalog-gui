@@ -51,6 +51,8 @@ export type FormValues = Pick<
   | 'erstattesAv'
   | 'tildeltBruker'
   | 'begrepsRelasjon'
+  | 'versjonsnr'
+  | 'interneFelt'
 >;
 
 interface RouteParams {
@@ -79,7 +81,8 @@ export const FormConceptPure: FC<Props> = ({
   history,
   match: {
     params: { catalogId, conceptId }
-  }
+  },
+  lastPatchedResponse
 }) => {
   const {
     anbefaltTerm: termError,
@@ -91,6 +94,7 @@ export const FormConceptPure: FC<Props> = ({
   const [showUserPrompt, setShowUserPrompt] = useState<boolean>(true);
 
   const languageEntities = useAppSelector(state => state.languages.entities);
+
   const appDispatch = useAppDispatch();
 
   const translatableFields = [
@@ -148,6 +152,7 @@ export const FormConceptPure: FC<Props> = ({
             createNewConceptRevisionAndNavigate
           }
           isInitialInValidForm={!isValid}
+          lastPatchedResponse={lastPatchedResponse}
           values={values}
         />
       </Can>
@@ -214,7 +219,7 @@ export const FormConceptPure: FC<Props> = ({
         >
           <ContactInfo />
         </FormTemplate>
-        <InternalInfo errors={errors} />
+        <InternalInfo catalogId={catalogId} errors={errors} />
       </Form>
     </SC.Page>
   );
@@ -242,7 +247,8 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
       erstattesAv = [],
       tildeltBruker = { id: '' },
       begrepsRelasjon = [],
-      versjonsnr = { major: 0, minor: 0, patch: 0 }
+      versjonsnr = { major: 0, minor: 0, patch: 0 },
+      interneFelt = {}
     }
   }: Props) => ({
     id,
@@ -264,7 +270,8 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     erstattesAv,
     tildeltBruker,
     begrepsRelasjon,
-    versjonsnr
+    versjonsnr,
+    interneFelt
   }),
   validationSchema,
   validate: validateWithPreProcess,

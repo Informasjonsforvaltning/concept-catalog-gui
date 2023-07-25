@@ -17,6 +17,7 @@ interface Props<V> {
   isFormDirty: boolean;
   createNewConceptRevisionAndNavigate: () => void;
   isInitialInValidForm: boolean;
+  lastPatchedResponse: any;
   values: V;
 }
 
@@ -24,6 +25,7 @@ const FormControl = <V,>({
   isFormDirty,
   createNewConceptRevisionAndNavigate,
   isInitialInValidForm,
+  lastPatchedResponse,
   values
 }: Props<V>) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
@@ -118,7 +120,7 @@ const FormControl = <V,>({
                 patchConceptFromForm(values, {
                   concept,
                   dispatch,
-                  lastPatchedResponse: concept,
+                  lastPatchedResponse,
                   isSaving
                 });
                 setTimeout(() => history.go(0), 1000);

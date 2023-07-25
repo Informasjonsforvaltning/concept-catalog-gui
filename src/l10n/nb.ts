@@ -127,4 +127,5 @@ export const nb = {
   versionNumberMajor: 'Major',
   versionNumberMinor: 'Minor',
   versionNumberPatch: 'Patch',
+  selectUser: 'Velg bruker',
 };

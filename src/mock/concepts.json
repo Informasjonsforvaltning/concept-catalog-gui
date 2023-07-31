@@ -45,10 +45,6 @@
       "nn": "Dokument NN",
       "en": "Dokument EN"
     },
-    "bruksområde": {
-      "nb": ["Bruksområde lorem ipsum"],
-      "en": ["Bruksområde lorem ipsum EN", "Bruksområde lorem ipsum 2 EN"]
-    },
     "omfang": {
       "tekst": "Tekst for omfang",
       "uri": "uri for omfang"

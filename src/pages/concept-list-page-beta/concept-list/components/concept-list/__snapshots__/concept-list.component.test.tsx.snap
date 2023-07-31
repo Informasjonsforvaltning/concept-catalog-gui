@@ -26,15 +26,6 @@ exports[`should render ConceptList 1`] = `
           "prefLabel": "Brønnøysundregistrene",
           "uri": "http://data.brreg.no/enhetsregisteret/enhet/910244132",
         },
-        "bruksområde": {
-          "en": [
-            "Bruksområde lorem ipsum EN",
-            "Bruksområde lorem ipsum 2 EN",
-          ],
-          "nb": [
-            "Bruksområde lorem ipsum",
-          ],
-        },
         "definisjon": {
           "tekst": {
             "en": "lorem ipsum EN",

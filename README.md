@@ -67,7 +67,6 @@ curl -H "Content-Type: application/json" -X POST -d '
    },
    "eksempel": "Eksempel lorem ipsum.",
    "fagområde": "Dokument",
-   "bruksområde": ["Bruksområde lorem ipsum"],
    "verdiområde": "Verdiområde lorem ipsum",
    "kontaktpunkt": {"epost":"informasjonsforvaltning@brreg.no"},
    "gyldigFom": "2019-03-30",

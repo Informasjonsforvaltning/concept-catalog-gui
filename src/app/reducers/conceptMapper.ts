@@ -121,7 +121,6 @@ function mapCsvTextToConcept(
     merknad: mapRowToLanguageValueList(csvMap, 'merknad'),
     eksempel: mapRowToLanguageValueList(csvMap, 'eksempel'),
     fagområde: mapRowToLanguageValue(csvMap, 'fagområde'),
-    bruksområde: mapRowToLanguageValueList(csvMap, 'bruksområde'),
     gyldigFom: mapToSingleValue(csvMap, 'gyldigfom'),
     gyldigTom: mapToSingleValue(csvMap, 'gyldigtom'),
     omfang: {

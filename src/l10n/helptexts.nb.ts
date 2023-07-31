@@ -99,11 +99,6 @@ Se mer om ‘eksempel’ i [veileder for begrepsbeskrivelser](https://doc.difi.n
   fagomraadeDescription: `Du kan bare registrere ett fagområde til et begrep,  f.eks. ‘Helse’ for begrepet ‘helsetilstand’. 
 Dersom begrepet blir brukt innenfor flere faglige sammenhenger, skal du benytte feltet ‘bruksområde’. Et fagområde er gjerne mer overordnet enn bruksområdene. 
 Se mer om ‘fagområde’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#_10_fagomr%C3%A5de_og_bruksomr%C3%A5de)`,
-  bruksomraadeTitle: 'Bruksområde(r)',
-  bruksomraadeAbstract: 'Bruksområder viser hvilke sammenhenger begrepet brukes.',
-  bruksomraadeDescription: `Et bruksområde er en faglig eller juridisk sammenheng der begrepet blir brukt, f.eks. (hos Nav) hjelpemidler, trygdeytelser, arbeidsmarkedstiltak. 
-For eksempel har begrepet helsetilstand ‘helse’ som fagområde og ‘hjelpemidler’, ‘trygdeytelser’, ‘arbeidsmarkedstiltak’ som bruksområder. 
-Se mer om ‘bruksområde’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#_10_fagomr%C3%A5de_og_bruksomr%C3%A5de)`,
   omfangTitle: 'Omfang',
   omfangAbstract: 'Omfang betyr lovlige kategorier eller verdiområder for begrepet.',
   omfangDescription: `Eksempel på kategorier: Standard for sivilstand spesifiserer hva som er lovlige kategorier for begrepet ‘sivilstand’, f.eks. ugift, gift og skilt. 

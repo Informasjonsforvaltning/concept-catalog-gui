@@ -97,7 +97,7 @@ Se mer om ‘eksempel’ i [veileder for begrepsbeskrivelser](https://doc.difi.n
   fagomraadeTitle: 'Fagområde',
   fagomraadeAbstract: 'Et fagområde er et spesialisert kunnskapsområde som begrepet tilhører.',
   fagomraadeDescription: `Du kan bare registrere ett fagområde til et begrep,  f.eks. ‘Helse’ for begrepet ‘helsetilstand’. 
-Dersom begrepet blir brukt innenfor flere faglige sammenhenger, skal du benytte feltet ‘bruksområde’. Et fagområde er gjerne mer overordnet enn bruksområdene. 
+  Fagområde kan representere en akademisk disiplin, et bruksområde, et produkt, en tjenestekjede eller lignende. 
 Se mer om ‘fagområde’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#_10_fagomr%C3%A5de_og_bruksomr%C3%A5de)`,
   omfangTitle: 'Omfang',
   omfangAbstract: 'Omfang betyr lovlige kategorier eller verdiområder for begrepet.',

@@ -119,6 +119,40 @@ export const schema = Yup.object().shape({
           .nullable()
       })
   }),
+  folkeligForklaring: Yup.object().shape({
+    kildebeskrivelse: Yup.object()
+      .nullable()
+      .shape({
+        forholdTilKilde: Yup.string().nullable(),
+        kilde: Yup.array()
+          .of(
+            Yup.object().shape({
+              tekst: Yup.string()
+                .nullable()
+                .min(2, localization.validationMin2),
+              uri: Yup.string().nullable().url(localization.validationUrl)
+            })
+          )
+          .nullable()
+      })
+  }),
+  rettsligForklaring: Yup.object().shape({
+    kildebeskrivelse: Yup.object()
+      .nullable()
+      .shape({
+        forholdTilKilde: Yup.string().nullable(),
+        kilde: Yup.array()
+          .of(
+            Yup.object().shape({
+              tekst: Yup.string()
+                .nullable()
+                .min(2, localization.validationMin2),
+              uri: Yup.string().nullable().url(localization.validationUrl)
+            })
+          )
+          .nullable()
+      })
+  }),
   merknad: tekstMedSpraakKodeArray,
   eksempel: tekstMedSpraakKodeArray,
   fagområde: tekstMedSpraakKode,

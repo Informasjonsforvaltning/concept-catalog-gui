@@ -27,20 +27,20 @@ Om definisjonen er hentet ordrett fra en kilden, velger du ‘sitat fra kilde’
 Om definisjonen består av egne ordvalg basert på en kilde, velger du ‘basert på kilde’.
 
 Se mer om ‘kildebeskrivelse’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
-  folkeligForklaringTitle: 'Folkelig forklaring',
+  folkeligForklaringTitle: 'Definisjon for allmennheten',
   folkeligForklaringAbstract:
-    'En folkelig forklaring skal være en kort forklaring som tydelig avgrenser til andre, nærliggende begrep, eventuelt tydeliggjør forskjellen mellom dette begrepet og andre nærliggende begrep.',
+    'En definisjon for allmennheten skal være en kort beskrivelse som tydelig avgrenser til andre, nærliggende begrep, eventuelt tydeliggjør forskjellen mellom dette begrepet og andre nærliggende begrep.',
   folkeligForklaringDescription: `Registrer meningsinnholdet til begrepet uttrykt gjennom en setning. 
-En definisjon er en beskrivelse som avgrenser begrepet mot beslektede begrep. Definisjonen er altså begrepet forklart med ord. 
+En definisjon for allmennheten er en beskrivelse som avgrenser begrepet mot beslektede begrep. Definisjonen er altså begrepet forklart med ord. 
 Definisjonen skal ikke være en utfyllende innføring i begrepet. 
 Et eksempel er bonus i arbeidsforhold, som av Skatteetaten blir definert som ‘godtgjørelse som kan knyttes direkte til innsats eller resultater i en virksomhet’. 
 Fagområder vil også sette begrensninger i hvilken sammenheng begrepet og definisjonen skal forstås. 
 Se mer om ‘definisjon’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#definisjon)`,
-  folkeligForklaringKildeTitle: 'Kilde til folkelig forklaring',
-  folkeligForklaringKildeAbstract: 'Her registrerer du hvor du har hentet folkelig forklaringen fra. ',
-  folkeligForklaringKildeDescription: `Her kan du legge til én eller flere kilder til folkelig forklaringen. 
+  folkeligForklaringKildeTitle: 'Kilde til definisjon for allmennheten',
+  folkeligForklaringKildeAbstract: 'Her registrerer du hvor du har hentet definisjonen fra. ',
+  folkeligForklaringKildeDescription: `Her kan du legge til én eller flere kilder til definisjonen. 
 
-Kilden til folkelig forklaringen kan være enten lov eller forskrift, et leksikon, en ordbok e.l.  Har virksomheten definert begrepet selv, velger du "Egendefinert".
+Kilden til definisjon for allmennheten kan være enten lov eller forskrift, et leksikon, en ordbok e.l.  Har virksomheten definert begrepet selv, velger du "Egendefinert".
 
 Har du en oppslagsbar ressurs kan du lenke til denne.
 
@@ -49,20 +49,20 @@ Om definisjonen er hentet ordrett fra en kilden, velger du ‘sitat fra kilde’
 Om definisjonen består av egne ordvalg basert på en kilde, velger du ‘basert på kilde’.
 
 Se mer om ‘kildebeskrivelse’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
-  rettsligForklaringTitle: 'Rettslig forklaring',
+  rettsligForklaringTitle: 'Definisjon for jurister',
   rettsligForklaringAbstract:
-    'En rettslig forklaring skal være en kort forklaring som tydelig avgrenser til andre, nærliggende begrep, eventuelt tydeliggjør forskjellen mellom dette begrepet og andre nærliggende begrep.',
+    'En definisjon for jurister skal være en kort beskrivelse som tydelig avgrenser til andre, nærliggende begrep, eventuelt tydeliggjør forskjellen mellom dette begrepet og andre nærliggende begrep.',
   rettsligForklaringDescription: `Registrer meningsinnholdet til begrepet uttrykt gjennom en setning. 
-En rettslig forklaring er en beskrivelse som avgrenser begrepet mot beslektede begrep. Definisjonen er altså begrepet forklart med ord. 
+En definisjon for jurister er en beskrivelse som avgrenser begrepet mot beslektede begrep. Definisjonen er altså begrepet forklart med ord. 
 Definisjonen skal ikke være en utfyllende innføring i begrepet. 
 Et eksempel er bonus i arbeidsforhold, som av Skatteetaten blir definert som ‘godtgjørelse som kan knyttes direkte til innsats eller resultater i en virksomhet’. 
 Fagområder vil også sette begrensninger i hvilken sammenheng begrepet og definisjonen skal forstås. 
 Se mer om ‘definisjon’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#definisjon)`,
-  rettsligForklaringKildeTitle: 'Kilde til rettslig forklaring',
-  rettsligForklaringKildeAbstract: 'Her registrerer du hvor du har hentet rettslig forklaringen fra. ',
-  rettsligForklaringKildeDescription: `Her kan du legge til én eller flere kilder til rettslig forklaringen. 
+  rettsligForklaringKildeTitle: 'Kilde til definisjon for jurister',
+  rettsligForklaringKildeAbstract: 'Her registrerer du hvor du har hentet definisjonen fra. ',
+  rettsligForklaringKildeDescription: `Her kan du legge til én eller flere kilder til definisjonen. 
 
-Kilden til rettslig forklaring kan være enten lov eller forskrift, et leksikon, en ordbok e.l.  Har virksomheten definert begrepet selv, velger du "Egendefinert".
+Kilden til definisjon for jurister kan være enten lov eller forskrift, et leksikon, en ordbok e.l.  Har virksomheten definert begrepet selv, velger du "Egendefinert".
 
 Har du en oppslagsbar ressurs kan du lenke til denne.
 

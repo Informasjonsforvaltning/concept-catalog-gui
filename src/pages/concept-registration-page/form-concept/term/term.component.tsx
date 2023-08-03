@@ -56,7 +56,6 @@ export const Term = ({ languages, isReadOnly = false }: Props): JSX.Element => (
     <div className='form-group'>
       <HelpText
         title={localization.folkeligForklaringTitle}
-        showRequired={!isReadOnly}
         helpTextAbstract={localization.folkeligForklaringAbstract}
         helpTextDescription={localization.folkeligForklaringDescription}
       />
@@ -78,7 +77,6 @@ export const Term = ({ languages, isReadOnly = false }: Props): JSX.Element => (
     <div className='form-group'>
       <HelpText
         title={localization.rettsligForklaringTitle}
-        showRequired={!isReadOnly}
         helpTextAbstract={localization.rettsligForklaringAbstract}
         helpTextDescription={localization.rettsligForklaringDescription}
       />

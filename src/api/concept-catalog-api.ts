@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import { Collection, Concept } from '../types';
 
 import ImportError from '../domain/ImportError';

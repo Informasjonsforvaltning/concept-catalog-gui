@@ -5,6 +5,6 @@ export const getUsersByCatalogIdApiGet = (
   catalogId: string
 ): Promise<CatalogUsersResponse> =>
   catalogAdminApi({
-    path: `${catalogId}/general/user-list`,
+    path: `${catalogId}/general/users`,
     method: 'GET'
   });

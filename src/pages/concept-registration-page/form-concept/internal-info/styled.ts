@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Colour, theme } from '@fellesdatakatalog/theme';
-
 import HelpTextSC from '../../../../components/help-text/styled';
 
 const InternalInfo = styled.div`
@@ -43,6 +42,11 @@ const AssignUser = styled.div`
     border-color: ${theme.colour(Colour.NEUTRAL, 'N70')};
     font-size: ${theme.fontSize('FS20')};
     height: 3em;
+  }
+  & :nth-child(2) {
+    & label > div:nth-child(2) {
+      width: 50%;
+    }
   }
 `;
 

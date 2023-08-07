@@ -48,7 +48,7 @@ export type FormValues = Pick<
   | 'gyldigTom'
   | 'seOgså'
   | 'erstattesAv'
-  | 'tildeltBruker'
+  | 'assignedUser'
   | 'begrepsRelasjon'
   | 'versjonsnr'
   | 'interneFelt'
@@ -242,7 +242,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
       gyldigTom = null,
       seOgså = [],
       erstattesAv = [],
-      tildeltBruker = { id: '' },
+      assignedUser = '',
       begrepsRelasjon = [],
       versjonsnr = { major: 0, minor: 0, patch: 0 },
       interneFelt = {}
@@ -264,7 +264,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     gyldigTom,
     seOgså,
     erstattesAv,
-    tildeltBruker,
+    assignedUser,
     begrepsRelasjon,
     versjonsnr,
     interneFelt

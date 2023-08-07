@@ -86,6 +86,8 @@ export interface Endringslogelement {
 export interface BaseUser {
   name?: string;
   email?: string;
+  catalogId?: string;
+  telephoneNumber?: number;
 }
 
 export interface User extends BaseUser {
@@ -97,7 +99,7 @@ export interface CatalogUsersResponse {
 }
 
 export interface CatalogUser extends BaseUser {
-  userId: string;
+  id: string;
   catalogId: string;
   telephoneNumber?: number;
 }
@@ -136,7 +138,7 @@ export interface Concept {
   erSistPublisert?: boolean;
   revisjonAvSistPublisert?: boolean;
   endringslogelement?: Endringslogelement;
-  tildeltBruker?: User;
+  assignedUser?: string;
   begrepsRelasjon?: Relasjon[];
   interneFelt?: Record<string, InternalField>;
 }

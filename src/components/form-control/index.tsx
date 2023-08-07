@@ -30,6 +30,7 @@ const FormControl = <V,>({
 }: Props<V>) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
   const [isSticky, setSticky] = useState(false);
+  const [patchCalled, setPatchCalled] = useState(false);
 
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
@@ -68,6 +69,7 @@ const FormControl = <V,>({
   const validationError = conceptForm.isValidationError || isInitialInValidForm;
   const isSaving = conceptForm.isSaving ?? false;
   const justChangedStatus = conceptForm.justChangedStatus ?? false;
+  const errorSaving = conceptForm.error ?? false;
 
   const endringstidspunkt = concept?.endringslogelement?.endringstidspunkt;
 
@@ -86,6 +88,9 @@ const FormControl = <V,>({
     if (isSaving) {
       return `${localization.isSaving}...`;
     }
+    if (errorSaving) {
+      return `${localization.errorSaving}...`;
+    }
     if (published) {
       return `${localization.changesUpdated} ${formatTime(
         endringstidspunkt || concept?.endringslogelement?.endringstidspunkt,
@@ -103,6 +108,12 @@ const FormControl = <V,>({
     history.push(`/${catalogId}`);
   };
 
+  useEffect(() => {
+    if (patchCalled && !(isSaving || errorSaving)) {
+      history.go(0);
+    }
+  }, [isSaving, errorSaving, setPatchCalled]);
+
   return concept ? (
     <>
       <SC.FormControl $isSticky={isSticky}>
@@ -117,13 +128,13 @@ const FormControl = <V,>({
             <SC.Button
               disabled={isSaving || !isFormDirty}
               onClick={() => {
+                setPatchCalled(true);
                 patchConceptFromForm(values, {
                   concept,
                   dispatch,
                   lastPatchedResponse,
                   isSaving
                 });
-                setTimeout(() => history.go(0), 1000);
               }}
             >
               {localization.save}
@@ -137,7 +148,8 @@ const FormControl = <V,>({
                 (!!concept.revisjonAv && !concept.revisjonAvSistPublisert) ||
                 isFormDirty
               }
-              onClick={() =>
+              onClick={() => {
+                setPatchCalled(true);
                 patchConceptFromForm(
                   {
                     status: ConceptStatus.HOERING,
@@ -153,8 +165,8 @@ const FormControl = <V,>({
                     lastPatchedResponse: concept,
                     isSaving
                   }
-                )
-              }
+                );
+              }}
             >
               <SC.StatusHearingIcon />
               {localization.setToHoering}
@@ -168,7 +180,8 @@ const FormControl = <V,>({
                 (!!concept.revisjonAv && !concept.revisjonAvSistPublisert) ||
                 isFormDirty
               }
-              onClick={() =>
+              onClick={() => {
+                setPatchCalled(true);
                 patchConceptFromForm(
                   {
                     status: ConceptStatus.GODKJENT,
@@ -184,8 +197,8 @@ const FormControl = <V,>({
                     lastPatchedResponse: concept,
                     isSaving
                   }
-                )
-              }
+                );
+              }}
             >
               <SC.StatusApprovedIcon />
               {localization.setToApproval}
@@ -198,14 +211,15 @@ const FormControl = <V,>({
                 (!!concept.revisjonAv && !concept.revisjonAvSistPublisert) ||
                 isFormDirty
               }
-              onClick={() =>
+              onClick={() => {
+                setPatchCalled(true);
                 publishConceptFromForm({
                   concept,
                   dispatch,
                   lastPatchedResponse: concept,
                   isSaving
-                })
-              }
+                });
+              }}
             >
               <SC.StatusPublishedIcon />
               {localization.publish}

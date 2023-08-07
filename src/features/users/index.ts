@@ -20,7 +20,7 @@ export const fetchUsers = createAsyncThunk<CatalogUser[], UsersAttributes>(
 );
 
 const usersAdapter = createEntityAdapter<CatalogUser>({
-  selectId: user => user.userId,
+  selectId: user => user.id,
   sortComparer: (a, b) => {
     if (a.name == null || b.name == null) {
       if (a.name == null && b.name == null) {
@@ -52,6 +52,10 @@ const usersSelector = usersAdapter.getSelectors<RootState>(
 );
 
 export const selectAllUsers = usersSelector.selectAll;
+
+export const selectUserById = usersAdapter.getSelectors<RootState>(
+  state => state.users
+).selectById;
 
 export const { reducer: usersReducer } = usersSlice;
 

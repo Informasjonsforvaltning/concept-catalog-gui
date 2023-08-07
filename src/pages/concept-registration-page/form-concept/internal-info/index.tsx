@@ -108,9 +108,9 @@ const renderInternalField = (
 
   if (internalField.type === 'user_list') {
     const usersOptions = userList.map(
-      ({ userId, name: userName }) =>
+      ({ id, name: userName }) =>
         ({
-          value: userId,
+          value: id,
           label: userName
         } as OptionProps)
     );
@@ -261,11 +261,16 @@ export const InternalInfo: FC<Props> = ({ catalogId, errors }) => {
           helpTextAbstract={localization.assignUserAbstract}
         />
         <Field
-          name='tildeltBruker.id'
-          component={InputField}
+          name='assignedUser'
+          component={SelectField}
           label={localization.assignToUser}
           placeholder={localization.enterFullName}
           showLabel
+          options={userList.map(item => ({
+            label: item.name,
+            value: item.id
+          }))}
+          onChange={(form, f, option) => form.setFieldValue(f, option.value)}
         />
       </SC.AssignUser>
     </SC.InternalInfo>

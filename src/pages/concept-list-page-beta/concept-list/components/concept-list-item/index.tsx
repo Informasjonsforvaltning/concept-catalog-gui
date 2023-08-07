@@ -13,6 +13,8 @@ import { localization } from '../../../../../lib/localization';
 import { getTranslateText } from '../../../../../lib/translateText';
 
 import SC from './styled';
+import {useAppSelector} from "../../../../../app/redux/hooks";
+import {selectUserById} from "../../../../../features/users";
 
 interface RouteParams {
   catalogId: string;
@@ -80,10 +82,14 @@ const ListItem: FC<Props> = ({
     return null;
   }
 
+  const assignedUser = useAppSelector(state =>
+    selectUserById(state, concept?.assignedUser ?? '')
+  );
+
   return (
     <SC.ListItem to={`${catalogId}/${concept.id}`} as={RouterLink}>
       <SC.Column>{getTranslateText(concept.anbefaltTerm?.navn)}</SC.Column>
-      <SC.Column>{getTranslateText(concept.tildeltBruker?.id)}</SC.Column>
+      <SC.Column>{assignedUser?.name}</SC.Column>
       <SC.Column>
         {concept.endringslogelement?.endringstidspunkt &&
           DateTime.fromISO(

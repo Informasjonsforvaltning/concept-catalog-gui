@@ -77,9 +77,3 @@ curl -H "Content-Type: application/json" -X POST -d '
 
 # get the concept just inserted
 curl http://localhost:8200/begreper?orgNummer=910244132
-
-## Beta version
-A beta version of concept is under development and can be reached by adding `/beta` at the end of the URL.
-See the example below:  
- `https://registrering-begrep.fellesdatakatalog.digdir.no/910244132/beta`
- 

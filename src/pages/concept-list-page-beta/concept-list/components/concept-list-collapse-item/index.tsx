@@ -9,6 +9,8 @@ import { localization } from '../../../../../lib/localization';
 import ListItem from '../concept-list-item';
 
 import SC from './styled';
+import {useAppSelector} from "../../../../../app/redux/hooks";
+import {selectUserById} from "../../../../../features/users";
 
 interface Props {
   concepts: Concept[];
@@ -29,15 +31,17 @@ const CollapseItem: FC<Props> = ({ concepts }) => {
     -Infinity
   );
 
+  const assignedUser = useAppSelector(state =>
+    selectUserById(state, highestPublishedVersionConcept?.assignedUser ?? '')
+  );
+
   return (
     <SC.CollapseItem type='button' onClick={() => setIsOpen(!isOpen)}>
       <SC.CollapseItemHeader>
         <SC.Column>
           {getTranslateText(highestPublishedVersionConcept?.anbefaltTerm?.navn)}
         </SC.Column>
-        <SC.Column>
-          {getTranslateText(highestPublishedVersionConcept?.tildeltBruker?.id)}
-        </SC.Column>
+        <SC.Column>{assignedUser?.name}</SC.Column>
         <SC.Column>
           {newestChange !== -Infinity
             ? DateTime.fromMillis(newestChange).toLocaleString()

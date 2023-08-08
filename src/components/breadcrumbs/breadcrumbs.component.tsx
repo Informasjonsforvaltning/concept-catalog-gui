@@ -22,7 +22,7 @@ const Breadcrumb = ({ item }) => {
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {matchUrl.match('^/\\d+$') ? (
+      {config.enableConceptCatalogFrontend && matchUrl.match('^/\\d+$') ? (
         <a href={`${config.conceptCatalogFrontendBaseUri}${matchUrl}`}>
           {label}
         </a>

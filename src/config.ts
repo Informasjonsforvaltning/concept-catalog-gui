@@ -60,6 +60,7 @@ const config = {
     host: env.CATALOG_COMMENTS_SERVICE_HOST
   },
   conceptCatalogFrontendBaseUri: env.CONCEPT_CATALOG_FRONTEND_BASE_URI,
+  enableConceptCatalogFrontend: window.location.hostname.includes('staging'),
   catalogAdminServiceBaseUri: env.CATALOG_ADMIN_SERVICE_BASE_URI,
   useDemoLogo: env.USE_DEMO_LOGO
 };

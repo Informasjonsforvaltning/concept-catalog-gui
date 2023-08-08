@@ -45,9 +45,15 @@ exports[`should render ConceptList 1`] = `
           ],
         },
         "fagområde": {
-          "en": "Dokument EN",
-          "nb": "Dokument",
-          "nn": "Dokument NN",
+          "en": [
+            "Dokument EN",
+          ],
+          "nb": [
+            "Dokument",
+          ],
+          "nn": [
+            "Dokument NN",
+          ],
         },
         "forholdTilKilde": "ForholdTilKilde lorem ipsum",
         "frarådetTerm": {

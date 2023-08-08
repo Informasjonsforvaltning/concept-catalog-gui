@@ -123,8 +123,7 @@ export interface Concept {
   ansvarligVirksomhet: { id: string };
   merknad?: Record<string, string[]>;
   eksempel?: Record<string, string[]>;
-  fagområde?: TekstMedSpraakKode;
-  bruksområde?: Record<string, string[]>;
+  fagområde?: Record<string, string[]>;
   omfang?: UriText | null;
   tillattTerm?: Record<string, string[]>;
   frarådetTerm?: Record<string, string[]>;

@@ -6,6 +6,7 @@ import { HelpText } from '../../../../components/help-text/help-text.component';
 import { localization } from '../../../../lib/localization';
 import { MultilingualField } from '../../../../components/multilingual-field/multilingual-field.component';
 import { Language } from '../../../../types';
+import {InputTagsField} from "../../../../components/fields/field-input-tags/field-input-tags.component";
 
 interface Props {
   languages: Language[];
@@ -34,7 +35,7 @@ export const UseOfTerm = ({ languages }: Props): JSX.Element => (
       />
       <MultilingualField
         name='fagområde'
-        component={InputField}
+        component={InputTagsField}
         label='fagområde'
         languages={languages}
       />

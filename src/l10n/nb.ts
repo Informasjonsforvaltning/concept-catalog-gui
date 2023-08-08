@@ -128,4 +128,5 @@ export const nb = {
   versionNumberMinor: 'Minor',
   versionNumberPatch: 'Patch',
   selectUser: 'Velg bruker',
+  searchCode: 'Søk etter kode',
 };

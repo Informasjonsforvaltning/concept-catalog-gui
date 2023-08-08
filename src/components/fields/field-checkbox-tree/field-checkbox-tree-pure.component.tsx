@@ -3,11 +3,13 @@ import { get } from 'lodash';
 
 import CheckboxTree, { Node } from 'react-checkbox-tree';
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
+import Select from 'react-select';
 
 import { Can } from '../../../casl/Can';
 import { isConceptEditable } from '../../../lib/concept';
 import { useAppSelector } from '../../../app/redux/hooks';
 import './field-checkbox-tree.scss';
+import { localization } from '../../../lib/localization';
 
 export type TreeNode = {
   value: string;
@@ -34,6 +36,61 @@ const mapToNode = (node: TreeNode): Node => ({
   className: 'fdk-checkbox-tree-node'
 });
 
+const getSearchOptions = (nodes?: TreeNode[]) => {
+  let options: any = [];
+  if (nodes) {
+    nodes.forEach(({ value, label, children }) => {
+      options.push({ value, label });
+      options = options.concat(getSearchOptions(children));
+    });
+  }
+
+  return options;
+};
+
+const findPath = (treeNode: TreeNode, targetValue: string) => {
+  const path: string[] = [];
+
+  const dfs = (tn: TreeNode, v: string) => {
+    if (!tn) {
+      return false;
+    }
+
+    path.push(tn.value);
+
+    if (tn.value === v) {
+      return true;
+    }
+
+    if (tn.children?.length) {
+      for (let index = 0; index < tn.children.length; index++) {
+        if (dfs(tn.children[index], v)) {
+          return true;
+        }
+      }
+    }
+
+    path.pop();
+    return false;
+  };
+
+  dfs(treeNode, targetValue);
+  return path.slice(); // Return a shallow copy of the path array
+};
+
+const getExpanded = (nodes?: TreeNode[], checkedValue?: string) => {
+  if (nodes && checkedValue) {
+    for (let index = 0; index < nodes.length; index++) {
+      const path = findPath(nodes[index], checkedValue);
+      if (path.length > 0) {
+        return path;
+      }
+    }
+  }
+
+  return [];
+};
+
 export const CheckboxTreeFieldPure: FC<Props> = ({
   field, // { name, value, onChange, onBlur }
   form, // also values, dirty, isValid, status, etc.
@@ -49,8 +106,16 @@ export const CheckboxTreeFieldPure: FC<Props> = ({
   const [checked, setChecked] = React.useState<string[]>(
     checkedValue ? [checkedValue] : []
   );
-  const [expanded, setExpanded] = React.useState<string[]>([]);
-  const renderReadOnlyField = () => <div />;
+  const [expanded, setExpanded] = React.useState<string[]>(
+    getExpanded(nodes, checkedValue)
+  );
+
+  const handleSearchOnChange = (option: any) => {
+    if (option) {
+      setChecked([option.value]);
+      setExpanded(getExpanded(nodes, option.value));
+    }
+  };
 
   const handleOnCheck = (checkedValues: string[]) => {
     const newCheckedValues = checkedValues.filter(c => !checked.includes(c));
@@ -61,7 +126,7 @@ export const CheckboxTreeFieldPure: FC<Props> = ({
     }
   };
 
-  const renderEditField = () => (
+  const renderField = (readOnly: boolean) => (
     <label
       className='fdk-form-label w-100 fdk-text-strong position-relative'
       htmlFor={field.name}
@@ -70,10 +135,19 @@ export const CheckboxTreeFieldPure: FC<Props> = ({
       {!!language && !isOnlyOneSelectedLanguage && (
         <span className='language-indicator'>{language}</span>
       )}
+      <Select
+        isMulti={false}
+        maxMenuHeight={450}
+        options={getSearchOptions(nodes)}
+        isClearable
+        placeholder={localization.searchCode}
+        onChange={handleSearchOnChange}
+      />
       <CheckboxTree
         nodes={nodes?.map(mapToNode) ?? []}
         checked={checked}
         expanded={expanded}
+        disabled={readOnly}
         onCheck={handleOnCheck}
         onExpand={exp => setExpanded(exp)}
         noCascade
@@ -91,11 +165,11 @@ export const CheckboxTreeFieldPure: FC<Props> = ({
       <div className='d-flex align-items-center'>
         <Can I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
           {isConceptEditable(conceptForm.concept)
-            ? renderEditField()
-            : renderReadOnlyField()}
+            ? renderField(false)
+            : renderField(true)}
         </Can>
         <Can not I='edit field' of={{ __type: 'Field', publisher: catalogId }}>
-          {renderReadOnlyField()}
+          {renderField(true)}
         </Can>
       </div>
       {get(form.errors, field.name) && (

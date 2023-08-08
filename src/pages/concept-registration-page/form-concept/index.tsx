@@ -42,7 +42,6 @@ export type FormValues = Pick<
   | 'frarådetTerm'
   | 'eksempel'
   | 'fagområde'
-  | 'bruksområde'
   | 'omfang'
   | 'kontaktpunkt'
   | 'gyldigFom'
@@ -104,8 +103,7 @@ export const FormConceptPure: FC<Props> = ({
     'frarådetTerm',
     'merknad',
     'eksempel',
-    'fagområde',
-    'bruksområde'
+    'fagområde'
   ];
 
   const getUsedLanguages = (): any[] =>
@@ -238,7 +236,6 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
       frarådetTerm = {},
       eksempel = {},
       fagområde = {},
-      bruksområde = {},
       omfang = null,
       kontaktpunkt = null,
       gyldigFom = null,
@@ -261,7 +258,6 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     frarådetTerm,
     eksempel,
     fagområde,
-    bruksområde,
     omfang,
     kontaktpunkt,
     gyldigFom,

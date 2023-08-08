@@ -41,9 +41,9 @@
       "en": ["Eksempel lorem ipsum EN."]
     },
     "fagområde": {
-      "nb": "Dokument",
-      "nn": "Dokument NN",
-      "en": "Dokument EN"
+      "nb": ["Dokument"],
+      "nn": ["Dokument NN"],
+      "en": ["Dokument EN"]
     },
     "omfang": {
       "tekst": "Tekst for omfang",

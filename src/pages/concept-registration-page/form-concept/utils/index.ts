@@ -45,7 +45,7 @@ const pruneEmptyProperties = (obj: any, reduceAsArray = false) => {
 const preProcessValues = ({
   merknad,
   eksempel,
-  bruksområde,
+  fagområde,
   omfang,
   kontaktpunkt,
   ...conceptValues
@@ -53,7 +53,7 @@ const preProcessValues = ({
   ...conceptValues,
   merknad: stringsToArray(merknad),
   eksempel: stringsToArray(eksempel),
-  bruksområde: stringsToArray(bruksområde),
+  fagområde: stringsToArray(fagområde),
   omfang: pruneEmptyProperties(omfang),
   kontaktpunkt: pruneEmptyProperties(kontaktpunkt)
 });

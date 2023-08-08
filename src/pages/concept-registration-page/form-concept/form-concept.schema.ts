@@ -13,12 +13,6 @@ const tekstMedSpraakKodeArray = Yup.object()
     en: Yup.array().of(Yup.string()).nullable()
   });
 
-const tekstMedSpraakKode = Yup.object().nullable().shape({
-  nb: Yup.string(),
-  nn: Yup.string(),
-  en: Yup.string()
-});
-
 export const schema = Yup.object().shape({
   anbefaltTerm: Yup.object().shape({
     navn: Yup.object().shape({
@@ -153,8 +147,7 @@ export const schema = Yup.object().shape({
   }),
   merknad: tekstMedSpraakKodeArray,
   eksempel: tekstMedSpraakKodeArray,
-  fagområde: tekstMedSpraakKode,
-  bruksområde: tekstMedSpraakKodeArray,
+  fagområde: tekstMedSpraakKodeArray,
   omfang: Yup.object()
     .nullable()
     .shape({

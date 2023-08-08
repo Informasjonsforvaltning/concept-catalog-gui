@@ -29,7 +29,7 @@ Om definisjonen består av egne ordvalg basert på en kilde, velger du ‘basert
 Se mer om ‘kildebeskrivelse’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
   folkeligForklaringTitle: 'Definisjon for allmennheten',
   folkeligForklaringAbstract:
-    'En definisjon for allmennheten skal være en kort beskrivelse som tydelig avgrenser til andre, nærliggende begrep, eventuelt tydeliggjør forskjellen mellom dette begrepet og andre nærliggende begrep.',
+    'En definisjon av begrepet som er rettet mot allmennheten. Det forventes ikke at denne målgruppen har noe forkunnskap i det/de aktuelle fagområdet/fagområdene for begrepet.',
   folkeligForklaringDescription: `Registrer meningsinnholdet til begrepet uttrykt gjennom en setning. 
 En definisjon for allmennheten er en beskrivelse som avgrenser begrepet mot beslektede begrep. Definisjonen er altså begrepet forklart med ord. 
 Definisjonen skal ikke være en utfyllende innføring i begrepet. 
@@ -51,7 +51,7 @@ Om definisjonen består av egne ordvalg basert på en kilde, velger du ‘basert
 Se mer om ‘kildebeskrivelse’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
   rettsligForklaringTitle: 'Definisjon for jurister',
   rettsligForklaringAbstract:
-    'En definisjon for jurister skal være en kort beskrivelse som tydelig avgrenser til andre, nærliggende begrep, eventuelt tydeliggjør forskjellen mellom dette begrepet og andre nærliggende begrep.',
+    'En definisjon av begrepet som er rettet mot spesialister. for jurister skal være en kort beskrivelse som tydelig avgrenser til andre, nærliggende begrep, eventuelt tydeliggjør forskjellen mellom dette begrepet og andre nærliggende begrep.',
   rettsligForklaringDescription: `Registrer meningsinnholdet til begrepet uttrykt gjennom en setning. 
 En definisjon for jurister er en beskrivelse som avgrenser begrepet mot beslektede begrep. Definisjonen er altså begrepet forklart med ord. 
 Definisjonen skal ikke være en utfyllende innføring i begrepet. 
@@ -135,5 +135,5 @@ Se mer om ‘kontaktinformasjon’ i [veileder for begrepsbeskrivelser](https://
   descriptionTitle: 'Beskrivelse',
   inndelingskriteriumTitle: 'Inndelingskriterium',
   versionTitle: 'Versjonsnummer',
-  versionAbstract: 'Oppgi versjonsnummer for begrepet.'
+  versionAbstract: 'Versjonsnummer består av tall i tre ledd: major.minor.patch. Eks: 1.0.0'
 };

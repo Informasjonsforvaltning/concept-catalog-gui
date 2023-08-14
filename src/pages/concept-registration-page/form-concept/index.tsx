@@ -42,6 +42,7 @@ export type FormValues = Pick<
   | 'frarådetTerm'
   | 'eksempel'
   | 'fagområde'
+  | 'fagområdeKoder'
   | 'omfang'
   | 'kontaktpunkt'
   | 'gyldigFom'
@@ -236,6 +237,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
       frarådetTerm = {},
       eksempel = {},
       fagområde = {},
+      fagområdeKoder = [],
       omfang = null,
       kontaktpunkt = null,
       gyldigFom = null,
@@ -258,6 +260,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     frarådetTerm,
     eksempel,
     fagområde,
+    fagområdeKoder,
     omfang,
     kontaktpunkt,
     gyldigFom,

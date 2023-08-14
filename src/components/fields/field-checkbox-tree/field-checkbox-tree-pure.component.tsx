@@ -10,12 +10,7 @@ import { isConceptEditable } from '../../../lib/concept';
 import { useAppSelector } from '../../../app/redux/hooks';
 import './field-checkbox-tree.scss';
 import { localization } from '../../../lib/localization';
-
-export type TreeNode = {
-  value: string;
-  label: string;
-  children: TreeNode[];
-};
+import { TreeNode } from '../../../types';
 
 interface Props {
   field: {
@@ -119,9 +114,12 @@ export const CheckboxTreeFieldPure: FC<Props> = ({
 
   const handleOnCheck = (checkedValues: string[]) => {
     const newCheckedValues = checkedValues.filter(c => !checked.includes(c));
-    if (newCheckedValues.length === 1) {
+    if (newCheckedValues.length <= 1) {
       setChecked(newCheckedValues);
-      form.setFieldValue(field.name, newCheckedValues[0]);
+      form.setFieldValue(
+        field.name,
+        newCheckedValues.length > 0 ? newCheckedValues[0] : null
+      );
       form.setFieldTouched(field.name, true);
     }
   };

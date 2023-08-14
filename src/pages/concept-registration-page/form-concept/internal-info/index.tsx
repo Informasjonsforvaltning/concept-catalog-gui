@@ -23,30 +23,12 @@ import {
   fetchCodeLists,
   selectAllCodeLists
 } from '../../../../features/code-lists';
-import { TreeNode } from '../../../../components/fields/field-checkbox-tree/field-checkbox-tree-pure.component';
+import { convertCodeListToTreeNodes } from '../../../../utils/code-list';
 
 interface Props {
   catalogId: string;
   errors: any;
 }
-
-const findParent = (id: number, nodes: TreeNode[]) => {
-  const parent = nodes.find(node => node.value === `${id}`);
-  if (parent) {
-    return parent;
-  }
-
-  for (let i = 0; i < nodes.length; i++) {
-    if (nodes[i].children) {
-      const result = findParent(id, nodes[i].children);
-      if (result) {
-        return result;
-      }
-    }
-  }
-
-  return null;
-};
 
 const renderInternalField = (
   internalField: InternalField,
@@ -137,27 +119,11 @@ const renderInternalField = (
   }
 
   if (internalField.type === 'code_list') {
-    const codeListNodes: TreeNode[] =
-      codeLists
-        ?.filter(codeList => codeList.id === internalField.codeListId)?.[0]
-        ?.codes?.reduce((accumulator, currentValue) => {
-          const parent = findParent(currentValue.parentID, accumulator);
-          if (parent) {
-            parent.children = [
-              ...(parent.children ?? []),
-              {
-                value: `${currentValue.id}`,
-                label: currentValue.name.nb
-              }
-            ];
-          } else {
-            accumulator.push({
-              value: `${currentValue.id}`,
-              label: currentValue.name.nb
-            });
-          }
-          return accumulator;
-        }, []) ?? [];
+    const codeListNodes = convertCodeListToTreeNodes(
+      codeLists?.filter(
+        codeList => codeList.id === internalField.codeListId
+      )?.[0]
+    );
 
     return (
       <>

@@ -51,9 +51,9 @@ const preProcessValues = ({
   ...conceptValues
 }) => ({
   ...conceptValues,
-  merknad: stringsToArray(merknad),
-  eksempel: stringsToArray(eksempel),
-  fagområde: stringsToArray(fagområde),
+  merknad: merknad ? stringsToArray(merknad) : null,
+  eksempel: eksempel ? stringsToArray(eksempel) : null,
+  fagområde: fagområde ? stringsToArray(fagområde) : null,
   omfang: pruneEmptyProperties(omfang),
   kontaktpunkt: pruneEmptyProperties(kontaktpunkt)
 });

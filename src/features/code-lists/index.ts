@@ -40,6 +40,10 @@ const codeListsSelector = codeListsAdapter.getSelectors<RootState>(
   state => state.codeLists
 );
 
+export const selectCodeListById = codeListsAdapter.getSelectors<RootState>(
+  state => state.codeLists
+).selectById;
+
 export const selectAllCodeLists = codeListsSelector.selectAll;
 
 export const { reducer: codeListsReducer } = codeListsSlice;

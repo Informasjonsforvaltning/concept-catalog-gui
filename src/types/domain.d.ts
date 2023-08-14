@@ -126,6 +126,7 @@ export interface Concept {
   merknad?: Record<string, string[]>;
   eksempel?: Record<string, string[]>;
   fagområde?: Record<string, string[]>;
+  fagområdeKoder?: string[];
   omfang?: UriText | null;
   tillattTerm?: Record<string, string[]>;
   frarådetTerm?: Record<string, string[]>;
@@ -224,3 +225,9 @@ export interface Code {
   name: Record<string, string>;
   parentID?: number;
 }
+
+export type TreeNode = {
+  value: string;
+  label: string;
+  children: TreeNode[];
+};

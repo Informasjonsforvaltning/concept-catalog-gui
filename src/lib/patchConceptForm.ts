@@ -21,7 +21,11 @@ export const patchConceptFromForm = (
     _(lastPatchedResponse).omit(metaDataFieldsToOmit).omitBy(_.isNull).value(),
     _({
       ...lastPatchedResponse,
-      ...values
+      ...values,
+      ...{
+        // Empty fagområde if fagområdeKoder has values
+        fagområde: _.isEmpty(values.fagområdeKoder) ? values.fagområde : null
+      }
     })
       .omit(metaDataFieldsToOmit)
       .omitBy(_.isNull)

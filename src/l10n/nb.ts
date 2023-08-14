@@ -16,7 +16,7 @@ export const nb = {
   newConcept: 'Nytt begrep',
   preferredTerm: 'Anbefalt term',
   modifiedAt: 'Sist endret',
-  fieldOfStudy: 'Fagområde',
+  subject: 'Fagområde',
   validity: 'Gyldighet',
   valid: 'Gyldig',
   expired: 'Utgått',
@@ -129,4 +129,6 @@ export const nb = {
   versionNumberPatch: 'Patch',
   selectUser: 'Velg bruker',
   searchCode: 'Søk etter kode',
+  hasPreexistingValue: 'Det finnes allerede en verdi i feltet for {0}, "{1}".',
+  chooseNewFromList: 'Velg ny verdi fra listen nedenfor.',
 };

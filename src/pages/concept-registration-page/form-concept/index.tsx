@@ -32,6 +32,7 @@ import { schema as validationSchema } from './form-concept.schema';
 
 import SC from './styled';
 import { InternalInfo } from './internal-info';
+import { getConfig } from '../../../config';
 
 export type FormValues = Pick<
   Concept,
@@ -92,6 +93,10 @@ export const FormConceptPure: FC<Props> = ({
     begrepsRelasjon: begrepsRelasjonError
   } = errors;
   const [showUserPrompt, setShowUserPrompt] = useState<boolean>(true);
+  const [patchCalled, setPatchCalled] = useState<boolean>(false);
+  const [deleteCalled, setDeleteCalled] = useState<boolean>(false);
+
+  const config = getConfig();
 
   const languageEntities = useAppSelector(state => state.languages.entities);
 
@@ -135,10 +140,38 @@ export const FormConceptPure: FC<Props> = ({
       history.push(`/${catalogId}/${resourceId}`);
     });
 
+  useEffect(() => {
+    const handler = event => {
+      event.preventDefault();
+      event.returnValue = '';
+    };
+    // if the form is NOT unchanged, then set the onbeforeunload
+    if (dirty && showUserPrompt && !(patchCalled || deleteCalled)) {
+      window.addEventListener('beforeunload', handler);
+      // clean it up, if the dirty state changes
+      return () => {
+        window.removeEventListener('beforeunload', handler);
+      };
+    }
+
+    if (patchCalled) {
+      history.go(0);
+    }
+    if (deleteCalled) {
+      history.push(
+        config.enableConceptCatalogFrontend
+          ? `${config.conceptCatalogFrontendBaseUri}/${catalogId}`
+          : `/${catalogId}`
+      );
+    }
+    // since this is not dirty, don't do anything
+    return () => {};
+  }, [dirty, showUserPrompt, patchCalled, deleteCalled]);
+
   return (
     <SC.Page>
       <Prompt
-        when={dirty && showUserPrompt}
+        when={dirty && showUserPrompt && !(patchCalled || deleteCalled)}
         message={localization.unsavedPrompt}
       />
       <Can
@@ -147,9 +180,13 @@ export const FormConceptPure: FC<Props> = ({
       >
         <FormControl<FormValues>
           isFormDirty={dirty}
-          createNewConceptRevisionAndNavigate={
-            createNewConceptRevisionAndNavigate
-          }
+          onNewConceptRevision={createNewConceptRevisionAndNavigate}
+          onPatch={() => {
+            setPatchCalled(true);
+          }}
+          onDelete={() => {
+            setDeleteCalled(true);
+          }}
           isInitialInValidForm={!isValid}
           lastPatchedResponse={lastPatchedResponse}
           values={values}

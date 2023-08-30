@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Variant } from '@fellesdatakatalog/button';
 
 import { ConceptStatus, TimeFormat } from '../../types/enums';
@@ -15,7 +15,9 @@ import SC from './styled';
 
 interface Props<V> {
   isFormDirty: boolean;
-  createNewConceptRevisionAndNavigate: () => void;
+  onNewConceptRevision: () => void;
+  onPatch: () => void;
+  onDelete: () => void;
   isInitialInValidForm: boolean;
   lastPatchedResponse: any;
   values: V;
@@ -23,7 +25,9 @@ interface Props<V> {
 
 const FormControl = <V,>({
   isFormDirty,
-  createNewConceptRevisionAndNavigate,
+  onNewConceptRevision,
+  onPatch,
+  onDelete,
   isInitialInValidForm,
   lastPatchedResponse,
   values
@@ -56,11 +60,9 @@ const FormControl = <V,>({
   const toggleShowConfirmDelete = (): void =>
     setShowConfirmDelete(!showConfirmDelete);
 
-  const { catalogId, conceptId } = useParams<{
-    catalogId: string;
+  const { conceptId } = useParams<{
     conceptId: string;
   }>();
-  const history = useHistory();
   const dispatch = useAppDispatch();
   const conceptForm = useAppSelector(state => state.conceptForm);
   const { concept } = conceptForm;
@@ -103,23 +105,23 @@ const FormControl = <V,>({
     )}.`;
   };
 
-  const deleteConceptAndNavigate = async (): Promise<void> => {
+  const confirmDelete = async (): Promise<void> => {
     await deleteConcept(conceptId);
-    history.push(`/${catalogId}`);
+    onDelete();
   };
 
   useEffect(() => {
     if (patchCalled && !(isSaving || errorSaving)) {
-      history.go(0);
+      onPatch();
     }
-  }, [isSaving, errorSaving, setPatchCalled]);
+  }, [isSaving, errorSaving, patchCalled, onPatch]);
 
   return concept ? (
     <>
       <SC.FormControl $isSticky={isSticky}>
         <SC.FormControlContent>
           {isFormDirty && published && erSistPublisert && (
-            <SC.Button onClick={createNewConceptRevisionAndNavigate}>
+            <SC.Button onClick={onNewConceptRevision}>
               <SC.StatusDraftIcon />
               {localization.saveDraft}
             </SC.Button>
@@ -245,7 +247,7 @@ const FormControl = <V,>({
         <ConfirmDialog
           title={localization.confirmDeleteTitle}
           text={localization.confirmDeleteMessage}
-          onConfirm={deleteConceptAndNavigate}
+          onConfirm={confirmDelete}
           onCancel={toggleShowConfirmDelete}
         />
       )}

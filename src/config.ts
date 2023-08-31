@@ -17,6 +17,7 @@ const env = (window as any).env || {
 // env.CONCEPT_API = 'https://www.staging.fellesdatakatalog.digdir.no';
 // env.SEARCH_FULLTEXT_HOST = 'https://search.staging.fellesdatakatalog.digdir.no';
 // env.SEARCH_HOST = 'https://www.staging.fellesdatakatalog.digdir.no';
+// env.FDK_PORTAL_BASE_URI = 'https://staging.fellesdatakatalog.digdir.no';
 // env.ADMIN_GUI_HOST = 'https://admin.staging.fellesdatakatalog.digdir.no';
 // env.CATALOG_COMMENTS_SERVICE_HOST =
 //   'https://catalog-comments.staging.fellesdatakatalog.digdir.no';
@@ -48,6 +49,9 @@ const config = {
 
   conceptApi: {
     host: env.CONCEPT_API || 'https://fellesdatakatalog.digdir.no'
+  },
+  referenceDataApi: {
+    host: env.FDK_PORTAL_BASE_URI
   },
   searchFullTextApi: {
     host: env.SEARCH_FULLTEXT_HOST

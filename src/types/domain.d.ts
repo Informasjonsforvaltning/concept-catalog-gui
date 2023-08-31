@@ -136,6 +136,7 @@ export interface Concept {
   seOgså: string[];
   erstattesAv?: string[];
   status?: string | null;
+  statusURI?: string | null;
   erSistPublisert?: boolean;
   revisjonAvSistPublisert?: boolean;
   endringslogelement?: Endringslogelement;
@@ -225,6 +226,16 @@ export interface Code {
   id: number;
   name: Record<string, string>;
   parentID?: number;
+}
+
+export interface ConceptStatusesResponse {
+  conceptStatuses: ReferenceDataCode[];
+}
+
+export interface ReferenceDataCode {
+  uri: string;
+  code: string;
+  label: Record<string, string>;
 }
 
 export type TreeNode = {

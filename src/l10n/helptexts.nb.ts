@@ -94,6 +94,8 @@ Se mer om ‘frarådet term’ i [veileder for begrepsbeskrivelser](https://doc.
 Eksempler på ‘løsøre’ kan være:tankskip, motorkjøretøy, vaffeljern, sementsekk, konvolutt, eple, men ikke så lenge eplet henger på treet. 
 Dersom listen av eksempler er komplett, skal feltet ‘omfang’ benyttes. 
 Se mer om ‘eksempel’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#omfang)`,
+  statusTitle: 'Begrepsstatus',
+  statusAbstract: 'Status for begrepet. Undersøk hvilke statuser som skal brukes i din virksomhet. Begrepsstatus er basert på euvoc:status',
   fagomraadeTitle: 'Fagområde',
   fagomraadeAbstract: 'Et fagområde er et spesialisert kunnskapsområde som begrepet tilhører.',
   fagomraadeDescription: `Du kan bare registrere ett fagområde til et begrep,  f.eks. ‘Helse’ for begrepet ‘helsetilstand’. 

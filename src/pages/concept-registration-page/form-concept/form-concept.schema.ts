@@ -152,6 +152,7 @@ export const schema = Yup.object().shape({
   merknad: tekstMedSpraakKodeArray,
   eksempel: tekstMedSpraakKodeArray,
   fagområde: tekstMedSpraakKodeArray,
+  statusURI: Yup.string().nullable(),
   omfang: Yup.object()
     .nullable()
     .shape({

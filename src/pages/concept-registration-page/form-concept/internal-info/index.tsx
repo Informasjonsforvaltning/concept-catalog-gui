@@ -25,6 +25,7 @@ import {
 } from '../../../../features/code-lists';
 import { convertCodeListToTreeNodes } from '../../../../utils/code-list';
 import { InputTagsField } from '../../../../components/fields/field-input-tags/field-input-tags.component';
+import { fetchConceptStatuses } from '../../../../features/concept-statuses';
 
 interface Props {
   catalogId: string;
@@ -165,6 +166,7 @@ export const InternalInfo: FC<Props> = ({ catalogId, errors }) => {
         catalogId
       })
     );
+    dispatch(fetchConceptStatuses());
   }, [catalogId]);
 
   return (

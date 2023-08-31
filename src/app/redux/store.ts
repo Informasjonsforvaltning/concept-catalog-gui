@@ -10,6 +10,7 @@ import { conceptSuggestionsReducer } from '../../features/concept-suggestions';
 import { catalogFieldsReducer } from '../../features/catalog-fields';
 import { usersReducer } from '../../features/users';
 import { codeListsReducer } from '../../features/code-lists';
+import { conceptStatusesReducer } from '../../features/concept-statuses';
 
 export const store = configureStore({
   reducer: {
@@ -22,7 +23,8 @@ export const store = configureStore({
     conceptSuggestions: conceptSuggestionsReducer,
     catalogFields: catalogFieldsReducer,
     users: usersReducer,
-    codeLists: codeListsReducer
+    codeLists: codeListsReducer,
+    conceptStatuses: conceptStatusesReducer
   }
 });
 

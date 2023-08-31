@@ -6,17 +6,25 @@ import { TextAreaField } from '../../../../components/fields/field-textarea/fiel
 import { HelpText } from '../../../../components/help-text/help-text.component';
 import { localization } from '../../../../lib/localization';
 import { MultilingualField } from '../../../../components/multilingual-field/multilingual-field.component';
-import { Language } from '../../../../types';
+import { Language, ReferenceDataCode } from '../../../../types';
 import { InputTagsField } from '../../../../components/fields/field-input-tags/field-input-tags.component';
 import { useAppSelector } from '../../../../app/redux/hooks';
 import { selectCodeListById } from '../../../../features/code-lists';
+import { selectAllConceptStatuses } from '../../../../features/concept-statuses';
 import { convertCodeListToTreeNodes } from '../../../../utils/code-list';
 import { CheckboxTreeField } from '../../../../components/fields/field-checkbox-tree/field-checkbox-tree-component';
 import { getTranslateText } from '../../../../lib/translateText';
+import {
+  OptionProps,
+  SelectField
+} from '../../../../components/fields/field-select/field-select.component';
+import { getConfig } from '../../../../config';
 
 interface Props {
   languages: Language[];
 }
+
+const config = getConfig();
 
 export const UseOfTerm = ({ languages }: Props): JSX.Element => {
   const { values }: any = useFormikContext();
@@ -25,11 +33,57 @@ export const UseOfTerm = ({ languages }: Props): JSX.Element => {
     selectCodeListById(state, catalogFields?.editable?.domainCodeListId ?? '')
   );
 
+  const capitalizeFirstLetter = str =>
+    str && str[0].toUpperCase() + str.slice(1);
+
+  const convertConceptStatusToSelectOptions = (status: ReferenceDataCode) =>
+    ({
+      value: status.uri,
+      label: capitalizeFirstLetter(getTranslateText(status.label))
+    } as unknown as OptionProps);
+
+  const statusOptions = useAppSelector(state =>
+    selectAllConceptStatuses(state)
+      .map(status => convertConceptStatusToSelectOptions(status))
+      .sort((a, b) => a.label.localeCompare(b.label))
+  );
+  const handleClearConceptStatus = form => {
+    form.setFieldValue(`statusURI`, null);
+  };
+  const handleChangeConceptStatus = (form, option) => {
+    if (option?.value) {
+      form.setFieldValue(`statusURI`, option.value);
+    }
+  };
+
   const codeListNodes =
     domainCodeList && convertCodeListToTreeNodes(domainCodeList);
 
   return (
     <div>
+      {config.enableConceptCatalogFrontend && (
+        <div className='form-group'>
+          <HelpText
+            title={localization.statusTitle}
+            helpTextAbstract={localization.statusAbstract}
+          />
+          {statusOptions && (
+            <Field
+              className='col-sm-5'
+              name='statusURI'
+              component={SelectField}
+              options={statusOptions}
+              onClear={form => handleClearConceptStatus(form)}
+              defaultValue={statusOptions.find(
+                option => option.value === values.statusURI
+              )}
+              onChange={(form, _thisFieldName, option) =>
+                handleChangeConceptStatus(form, option)
+              }
+            />
+          )}
+        </div>
+      )}
       <div className='form-group'>
         <HelpText
           title={localization.eksempelTitle}

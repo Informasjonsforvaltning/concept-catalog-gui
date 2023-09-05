@@ -26,7 +26,6 @@ const Information = styled.div`
 `;
 
 const Version = styled.div`
-  margin-bottom: ${theme.spacing('S40')};
   display: flex;
 
   & > div > div > label > input {
@@ -38,6 +37,8 @@ const Version = styled.div`
 `;
 
 const AssignUser = styled.div`
+  margin-bottom: ${theme.spacing('S40')};
+
   & > div > div > label > input {
     border-color: ${theme.colour(Colour.NEUTRAL, 'N70')};
     font-size: ${theme.fontSize('FS20')};

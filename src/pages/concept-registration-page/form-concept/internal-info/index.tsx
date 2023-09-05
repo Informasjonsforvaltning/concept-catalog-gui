@@ -239,6 +239,18 @@ export const InternalInfo: FC<Props> = ({ catalogId, errors }) => {
           onChange={(form, f, option) => form.setFieldValue(f, option.value)}
         />
       </SC.AssignUser>
+      <SC.Information>
+        <HelpText
+          title={localization.abbreviationTitle}
+          helpTextAbstract={localization.abbreviationAbstract}
+        />
+        <Field
+          name='abbreviatedLabel'
+          component={InputField}
+          label={localization.abbreviationTitle}
+          showLabel
+        />
+      </SC.Information>
     </SC.InternalInfo>
   );
 };

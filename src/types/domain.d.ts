@@ -140,6 +140,7 @@ export interface Concept {
   revisjonAvSistPublisert?: boolean;
   endringslogelement?: Endringslogelement;
   assignedUser?: string;
+  abbreviatedLabel?: string | null;
   begrepsRelasjon?: Relasjon[];
   interneFelt?: Record<string, InternalField>;
 }

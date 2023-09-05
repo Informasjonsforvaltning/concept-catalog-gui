@@ -135,5 +135,7 @@ Se mer om ‘kontaktinformasjon’ i [veileder for begrepsbeskrivelser](https://
   descriptionTitle: 'Beskrivelse',
   inndelingskriteriumTitle: 'Inndelingskriterium',
   versionTitle: 'Versjonsnummer',
-  versionAbstract: 'Versjonsnummer består av tall i tre ledd: major.minor.patch. Eks: 1.0.0'
+  versionAbstract: 'Versjonsnummer består av tall i tre ledd: major.minor.patch. Eks: 1.0.0',
+  abbreviationTitle: 'Forkortelse',
+  abbreviationAbstract: 'Forkortelse av begrepet.'
 };

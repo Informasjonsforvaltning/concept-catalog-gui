@@ -51,6 +51,7 @@ export type FormValues = Pick<
   | 'seOgså'
   | 'erstattesAv'
   | 'assignedUser'
+  | 'abbreviatedLabel'
   | 'begrepsRelasjon'
   | 'versjonsnr'
   | 'interneFelt'
@@ -282,6 +283,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
       seOgså = [],
       erstattesAv = [],
       assignedUser = '',
+      abbreviatedLabel = null,
       begrepsRelasjon = [],
       versjonsnr = { major: 0, minor: 0, patch: 0 },
       interneFelt = {}
@@ -305,6 +307,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     seOgså,
     erstattesAv,
     assignedUser,
+    abbreviatedLabel,
     begrepsRelasjon,
     versjonsnr,
     interneFelt

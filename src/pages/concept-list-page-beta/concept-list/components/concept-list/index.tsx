@@ -42,10 +42,13 @@ export const ConceptList: FC<Props> = ({ items }) => {
         findOriginalConceptsWithHighestPublishedVersion(items)
           ?.sort(sortConceptsByKey(sortField, sortDirection))
           .map((concept, index) =>
-            hasConceptAnyRevisions(concept.originaltBegrep, items) ? (
+            hasConceptAnyRevisions(concept?.originaltBegrep ?? '', items) ? (
               <CollapseItem
                 key={index}
-                concepts={findRevisionsOfConcept(concept.originaltBegrep, items)
+                concepts={findRevisionsOfConcept(
+                  concept?.originaltBegrep ?? '',
+                  items
+                )
                   .sort(sortConceptsByKey(sortField, sortDirection))
                   .sort(
                     (

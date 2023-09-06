@@ -1,9 +1,12 @@
 import { Concept } from '../../types';
 
 export const isConceptEditable = (concept: Concept | undefined) => {
-  if (!concept) {
+  if (concept == null) {
     return false;
   }
-  const { erPublisert, erSistPublisert, revisjonAvSistPublisert } = concept;
-  return (erPublisert && erSistPublisert) || revisjonAvSistPublisert;
+  const { id, erPublisert, erSistPublisert, revisjonAvSistPublisert } = concept;
+  const editable =
+    id == null || (erPublisert && erSistPublisert) || revisjonAvSistPublisert;
+
+  return editable;
 };

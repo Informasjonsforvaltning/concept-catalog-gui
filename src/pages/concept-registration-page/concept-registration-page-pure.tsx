@@ -13,7 +13,11 @@ import {
   commentActions,
   selectAllComments
 } from '../../features/comments';
-import { fetchConceptById, resetConceptForm } from '../../features/conceptForm';
+import {
+  fetchConceptById,
+  setConcept,
+  resetConceptForm
+} from '../../features/conceptForm';
 
 import Root from '../../components/root';
 
@@ -26,6 +30,18 @@ interface RouteParams {
 }
 
 interface Props extends RouteComponentProps<RouteParams> {}
+
+const createConcept = catalogId =>
+  ({
+    anbefaltTerm: {
+      navn: {}
+    },
+    status: 'utkast',
+    ansvarligVirksomhet: {
+      id: catalogId
+    },
+    versjonsnr: { major: 0, minor: 0, patch: 1 }
+  } as Concept);
 
 const ConceptRegistrationPagePure: FC<Props> = ({
   match: {
@@ -42,17 +58,24 @@ const ConceptRegistrationPagePure: FC<Props> = ({
   const { concept, isSaving } = conceptForm;
 
   useEffect(() => {
-    dispatch(fetchConceptById(conceptId)).then(action => {
-      const fetchedConcept: any = action.payload;
-      setInitialConcept(fetchedConcept);
-      fetchedConcept.originaltBegrep &&
-        dispatch(
-          fetchComments({
-            orgNumber: catalogId,
-            topicId: fetchedConcept.originaltBegrep
-          })
-        );
-    });
+    if (conceptId !== 'new') {
+      dispatch(fetchConceptById(conceptId)).then(action => {
+        const fetchedConcept: any = action.payload;
+        setInitialConcept(fetchedConcept);
+        fetchedConcept?.originaltBegrep &&
+          dispatch(
+            fetchComments({
+              orgNumber: catalogId,
+              topicId: fetchedConcept?.originaltBegrep
+            })
+          );
+      });
+    } else {
+      const newConcept = createConcept(catalogId);
+      setInitialConcept(newConcept);
+      dispatch(setConcept(newConcept));
+    }
+
     return () => {
       setInitialConcept(undefined);
       dispatch(resetComments());
@@ -63,7 +86,7 @@ const ConceptRegistrationPagePure: FC<Props> = ({
   return (
     <Root>
       <SC.Container>
-        {initialConcept && concept && (
+        {initialConcept && (
           <FormConcept
             concept={initialConcept}
             dispatch={dispatch}
@@ -74,7 +97,7 @@ const ConceptRegistrationPagePure: FC<Props> = ({
         {concept?.originaltBegrep && (
           <CommentList
             catalogId={catalogId}
-            topicId={concept.originaltBegrep}
+            topicId={concept?.originaltBegrep}
             comments={comments}
           />
         )}

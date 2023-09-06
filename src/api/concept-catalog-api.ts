@@ -71,7 +71,7 @@ export const getConceptsForCatalog = (catalogId): Promise<Concept[]> =>
 export const getRevisions = (conceptId): Promise<Concept[]> =>
   conceptCatalogApiGet(revisionsPath(conceptId));
 
-export const postConcept = (body): Promise<void> =>
+export const postConcept = (body): Promise<string> =>
   conceptCatalogApiPost(conceptListPath, body);
 
 export const postConceptRevision = (id: string, body): Promise<void> =>

@@ -4,14 +4,14 @@ export const findOriginalConcepts = (concepts: Concept[]) =>
   concepts.filter(({ id, originaltBegrep }) => id === originaltBegrep);
 
 export const findRevisionsOfConcept = (
-  conceptId: string = '',
+  conceptId: string,
   concepts: Concept[]
 ) => [
   ...concepts.filter(({ originaltBegrep }) => conceptId === originaltBegrep)
 ];
 
 export const hasConceptAnyRevisions = (
-  conceptId: string = '',
+  conceptId: string,
   concepts: Concept[]
 ): boolean =>
   concepts.filter(

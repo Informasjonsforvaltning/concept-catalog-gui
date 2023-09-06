@@ -1,7 +1,7 @@
-import { validateConceptForm } from '../../../../lib/validateConceptForm';
-import { postConceptRevision } from '../../../../api/concept-catalog-api';
-
-import { schema } from '../form-concept.schema';
+import {
+  postConcept,
+  postConceptRevision
+} from '../../../../api/concept-catalog-api';
 
 const stringsToArray = ({ nb, nn, en }) => ({
   ...(nb && { nb: Array.isArray(nb) ? nb : [nb] }),
@@ -42,7 +42,7 @@ const pruneEmptyProperties = (obj: any, reduceAsArray = false) => {
       }, {});
 };
 
-const preProcessValues = ({
+export const preProcessValues = ({
   merknad,
   eksempel,
   fagområde,
@@ -58,12 +58,15 @@ const preProcessValues = ({
   kontaktpunkt: pruneEmptyProperties(kontaktpunkt)
 });
 
-export const validateWithPreProcess = (values, { dispatch }) => {
+export const postConceptWithPreProcess = async (values): Promise<string> => {
   const processedValues = preProcessValues(values);
-  return validateConceptForm(processedValues, schema, dispatch);
+  return postConcept(processedValues);
 };
 
-export const postWithPreProcess = async (id: string, values): Promise<void> => {
+export const postConceptRevisionWithPreProcess = async (
+  id: string,
+  values
+): Promise<void> => {
   const processedValues = preProcessValues(values);
   return postConceptRevision(id, processedValues);
 };

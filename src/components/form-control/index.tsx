@@ -6,7 +6,10 @@ import { ConceptStatus, TimeFormat } from '../../types/enums';
 import { formatTime } from '../../utils/date';
 import { useAppDispatch, useAppSelector } from '../../app/redux/hooks';
 import { localization } from '../../lib/localization';
-import { patchConceptFromForm } from '../../lib/patchConceptForm';
+import {
+  patchConceptFromForm,
+  postConceptFromForm
+} from '../../lib/patchConceptForm';
 import { publishConceptFromForm } from '../../lib/publishConceptFromForm';
 import { deleteConcept } from '../../api/concept-catalog-api';
 import ConfirmDialog from '../confirm-dialog';
@@ -16,7 +19,7 @@ import SC from './styled';
 interface Props<V> {
   isFormDirty: boolean;
   onNewConceptRevision: () => void;
-  onPatch: () => void;
+  onSave: () => void;
   onDelete: () => void;
   isInitialInValidForm: boolean;
   lastPatchedResponse: any;
@@ -26,7 +29,7 @@ interface Props<V> {
 const FormControl = <V,>({
   isFormDirty,
   onNewConceptRevision,
-  onPatch,
+  onSave,
   onDelete,
   isInitialInValidForm,
   lastPatchedResponse,
@@ -34,7 +37,7 @@ const FormControl = <V,>({
 }: Props<V>) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
   const [isSticky, setSticky] = useState(false);
-  const [patchCalled, setPatchCalled] = useState(false);
+  const [saveCalled, setSaveCalled] = useState(false);
 
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
@@ -99,10 +102,12 @@ const FormControl = <V,>({
         TimeFormat.dateAndHour
       )}.`;
     }
-    return `${localization.saved} ${formatTime(
-      endringstidspunkt || concept?.endringslogelement?.endringstidspunkt,
-      TimeFormat.dateAndHour
-    )}.`;
+    return concept?.id
+      ? `${localization.saved} ${formatTime(
+          endringstidspunkt || concept?.endringslogelement?.endringstidspunkt,
+          TimeFormat.dateAndHour
+        )}.`
+      : '';
   };
 
   const confirmDelete = async (): Promise<void> => {
@@ -111,10 +116,10 @@ const FormControl = <V,>({
   };
 
   useEffect(() => {
-    if (patchCalled && !(isSaving || errorSaving)) {
-      onPatch();
+    if (saveCalled && !(isSaving || errorSaving)) {
+      onSave();
     }
-  }, [isSaving, errorSaving, patchCalled, onPatch]);
+  }, [isSaving, errorSaving, saveCalled, onSave]);
 
   return concept ? (
     <>
@@ -130,13 +135,17 @@ const FormControl = <V,>({
             <SC.Button
               disabled={isSaving || !isFormDirty}
               onClick={() => {
-                setPatchCalled(true);
-                patchConceptFromForm(values, {
-                  concept,
-                  dispatch,
-                  lastPatchedResponse,
-                  isSaving
-                });
+                setSaveCalled(true);
+                if (concept?.id) {
+                  patchConceptFromForm(values, {
+                    concept,
+                    dispatch,
+                    lastPatchedResponse,
+                    isSaving
+                  });
+                } else {
+                  postConceptFromForm(values, { concept, dispatch, isSaving });
+                }
               }}
             >
               {localization.save}
@@ -151,7 +160,7 @@ const FormControl = <V,>({
                 isFormDirty
               }
               onClick={() => {
-                setPatchCalled(true);
+                setSaveCalled(true);
                 patchConceptFromForm(
                   {
                     status: ConceptStatus.HOERING,
@@ -183,7 +192,7 @@ const FormControl = <V,>({
                 isFormDirty
               }
               onClick={() => {
-                setPatchCalled(true);
+                setSaveCalled(true);
                 patchConceptFromForm(
                   {
                     status: ConceptStatus.GODKJENT,
@@ -214,7 +223,7 @@ const FormControl = <V,>({
                 isFormDirty
               }
               onClick={() => {
-                setPatchCalled(true);
+                setSaveCalled(true);
                 publishConceptFromForm({
                   concept,
                   dispatch,
@@ -231,7 +240,7 @@ const FormControl = <V,>({
             <span>{createMessage()}</span>
           </div>
 
-          {!published && (
+          {!published && concept?.id && (
             <SC.DeleteButton
               variant={Variant.TERTIARY}
               disabled={isSaving}

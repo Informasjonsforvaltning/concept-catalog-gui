@@ -172,11 +172,6 @@ export const InternalInfo: FC<Props> = ({ catalogId, errors }) => {
       <SC.Information>
         <span>{localization.internalSubText}</span>
       </SC.Information>
-      {catalogFields?.internal?.map(field => (
-        <SC.Information key={field.id}>
-          {renderInternalField(field, values, userList, codeLists)}
-        </SC.Information>
-      ))}
       {isConceptEditable(conceptForm.concept) && (
         <SC.Information>
           <HelpText
@@ -251,6 +246,11 @@ export const InternalInfo: FC<Props> = ({ catalogId, errors }) => {
           showLabel
         />
       </SC.Information>
+      {catalogFields?.internal?.map(field => (
+        <SC.Information key={field.id}>
+          {renderInternalField(field, values, userList, codeLists)}
+        </SC.Information>
+      ))}
     </SC.InternalInfo>
   );
 };

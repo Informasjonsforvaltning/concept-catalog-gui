@@ -1,6 +1,12 @@
 import React, { FC, useState, useEffect } from 'react';
 import { compose } from '@reduxjs/toolkit';
-import { Form, FormikProps, WithFormikConfig, withFormik } from 'formik';
+import {
+  Form,
+  FormikProps,
+  WithFormikConfig,
+  validateYupSchema,
+  withFormik
+} from 'formik';
 import pick from 'lodash/pick';
 // TODO import debounce from 'lodash/debounce';
 import { Prompt, RouteComponentProps, withRouter } from 'react-router-dom';
@@ -26,13 +32,22 @@ import { Term } from './term/term.component';
 import { AllowedAndDiscouraged } from './allowed-and-discouraged-term/allowed-and-discouraged-term.component';
 import { UseOfTerm } from './use-of-concept/useOfConcept.component';
 import { ContactInfo } from './contactInfo/contactInfo.component';
-import { validateWithPreProcess, postWithPreProcess } from './utils';
+import { postConceptRevisionWithPreProcess, preProcessValues } from './utils';
 
 import { schema as validationSchema } from './form-concept.schema';
 
 import SC from './styled';
 import { InternalInfo } from './internal-info';
 import { getConfig } from '../../../config';
+import { setValidationError } from '../../../features/conceptForm';
+
+export const validateWithPreProcess = (values, { dispatch }) => {
+  const processedValues = preProcessValues(values);
+
+  return validateYupSchema(processedValues, validationSchema)
+    .then(() => dispatch(setValidationError(false)))
+    .catch(() => dispatch(setValidationError(true)));
+};
 
 export type FormValues = Pick<
   Concept,
@@ -94,7 +109,7 @@ export const FormConceptPure: FC<Props> = ({
     begrepsRelasjon: begrepsRelasjonError
   } = errors;
   const [showUserPrompt, setShowUserPrompt] = useState<boolean>(true);
-  const [patchCalled, setPatchCalled] = useState<boolean>(false);
+  const [saveCalled, setSaveCalled] = useState<boolean>(false);
   const [deleteCalled, setDeleteCalled] = useState<boolean>(false);
 
   const config = getConfig();
@@ -136,7 +151,7 @@ export const FormConceptPure: FC<Props> = ({
   };
 
   const createNewConceptRevisionAndNavigate = () =>
-    postWithPreProcess(conceptId, values).then(resourceId => {
+    postConceptRevisionWithPreProcess(conceptId, values).then(resourceId => {
       setShowUserPrompt(false);
       history.push(`/${catalogId}/${resourceId}`);
     });
@@ -147,7 +162,7 @@ export const FormConceptPure: FC<Props> = ({
       event.returnValue = '';
     };
     // if the form is NOT unchanged, then set the onbeforeunload
-    if (dirty && showUserPrompt && !(patchCalled || deleteCalled)) {
+    if (dirty && showUserPrompt && !(saveCalled || deleteCalled)) {
       window.addEventListener('beforeunload', handler);
       // clean it up, if the dirty state changes
       return () => {
@@ -155,10 +170,7 @@ export const FormConceptPure: FC<Props> = ({
       };
     }
 
-    if (patchCalled) {
-      history.go(0);
-    }
-    if (deleteCalled) {
+    if (saveCalled || deleteCalled) {
       history.push(
         config.enableConceptCatalogFrontend
           ? `${config.conceptCatalogFrontendBaseUri}/${catalogId}`
@@ -167,12 +179,12 @@ export const FormConceptPure: FC<Props> = ({
     }
     // since this is not dirty, don't do anything
     return () => {};
-  }, [dirty, showUserPrompt, patchCalled, deleteCalled]);
+  }, [dirty, showUserPrompt, saveCalled, deleteCalled]);
 
   return (
     <SC.Page>
       <Prompt
-        when={dirty && showUserPrompt && !(patchCalled || deleteCalled)}
+        when={dirty && showUserPrompt && !(saveCalled || deleteCalled)}
         message={localization.unsavedPrompt}
       />
       <Can
@@ -182,8 +194,8 @@ export const FormConceptPure: FC<Props> = ({
         <FormControl<FormValues>
           isFormDirty={dirty}
           onNewConceptRevision={createNewConceptRevisionAndNavigate}
-          onPatch={() => {
-            setPatchCalled(true);
+          onSave={() => {
+            setSaveCalled(true);
           }}
           onDelete={() => {
             setDeleteCalled(true);

@@ -223,23 +223,25 @@ export const schema = Yup.object().shape({
   versjonsnr: Yup.object()
     .test(
       'version-check',
-      'Version must be greater than latest published version',
+      'Version must be minimum 0.0.1 and greater than latest published version',
       (value, context) =>
-        getRevisions(context.parent.id)
-          .then(revisions => {
-            const latestPublishedRevision = revisions.find(
-              rev => rev.erSistPublisert
-            );
-            return (
-              compareVersion(
-                latestPublishedRevision?.id !== context.parent.id
-                  ? latestPublishedRevision?.versjonsnr
-                  : null,
-                value as any
-              ) < 0
-            );
-          })
-          .catch(() => false)
+        context.parent.id
+          ? getRevisions(context.parent.id)
+              .then(revisions => {
+                const latestPublishedRevision = revisions.find(
+                  rev => rev.erSistPublisert
+                );
+                return (
+                  compareVersion(
+                    latestPublishedRevision?.id !== context.parent.id
+                      ? latestPublishedRevision?.versjonsnr
+                      : null,
+                    value as any
+                  ) < 0
+                );
+              })
+              .catch(() => false)
+          : compareVersion({ major: 0, minor: 0, patch: 0 }, value as any) < 0
     )
     .shape({
       major: Yup.number(),

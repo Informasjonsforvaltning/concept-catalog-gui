@@ -1,7 +1,11 @@
 import _ from 'lodash';
 import { compare } from 'fast-json-patch';
 
-import { patchConceptById, setIsSaving } from '../features/conceptForm';
+import {
+  patchConceptById,
+  postNewConcept,
+  setIsSaving
+} from '../features/conceptForm';
 
 const metaDataFieldsToOmit = [
   'endringslogelement',
@@ -12,6 +16,20 @@ const metaDataFieldsToOmit = [
   'id',
   'revisjonAv'
 ];
+
+export const postConceptFromForm = (
+  values,
+  { concept, dispatch, isSaving }
+): void => {
+  if (!isSaving && values) {
+    dispatch(setIsSaving());
+    dispatch(
+      postNewConcept({
+        concept: { ...concept, ...values }
+      })
+    );
+  }
+};
 
 export const patchConceptFromForm = (
   values,

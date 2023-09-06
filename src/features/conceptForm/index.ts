@@ -6,6 +6,11 @@ import {
   patchConcept,
   publishConcept
 } from '../../api/concept-catalog-api';
+import { postConceptWithPreProcess } from '../../pages/concept-registration-page/form-concept/utils';
+
+interface PostNewAttributes {
+  concept: Concept;
+}
 
 interface PatchAttributes {
   conceptId: string;
@@ -20,6 +25,16 @@ interface RejectValue {
 export const fetchConceptById = createAsyncThunk<Concept, string>(
   'conceptForm/fetchConceptById',
   async conceptId => getConcept(conceptId)
+);
+
+export const postNewConcept = createAsyncThunk<
+  string,
+  PostNewAttributes,
+  RejectValue
+>('conceptForm/postNewConcept', async ({ concept }, { rejectWithValue }) =>
+  postConceptWithPreProcess(concept)
+    .then(response => response)
+    .catch(() => rejectWithValue(true))
 );
 
 export const patchConceptById = createAsyncThunk<
@@ -67,6 +82,9 @@ const conceptFormSlice = createSlice({
     setValidationError(state, action) {
       state.isValidationError = action.payload;
     },
+    setConcept(state, action) {
+      state.concept = action.payload;
+    },
     resetConceptForm: () => initialState
   },
   extraReducers: builder => {
@@ -91,6 +109,18 @@ const conceptFormSlice = createSlice({
       isSaving: false,
       error: true
     }));
+    builder.addCase(postNewConcept.fulfilled, state => ({
+      ...state,
+      isSaving: false,
+      justChangedStatus: false,
+      isValidationError: false,
+      error: false
+    }));
+    builder.addCase(postNewConcept.rejected, state => ({
+      ...state,
+      isSaving: false,
+      error: true
+    }));
     builder.addCase(publishConceptById.fulfilled, (state, action) => ({
       ...state,
       isSaving: false,
@@ -108,5 +138,5 @@ const conceptFormSlice = createSlice({
 });
 
 export const { reducer: conceptFormReducer } = conceptFormSlice;
-export const { setIsSaving, setValidationError, resetConceptForm } =
+export const { setIsSaving, setValidationError, setConcept, resetConceptForm } =
   conceptFormSlice.actions;

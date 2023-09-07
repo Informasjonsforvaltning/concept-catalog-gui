@@ -45,8 +45,13 @@ export const validateWithPreProcess = (values, { dispatch }) => {
   const processedValues = preProcessValues(values);
 
   return validateYupSchema(processedValues, validationSchema)
-    .then(() => dispatch(setValidationError(false)))
-    .catch(() => dispatch(setValidationError(true)));
+    .then(() => {
+      dispatch(setValidationError(false));
+      return {};
+    })
+    .catch(() => {
+      dispatch(setValidationError(true));
+    });
 };
 
 export type FormValues = Pick<
@@ -155,6 +160,8 @@ export const FormConceptPure: FC<Props> = ({
       setShowUserPrompt(false);
       history.push(`/${catalogId}/${resourceId}`);
     });
+
+  console.log('errors', errors);
 
   useEffect(() => {
     const handler = event => {

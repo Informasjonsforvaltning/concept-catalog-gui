@@ -24,6 +24,7 @@ import {
   selectAllCodeLists
 } from '../../../../features/code-lists';
 import { convertCodeListToTreeNodes } from '../../../../utils/code-list';
+import { InputTagsField } from '../../../../components/fields/field-input-tags/field-input-tags.component';
 
 interface Props {
   catalogId: string;
@@ -243,6 +244,18 @@ export const InternalInfo: FC<Props> = ({ catalogId, errors }) => {
           name='abbreviatedLabel'
           component={InputField}
           label={localization.abbreviationTitle}
+          showLabel
+        />
+      </SC.Information>
+      <SC.Information>
+        <HelpText
+          title={localization.labelTitle}
+          helpTextAbstract={localization.labelAbstract}
+        />
+        <Field
+          name='merkelapp'
+          component={InputTagsField}
+          label={localization.labelTitle}
           showLabel
         />
       </SC.Information>

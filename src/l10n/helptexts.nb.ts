@@ -137,5 +137,7 @@ Se mer om ‘kontaktinformasjon’ i [veileder for begrepsbeskrivelser](https://
   versionTitle: 'Versjonsnummer',
   versionAbstract: 'Versjonsnummer består av tall i tre ledd: major.minor.patch. Eks: 1.0.0',
   abbreviationTitle: 'Forkortelse',
-  abbreviationAbstract: 'Forkortelse av begrepet.'
+  abbreviationAbstract: 'Forkortelse av begrepet.',
+  labelTitle: 'Merkelapp',
+  labelAbstract: 'Merkelapp for begrepet.',
 };

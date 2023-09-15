@@ -161,8 +161,6 @@ export const FormConceptPure: FC<Props> = ({
       history.push(`/${catalogId}/${resourceId}`);
     });
 
-  console.log('errors', errors);
-
   useEffect(() => {
     const handler = event => {
       event.preventDefault();

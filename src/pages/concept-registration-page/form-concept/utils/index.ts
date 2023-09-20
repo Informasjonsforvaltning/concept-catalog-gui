@@ -42,31 +42,40 @@ const pruneEmptyProperties = (obj: any, reduceAsArray = false) => {
       }, {});
 };
 
-export const preProcessValues = ({
-  merknad,
-  eksempel,
-  fagområde,
-  omfang,
-  kontaktpunkt,
-  ...conceptValues
-}) => ({
+export const preProcessValues = (
+  orgId: string,
+  {
+    ansvarligVirksomhet,
+    merknad,
+    eksempel,
+    fagområde,
+    omfang,
+    kontaktpunkt,
+    ...conceptValues
+  }
+) => ({
   ...conceptValues,
   merknad: merknad ? stringsToArray(merknad) : null,
   eksempel: eksempel ? stringsToArray(eksempel) : null,
   fagområde: fagområde ? stringsToArray(fagområde) : null,
   omfang: pruneEmptyProperties(omfang),
-  kontaktpunkt: pruneEmptyProperties(kontaktpunkt)
+  kontaktpunkt: pruneEmptyProperties(kontaktpunkt),
+  ansvarligVirksomhet: ansvarligVirksomhet || { id: orgId }
 });
 
-export const postConceptWithPreProcess = async (values): Promise<string> => {
-  const processedValues = preProcessValues(values);
+export const postConceptWithPreProcess = async (
+  publisherId: string,
+  values
+): Promise<string> => {
+  const processedValues = preProcessValues(publisherId, values);
   return postConcept(processedValues);
 };
 
 export const postConceptRevisionWithPreProcess = async (
   id: string,
+  publisherId: string,
   values
 ): Promise<void> => {
-  const processedValues = preProcessValues(values);
+  const processedValues = preProcessValues(publisherId, values);
   return postConceptRevision(id, processedValues);
 };

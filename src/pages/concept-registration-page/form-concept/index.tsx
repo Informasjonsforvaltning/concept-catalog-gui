@@ -42,7 +42,10 @@ import { getConfig } from '../../../config';
 import { setValidationError } from '../../../features/conceptForm';
 
 export const validateWithPreProcess = (values, { dispatch }) => {
-  const processedValues = preProcessValues(values);
+  const processedValues = preProcessValues(
+    values.ansvarligVirksomhet.id,
+    values
+  );
 
   return validateYupSchema(processedValues, validationSchema)
     .then(() => {
@@ -157,10 +160,12 @@ export const FormConceptPure: FC<Props> = ({
   };
 
   const createNewConceptRevisionAndNavigate = () =>
-    postConceptRevisionWithPreProcess(conceptId, values).then(resourceId => {
-      setShowUserPrompt(false);
-      history.push(`/${catalogId}/${resourceId}`);
-    });
+    postConceptRevisionWithPreProcess(conceptId, publisherId, values).then(
+      resourceId => {
+        setShowUserPrompt(false);
+        history.push(`/${catalogId}/${resourceId}`);
+      }
+    );
 
   useEffect(() => {
     const handler = event => {

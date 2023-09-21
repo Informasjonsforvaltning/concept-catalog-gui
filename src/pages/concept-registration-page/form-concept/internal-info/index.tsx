@@ -24,8 +24,8 @@ import {
   selectAllCodeLists
 } from '../../../../features/code-lists';
 import { convertCodeListToTreeNodes } from '../../../../utils/code-list';
-import { InputTagsField } from '../../../../components/fields/field-input-tags/field-input-tags.component';
 import { fetchConceptStatuses } from '../../../../features/concept-statuses';
+import { InputTagsField } from '../../../../components/fields/field-input-tags/field-input-tags.component';
 
 interface Props {
   catalogId: string;
@@ -51,12 +51,7 @@ const renderInternalField = (
     return (
       <>
         <Help />
-        <Field
-          name={name}
-          component={InputField}
-          label={getTranslateText(internalField.label)}
-          showLabel
-        />
+        <Field name={name} component={InputField} />
       </>
     );
   }
@@ -227,9 +222,7 @@ export const InternalInfo: FC<Props> = ({ catalogId, errors }) => {
         <Field
           name='assignedUser'
           component={SelectField}
-          label={localization.assignToUser}
           placeholder={localization.enterFullName}
-          showLabel
           options={userList.map(item => ({
             label: item.name,
             value: item.id
@@ -242,24 +235,14 @@ export const InternalInfo: FC<Props> = ({ catalogId, errors }) => {
           title={localization.abbreviationTitle}
           helpTextAbstract={localization.abbreviationAbstract}
         />
-        <Field
-          name='abbreviatedLabel'
-          component={InputField}
-          label={localization.abbreviationTitle}
-          showLabel
-        />
+        <Field name='abbreviatedLabel' component={InputField} />
       </SC.Information>
       <SC.Information>
         <HelpText
           title={localization.labelTitle}
           helpTextAbstract={localization.labelAbstract}
         />
-        <Field
-          name='merkelapp'
-          component={InputTagsField}
-          label={localization.labelTitle}
-          showLabel
-        />
+        <Field name='merkelapp' component={InputTagsField} />
       </SC.Information>
       {catalogFields?.internal?.map(field => (
         <SC.Information key={field.id}>

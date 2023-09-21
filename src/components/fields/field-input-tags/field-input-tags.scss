@@ -1,6 +1,7 @@
 .fdk-reg-input-tags {
   width: 100%;
   padding: 0.05rem 0;
+  background: #fff;
   border: 1px solid #ced4da;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
@@ -45,7 +46,7 @@
   }
 
   .react-tagsinput-input {
-    background: transparent;
+    background: #fff;
     border: 0;
     margin-top: 1px;
     outline: none;

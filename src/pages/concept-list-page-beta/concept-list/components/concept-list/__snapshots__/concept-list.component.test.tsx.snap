@@ -11,57 +11,57 @@ exports[`should render ConceptList 1`] = `
   />
   <withRouter(ListItem)
     concept={
-      {
-        "anbefaltTerm": {
-          "navn": {
+      Object {
+        "anbefaltTerm": Object {
+          "navn": Object {
             "en": "begrep med omfang en",
             "nb": "begrep med omfang",
             "nn": "begrep med omfang nn",
           },
         },
-        "ansvarligVirksomhet": {
+        "ansvarligVirksomhet": Object {
           "id": "910244132",
           "navn": "RAMSUND OG ROGNAN REVISJON",
           "orgPath": "/ANNET/910244132",
           "prefLabel": "Brønnøysundregistrene",
           "uri": "http://data.brreg.no/enhetsregisteret/enhet/910244132",
         },
-        "definisjon": {
-          "tekst": {
+        "definisjon": Object {
+          "tekst": Object {
             "en": "lorem ipsum EN",
             "nb": "lorem ipsum",
             "nn": "lorem ipsum NN",
           },
         },
-        "eksempel": {
-          "en": [
+        "eksempel": Object {
+          "en": Array [
             "Eksempel lorem ipsum EN.",
           ],
-          "nb": [
+          "nb": Array [
             "Eksempel lorem ipsum.",
           ],
-          "nn": [
+          "nn": Array [
             "Eksempel lorem ipsum NN.",
           ],
         },
-        "fagområde": {
-          "en": [
+        "fagområde": Object {
+          "en": Array [
             "Dokument EN",
           ],
-          "nb": [
+          "nb": Array [
             "Dokument",
           ],
-          "nn": [
+          "nn": Array [
             "Dokument NN",
           ],
         },
         "forholdTilKilde": "ForholdTilKilde lorem ipsum",
-        "frarådetTerm": {
-          "en": [
+        "frarådetTerm": Object {
+          "en": Array [
             "discouraged 1 EN",
             "discouraged 2 EN",
           ],
-          "nb": [
+          "nb": Array [
             "Frarådet term",
             "Særs frarådet",
           ],
@@ -69,32 +69,32 @@ exports[`should render ConceptList 1`] = `
         "gyldigFom": "2019-03-30",
         "id": "083c8716-6006-428f-be3b-39bc01dcc58b",
         "kilde": "Forskrift om tinglysing § 11 tredje ledd og § 16 annet ledd bokstav e). _Forskrift 3. november 1995 nr. 875 om tinglysing_ https://lovdata.no/forskrift/1995-11-03-875",
-        "kontaktpunkt": {
+        "kontaktpunkt": Object {
           "harEpost": "a@a.no",
           "harTelefon": "12345678",
         },
-        "merknad": {
-          "nb": [
+        "merknad": Object {
+          "nb": Array [
             "Lorem",
           ],
-          "nn": [
+          "nn": Array [
             "Lorem NN",
           ],
         },
-        "omfang": {
+        "omfang": Object {
           "tekst": "Tekst for omfang",
           "uri": "uri for omfang",
         },
         "originaltBegrep": "083c8716-6006-428f-be3b-39bc01dcc58b",
         "revisjonAv": "083c8716-6006-428f-be3b-39bc01dcc58b",
-        "seOgså": [],
+        "seOgså": Array [],
         "status": "utkast",
-        "tillattTerm": {
-          "en": [
+        "tillattTerm": Object {
+          "en": Array [
             "allowed 1 EN",
             "allowed 2 EN",
           ],
-          "nb": [
+          "nb": Array [
             "Tillatt term",
             "Et annet tillatt term",
             "Et annet tillatt term",
@@ -105,7 +105,7 @@ exports[`should render ConceptList 1`] = `
             "Et annet tillatt term",
           ],
         },
-        "versjonsnr": {
+        "versjonsnr": Object {
           "major": 1,
           "minor": 0,
           "patch": 0,

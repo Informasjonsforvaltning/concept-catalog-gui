@@ -123,8 +123,8 @@ export interface Concept {
   definisjonForAllmennheten?: Definisjon;
   definisjonForSpesialister?: Definisjon;
   ansvarligVirksomhet: { id: string };
-  merknad?: Record<string, string[]>;
-  eksempel?: Record<string, string[]>;
+  merknad?: Record<string, string>;
+  eksempel?: Record<string, string>;
   fagområde?: Record<string, string[]>;
   fagområdeKoder?: string[];
   omfang?: UriText | null;

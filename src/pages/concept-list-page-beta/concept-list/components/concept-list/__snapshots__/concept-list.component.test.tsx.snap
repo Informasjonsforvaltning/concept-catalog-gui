@@ -34,15 +34,9 @@ exports[`should render ConceptList 1`] = `
           },
         },
         "eksempel": {
-          "en": [
-            "Eksempel lorem ipsum EN.",
-          ],
-          "nb": [
-            "Eksempel lorem ipsum.",
-          ],
-          "nn": [
-            "Eksempel lorem ipsum NN.",
-          ],
+          "en": "Eksempel lorem ipsum EN.",
+          "nb": "Eksempel lorem ipsum.",
+          "nn": "Eksempel lorem ipsum NN.",
         },
         "fagområde": {
           "en": [
@@ -74,12 +68,8 @@ exports[`should render ConceptList 1`] = `
           "harTelefon": "12345678",
         },
         "merknad": {
-          "nb": [
-            "Lorem",
-          ],
-          "nn": [
-            "Lorem NN",
-          ],
+          "nb": "Lorem",
+          "nn": "Lorem NN",
         },
         "omfang": {
           "tekst": "Tekst for omfang",

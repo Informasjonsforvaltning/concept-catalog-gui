@@ -55,8 +55,8 @@ export const preProcessValues = (
   }
 ) => ({
   ...conceptValues,
-  merknad: merknad ? stringsToArray(merknad) : null,
-  eksempel: eksempel ? stringsToArray(eksempel) : null,
+  merknad,
+  eksempel,
   fagområde: fagområde ? stringsToArray(fagområde) : null,
   omfang: pruneEmptyProperties(omfang),
   kontaktpunkt: pruneEmptyProperties(kontaktpunkt),

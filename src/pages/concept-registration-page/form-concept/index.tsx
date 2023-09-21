@@ -41,9 +41,12 @@ import { InternalInfo } from './internal-info';
 import { getConfig } from '../../../config';
 import { setValidationError } from '../../../features/conceptForm';
 
-export const validateWithPreProcess = (values, { dispatch }) => {
+export const validateWithPreProcess = (
+  values,
+  { concept, dispatch }: { concept: Concept; dispatch: any }
+) => {
   const processedValues = preProcessValues(
-    values.ansvarligVirksomhet.id,
+    concept.ansvarligVirksomhet.id,
     values
   );
 

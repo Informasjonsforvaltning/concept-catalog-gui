@@ -149,8 +149,82 @@ export const schema = Yup.object().shape({
         })
     })
     .nullable(),
-  merknad: tekstMedSpraakKodeArray,
-  eksempel: tekstMedSpraakKodeArray,
+  merknad: Yup.object().shape({
+    nb: Yup.string().test({
+      test() {
+        const { nb, nn, en } = this.parent;
+        if (!nb && !nn && !en) {
+          return this.createError({
+            message: localization.validationRequired,
+            path: this.path
+          });
+        }
+        return true;
+      }
+    }),
+    nn: Yup.string().test({
+      test() {
+        const { nb, nn, en } = this.parent;
+        if (!nb && !nn && !en) {
+          return this.createError({
+            message: localization.validationRequired,
+            path: this.path
+          });
+        }
+        return true;
+      }
+    }),
+    en: Yup.string().test({
+      test() {
+        const { nb, nn, en } = this.parent;
+        if (!nb && !nn && !en) {
+          return this.createError({
+            message: localization.validationRequired,
+            path: this.path
+          });
+        }
+        return true;
+      }
+    })
+  }),
+  eksempel: Yup.object().shape({
+    nb: Yup.string().test({
+      test() {
+        const { nb, nn, en } = this.parent;
+        if (!nb && !nn && !en) {
+          return this.createError({
+            message: localization.validationRequired,
+            path: this.path
+          });
+        }
+        return true;
+      }
+    }),
+    nn: Yup.string().test({
+      test() {
+        const { nb, nn, en } = this.parent;
+        if (!nb && !nn && !en) {
+          return this.createError({
+            message: localization.validationRequired,
+            path: this.path
+          });
+        }
+        return true;
+      }
+    }),
+    en: Yup.string().test({
+      test() {
+        const { nb, nn, en } = this.parent;
+        if (!nb && !nn && !en) {
+          return this.createError({
+            message: localization.validationRequired,
+            path: this.path
+          });
+        }
+        return true;
+      }
+    })
+  }),
   fagområde: tekstMedSpraakKodeArray,
   statusURI: Yup.string().nullable(),
   omfang: Yup.object()

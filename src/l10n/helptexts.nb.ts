@@ -27,18 +27,17 @@ Om definisjonen er hentet ordrett fra en kilden, velger du ‘sitat fra kilde’
 Om definisjonen består av egne ordvalg basert på en kilde, velger du ‘basert på kilde’.
 
 Se mer om ‘kildebeskrivelse’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
-  definisjonForAllmennhetenTitle: "Definisjon for allmennheten",
+  definisjonForAllmennhetenTitle: 'Definisjon for allmennheten',
   definisjonForAllmennhetenAbstract:
-    "En definisjon av begrepet som er rettet mot allmennheten. Det forventes ikke at denne målgruppen har noe forkunnskap i det/de aktuelle fagområdet/fagområdene for begrepet.",
+    'En definisjon av begrepet som er rettet mot allmennheten. Det forventes ikke at denne målgruppen har noe forkunnskap i det/de aktuelle fagområdet/fagområdene for begrepet.',
   definisjonForAllmennhetenDescription: `Registrer meningsinnholdet til begrepet uttrykt gjennom en setning. 
 En definisjon for allmennheten er en beskrivelse som avgrenser begrepet mot beslektede begrep. Definisjonen er altså begrepet forklart med ord. 
 Definisjonen skal ikke være en utfyllende innføring i begrepet. 
 Et eksempel er bonus i arbeidsforhold, som av Skatteetaten blir definert som ‘godtgjørelse som kan knyttes direkte til innsats eller resultater i en virksomhet’. 
 Fagområder vil også sette begrensninger i hvilken sammenheng begrepet og definisjonen skal forstås. 
 Se mer om ‘definisjon’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#definisjon)`,
-  definisjonForAllmennhetenKildeTitle: "Kilde til definisjon for allmennheten",
-  definisjonForAllmennhetenKildeAbstract:
-    "Her registrerer du hvor du har hentet definisjonen fra. ",
+  definisjonForAllmennhetenKildeTitle: 'Kilde til definisjon for allmennheten',
+  definisjonForAllmennhetenKildeAbstract: 'Her registrerer du hvor du har hentet definisjonen fra. ',
   definisjonForAllmennhetenKildeDescription: `Her kan du legge til én eller flere kilder til definisjonen. 
 
 Kilden til definisjon for allmennheten kan være enten lov eller forskrift, et leksikon, en ordbok e.l.  Har virksomheten definert begrepet selv, velger du "Egendefinert".
@@ -50,21 +49,20 @@ Om definisjonen er hentet ordrett fra en kilden, velger du ‘sitat fra kilde’
 Om definisjonen består av egne ordvalg basert på en kilde, velger du ‘basert på kilde’.
 
 Se mer om ‘kildebeskrivelse’ i [standard for begrepsbeskrivelser](https://doc.difi.no/data/forvaltningsstandard-begrepsbeskrivelser/#_valgfri_informasjon)`,
-  definisjonForSpesialisterTitle: "Definisjon for jurister",
+  definisjonForSpesialisterTitle: 'Definisjon for spesialister',
   definisjonForSpesialisterAbstract:
-    "En definisjon av begrepet som er rettet mot spesialister. for jurister skal være en kort beskrivelse som tydelig avgrenser til andre, nærliggende begrep, eventuelt tydeliggjør forskjellen mellom dette begrepet og andre nærliggende begrep.",
+    'En definisjon av begrepet som er rettet mot spesialister. Definisjonen skal være en kort beskrivelse som tydelig avgrenser til andre, nærliggende begrep, eventuelt tydeliggjør forskjellen mellom dette begrepet og andre nærliggende begrep.',
   definisjonForSpesialisterDescription: `Registrer meningsinnholdet til begrepet uttrykt gjennom en setning. 
-En definisjon for jurister er en beskrivelse som avgrenser begrepet mot beslektede begrep. Definisjonen er altså begrepet forklart med ord. 
+En definisjon for spesialister er en beskrivelse som avgrenser begrepet mot beslektede begrep. Definisjonen er altså begrepet forklart med ord. 
 Definisjonen skal ikke være en utfyllende innføring i begrepet. 
 Et eksempel er bonus i arbeidsforhold, som av Skatteetaten blir definert som ‘godtgjørelse som kan knyttes direkte til innsats eller resultater i en virksomhet’. 
 Fagområder vil også sette begrensninger i hvilken sammenheng begrepet og definisjonen skal forstås. 
 Se mer om ‘definisjon’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#definisjon)`,
-  definisjonForSpesialisterKildeTitle: "Kilde til definisjon for jurister",
-  definisjonForSpesialisterKildeAbstract:
-    "Her registrerer du hvor du har hentet definisjonen fra. ",
+  definisjonForSpesialisterKildeTitle: 'Kilde til definisjon for spesialister',
+  definisjonForSpesialisterKildeAbstract: 'Her registrerer du hvor du har hentet definisjonen fra. ',
   definisjonForSpesialisterKildeDescription: `Her kan du legge til én eller flere kilder til definisjonen. 
 
-Kilden til definisjon for jurister kan være enten lov eller forskrift, et leksikon, en ordbok e.l.  Har virksomheten definert begrepet selv, velger du "Egendefinert".
+Kilden til definisjon for spesialister kan være enten lov eller forskrift, et leksikon, en ordbok e.l.  Har virksomheten definert begrepet selv, velger du "Egendefinert".
 
 Har du en oppslagsbar ressurs kan du lenke til denne.
 
@@ -95,7 +93,7 @@ Se mer om ‘frarådet term’ i [veileder for begrepsbeskrivelser](https://doc.
   eksempelAbstract: "Konkrete tilfeller av begrepet.",
   eksempelDescription: `Bruk av eksempel kan være av pedagogiske hensyn eller for å illustrere begrepet. 
 Eksempler på ‘løsøre’ kan være:tankskip, motorkjøretøy, vaffeljern, sementsekk, konvolutt, eple, men ikke så lenge eplet henger på treet. 
-Dersom listen av eksempler er komplett, skal feltet ‘omfang’ benyttes. 
+Dersom listen av eksempler er komplett, skal feltet ‘verdiområde’ benyttes. 
 Se mer om ‘eksempel’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#omfang)`,
   statusTitle: "Begrepsstatus",
   statusAbstract:
@@ -106,11 +104,9 @@ Se mer om ‘eksempel’ i [veileder for begrepsbeskrivelser](https://doc.difi.n
   fagomraadeDescription: `Du kan bare registrere ett fagområde til et begrep,  f.eks. ‘Helse’ for begrepet ‘helsetilstand’. 
   Fagområde kan representere en akademisk disiplin, et bruksområde, et produkt, en tjenestekjede eller lignende. 
 Se mer om ‘fagområde’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#_10_fagomr%C3%A5de_og_bruksomr%C3%A5de)`,
-  omfangTitle: "Omfang",
-  omfangAbstract:
-    "Omfang betyr lovlige kategorier eller verdiområder for begrepet.",
-  omfangDescription: `Eksempel på kategorier: Standard for sivilstand spesifiserer hva som er lovlige kategorier for begrepet ‘sivilstand’, f.eks. ugift, gift og skilt. 
-Eksempel på verdiområde: For begrepet ‘alder’ kan verdiområdet beskrives som “alle positive tall”. 
+  omfangTitle: 'Verdiområde',
+  omfangAbstract: 'Lovlig verdiområde for begrepet.',
+  omfangDescription: `Eksempel på verdiområde: For begrepet ‘alder’ kan verdiområdet beskrives som “alle positive tall”. 
 Dette feltet skal ikke brukes for å oppgi eksempler. 
 Se mer om ‘omfang’ i [veileder for begrepsbeskrivelser](https://doc.difi.no/data/veileder-for-begrepsbeskrivelser/#omfang)`,
   gyldigFomTitle: "Gyldig f.o.m.",

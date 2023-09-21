@@ -62,14 +62,14 @@ export const Term = ({ languages, isReadOnly = false }: Props): JSX.Element => (
       <MultilingualField
         name='definisjonForAllmennheten.tekst'
         component={TextAreaField}
-        label='definisjonForAllmennheten'
+        label=''
         languages={languages}
       />
     </div>
     <div className='form-group'>
       <HelpText
         title={localization.definisjonForAllmennhetenKildeTitle}
-        helpTextAbstract={localization.definisjonForAllmennhetenAbstract}
+        helpTextAbstract={localization.definisjonForAllmennhetenKildeAbstract}
         helpTextDescription={
           localization.definisjonForAllmennhetenKildeDescription
         }
@@ -85,7 +85,7 @@ export const Term = ({ languages, isReadOnly = false }: Props): JSX.Element => (
       <MultilingualField
         name='definisjonForSpesialister.tekst'
         component={TextAreaField}
-        label='definisjonForSpesialister'
+        label=''
         languages={languages}
       />
     </div>

@@ -55,45 +55,49 @@ export const Term = ({ languages, isReadOnly = false }: Props): JSX.Element => (
     </div>
     <div className='form-group'>
       <HelpText
-        title={localization.folkeligForklaringTitle}
-        helpTextAbstract={localization.folkeligForklaringAbstract}
-        helpTextDescription={localization.folkeligForklaringDescription}
+        title={localization.definisjonForAllmennhetenTitle}
+        helpTextAbstract={localization.definisjonForAllmennhetenAbstract}
+        helpTextDescription={localization.definisjonForAllmennhetenDescription}
       />
       <MultilingualField
-        name='folkeligForklaring.tekst'
+        name='definisjonForAllmennheten.tekst'
         component={TextAreaField}
-        label='folkeligForklaring'
+        label='definisjonForAllmennheten'
         languages={languages}
       />
     </div>
     <div className='form-group'>
       <HelpText
-        title={localization.folkeligForklaringKildeTitle}
-        helpTextAbstract={localization.folkeligForklaringKildeAbstract}
-        helpTextDescription={localization.folkeligForklaringKildeDescription}
+        title={localization.definisjonForAllmennhetenKildeTitle}
+        helpTextAbstract={localization.definisjonForAllmennhetenAbstract}
+        helpTextDescription={
+          localization.definisjonForAllmennhetenKildeDescription
+        }
       />
-      <Source fieldName='folkeligForklaring' />
+      <Source fieldName='definisjonForAllmennheten' />
     </div>
     <div className='form-group'>
       <HelpText
-        title={localization.rettsligForklaringTitle}
-        helpTextAbstract={localization.rettsligForklaringAbstract}
-        helpTextDescription={localization.rettsligForklaringDescription}
+        title={localization.definisjonForSpesialisterTitle}
+        helpTextAbstract={localization.definisjonForSpesialisterAbstract}
+        helpTextDescription={localization.definisjonForSpesialisterDescription}
       />
       <MultilingualField
-        name='rettsligForklaring.tekst'
+        name='definisjonForSpesialister.tekst'
         component={TextAreaField}
-        label='rettsligForklaring'
+        label='definisjonForSpesialister'
         languages={languages}
       />
     </div>
     <div className='form-group'>
       <HelpText
-        title={localization.rettsligForklaringKildeTitle}
-        helpTextAbstract={localization.rettsligForklaringKildeAbstract}
-        helpTextDescription={localization.rettsligForklaringKildeDescription}
+        title={localization.definisjonForSpesialisterKildeTitle}
+        helpTextAbstract={localization.definisjonForSpesialisterKildeAbstract}
+        helpTextDescription={
+          localization.definisjonForSpesialisterKildeDescription
+        }
       />
-      <Source fieldName='rettsligForklaring' />
+      <Source fieldName='definisjonForSpesialister' />
     </div>
     <div className='form-group'>
       <HelpText

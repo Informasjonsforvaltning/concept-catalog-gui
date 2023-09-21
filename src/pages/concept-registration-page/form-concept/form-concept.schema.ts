@@ -111,7 +111,7 @@ export const schema = Yup.object().shape({
           .nullable()
       })
   }),
-  folkeligForklaring: Yup.object()
+  definisjonForAllmennheten: Yup.object()
     .shape({
       kildebeskrivelse: Yup.object()
         .nullable()
@@ -130,7 +130,7 @@ export const schema = Yup.object().shape({
         })
     })
     .nullable(),
-  rettsligForklaring: Yup.object()
+  definisjonForSpesialister: Yup.object()
     .shape({
       kildebeskrivelse: Yup.object()
         .nullable()

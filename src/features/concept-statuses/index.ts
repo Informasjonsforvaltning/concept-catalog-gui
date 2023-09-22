@@ -7,13 +7,13 @@ import {
 import type { ReferenceDataCode } from '../../types';
 import type { RootState } from '../../app/redux/store';
 import { getConceptStatuses } from '../../api/reference-data-api/concept-statuses';
-import { internalStatuses } from './internal-statuses';
+import { prepareStatusList } from './utils';
 
 export const fetchConceptStatuses = createAsyncThunk<ReferenceDataCode[]>(
   'referenceData/fetchConceptStatuses',
   async () =>
     getConceptStatuses().then(response =>
-      response.conceptStatuses.concat(internalStatuses)
+      prepareStatusList(response.conceptStatuses)
     )
 );
 

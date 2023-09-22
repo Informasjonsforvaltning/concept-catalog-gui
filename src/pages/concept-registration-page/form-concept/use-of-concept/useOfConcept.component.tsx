@@ -43,9 +43,9 @@ export const UseOfTerm = ({ languages }: Props): JSX.Element => {
     } as unknown as OptionProps);
 
   const statusOptions = useAppSelector(state =>
-    selectAllConceptStatuses(state)
-      .map(status => convertConceptStatusToSelectOptions(status))
-      .sort((a, b) => a.label.localeCompare(b.label))
+    selectAllConceptStatuses(state).map(status =>
+      convertConceptStatusToSelectOptions(status)
+    )
   );
   const handleClearConceptStatus = form => {
     form.setFieldValue(`statusURI`, null);

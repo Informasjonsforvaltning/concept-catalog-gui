@@ -124,6 +124,7 @@ export interface Concept {
   definisjonForSpesialister?: Definisjon;
   ansvarligVirksomhet: { id: string };
   merknad?: Record<string, string>;
+  merkelapp?: string[];
   eksempel?: Record<string, string>;
   fagområde?: Record<string, string[]>;
   fagområdeKoder?: string[];

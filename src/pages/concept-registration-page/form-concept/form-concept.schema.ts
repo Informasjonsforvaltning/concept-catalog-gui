@@ -149,82 +149,86 @@ export const schema = Yup.object().shape({
         })
     })
     .nullable(),
-  merknad: Yup.object().shape({
-    nb: Yup.string().test({
-      test() {
-        const { nb, nn, en } = this.parent;
-        if (!nb && !nn && !en) {
-          return this.createError({
-            message: localization.validationRequired,
-            path: this.path
-          });
+  merknad: Yup.object()
+    .shape({
+      nb: Yup.string().test({
+        test() {
+          const { nb, nn, en } = this.parent;
+          if (!nb && !nn && !en) {
+            return this.createError({
+              message: localization.validationRequired,
+              path: this.path
+            });
+          }
+          return true;
         }
-        return true;
-      }
-    }),
-    nn: Yup.string().test({
-      test() {
-        const { nb, nn, en } = this.parent;
-        if (!nb && !nn && !en) {
-          return this.createError({
-            message: localization.validationRequired,
-            path: this.path
-          });
+      }),
+      nn: Yup.string().test({
+        test() {
+          const { nb, nn, en } = this.parent;
+          if (!nb && !nn && !en) {
+            return this.createError({
+              message: localization.validationRequired,
+              path: this.path
+            });
+          }
+          return true;
         }
-        return true;
-      }
-    }),
-    en: Yup.string().test({
-      test() {
-        const { nb, nn, en } = this.parent;
-        if (!nb && !nn && !en) {
-          return this.createError({
-            message: localization.validationRequired,
-            path: this.path
-          });
+      }),
+      en: Yup.string().test({
+        test() {
+          const { nb, nn, en } = this.parent;
+          if (!nb && !nn && !en) {
+            return this.createError({
+              message: localization.validationRequired,
+              path: this.path
+            });
+          }
+          return true;
         }
-        return true;
-      }
+      })
     })
-  }),
-  eksempel: Yup.object().shape({
-    nb: Yup.string().test({
-      test() {
-        const { nb, nn, en } = this.parent;
-        if (!nb && !nn && !en) {
-          return this.createError({
-            message: localization.validationRequired,
-            path: this.path
-          });
+    .nullable(),
+  eksempel: Yup.object()
+    .shape({
+      nb: Yup.string().test({
+        test() {
+          const { nb, nn, en } = this.parent;
+          if (!nb && !nn && !en) {
+            return this.createError({
+              message: localization.validationRequired,
+              path: this.path
+            });
+          }
+          return true;
         }
-        return true;
-      }
-    }),
-    nn: Yup.string().test({
-      test() {
-        const { nb, nn, en } = this.parent;
-        if (!nb && !nn && !en) {
-          return this.createError({
-            message: localization.validationRequired,
-            path: this.path
-          });
+      }),
+      nn: Yup.string().test({
+        test() {
+          const { nb, nn, en } = this.parent;
+          if (!nb && !nn && !en) {
+            return this.createError({
+              message: localization.validationRequired,
+              path: this.path
+            });
+          }
+          return true;
         }
-        return true;
-      }
-    }),
-    en: Yup.string().test({
-      test() {
-        const { nb, nn, en } = this.parent;
-        if (!nb && !nn && !en) {
-          return this.createError({
-            message: localization.validationRequired,
-            path: this.path
-          });
+      }),
+      en: Yup.string().test({
+        test() {
+          const { nb, nn, en } = this.parent;
+          if (!nb && !nn && !en) {
+            return this.createError({
+              message: localization.validationRequired,
+              path: this.path
+            });
+          }
+          return true;
         }
-        return true;
-      }
+      })
     })
-  }),
+    .nullable(),
   fagområde: tekstMedSpraakKodeArray,
   statusURI: Yup.string().nullable(),
   omfang: Yup.object()

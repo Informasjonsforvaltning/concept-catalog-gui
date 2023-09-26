@@ -119,6 +119,7 @@ function mapCsvTextToConcept(
       kildebeskrivelse: mapKilde(csvMap)
     },
     merknad: mapRowToLanguageValue(csvMap, 'merknad'),
+    merkelapp: csvMap?.merkelapp?.[0]?.split('|') ?? [],
     eksempel: mapRowToLanguageValue(csvMap, 'eksempel'),
     fagområde: mapRowToLanguageValueList(csvMap, 'fagområde'),
     gyldigFom: mapToSingleValue(csvMap, 'gyldigfom'),

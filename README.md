@@ -58,6 +58,7 @@ curl -H "Content-Type: application/json" -X POST -d '
    "definisjon": "lorem ipsum",
    "kilde": "Forskrift om tinglysing § 11 tredje ledd og § 16 annet ledd bokstav e). _Forskrift 3. november 1995 nr. 875 om tinglysing_ https://lovdata.no/forskrift/1995-11-03-875",
    "merknad": "Lorem",
+   "merkelapp": ["Lorem"],
    "ansvarligVirksomhet": {
      "uri": "http://data.brreg.no/enhetsregisteret/enhet/910244132",
      "id": "910244132",

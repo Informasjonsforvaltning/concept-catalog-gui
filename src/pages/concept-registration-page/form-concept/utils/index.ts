@@ -17,7 +17,7 @@ const pruneEmptyProperties = (obj: any, reduceAsArray = false) => {
     key =>
       obj[key] != null &&
       obj[key] !== '' &&
-      (Array.isArray(obj[key]) ? obj[key].length !== 0 : false)
+      (Array.isArray(obj[key]) ? obj[key].length !== 0 : true)
   );
 
   return reduceAsArray

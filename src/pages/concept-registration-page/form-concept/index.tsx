@@ -65,6 +65,7 @@ export type FormValues = Pick<
   | 'anbefaltTerm'
   | 'definisjon'
   | 'merknad'
+  | 'merkelapp'
   | 'tillattTerm'
   | 'frarådetTerm'
   | 'eksempel'

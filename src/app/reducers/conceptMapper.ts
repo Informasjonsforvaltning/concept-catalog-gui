@@ -139,35 +139,41 @@ function mapCsvTextToConcept(
 
 function attemptToParseJsonFile(
   text: string
-): Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] | null {
-  try {
-    const json = JSON.parse(text);
+): Promise<Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] | null> {
+  return new Promise(resolve => {
+    try {
+      const json = JSON.parse(text);
 
-    return Array.isArray(json) ? json : null;
-  } catch (error: any) {
-    return null;
-  }
+      resolve(Array.isArray(json) ? json : null);
+    } catch (error: any) {
+      resolve(null);
+    }
+  });
 }
 
 function attemptToParseCsvFile(
   text: string
-): Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] | null {
-  try {
-    const {
-      data: [columnHeaders, ...rows],
-      errors
-    } = readString(text, { skipEmptyLines: true });
+): Promise<Omit<Concept, 'id' | 'ansvarligVirksomhet'>[] | null> {
+  return new Promise(resolve => {
+    try {
+      readString(text, {
+        worker: true,
+        complete: ({ data: [columnHeaders, ...rows], errors }) => {
+          if (errors.length > 0) {
+            resolve(null);
+          }
 
-    if (errors.length > 0) {
-      return null;
+          resolve(
+            rows.map(row =>
+              mapCsvTextToConcept(columnHeaders as string[], row as string[])
+            )
+          );
+        }
+      });
+    } catch (error: any) {
+      resolve(null);
     }
-
-    return rows.map(row =>
-      mapCsvTextToConcept(columnHeaders as string[], row as string[])
-    );
-  } catch (error: any) {
-    return null;
-  }
+  });
 }
 
 async function validateConcepts(concepts: Concept[]) {
@@ -213,7 +219,9 @@ export const mapConcepts = (
 ): void => {
   uploadEvent?.target?.files?.[0].text().then(async text => {
     const parsedText =
-      attemptToParseJsonFile(text) ?? attemptToParseCsvFile(text) ?? [];
+      (await attemptToParseJsonFile(text)) ??
+      (await attemptToParseCsvFile(text)) ??
+      [];
     const concepts = parsedText.map(concept => ({
       ...concept,
       ansvarligVirksomhet: { id: catalogId }

@@ -109,7 +109,6 @@ export const nb = {
   missingTitle: "Mangler tittel",
   internalInfo: "Interne opplysninger",
   internalSubText: "Opplysningene under er til intern bruk og vil ikke publiseres ut i Felles datakatalog.",
-  enterFullName: "Oppgi fullt navn",
   replacedBy: 'Erstattes av',
   relation: 'Relasjon',
   relationType: 'Nivå',

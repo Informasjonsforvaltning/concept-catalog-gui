@@ -222,7 +222,6 @@ export const InternalInfo: FC<Props> = ({ catalogId, errors }) => {
         <Field
           name='assignedUser'
           component={SelectField}
-          placeholder={localization.enterFullName}
           options={userList.map(item => ({
             label: item.name,
             value: item.id

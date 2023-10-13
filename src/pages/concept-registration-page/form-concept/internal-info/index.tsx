@@ -100,7 +100,7 @@ const renderInternalField = (
         <Field
           name={name}
           component={SelectField}
-          placeHolder={localization.selectUser}
+          placeholder={localization.selectUser}
           label={getTranslateText(internalField.label)}
           showLabel
           showCustomOption
@@ -222,11 +222,18 @@ export const InternalInfo: FC<Props> = ({ catalogId, errors }) => {
         <Field
           name='assignedUser'
           component={SelectField}
+          placeholder={localization.selectUser}
           options={userList.map(item => ({
             label: item.name,
             value: item.id
           }))}
+          isClearable
+          onClear={form => form.setFieldValue('assignedUser', '')}
           onChange={(form, f, option) => form.setFieldValue(f, option.value)}
+          defaultValue={{
+            value: values.assignedUser,
+            label: userList.find(user => user.id === values.assignedUser)?.name
+          }}
         />
       </SC.AssignUser>
       <SC.Information>

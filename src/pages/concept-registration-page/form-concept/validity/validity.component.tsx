@@ -98,7 +98,7 @@ export const Validity: FC = () => {
             <Field
               name={erstattesAv.name}
               component={SelectField}
-              placeHolder={localization.searchConcepts}
+              placeholder={localization.searchConcepts}
               showCustomOption
               options={conceptSuggestionsMap}
               onClear={() => form.setFieldValue(erstattesAv.name, '')}

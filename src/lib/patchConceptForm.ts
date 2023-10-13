@@ -31,19 +31,52 @@ export const postConceptFromForm = (
   }
 };
 
+const clearValues = (object: any, path: string) => {
+  const fields = path.split('.');
+  const currentField = fields.shift();
+
+  if (object && currentField) {
+    if (currentField.endsWith('[]')) {
+      const value = _.get(object, currentField.replace('[]', ''));
+      if (_.isArray(value)) {
+        _.forEach(value, item => {
+          clearValues(item, fields.join('.'));
+        });
+      }
+    } else if (fields.length > 0) {
+      clearValues(object[currentField], fields.join('.'));
+    } else {
+      const value = _.get(object, currentField);
+      if (value !== undefined && _.isEmpty(value)) {
+        _.set(object, currentField, null);
+      }
+    }
+  }
+};
+
 export const patchConceptFromForm = (
   values,
   { concept, dispatch, lastPatchedResponse, isSaving }
 ): void => {
+  [
+    'definisjon.kildebeskrivelse.kilde[].uri',
+    'definisjonForAllmennheten.kildebeskrivelse.kilde[].uri',
+    'definisjonForSpesialister.kildebeskrivelse.kilde[].uri',
+    'fagområdeKoder',
+    'gyldigFom',
+    'gyldigTom',
+    'kontaktpunkt.harEpost',
+    'kontaktpunkt.harTelefon',
+    'omfang.uri'
+  ].forEach(field => {
+    clearValues(values, field);
+  });
+
   const diff = compare(
     _(lastPatchedResponse).omit(metaDataFieldsToOmit).omitBy(_.isNull).value(),
     _({
       ...lastPatchedResponse,
-      ...values,
-      ...{
-        // Empty fagområde if fagområdeKoder has values
-        fagområde: _.isEmpty(values.fagområdeKoder) ? values.fagområde : null
-      }
+      ...values
     })
       .omit(metaDataFieldsToOmit)
       .omitBy(_.isNull)

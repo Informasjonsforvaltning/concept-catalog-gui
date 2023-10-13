@@ -28,7 +28,7 @@ interface ExternalProps {
   showLabel: boolean;
   showRequired: boolean;
   label: string;
-  placeHolder?: string;
+  placeholder?: string;
   onClear: () => void;
   onChange: () => void;
   onInputChange?: (arg: string) => void;
@@ -58,7 +58,7 @@ const SelectFieldPure: FC<Props> = ({
   showRequired,
   defaultValue,
   label,
-  placeHolder,
+  placeholder,
   onClear,
   onChange,
   onInputChange,
@@ -106,7 +106,7 @@ const SelectFieldPure: FC<Props> = ({
         maxMenuHeight={450}
         options={options}
         isClearable
-        placeholder={placeHolder ?? localization.select}
+        placeholder={placeholder ?? localization.select}
         name={name}
         value={defaultValue}
         onChange={option =>

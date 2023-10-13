@@ -109,7 +109,7 @@ const RelatedConceptsPure: FC<Props> = ({
             <Field
               name={field.name}
               component={SelectField}
-              placeHolder={localization.searchConcepts}
+              placeholder={localization.searchConcepts}
               showCustomOption
               options={conceptSuggestionsMap}
               onClear={() => form.setFieldValue(field.name, '')}

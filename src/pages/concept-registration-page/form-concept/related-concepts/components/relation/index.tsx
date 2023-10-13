@@ -201,7 +201,7 @@ const RelationItem: FC<Props> = ({
         <Field
           name={`begrepsRelasjon[${index}].relatertBegrep`}
           component={SelectField}
-          placeHolder={localization.searchConcepts}
+          placeholder={localization.searchConcepts}
           label={localization.relatedConcept}
           showLabel
           showRequired

@@ -185,7 +185,7 @@ export const FormConceptPure: FC<Props> = ({
       };
     }
 
-    if (saveCalled || deleteCalled) {
+    if (deleteCalled) {
       if (config.enableConceptCatalogFrontend) {
         window.location.href = `${config.conceptCatalogFrontendBaseUri}/${catalogId}`;
       } else {
@@ -195,6 +195,12 @@ export const FormConceptPure: FC<Props> = ({
     // since this is not dirty, don't do anything
     return () => {};
   }, [dirty, showUserPrompt, saveCalled, deleteCalled]);
+
+  useEffect(() => {
+    if (saveCalled) {
+      window.location.reload();
+    }
+  }, [saveCalled]);
 
   return (
     <SC.Page>

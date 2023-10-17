@@ -124,6 +124,7 @@ export const FormConceptPure: FC<Props> = ({
   const [showUserPrompt, setShowUserPrompt] = useState<boolean>(true);
   const [saveCalled, setSaveCalled] = useState<boolean>(false);
   const [deleteCalled, setDeleteCalled] = useState<boolean>(false);
+  const [newConceptId, setNewConceptId] = useState(null);
 
   const config = getConfig();
 
@@ -185,7 +186,7 @@ export const FormConceptPure: FC<Props> = ({
       };
     }
 
-    if (saveCalled || deleteCalled) {
+    if (deleteCalled) {
       if (config.enableConceptCatalogFrontend) {
         window.location.href = `${config.conceptCatalogFrontendBaseUri}/${catalogId}`;
       } else {
@@ -195,6 +196,16 @@ export const FormConceptPure: FC<Props> = ({
     // since this is not dirty, don't do anything
     return () => {};
   }, [dirty, showUserPrompt, saveCalled, deleteCalled]);
+
+  useEffect(() => {
+    if (saveCalled) {
+      if (conceptId === 'new') {
+        history.push(`/${catalogId}/${newConceptId}`);
+      } else {
+        window.location.reload();
+      }
+    }
+  }, [saveCalled]);
 
   return (
     <SC.Page>
@@ -209,8 +220,9 @@ export const FormConceptPure: FC<Props> = ({
         <FormControl<FormValues>
           isFormDirty={dirty}
           onNewConceptRevision={createNewConceptRevisionAndNavigate}
-          onSave={() => {
+          onSave={id => {
             setSaveCalled(true);
+            setNewConceptId(id);
           }}
           onDelete={() => {
             setDeleteCalled(true);

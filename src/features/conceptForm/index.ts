@@ -32,7 +32,7 @@ export const postNewConcept = createAsyncThunk<
   PostNewAttributes,
   RejectValue
 >('conceptForm/postNewConcept', async ({ concept }, { rejectWithValue }) =>
-  postConceptWithPreProcess(concept.ansvarligVirksomhet.id, concept)
+  postConceptWithPreProcess(concept.ansvarligVirksomhet.id + 1, concept)
     .then(response => response)
     .catch(() => rejectWithValue(true))
 );

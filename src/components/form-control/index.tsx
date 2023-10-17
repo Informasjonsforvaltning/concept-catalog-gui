@@ -19,7 +19,7 @@ import SC from './styled';
 interface Props<V> {
   isFormDirty: boolean;
   onNewConceptRevision: () => void;
-  onSave: () => void;
+  onSave: (conceptId) => void;
   onDelete: () => void;
   isInitialInValidForm: boolean;
   lastPatchedResponse: any;
@@ -38,6 +38,7 @@ const FormControl = <V,>({
   const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
   const [isSticky, setSticky] = useState(false);
   const [saveCalled, setSaveCalled] = useState(false);
+  const [newConceptId, setNewConceptId] = useState(null);
 
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
@@ -116,10 +117,11 @@ const FormControl = <V,>({
   };
 
   useEffect(() => {
-    if (saveCalled && !(isSaving || errorSaving)) {
-      onSave();
+    const id = conceptId === 'new' ? newConceptId : conceptId;
+    if (saveCalled && id && !(isSaving || errorSaving)) {
+      onSave(id);
     }
-  }, [isSaving, errorSaving, saveCalled, onSave]);
+  }, [isSaving, errorSaving, saveCalled, newConceptId, onSave]);
 
   return concept ? (
     <>
@@ -144,7 +146,13 @@ const FormControl = <V,>({
                     isSaving
                   });
                 } else {
-                  postConceptFromForm(values, { concept, dispatch, isSaving });
+                  postConceptFromForm(values, {
+                    concept,
+                    dispatch,
+                    isSaving
+                  })?.then(action => {
+                    setNewConceptId(action.payload);
+                  });
                 }
               }}
             >

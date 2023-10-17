@@ -20,15 +20,16 @@ const metaDataFieldsToOmit = [
 export const postConceptFromForm = (
   values,
   { concept, dispatch, isSaving }
-): void => {
+) => {
   if (!isSaving && values) {
     dispatch(setIsSaving());
-    dispatch(
+    return dispatch(
       postNewConcept({
         concept: { ...concept, ...values }
       })
     );
   }
+  return null;
 };
 
 const clearValues = (object: any, path: string) => {

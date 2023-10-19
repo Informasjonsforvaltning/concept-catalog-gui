@@ -33,7 +33,12 @@ export const postNewConcept = createAsyncThunk<
   RejectValue
 >('conceptForm/postNewConcept', async ({ concept }, { rejectWithValue }) =>
   postConceptWithPreProcess(concept.ansvarligVirksomhet.id, concept)
-    .then(response => response)
+    .then(response => {
+      // extract the concept id from response
+      // replace the url with the new concept id
+      console.log('response in postNewConcept: ', response);
+      return response;
+    })
     .catch(() => rejectWithValue(true))
 );
 

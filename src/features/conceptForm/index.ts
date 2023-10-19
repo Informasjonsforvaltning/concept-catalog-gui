@@ -7,6 +7,7 @@ import {
   publishConcept
 } from '../../api/concept-catalog-api';
 import { postConceptWithPreProcess } from '../../pages/concept-registration-page/form-concept/utils';
+import { getConfig } from '../../config';
 
 interface PostNewAttributes {
   concept: Concept;
@@ -36,7 +37,9 @@ export const postNewConcept = createAsyncThunk<
     .then(response => {
       // extract the concept id from response
       // replace the url with the new concept id
-      console.log('response in postNewConcept: ', response);
+      window.location.href = `${getConfig().registrationHost}/${
+        concept.ansvarligVirksomhet.id
+      }/${response}}`;
       return response;
     })
     .catch(() => rejectWithValue(true))

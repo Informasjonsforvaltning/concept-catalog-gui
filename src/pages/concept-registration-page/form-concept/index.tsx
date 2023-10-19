@@ -197,11 +197,12 @@ export const FormConceptPure: FC<Props> = ({
   }, [dirty, showUserPrompt, saveCalled, deleteCalled]);
 
   useEffect(() => {
-    if (saveCalled) {
+    if (saveCalled && conceptId && conceptId !== 'new') {
       window.location.reload();
     }
   }, [saveCalled]);
 
+  console.log('conceptId on new: ', conceptId);
   return (
     <SC.Page>
       <Prompt

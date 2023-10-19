@@ -37,9 +37,12 @@ export const postNewConcept = createAsyncThunk<
     .then(response => {
       // extract the concept id from response
       // replace the url with the new concept id
-      window.location.href = `${getConfig().registrationHost}/${
+      const redirectPath = `${getConfig().registrationHost}/${
         concept.ansvarligVirksomhet.id
       }/${response}}`;
+
+      console.log('redirectPath: ', redirectPath);
+      window.location.href = redirectPath;
       return response;
     })
     .catch(() => rejectWithValue(true))

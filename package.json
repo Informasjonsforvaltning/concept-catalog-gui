@@ -39,7 +39,8 @@
     "ansi-regex": "^5.0.1",
     "nth-check": "^2.0.1",
     "axios": "^0.21.4",
-    "semver": "^7.5.3"
+    "semver": "^7.5.3",
+    "@babel/traverse": "^7.23.2"
   },
   "dependencies": {
     "@casl/ability": "^3.4.0",

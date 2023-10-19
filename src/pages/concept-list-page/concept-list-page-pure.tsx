@@ -4,10 +4,7 @@ import Link from '@fellesdatakatalog/link';
 import { getTranslateText } from '../../lib/translateText';
 import { ConceptList } from './concept-list/components/concept-list';
 import { ConceptTitle } from './concept-title/concept-title.component';
-import {
-  postConcept,
-  getConceptsForCatalog
-} from '../../api/concept-catalog-api';
+import { getConceptsForCatalog } from '../../api/concept-catalog-api';
 
 import { Can } from '../../casl/Can';
 import { ImportConceptButton } from '../../components/import-concept-button/import-concept-button.component';
@@ -27,23 +24,7 @@ interface Props {
   catalogId: string;
 }
 
-const createConcept = catalogId => ({
-  anbefaltTerm: {
-    navn: {}
-  },
-  status: 'utkast',
-  ansvarligVirksomhet: {
-    id: catalogId
-  }
-});
-
-const createNewConceptAndNavigate = ({ history, catalogId }) =>
-  postConcept(createConcept(catalogId)).then(resourceId =>
-    history.push(`/${catalogId}/${resourceId}`)
-  );
-
 export const ConceptListPagePure = ({
-  history,
   publisher: { prefLabel, name },
   catalogId
 }: Props): JSX.Element => {
@@ -100,9 +81,11 @@ export const ConceptListPagePure = ({
           <div className='d-flex flex-row justify-content-start align-items-center row mb-4'>
             <div>
               <SC.AddConceptButton
-                onClick={() =>
-                  createNewConceptAndNavigate({ history, catalogId })
-                }
+                onClick={() => {
+                  throw new Error(
+                    'This function is disabled. Please use the new concept catalog instead.'
+                  );
+                }}
               >
                 <SC.AddIcon />
                 {localization.addNewConcept}

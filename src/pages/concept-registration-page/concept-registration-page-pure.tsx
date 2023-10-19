@@ -36,7 +36,8 @@ const createConcept = catalogId =>
     anbefaltTerm: {
       navn: {}
     },
-    status: 'utkast',
+    statusURI:
+      'http://publications.europa.eu/resource/authority/concept-status/DRAFT',
     ansvarligVirksomhet: {
       id: catalogId
     },

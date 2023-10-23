@@ -56,7 +56,24 @@ const PureBreadcrumbs = ({ breadcrumbs }) => {
                         <i className='fa fa-angle-right mx-3' />
                       </>
                     )}
-                    {index === breadcrumbs.length - 1 && breadcrumb.breadcrumb}
+                    {index === breadcrumbs.length - 1 &&
+                      (breadcrumb.match.params.conceptId ? (
+                        <>
+                          <a
+                            href={`${config.conceptCatalogFrontendBaseUri}//${breadcrumb.match.params.catalogId}/${breadcrumb.match.params.conceptId}`}
+                          >
+                            {breadcrumb.breadcrumb}
+                          </a>
+                          <i className='fa fa-angle-right mx-3' />
+                          <span>
+                            {breadcrumb.match.params.conceptId === 'new'
+                              ? localization.new
+                              : localization.edit}
+                          </span>
+                        </>
+                      ) : (
+                        breadcrumb.breadcrumb
+                      ))}
                   </span>
                 ))}
               </SC.BreadcrumbsPath>

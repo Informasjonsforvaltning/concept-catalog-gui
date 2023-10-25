@@ -5,6 +5,15 @@ import { Relation } from '../../../types/enums';
 import { getRevisions } from '../../../api/concept-catalog-api';
 import { compareVersion } from '../../../utils/version';
 
+const isvalidurl = url => {
+  try {
+    url(url);
+  } catch (e) {
+    return false;
+  }
+  return true;
+};
+
 const tekstMedSpraakKodeArray = Yup.object()
   .nullable()
   .shape({
@@ -12,6 +21,41 @@ const tekstMedSpraakKodeArray = Yup.object()
     nn: Yup.array().of(Yup.string()).nullable(),
     en: Yup.array().of(Yup.string()).nullable()
   });
+
+const kilde = Yup.array()
+  .of(
+    Yup.object().shape({
+      tekst: Yup.string()
+        .nullable()
+        .test({
+          test(value) {
+            const isRequired = this.parent.forholdTilKilde !== 'egendefinert';
+
+            if (isRequired && (!value || value.length < 2)) {
+              return this.createError({
+                message: localization.validationMin2
+              });
+            }
+            return true;
+          }
+        }),
+      uri: Yup.string()
+        .nullable()
+        .test({
+          test(value) {
+            const isRequired = this.parent.forholdTilKilde !== 'egendefinert';
+
+            if (isRequired && !isvalidurl(value)) {
+              return this.createError({
+                message: localization.validationUrl
+              });
+            }
+            return true;
+          }
+        })
+    })
+  )
+  .nullable();
 
 export const schema = Yup.object().shape({
   anbefaltTerm: Yup.object().shape({
@@ -95,58 +139,25 @@ export const schema = Yup.object().shape({
         }
       })
     }),
-    kildebeskrivelse: Yup.object()
-      .nullable()
-      .shape({
-        forholdTilKilde: Yup.string().nullable(),
-        kilde: Yup.array()
-          .of(
-            Yup.object().shape({
-              tekst: Yup.string()
-                .nullable()
-                .min(2, localization.validationMin2),
-              uri: Yup.string().nullable().url(localization.validationUrl)
-            })
-          )
-          .nullable()
-      })
+    kildebeskrivelse: Yup.object().nullable().shape({
+      forholdTilKilde: Yup.string().nullable(),
+      kilde
+    })
   }),
   definisjonForAllmennheten: Yup.object()
     .shape({
-      kildebeskrivelse: Yup.object()
-        .nullable()
-        .shape({
-          forholdTilKilde: Yup.string().nullable(),
-          kilde: Yup.array()
-            .of(
-              Yup.object().shape({
-                tekst: Yup.string()
-                  .nullable()
-                  .min(2, localization.validationMin2),
-                uri: Yup.string().nullable().url(localization.validationUrl)
-              })
-            )
-            .nullable()
-        })
+      kildebeskrivelse: Yup.object().nullable().shape({
+        forholdTilKilde: Yup.string().nullable(),
+        kilde
+      })
     })
     .nullable(),
   definisjonForSpesialister: Yup.object()
     .shape({
-      kildebeskrivelse: Yup.object()
-        .nullable()
-        .shape({
-          forholdTilKilde: Yup.string().nullable(),
-          kilde: Yup.array()
-            .of(
-              Yup.object().shape({
-                tekst: Yup.string()
-                  .nullable()
-                  .min(2, localization.validationMin2),
-                uri: Yup.string().nullable().url(localization.validationUrl)
-              })
-            )
-            .nullable()
-        })
+      kildebeskrivelse: Yup.object().nullable().shape({
+        forholdTilKilde: Yup.string().nullable(),
+        kilde
+      })
     })
     .nullable(),
   fagområde: tekstMedSpraakKodeArray,

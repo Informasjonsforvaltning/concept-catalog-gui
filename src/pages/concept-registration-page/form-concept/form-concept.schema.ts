@@ -5,13 +5,13 @@ import { Relation } from '../../../types/enums';
 import { getRevisions } from '../../../api/concept-catalog-api';
 import { compareVersion } from '../../../utils/version';
 
-const isvalidurl = url => {
+const isValidUrl = value => {
   try {
-    url(url);
+    const url = new URL(value);
+    return url.protocol === 'http:' || url.protocol === 'https:';
   } catch (e) {
     return false;
   }
-  return true;
 };
 
 const tekstMedSpraakKodeArray = Yup.object()
@@ -45,7 +45,7 @@ const kilde = Yup.array()
           test(value) {
             const isRequired = this.parent.forholdTilKilde !== 'egendefinert';
 
-            if (isRequired && !isvalidurl(value)) {
+            if (isRequired && !isValidUrl(value)) {
               return this.createError({
                 message: localization.validationUrl
               });

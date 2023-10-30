@@ -4,7 +4,10 @@ import Link from '@fellesdatakatalog/link';
 import { getTranslateText } from '../../lib/translateText';
 import { ConceptList } from './concept-list/components/concept-list';
 import { ConceptTitle } from './concept-title/concept-title.component';
-import { getConceptsForCatalog } from '../../api/concept-catalog-api';
+import {
+  getConceptsForCatalog,
+  postConcept
+} from '../../api/concept-catalog-api';
 
 import { Can } from '../../casl/Can';
 import { ImportConceptButton } from '../../components/import-concept-button/import-concept-button.component';
@@ -24,9 +27,26 @@ interface Props {
   catalogId: string;
 }
 
+const createConcept = catalogId => ({
+  anbefaltTerm: {
+    navn: {}
+  },
+  statusURI:
+    'http://publications.europa.eu/resource/authority/concept-status/DRAFT',
+  ansvarligVirksomhet: {
+    id: catalogId
+  }
+});
+
+const createNewConceptAndNavigate = ({ history, catalogId }) =>
+  postConcept(createConcept(catalogId)).then(resourceId =>
+    history.push(`/${catalogId}/${resourceId}`)
+  );
+
 export const ConceptListPagePure = ({
   publisher: { prefLabel, name },
-  catalogId
+  catalogId,
+  history
 }: Props): JSX.Element => {
   const [fileParsingError, setFileParsingError] = useState<ImportErrorMessage>({
     thrown: false
@@ -81,11 +101,9 @@ export const ConceptListPagePure = ({
           <div className='d-flex flex-row justify-content-start align-items-center row mb-4'>
             <div>
               <SC.AddConceptButton
-                onClick={() => {
-                  throw new Error(
-                    'This function is disabled. Please use the new concept catalog instead.'
-                  );
-                }}
+                onClick={() =>
+                  createNewConceptAndNavigate({ history, catalogId })
+                }
               >
                 <SC.AddIcon />
                 {localization.addNewConcept}

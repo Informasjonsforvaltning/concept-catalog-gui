@@ -187,11 +187,7 @@ export const FormConceptPure: FC<Props> = ({
     }
 
     if (deleteCalled) {
-      if (config.enableConceptCatalogFrontend) {
-        window.location.href = `${config.conceptCatalogFrontendBaseUri}/${catalogId}`;
-      } else {
-        history.push(`/${catalogId}`);
-      }
+      window.location.href = `${config.conceptCatalogFrontendBaseUri}/${catalogId}`;
     }
     // since this is not dirty, don't do anything
     return () => {};

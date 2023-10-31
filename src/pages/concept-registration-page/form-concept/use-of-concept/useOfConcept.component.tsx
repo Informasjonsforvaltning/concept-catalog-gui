@@ -18,13 +18,10 @@ import {
   OptionProps,
   SelectField
 } from '../../../../components/fields/field-select/field-select.component';
-import { getConfig } from '../../../../config';
 
 interface Props {
   languages: Language[];
 }
-
-const config = getConfig();
 
 export const UseOfTerm = ({ languages }: Props): JSX.Element => {
   const { values }: any = useFormikContext();
@@ -61,29 +58,27 @@ export const UseOfTerm = ({ languages }: Props): JSX.Element => {
 
   return (
     <div>
-      {config.enableConceptCatalogFrontend && (
-        <div className='form-group'>
-          <HelpText
-            title={localization.statusTitle}
-            helpTextAbstract={localization.statusAbstract}
+      <div className='form-group'>
+        <HelpText
+          title={localization.statusTitle}
+          helpTextAbstract={localization.statusAbstract}
+        />
+        {statusOptions && (
+          <Field
+            className='col-sm-5'
+            name='statusURI'
+            component={SelectField}
+            options={statusOptions}
+            onClear={form => handleClearConceptStatus(form)}
+            defaultValue={statusOptions.find(
+              option => option.value === values.statusURI
+            )}
+            onChange={(form, _thisFieldName, option) =>
+              handleChangeConceptStatus(form, option)
+            }
           />
-          {statusOptions && (
-            <Field
-              className='col-sm-5'
-              name='statusURI'
-              component={SelectField}
-              options={statusOptions}
-              onClear={form => handleClearConceptStatus(form)}
-              defaultValue={statusOptions.find(
-                option => option.value === values.statusURI
-              )}
-              onChange={(form, _thisFieldName, option) =>
-                handleChangeConceptStatus(form, option)
-              }
-            />
-          )}
-        </div>
-      )}
+        )}
+      </div>
       <div className='form-group'>
         <HelpText
           title={localization.eksempelTitle}

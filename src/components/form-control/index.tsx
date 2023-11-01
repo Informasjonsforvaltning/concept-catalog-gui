@@ -9,7 +9,6 @@ import {
   patchConceptFromForm,
   postConceptFromForm
 } from '../../lib/patchConceptForm';
-import { publishConceptFromForm } from '../../lib/publishConceptFromForm';
 
 import SC from './styled';
 
@@ -26,7 +25,6 @@ const FormControl = <V,>({
   isFormDirty,
   onNewConceptRevision,
   onSave,
-  isInitialInValidForm,
   lastPatchedResponse,
   values
 }: Props<V>) => {
@@ -63,7 +61,6 @@ const FormControl = <V,>({
   const { concept } = conceptForm;
   const erSistPublisert = concept?.erSistPublisert ?? false;
   const published = concept?.erPublisert ?? false;
-  const validationError = conceptForm.isValidationError || isInitialInValidForm;
   const isSaving = conceptForm.isSaving ?? false;
   const justChangedStatus = conceptForm.justChangedStatus ?? false;
   const errorSaving = conceptForm.error ?? false;
@@ -143,91 +140,6 @@ const FormControl = <V,>({
           >
             {localization.save}
           </SC.Button>
-        )}
-        {!published && (
-          <SC.StatusButton
-            $active={concept?.status === ConceptStatus.HOERING}
-            disabled={
-              validationError ||
-              (!!concept.revisjonAv && !concept.revisjonAvSistPublisert) ||
-              isFormDirty
-            }
-            onClick={() => {
-              setSaveCalled(true);
-              patchConceptFromForm(
-                {
-                  status: ConceptStatus.HOERING,
-                  ...(concept.versjonsnr?.major === 0 &&
-                    concept.versjonsnr?.minor === 0 &&
-                    concept.versjonsnr?.patch === 1 && {
-                      versjonsnr: { major: 1, minor: 0, patch: 0 }
-                    })
-                },
-                {
-                  concept,
-                  dispatch,
-                  lastPatchedResponse: concept,
-                  isSaving
-                }
-              );
-            }}
-          >
-            <SC.StatusHearingIcon />
-            {localization.setToHoering}
-          </SC.StatusButton>
-        )}
-        {!published && (
-          <SC.StatusButton
-            $active={concept?.status === ConceptStatus.GODKJENT}
-            disabled={
-              validationError ||
-              (!!concept.revisjonAv && !concept.revisjonAvSistPublisert) ||
-              isFormDirty
-            }
-            onClick={() => {
-              setSaveCalled(true);
-              patchConceptFromForm(
-                {
-                  status: ConceptStatus.GODKJENT,
-                  ...(concept.versjonsnr?.major === 0 &&
-                    concept.versjonsnr?.minor === 0 &&
-                    concept.versjonsnr?.patch === 1 && {
-                      versjonsnr: { major: 1, minor: 0, patch: 0 }
-                    })
-                },
-                {
-                  concept,
-                  dispatch,
-                  lastPatchedResponse: concept,
-                  isSaving
-                }
-              );
-            }}
-          >
-            <SC.StatusApprovedIcon />
-            {localization.setToApproval}
-          </SC.StatusButton>
-        )}
-        {!published && (
-          <SC.StatusButton
-            disabled={
-              validationError ||
-              (!!concept.revisjonAv && !concept.revisjonAvSistPublisert) ||
-              isFormDirty
-            }
-            onClick={() => {
-              setSaveCalled(true);
-              publishConceptFromForm({
-                concept,
-                dispatch,
-                lastPatchedResponse: concept,
-                isSaving
-              });
-            }}
-          >
-            <SC.StatusPublishedIcon />
-            {localization.publish}
-          </SC.StatusButton>
         )}
         <div>
           <span>{createMessage()}</span>

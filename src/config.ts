@@ -23,6 +23,7 @@ const env = (window as any).env || {
 //   'https://begrepskatalog.staging.fellesdatakatalog.digdir.no';
 // env.CATALOG_ADMIN_SERVICE_BASE_URI =
 //   'https://catalog-admin-service.staging.fellesdatakatalog.digdir.no';
+// env.CATALOG_ADMIN_BASE_URI = 'https://catalog-admin.staging.fellesdatakatalog.digdir.no';
 // env.USE_DEMO_LOGO = false;
 
 const config = {
@@ -60,6 +61,7 @@ const config = {
   },
   conceptCatalogFrontendBaseUri: env.CONCEPT_CATALOG_FRONTEND_BASE_URI,
   catalogAdminServiceBaseUri: env.CATALOG_ADMIN_SERVICE_BASE_URI,
+  catalogAdminBaseUri: env.CATALOG_ADMIN_BASE_URI,
   useDemoLogo: env.USE_DEMO_LOGO
 };
 

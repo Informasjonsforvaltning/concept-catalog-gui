@@ -9,6 +9,7 @@ const InternalInfo = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: ${theme.spacing('S12')};
+  margin-bottom: ${theme.spacing('S24')};
   padding: ${theme.spacing('S32')};
 
   ${HelpTextSC.HelpText} {

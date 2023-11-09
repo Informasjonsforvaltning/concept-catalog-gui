@@ -35,7 +35,7 @@ const createConcept = catalogId =>
     ansvarligVirksomhet: {
       id: catalogId
     },
-    versjonsnr: { major: 0, minor: 0, patch: 1 }
+    versjonsnr: { major: 0, minor: 1, patch: 0 }
   } as Concept);
 
 const ConceptRegistrationPagePure: FC<Props> = ({

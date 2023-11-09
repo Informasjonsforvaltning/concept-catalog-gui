@@ -251,7 +251,7 @@ export const schema = Yup.object().shape({
                 );
               })
               .catch(() => false)
-          : compareVersion({ major: 0, minor: 0, patch: 0 }, value as any) < 0
+          : compareVersion({ major: 0, minor: 1, patch: 0 }, value as any) < 0
     )
     .shape({
       major: Yup.number(),

@@ -39,6 +39,7 @@ import { schema as validationSchema } from './form-concept.schema';
 import SC from './styled';
 import { InternalInfo } from './internal-info';
 import { setValidationError } from '../../../features/conceptForm';
+import { compareVersion } from '../../../utils/version';
 
 export const validateWithPreProcess = (
   values,
@@ -161,12 +162,16 @@ export const FormConceptPure: FC<Props> = ({
   };
 
   const createNewConceptRevisionAndNavigate = () =>
-    postConceptRevisionWithPreProcess(conceptId, publisherId, values).then(
-      resourceId => {
-        setShowUserPrompt(false);
-        history.push(`/${catalogId}/${resourceId}`);
-      }
-    );
+    postConceptRevisionWithPreProcess(conceptId, publisherId, {
+      ...values,
+      versjonsnr:
+        compareVersion(values.versjonsnr, concept.versjonsnr) === 0
+          ? null
+          : values.versjonsnr
+    }).then(resourceId => {
+      setShowUserPrompt(false);
+      history.push(`/${catalogId}/${resourceId}`);
+    });
 
   useEffect(() => {
     const handler = event => {

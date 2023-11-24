@@ -233,7 +233,7 @@ export const schema = Yup.object().shape({
   versjonsnr: Yup.object()
     .test(
       'version-check',
-      'Version must be minimum 0.0.1 and greater than latest published version',
+      'Version must be minimum 0.1.0 and greater than latest published version',
       (value, context) =>
         context.parent.id
           ? getRevisions(context.parent.id)
@@ -251,7 +251,7 @@ export const schema = Yup.object().shape({
                 );
               })
               .catch(() => false)
-          : compareVersion({ major: 0, minor: 1, patch: 0 }, value as any) < 0
+          : compareVersion({ major: 0, minor: 1, patch: 0 }, value as any) <= 0
     )
     .shape({
       major: Yup.number(),

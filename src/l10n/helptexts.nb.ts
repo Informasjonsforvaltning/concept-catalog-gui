@@ -137,6 +137,7 @@ Telefon: +4775007500 
 Se mer om ‘kontaktinformasjon’ i [veileder for begrepsbeskrivelser](https://data.norge.no/specification/skos-ap-no-begrep#Begrep-kontaktpunkt)`,
   seOgsaaTitle: "Se også",
   seOgsaaAbstract: "Referanse til et beslektet begrep.",
+  seOgsaaUpublisertAbstract: "Referanse til et beslektet upublisert bergrep i egen katalog.",
   assignUserTitle: "Hvem skal begrepet tildeles?",
   assignUserAbstract:
     "Velg personen som skal ha ansvaret for å følge opp begrepet.",

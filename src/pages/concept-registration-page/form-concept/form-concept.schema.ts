@@ -214,6 +214,7 @@ export const schema = Yup.object().shape({
       }
     }),
   seOgså: Yup.array().of(Yup.string().nullable()).nullable(),
+  internSeOgså: Yup.array().of(Yup.string().nullable()).nullable(),
   erstattesAv: Yup.array().of(Yup.string().nullable()).nullable(),
   begrepsRelasjon: Yup.array()
     .of(

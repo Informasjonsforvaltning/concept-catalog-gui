@@ -77,6 +77,7 @@ export type FormValues = Pick<
   | 'gyldigFom'
   | 'gyldigTom'
   | 'seOgså'
+  | 'internSeOgså'
   | 'erstattesAv'
   | 'assignedUser'
   | 'abbreviatedLabel'
@@ -312,6 +313,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
       gyldigFom = null,
       gyldigTom = null,
       seOgså = [],
+      internSeOgså = [],
       erstattesAv = [],
       assignedUser = '',
       abbreviatedLabel = null,
@@ -338,6 +340,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     gyldigFom,
     gyldigTom,
     seOgså,
+    internSeOgså,
     erstattesAv,
     assignedUser,
     abbreviatedLabel,

@@ -129,6 +129,7 @@ function mapCsvTextToConcept(
       tekst: mapToSingleValue(csvMap, 'omfang_tekst')
     },
     seOgså: csvMap?.seogså?.[0]?.split('|') ?? [],
+    internSeOgså: csvMap?.internSeOgså?.[0]?.split('|') ?? [],
     kontaktpunkt: {
       harEpost: mapToSingleValue(csvMap, 'kontaktpunkt_epost'),
       harTelefon: mapToSingleValue(csvMap, 'kontaktpunkt_telefon')

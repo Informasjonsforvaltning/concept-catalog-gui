@@ -31,6 +31,16 @@ export interface ListItem {
   status: string;
 }
 
+export interface SearchResult {
+  hits: Concept[];
+  page: {
+    size: number;
+    currentPage: number;
+    totaltElements: number;
+    totalPages: number;
+  };
+}
+
 export default class ImportError extends Error {
   constructor(message: string) {
     super(message);
@@ -135,6 +145,7 @@ export interface Concept {
   gyldigFom?: string | null;
   gyldigTom?: string | null;
   seOgså: string[];
+  internSeOgså: string[];
   erstattesAv?: string[];
   status?: string | null;
   statusURI?: string | null;

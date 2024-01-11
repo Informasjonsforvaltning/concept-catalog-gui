@@ -1,5 +1,5 @@
 import { searchFullTextApiPost } from './host';
-import { SkosConcept } from '../../types';
+import { Concept, SkosConcept } from '../../types';
 
 export const searchConcepts = (body: any) =>
   searchFullTextApiPost('/concepts', body);
@@ -28,3 +28,7 @@ export const paramsToSearchBody = ({ q, ...params }: any) => {
 
 export const extractConcepts = (searchResponse: any): Promise<SkosConcept[]> =>
   searchResponse?.hits ?? [];
+
+export const extractInternalConcepts = (
+  searchResponse: any
+): Promise<Concept[]> => searchResponse?.hits ?? [];

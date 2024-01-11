@@ -73,7 +73,9 @@ const SelectFieldPure: FC<Props> = ({
     <div>
       <SC.ReadOnlyLabel>{label}</SC.ReadOnlyLabel>
       {Array.isArray(defaultValue) &&
-        defaultValue?.map(item => <div>{item.label}</div>)}
+        defaultValue?.map(item => (
+          <div key={`selectFieldPure-${item.label}`}>{item.label}</div>
+        ))}
       {!Array.isArray(defaultValue) && <div>{defaultValue?.label}</div>}
     </div>
   );

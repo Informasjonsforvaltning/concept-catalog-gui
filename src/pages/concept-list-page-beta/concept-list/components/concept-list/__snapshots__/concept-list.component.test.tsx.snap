@@ -62,6 +62,7 @@ exports[`should render ConceptList 1`] = `
         },
         "gyldigFom": "2019-03-30",
         "id": "083c8716-6006-428f-be3b-39bc01dcc58b",
+        "internSeOgså": [],
         "kilde": "Forskrift om tinglysing § 11 tredje ledd og § 16 annet ledd bokstav e). _Forskrift 3. november 1995 nr. 875 om tinglysing_ https://lovdata.no/forskrift/1995-11-03-875",
         "kontaktpunkt": {
           "harEpost": "a@a.no",

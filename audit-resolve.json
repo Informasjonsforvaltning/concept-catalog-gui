@@ -252,8 +252,8 @@
     },
     "1091791|recompose>fbjs>isomorphic-fetch>node-fetch": {
       "decision": "ignore",
-      "madeAt": 1686743186870,
-      "expiresAt": 1689335175625
+      "madeAt": 1705329953284,
+      "expiresAt": 1707921863602
     },
     "1091725|node-sass>request": {
       "decision": "ignore",
@@ -264,6 +264,16 @@
       "decision": "ignore",
       "madeAt": 1686743191154,
       "expiresAt": 1689335175625
+    },
+    "1094889|@fellesdatakatalog/internal-header>@skatteetaten/frontend-components>axios": {
+      "decision": "ignore",
+      "madeAt": 1705329948334,
+      "expiresAt": 1707921863602
+    },
+    "1095073|recompose>fbjs>isomorphic-fetch>node-fetch": {
+      "decision": "ignore",
+      "madeAt": 1705329956044,
+      "expiresAt": 1707921863602
     }
   },
   "rules": {},

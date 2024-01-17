@@ -138,11 +138,13 @@ Se mer om ‘kontaktinformasjon’ i [veileder for begrepsbeskrivelser](https://
   seOgsaaTitle: "Se også",
   seOgsaaAbstract: "Referanse til et beslektet begrep.",
   seOgsaaUpublisertAbstract: "Referanse til et beslektet upublisert bergrep i egen katalog.",
+  internalRelationAbstract: 'Relasjon til et upublisert begrep i egen katalog.',
   assignUserTitle: "Hvem skal begrepet tildeles?",
   assignUserAbstract:
     "Velg personen som skal ha ansvaret for å følge opp begrepet.",
   replacedByAbstract: "Referanse til begrep som erstatter gjeldende begrep.",
   relationsTitle: "Relasjoner",
+  relationsTitleUnpublished: "Relasjoner - upublisert",
   descriptionTitle: "Beskrivelse",
   inndelingskriteriumTitle: "Inndelingskriterium",
   versionTitle: "Versjonsnummer",

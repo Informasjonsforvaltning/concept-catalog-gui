@@ -12,7 +12,9 @@ import {
 } from '../../../../../../app/redux/hooks';
 import {
   fetchConcepts,
-  selectAllConceptEntities
+  fetchInternalConcepts,
+  selectAllConceptEntities,
+  selectAllInternalConceptEntities
 } from '../../../../../../features/concepts';
 import {
   SelectField,
@@ -59,22 +61,35 @@ interface Props {
   languages: Language[];
   isReadOnly: boolean;
   conceptSuggestionsMap?: OptionProps[];
-  executeConceptSuggestionSearch: (query: string, publisherId?: string) => void;
+  executeConceptSuggestionSearch?: (
+    query: string,
+    publisherId?: string
+  ) => void;
+  executeInternalConceptSuggestionSearch?: (
+    query: string,
+    publisherId: string
+  ) => void;
+  fieldName: 'begrepsRelasjon' | 'internBegrepsRelasjon';
 }
 
 const RelationItem: FC<Props> = ({
   index,
+  fieldName,
   relation,
   catalogId,
   languages,
   isReadOnly,
   conceptSuggestionsMap,
-  executeConceptSuggestionSearch
+  executeConceptSuggestionSearch,
+  executeInternalConceptSuggestionSearch
 }) => {
   const [filterSuggestionsByCatalogId, setFilterSuggestionsByCatalogId] =
     useState<boolean>(false);
-  const [field] = useField('begrepsRelasjon');
+  const [fieldValue] = useField(fieldName);
   const relatedConcepts = useAppSelector(selectAllConceptEntities);
+  const relatedInternalConcepts = useAppSelector(
+    selectAllInternalConceptEntities
+  );
 
   const dispatch = useAppDispatch();
 
@@ -87,68 +102,77 @@ const RelationItem: FC<Props> = ({
     }
   }, []);
 
-  const addRelatedConcept = (form, fieldName, option): void => {
-    form.setFieldValue(fieldName, option?.value ?? null);
-    option?.value && dispatch(fetchConcepts([option.value]));
+  const addRelatedConcept = (form, field, option): void => {
+    form.setFieldValue(field, option?.value ?? null);
+    const values = [option.value];
+    option?.value && fieldName === 'begrepsRelasjon'
+      ? dispatch(fetchConcepts(values))
+      : dispatch(fetchInternalConcepts({ catalogId, values }));
   };
 
   const clearTypeRelatedFields = form => {
-    form.setFieldValue(`begrepsRelasjon[${index}].relasjonsType`);
+    form.setFieldValue(`${fieldName}[${index}].relasjonsType`);
     form.setFieldValue(
-      `begrepsRelasjon[${index}].beskrivelse`,
+      `${fieldName}[${index}].beskrivelse`,
       { nb: '', nn: '', en: '' },
       false
     );
     form.setFieldValue(
-      `begrepsRelasjon[${index}].inndelingskriterium`,
+      `${fieldName}[${index}].inndelingskriterium`,
       { nb: '', nn: '', en: '' },
       false
     );
   };
 
-  const handleChangeOptionValue = (form, fieldName, option) => {
+  const handleChangeOptionValue = (form, field, option) => {
     if (
       option?.value === RelationType.OVERORDNET ||
       option?.value === RelationType.OMFATTER
     ) {
       setFilterSuggestionsByCatalogId(true);
-      form.setFieldValue(
-        `begrepsRelasjon[${index}].relatertBegrep`,
-        null,
-        false
-      );
+      form.setFieldValue(`${fieldName}[${index}].relatertBegrep`, null, false);
     } else {
       setFilterSuggestionsByCatalogId(false);
     }
-    form.setFieldValue(fieldName, option?.value ?? null);
+    form.setFieldValue(field, option?.value ?? null);
   };
+
+  const getLabel = () =>
+    fieldName === 'begrepsRelasjon'
+      ? getTranslateText(
+          relatedConcepts[fieldValue.value[index].relatertBegrep]?.prefLabel
+        ) || 'default'
+      : getTranslateText(
+          relatedInternalConcepts[fieldValue.value[index].relatertBegrep]
+            ?.anbefaltTerm?.navn
+        ) || 'default';
 
   return (
     <>
       <SC.SelectButtons>
         <Field
-          name={`begrepsRelasjon[${index}].relasjon`}
+          name={`${fieldName}[${index}].relasjon`}
           component={SelectField}
           label={localization.relation}
           showLabel
           showRequired
           options={relationOptions}
           onClear={form => {
-            form.setFieldValue(`begrepsRelasjon[${index}].relasjon`, null);
-            form.setFieldValue(`begrepsRelasjon[${index}].relasjonsType`, null);
+            form.setFieldValue(`${fieldName}[${index}].relasjon`, null);
+            form.setFieldValue(`${fieldName}[${index}].relasjonsType`, null);
           }}
-          onChange={(form, fieldName, option) => {
+          onChange={(form, field, option) => {
             clearTypeRelatedFields(form);
-            handleChangeOptionValue(form, fieldName, option);
+            handleChangeOptionValue(form, field, option);
           }}
           defaultValue={relationOptions.find(
-            option => option.value === field.value[index].relasjon
+            option => option.value === fieldValue.value[index].relasjon
           )}
         />
         {(relation.relasjon === Relation.PARTITIV ||
           relation.relasjon === Relation.GENERISK) && (
           <Field
-            name={`begrepsRelasjon[${index}].relasjonsType`}
+            name={`${fieldName}[${index}].relasjonsType`}
             component={SelectField}
             label={localization.relationType}
             showLabel
@@ -157,16 +181,13 @@ const RelationItem: FC<Props> = ({
               option => option.filterByParent === relation.relasjon
             )}
             onClear={form =>
-              form.setFieldValue(
-                `begrepsRelasjon[${index}].relasjonsType`,
-                null
-              )
+              form.setFieldValue(`${fieldName}[${index}].relasjonsType`, null)
             }
-            onChange={(form, fieldName, option) => {
-              handleChangeOptionValue(form, fieldName, option);
+            onChange={(form, field, option) => {
+              handleChangeOptionValue(form, field, option);
             }}
             defaultValue={relationTypeOptions.find(
-              option => option.value === field.value[index].relasjonsType
+              option => option.value === fieldValue.value[index].relasjonsType
             )}
           />
         )}
@@ -178,9 +199,9 @@ const RelationItem: FC<Props> = ({
             showRequired={!isReadOnly}
           />
           <MultilingualField
-            name={`begrepsRelasjon[${index}].beskrivelse`}
+            name={`${fieldName}[${index}].beskrivelse`}
             component={InputField}
-            label={`begrepsRelasjon[${index}].beskrivelse`}
+            label={`${fieldName}[${index}].beskrivelse`}
             languages={languages}
           />
         </div>
@@ -190,16 +211,16 @@ const RelationItem: FC<Props> = ({
         <div className='form-group'>
           <HelpText title={localization.inndelingskriteriumTitle} />
           <MultilingualField
-            name={`begrepsRelasjon[${index}].inndelingskriterium`}
+            name={`${fieldName}[${index}].inndelingskriterium`}
             component={InputField}
-            label={`begrepsRelasjon[${index}].inndelingskriterium`}
+            label={`${fieldName}[${index}].inndelingskriterium`}
             languages={languages}
           />
         </div>
       )}
       <div className='form-group'>
         <Field
-          name={`begrepsRelasjon[${index}].relatertBegrep`}
+          name={`${fieldName}[${index}].relatertBegrep`}
           component={SelectField}
           placeholder={localization.searchConcepts}
           label={localization.relatedConcept}
@@ -208,20 +229,27 @@ const RelationItem: FC<Props> = ({
           showCustomOption
           options={conceptSuggestionsMap}
           onClear={form =>
-            form.setFieldValue(`begrepsRelasjon[${index}].relatertBegrep`, '')
+            form.setFieldValue(`${fieldName}[${index}].relatertBegrep`, '')
           }
           onChange={addRelatedConcept}
-          onInputChange={query =>
-            filterSuggestionsByCatalogId
-              ? executeConceptSuggestionSearch(query, catalogId)
-              : executeConceptSuggestionSearch(query)
-          }
+          onInputChange={query => {
+            if (fieldName === 'begrepsRelasjon') {
+              if (filterSuggestionsByCatalogId) {
+                executeConceptSuggestionSearch &&
+                  executeConceptSuggestionSearch(query, catalogId);
+              } else {
+                executeConceptSuggestionSearch &&
+                  executeConceptSuggestionSearch(query);
+              }
+            } else {
+              executeInternalConceptSuggestionSearch &&
+                executeInternalConceptSuggestionSearch(query, catalogId);
+            }
+          }}
           defaultValue={
-            field.value[index].relatertBegrep && {
-              value: field.value[index].relatertBegrep,
-              label: getTranslateText(
-                relatedConcepts[field.value[index].relatertBegrep]?.prefLabel
-              )
+            fieldValue.value[index].relatertBegrep && {
+              value: fieldValue.value[index].relatertBegrep,
+              label: getLabel()
             }
           }
         />

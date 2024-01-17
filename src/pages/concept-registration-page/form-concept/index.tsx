@@ -82,6 +82,7 @@ export type FormValues = Pick<
   | 'assignedUser'
   | 'abbreviatedLabel'
   | 'begrepsRelasjon'
+  | 'internBegrepsRelasjon'
   | 'versjonsnr'
   | 'interneFelt'
 >;
@@ -318,6 +319,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
       assignedUser = '',
       abbreviatedLabel = null,
       begrepsRelasjon = [],
+      internBegrepsRelasjon = [],
       versjonsnr = { major: 0, minor: 0, patch: 0 },
       interneFelt = {}
     }
@@ -345,6 +347,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     assignedUser,
     abbreviatedLabel,
     begrepsRelasjon,
+    internBegrepsRelasjon,
     versjonsnr,
     interneFelt
   }),

@@ -155,6 +155,7 @@ export interface Concept {
   assignedUser?: string;
   abbreviatedLabel?: string | null;
   begrepsRelasjon?: Relasjon[];
+  internBegrepsRelasjon?: Relasjon[];
   interneFelt?: Record<string, InternalField>;
 }
 

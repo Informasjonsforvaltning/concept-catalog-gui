@@ -9,53 +9,72 @@ import {
   useAppSelector,
   useAppDispatch
 } from '../../../../../../app/redux/hooks';
-import { fetchConcepts } from '../../../../../../features/concepts';
+import {
+  fetchConcepts,
+  fetchInternalConcepts
+} from '../../../../../../features/concepts';
 
 import { ButtonSource } from '../../../../../../components/button-source/button-source.component';
 import { OptionProps } from '../../../../../../components/fields/field-select/field-select.component';
 import RelationItem from '../relation';
 import SC from './styled';
 
-const getRelations = form => form?.values?.begrepsRelasjon ?? [];
-
-const handleAddRelation = (push: any) => {
-  push({} as Relasjon);
-};
-
-const handleRemoveRelation = (form, index) => {
-  const { begrepsRelasjon } = form.values;
-  if (Array.isArray(begrepsRelasjon)) {
-    const removeElement = begrepsRelasjon?.[index];
-    const updated = begrepsRelasjon?.filter(v => v !== removeElement);
-    form.setFieldValue('begrepsRelasjon', updated);
-  }
-};
+const getPublishedRelations = form => form?.values?.begrepsRelasjon ?? [];
+const getInternalRelations = form => form?.values?.internBegrepsRelasjon ?? [];
 
 interface Props {
   catalogId: string;
+  fieldName: 'begrepsRelasjon' | 'internBegrepsRelasjon';
   languages: Language[];
   isReadOnly: boolean;
   conceptSuggestionsMap?: OptionProps[];
-  executeConceptSuggestionSearch: (query: string, publisherId?: string) => void;
+  executeConceptSuggestionSearch?: (
+    query: string,
+    publisherId: string | undefined
+  ) => void;
+  executeInternalConceptSuggestionSearch?: (
+    query: string,
+    publisherId: string
+  ) => void;
 }
 
 const Relations: FC<Props> = ({
   catalogId,
+  fieldName,
   languages,
   isReadOnly,
   conceptSuggestionsMap,
-  executeConceptSuggestionSearch
+  executeConceptSuggestionSearch,
+  executeInternalConceptSuggestionSearch
 }) => {
-  const [field] = useField('begrepsRelasjon');
+  const [field] = useField(fieldName);
   const conceptForm = useAppSelector(state => state.conceptForm);
 
   const relations = field.value ?? [];
   const dispatch = useAppDispatch();
-  const idS = relations.map(s => s.relatertBegrep).filter(Boolean);
+  const values = relations.map(s => s.relatertBegrep).filter(Boolean);
+  const getRelations =
+    fieldName === 'begrepsRelasjon'
+      ? getPublishedRelations
+      : getInternalRelations;
+  const handleAddRelation = (push: any) => {
+    push({} as Relasjon);
+  };
+
+  const handleRemoveRelation = (form, index) => {
+    const { begrepsRelasjon } = form.values;
+    if (Array.isArray(begrepsRelasjon)) {
+      const removeElement = begrepsRelasjon?.[index];
+      const updated = begrepsRelasjon?.filter(v => v !== removeElement);
+      form.setFieldValue(fieldName, updated);
+    }
+  };
 
   useEffect(() => {
-    if (idS?.length > 0) {
-      dispatch(fetchConcepts(idS));
+    if (values?.length > 0) {
+      fieldName === 'begrepsRelasjon'
+        ? dispatch(fetchConcepts(values))
+        : dispatch(fetchInternalConcepts({ catalogId, values }));
     }
   }, []);
 
@@ -63,13 +82,14 @@ const Relations: FC<Props> = ({
     <SC.Relations>
       {relations && (
         <FieldArray
-          name='begrepsRelasjon'
+          name={fieldName}
           render={({ form, push }) => (
             <div>
               {getRelations(form).map((relation, index) => (
                 <SC.Relation>
                   <RelationItem
                     index={index}
+                    fieldName={fieldName}
                     relation={relation}
                     catalogId={catalogId}
                     languages={languages}
@@ -77,6 +97,9 @@ const Relations: FC<Props> = ({
                     conceptSuggestionsMap={conceptSuggestionsMap}
                     executeConceptSuggestionSearch={
                       executeConceptSuggestionSearch
+                    }
+                    executeInternalConceptSuggestionSearch={
+                      executeInternalConceptSuggestionSearch
                     }
                   />
                   <div className='form-group d-flex justify-content-end'>

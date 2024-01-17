@@ -80,17 +80,17 @@ const RelatedConceptsPure: FC<Props> = ({
         })
       );
     }
-  }, [seOgsaaField]);
+  }, [internSeOgsaaField]);
 
   const executeConceptSuggestionSearch = (q: string, publisherId?: string) => {
     dispatch(fetchConceptSuggestions({ q, publisherId }));
   };
 
   const executeInternalConceptSuggestionSearch = (
-    q: string,
+    query: string,
     publisherId: string
   ) => {
-    dispatch(fetchInternalConceptSuggestions({ q, publisherId }));
+    dispatch(fetchInternalConceptSuggestions({ query, publisherId }));
   };
 
   useEffect(() => {
@@ -152,12 +152,27 @@ const RelatedConceptsPure: FC<Props> = ({
         <HelpText title={localization.relationsTitle} />
         <Relations
           catalogId={catalogId}
+          fieldName='begrepsRelasjon'
           languages={languages}
           isReadOnly={isReadOnly}
           conceptSuggestionsMap={conceptSuggestionsMap}
           executeConceptSuggestionSearch={executeConceptSuggestionSearch}
         />
 
+        <HelpText
+          title={localization.relationsTitleUnpublished}
+          helpTextAbstract={localization.internalRelationAbstract}
+        />
+        <Relations
+          catalogId={catalogId}
+          fieldName='internBegrepsRelasjon'
+          languages={languages}
+          isReadOnly={isReadOnly}
+          conceptSuggestionsMap={internalConceptSuggestionsMap}
+          executeInternalConceptSuggestionSearch={
+            executeInternalConceptSuggestionSearch
+          }
+        />
         <HelpText
           title={localization.seeAlso}
           helpTextAbstract={localization.seOgsaaAbstract}

@@ -17,7 +17,7 @@ interface SuggestionsAttributes {
   publisherId?: string;
 }
 interface InternalSuggestionsAttributes {
-  q: string;
+  query: string;
   publisherId: string;
 }
 
@@ -31,8 +31,10 @@ export const fetchConceptSuggestions = createAsyncThunk<
 export const fetchInternalConceptSuggestions = createAsyncThunk<
   Concept[],
   InternalSuggestionsAttributes
->('conceptForm/fetchInternalConceptSuggestions', async ({ q, publisherId }) =>
-  getInternalConceptSuggestions(publisherId, q)
+>(
+  'conceptForm/fetchInternalConceptSuggestions',
+  async ({ query, publisherId }) =>
+    getInternalConceptSuggestions(publisherId, query)
 );
 
 const conceptSuggestionsAdapter = createEntityAdapter<SkosConcept>({

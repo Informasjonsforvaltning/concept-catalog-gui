@@ -100,6 +100,7 @@ export const nb = {
   internalInfo: "Interne opplysninger",
   internalSubText: "Opplysningene under er til intern bruk og vil ikke publiseres ut i Felles datakatalog.",
   replacedBy: 'Erstattes av',
+  replacedByNotPublished: 'Erstattes av - upublisert',
   relation: 'Relasjon',
   relationType: 'Nivå',
   description: 'Beskrivelse',

@@ -11,20 +11,32 @@ import { getTranslateText } from '../../../../lib/translateText';
 import { useAppDispatch, useAppSelector } from '../../../../app/redux/hooks';
 import {
   fetchConceptSuggestions,
-  selectAllConceptSuggestions
+  fetchInternalConceptSuggestions,
+  selectAllConceptSuggestions,
+  selectAllInternalConceptSuggestions
 } from '../../../../features/concept-suggestions';
 import {
   fetchConcepts,
-  selectAllConceptEntities
+  fetchInternalConcepts,
+  selectAllConceptEntities,
+  selectAllInternalConceptEntities
 } from '../../../../features/concepts';
 
-export const Validity: FC = () => {
+interface Props {
+  catalogId: string;
+}
+
+export const Validity: FC<Props> = ({ catalogId }) => {
   const [gyldigFomField] = useField('gyldigFom');
   const [gyldigTomField] = useField('gyldigTom');
   const [erstattesAv] = useField('erstattesAv');
+  const [internErstattesAv] = useField('internErstattesAv');
   const dispatch = useAppDispatch();
   const relatedConcepts = useAppSelector(selectAllConceptEntities);
   const conceptSuggestions = useAppSelector(selectAllConceptSuggestions);
+  const relatedInternalConcepts = useAppSelector(
+    selectAllInternalConceptEntities
+  );
 
   useEffect(() => {
     if (erstattesAv.value?.length > 0) {
@@ -36,9 +48,28 @@ export const Validity: FC = () => {
     dispatch(fetchConceptSuggestions({ q }));
   };
 
+  const executeInternalConceptSuggestionSearch = (
+    query: string,
+    publisherId: string
+  ) => {
+    dispatch(fetchInternalConceptSuggestions({ query, publisherId }));
+  };
+
   useEffect(() => {
     executeConceptSuggestionSearch('');
+    executeInternalConceptSuggestionSearch('', catalogId);
   }, []);
+
+  useEffect(() => {
+    if (internErstattesAv.value?.length > 0) {
+      dispatch(
+        fetchInternalConcepts({
+          catalogId,
+          values: internErstattesAv.value
+        })
+      );
+    }
+  }, [internErstattesAv.value]);
 
   const conceptSuggestionsMap = conceptSuggestions.map(
     ({ identifier, prefLabel, definition, publisher }) =>
@@ -58,6 +89,39 @@ export const Validity: FC = () => {
     );
     option?.value && dispatch(fetchConcepts([option.value]));
   };
+
+  const extractListOfOriginaltBegrepIds = (values: OptionProps[]): string[] => {
+    const originaltBegreps: string[] = [];
+
+    values &&
+      values.forEach(value => {
+        const originaltBegrep = value.value;
+        originaltBegrep && originaltBegreps.push(originaltBegrep);
+      });
+    return originaltBegreps;
+  };
+
+  const addRelatedInternalConcept = (form, fieldName, option): void => {
+    form.setFieldValue(
+      fieldName,
+      option.map(item => item.value)
+    );
+    const values = extractListOfOriginaltBegrepIds(option);
+    option?.values && dispatch(fetchInternalConcepts({ catalogId, values }));
+  };
+
+  const internalConceptSuggestions = useAppSelector(
+    selectAllInternalConceptSuggestions
+  );
+
+  const internalConceptSuggestionsMap = internalConceptSuggestions.map(
+    ({ anbefaltTerm, definisjon, originaltBegrep }) =>
+      ({
+        value: originaltBegrep,
+        label: getTranslateText(anbefaltTerm?.navn),
+        description: getTranslateText(definisjon?.tekst)
+      } as any)
+  );
 
   return (
     <div>
@@ -109,6 +173,37 @@ export const Validity: FC = () => {
                 label:
                   getTranslateText(relatedConcepts[item]?.prefLabel) ??
                   'default'
+              }))}
+              isMulti
+            />
+          )}
+        />
+      </div>
+      <div className='form-group'>
+        <HelpText
+          title={localization.replacedByNotPublished}
+          helpTextAbstract={localization.replacedByUnpublishedAbstract}
+        />
+        <FieldArray
+          name='internErstattesAv'
+          render={({ form }) => (
+            <Field
+              name={internErstattesAv.name}
+              component={SelectField}
+              placeholder={localization.searchUnpublishedConcepts}
+              showCustomOption
+              options={internalConceptSuggestionsMap}
+              onClear={() => form.setFieldValue(internErstattesAv.name, '')}
+              onChange={addRelatedInternalConcept}
+              onInputChange={value =>
+                executeInternalConceptSuggestionSearch(value, catalogId)
+              }
+              defaultValue={form?.values?.internErstattesAv?.map(item => ({
+                value: item,
+                label:
+                  getTranslateText(
+                    relatedInternalConcepts[item]?.anbefaltTerm?.navn
+                  ) ?? 'default'
               }))}
               isMulti
             />

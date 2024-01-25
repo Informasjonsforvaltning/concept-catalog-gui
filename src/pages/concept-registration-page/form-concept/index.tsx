@@ -79,6 +79,7 @@ export type FormValues = Pick<
   | 'seOgså'
   | 'internSeOgså'
   | 'erstattesAv'
+  | 'internErstattesAv'
   | 'assignedUser'
   | 'abbreviatedLabel'
   | 'begrepsRelasjon'
@@ -269,7 +270,7 @@ export const FormConceptPure: FC<Props> = ({
           title={localization.formValidity}
           showInitially={expandAll}
         >
-          <Validity />
+          <Validity catalogId={catalogId} />
         </FormTemplate>
         <FormTemplate
           title={localization.formRelatedConcepts}
@@ -316,6 +317,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
       seOgså = [],
       internSeOgså = [],
       erstattesAv = [],
+      internErstattesAv = [],
       assignedUser = '',
       abbreviatedLabel = null,
       begrepsRelasjon = [],
@@ -344,6 +346,7 @@ const formikConfig: WithFormikConfig<Props, FormValues> = {
     seOgså,
     internSeOgså,
     erstattesAv,
+    internErstattesAv,
     assignedUser,
     abbreviatedLabel,
     begrepsRelasjon,

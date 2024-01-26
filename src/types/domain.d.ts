@@ -157,6 +157,7 @@ export interface Concept {
   begrepsRelasjon?: Relasjon[];
   internBegrepsRelasjon?: Relasjon[];
   interneFelt?: Record<string, InternalField>;
+  internErstattesAv?: string[];
 }
 
 export interface SkosConcept {

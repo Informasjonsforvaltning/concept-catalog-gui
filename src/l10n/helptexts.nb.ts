@@ -143,6 +143,7 @@ Se mer om ‘kontaktinformasjon’ i [veileder for begrepsbeskrivelser](https://
   assignUserAbstract:
     "Velg personen som skal ha ansvaret for å følge opp begrepet.",
   replacedByAbstract: "Referanse til begrep som erstatter gjeldende begrep.",
+  replacedByUnpublishedAbstract: "Referanse til upubliserte begrep i egen katalog som erstatter gjeldende begrep.",
   relationsTitle: "Relasjoner",
   relationsTitleUnpublished: "Relasjoner - upublisert",
   descriptionTitle: "Beskrivelse",

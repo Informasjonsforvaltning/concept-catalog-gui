@@ -85,7 +85,7 @@
     "reactstrap": "^9.2.0",
     "recompose": "^0.30.0",
     "regenerator-runtime": "^0.13.11",
-    "sanitize-html": "^2.11.0",
+    "sanitize-html": "^2.12.1",
     "sass": "^1.69.3",
     "showdown": "^1.9.1",
     "stream-browserify": "^3.0.0",

@@ -2,12 +2,12 @@ import React, { FC, HTMLAttributes } from 'react';
 
 import HeaderBase from '@fellesdatakatalog/internal-header';
 
-interface Props extends HTMLAttributes<HTMLInputElement> {}
-
 import Link from '@fellesdatakatalog/link';
+import { useLocation } from 'react-router-dom';
 import authService from '../../services/auth-service';
 import { getConfig } from '../../config';
-import { useLocation } from 'react-router-dom';
+
+interface Props extends HTMLAttributes<HTMLInputElement> {}
 
 const showManageConceptCatalogsUrl = () => {
   const resourceRoles = authService.getResourceRoles();
@@ -15,10 +15,10 @@ const showManageConceptCatalogsUrl = () => {
   const pathParts = location.pathname.split('/');
   const currentCatalogId = pathParts ? pathParts[1] : undefined;
 
-  return resourceRoles.some((role) => {
+  return resourceRoles.some(role => {
     const roleOrgNumber = role?.resourceId;
     return authService.hasOrganizationAdminPermission(
-      currentCatalogId ? currentCatalogId : roleOrgNumber
+      currentCatalogId || roleOrgNumber
     );
   });
 };
@@ -32,9 +32,9 @@ export const Header: FC<Props> = () => (
     showManageConceptCatalogsUrl={showManageConceptCatalogsUrl()}
     manageConceptCatalogsUrl={getConfig().catalogAdminBaseUri}
   >
-    <Link href={`${getConfig().searchHost}/guidance`}>Registrere data</Link>
+    <Link href={`${getConfig().fdkBaseUri}/guidance`}>Registrere data</Link>
     <Link href={getConfig().adminGui.host}>Høste data</Link>
-    <Link href={getConfig().searchHost} external>
+    <Link href={getConfig().fdkBaseUri} external>
       Søk i Felles datakatalog
     </Link>
   </HeaderBase>

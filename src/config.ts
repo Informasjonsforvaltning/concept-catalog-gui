@@ -15,7 +15,8 @@ const env = (window as any).env || {
 // env.ORGANIZATION_API =
 //   'https://organization-catalog.staging.fellesdatakatalog.digdir.no';
 // env.CONCEPT_API = 'https://www.staging.fellesdatakatalog.digdir.no';
-// env.SEARCH_FULLTEXT_HOST = 'https://search.staging.fellesdatakatalog.digdir.no';
+// env.SEARCH_SERVICE_HOST =
+//   'https://search.api.staging.fellesdatakatalog.digdir.no';
 // env.SEARCH_HOST = 'https://www.staging.fellesdatakatalog.digdir.no';
 // env.FDK_PORTAL_BASE_URI = 'https://staging.fellesdatakatalog.digdir.no';
 // env.ADMIN_GUI_HOST = 'https://admin.staging.fellesdatakatalog.digdir.no';
@@ -52,10 +53,10 @@ const config = {
   referenceDataApi: {
     host: env.FDK_PORTAL_BASE_URI
   },
-  searchFullTextApi: {
-    host: env.SEARCH_FULLTEXT_HOST
+  searchApi: {
+    host: env.SEARCH_SERVICE_HOST
   },
-  searchHost: env.SEARCH_HOST || 'https://fellesdatakatalog.digdir.no',
+  fdkBaseUri: env.SEARCH_HOST || 'https://fellesdatakatalog.digdir.no',
   adminGui: {
     host: env.ADMIN_GUI_HOST
   },

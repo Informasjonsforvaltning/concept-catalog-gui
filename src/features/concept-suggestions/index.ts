@@ -4,17 +4,17 @@ import {
   createEntityAdapter
 } from '@reduxjs/toolkit';
 
-import { Concept, SkosConcept } from '../../types';
+import { Concept, SearchObject } from '../../types';
 import type { RootState } from '../../app/redux/store';
 import {
   getConceptSuggestions,
   extractSuggestions
-} from '../../api/search-fulltext-api/suggestions';
+} from '../../api/search-api/suggestions';
 import { getInternalConceptSuggestions } from '../../api/concept-catalog-api';
 
 interface SuggestionsAttributes {
   q: string;
-  publisherId?: string;
+  org?: string;
 }
 interface InternalSuggestionsAttributes {
   query: string;
@@ -22,10 +22,10 @@ interface InternalSuggestionsAttributes {
 }
 
 export const fetchConceptSuggestions = createAsyncThunk<
-  SkosConcept[],
+  SearchObject[],
   SuggestionsAttributes
->('conceptForm/fetchConceptSuggestions', async ({ q, publisherId }) =>
-  getConceptSuggestions({ q, publisherId }).then(extractSuggestions)
+>('conceptForm/fetchConceptSuggestions', async ({ q, org }) =>
+  getConceptSuggestions({ q, org }).then(extractSuggestions)
 );
 
 export const fetchInternalConceptSuggestions = createAsyncThunk<
@@ -37,8 +37,8 @@ export const fetchInternalConceptSuggestions = createAsyncThunk<
     getInternalConceptSuggestions(publisherId, query)
 );
 
-const conceptSuggestionsAdapter = createEntityAdapter<SkosConcept>({
-  selectId: concept => concept.identifier
+const conceptSuggestionsAdapter = createEntityAdapter<SearchObject>({
+  selectId: concept => concept.uri
 });
 
 const internalConceptSuggestionsAdapter = createEntityAdapter<Concept>({

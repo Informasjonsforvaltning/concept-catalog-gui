@@ -140,7 +140,7 @@ const RelationItem: FC<Props> = ({
   const getLabel = () =>
     fieldName === 'begrepsRelasjon'
       ? getTranslateText(
-          relatedConcepts[fieldValue.value[index].relatertBegrep]?.prefLabel
+          relatedConcepts[fieldValue.value[index].relatertBegrep]?.title
         ) || 'default'
       : getTranslateText(
           relatedInternalConcepts[fieldValue.value[index].relatertBegrep]

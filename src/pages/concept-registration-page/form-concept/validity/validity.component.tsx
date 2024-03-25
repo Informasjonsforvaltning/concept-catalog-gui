@@ -72,13 +72,13 @@ export const Validity: FC<Props> = ({ catalogId }) => {
   }, [internErstattesAv.value]);
 
   const conceptSuggestionsMap = conceptSuggestions.map(
-    ({ identifier, prefLabel, definition, publisher }) =>
+    ({ uri, title, description, organization }) =>
       ({
-        value: identifier,
-        label: getTranslateText(prefLabel),
-        description: getTranslateText(definition?.text),
+        value: uri,
+        label: getTranslateText(title),
+        description: getTranslateText(description),
         publisher:
-          getTranslateText(publisher?.prefLabel) ?? publisher?.name ?? ''
+          getTranslateText(organization?.prefLabel) ?? organization?.name ?? ''
       } as OptionProps)
   );
 
@@ -171,8 +171,7 @@ export const Validity: FC<Props> = ({ catalogId }) => {
               defaultValue={form?.values?.erstattesAv?.map(item => ({
                 value: item,
                 label:
-                  getTranslateText(relatedConcepts[item]?.prefLabel) ??
-                  'default'
+                  getTranslateText(relatedConcepts[item]?.title) ?? 'default'
               }))}
               isMulti
             />

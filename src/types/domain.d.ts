@@ -183,6 +183,7 @@ export interface Publisher {
   organizationId: string;
   name?: string;
   prefLabel?: TekstMedSpraakKode;
+  orgPath?: string;
 }
 
 export interface CatalogFields {
@@ -247,3 +248,11 @@ export type TreeNode = {
   label: string;
   children: TreeNode[];
 };
+
+export interface SearchObject {
+  id: string;
+  uri: string;
+  title: Record<string, string>;
+  description: Record<string, string>;
+  organization: Publisher;
+}

@@ -83,7 +83,7 @@ const RelatedConceptsPure: FC<Props> = ({
   }, [internSeOgsaaField]);
 
   const executeConceptSuggestionSearch = (q: string, publisherId?: string) => {
-    dispatch(fetchConceptSuggestions({ q, publisherId }));
+    dispatch(fetchConceptSuggestions({ q, org: publisherId }));
   };
 
   const executeInternalConceptSuggestionSearch = (
@@ -127,13 +127,13 @@ const RelatedConceptsPure: FC<Props> = ({
   };
 
   const conceptSuggestionsMap = conceptSuggestions.map(
-    ({ identifier, prefLabel, definition, publisher }) =>
+    ({ uri, title, description, organization }) =>
       ({
-        value: identifier,
-        label: getTranslateText(prefLabel),
-        description: getTranslateText(definition?.text),
+        value: uri,
+        label: getTranslateText(title),
+        description: getTranslateText(description),
         publisher:
-          getTranslateText(publisher?.prefLabel) ?? publisher?.name ?? ''
+          getTranslateText(organization?.prefLabel) ?? organization?.name ?? ''
       } as OptionProps)
   );
 
@@ -192,8 +192,7 @@ const RelatedConceptsPure: FC<Props> = ({
               defaultValue={form?.values?.seOgså?.map(item => ({
                 value: item,
                 label:
-                  getTranslateText(relatedConcepts[item]?.prefLabel) ??
-                  'default'
+                  getTranslateText(relatedConcepts[item]?.title) ?? 'default'
               }))}
               isMulti
             />

@@ -122,4 +122,5 @@ export const nb = {
   hasPreexistingValue: 'Det finnes allerede en verdi i feltet for {0}, "{1}".',
   chooseNewFromList: 'Velg ny verdi fra listen nedenfor.',
   edit: 'Rediger',
+  relationRole: "Relasjonsrolle",
 };

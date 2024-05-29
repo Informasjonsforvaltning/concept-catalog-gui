@@ -195,7 +195,7 @@ const RelationItem: FC<Props> = ({
       {relation.relasjon === Relation.ASSOSIATIV && (
         <div className='form-group'>
           <HelpText
-            title={localization.descriptionTitle}
+            title={localization.relationRole}
             showRequired={!isReadOnly}
           />
           <MultilingualField

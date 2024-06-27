@@ -89,7 +89,7 @@
     "sass": "^1.69.3",
     "showdown": "^1.9.1",
     "stream-browserify": "^3.0.0",
-    "styled-components": "^6.0.8",
+    "styled-components": "^6.1.11",
     "uuid": "^9.0.1",
     "yup": "^0.32.11"
   },

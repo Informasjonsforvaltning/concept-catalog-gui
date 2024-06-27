@@ -108,9 +108,11 @@ Se mer om ‘eksempel’ i [veileder for begrepsbeskrivelser](https://data.norge
 Se mer om ‘fagområde’ i [veileder for begrepsbeskrivelser](https://data.norge.no/specification/skos-ap-no-begrep#Begrep-fagomr%C3%A5de)`,
   omfangTitle: "Verdiområde",
   omfangAbstract: "Lovlig verdiområde for begrepet.",
-  omfangDescription: `Eksempel på verdiområde: For begrepet ‘alder’ kan verdiområdet beskrives som “alle positive tall”. 
-Dette feltet skal ikke brukes for å oppgi eksempler. 
-Se mer om verdiområde i [veileder for begrepsbeskrivelser](https://data.norge.no/specification/skos-ap-no-begrep#Begrep-verdiomr%C3%A5de)`,
+  omfangDescription: `Verdiområde kan beskrives som tekst eller lenke. 
+Eksempel på verdiområde beskrevet som tekst: For begrepet "alder" kan verdiområdet beskrives som "alle positive tall". 
+Eksempel på verdiområde beskrevet som lenke: For begrepet sivilstand kan verdiområdet beskrives som "https://www.ssb.no/klass/klassifikasjoner/19". 
+Hvis et verdiområde beskrives med både tekst og lenke så vil det bli tolket som to seperate verdiområder. 
+Dette feltet skal ikke brukes for å oppgi eksempler.`,
   gyldigFomTitle: "Gyldig f.o.m.",
   gyldigFomAbstract:
     "Her registrerer du datoen som begrepet skal gjelde fra og med.",

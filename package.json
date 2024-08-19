@@ -14,6 +14,10 @@
     {
       "name": "Mats Jørgen Skaslien",
       "email": "mska@netlight.com"
+    },
+    {
+      "name": "Jeff Reiffers",
+      "email": "jeff@ouvir.no"
     }
   ],
   "license": "Apache-2.0",

@@ -98,9 +98,10 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.2",
-    "@babel/preset-env": "^7.23.8",
-    "@babel/preset-react": "^7.22.15",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.3",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/types": "^7.25.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@svgr/webpack": "^6.5.1",
     "@testing-library/jest-dom": "^5.17.0",

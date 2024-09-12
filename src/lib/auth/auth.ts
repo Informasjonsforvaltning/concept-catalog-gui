@@ -33,7 +33,7 @@ export class Auth {
     const kcConfig = { realm, url, clientId: conf.clientId };
 
     this.conf = conf;
-    this.kc = Keycloak(kcConfig);
+    this.kc = new Keycloak(kcConfig);
   }
 
   init: ({ loginRequired }: { loginRequired: boolean }) => Promise<boolean> =

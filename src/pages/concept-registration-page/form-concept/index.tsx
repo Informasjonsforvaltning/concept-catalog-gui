@@ -153,8 +153,7 @@ export const FormConceptPure: FC<Props> = ({
     }
   }, [concept]);
 
-  const publisherId = concept?.ansvarligVirksomhet?.id;
-  const isReadOnly = authService.isReadOnlyUser(publisherId);
+  const isReadOnly = authService.isReadOnlyUser(catalogId);
 
   const [expandAll, setExpandAll] = useState(false);
   const [isExpandAllDirty, setExpandAllDirty] = useState(false);
@@ -165,7 +164,7 @@ export const FormConceptPure: FC<Props> = ({
   };
 
   const createNewConceptRevisionAndNavigate = () =>
-    postConceptRevisionWithPreProcess(conceptId, publisherId, {
+    postConceptRevisionWithPreProcess(conceptId, catalogId, {
       ...values,
       versjonsnr:
         compareVersion(values.versjonsnr, concept.versjonsnr) === 0
@@ -211,7 +210,7 @@ export const FormConceptPure: FC<Props> = ({
       />
       <Can
         I='view a statusBar'
-        of={{ __type: 'StatusBar', publisher: publisherId }}
+        of={{ __type: 'StatusBar', publisher: catalogId }}
       >
         <FormControl<FormValues>
           isFormDirty={dirty}
@@ -235,7 +234,7 @@ export const FormConceptPure: FC<Props> = ({
       </SC.Version>
       <Form>
         <div className='d-flex justify-content-between align-items-center'>
-          <Can I='edit' of={{ __type: 'Language', publisher: publisherId }}>
+          <Can I='edit' of={{ __type: 'Language', publisher: catalogId }}>
             <LanguagePicker
               languages={languageEntities}
               toggleInputLanguage={language =>

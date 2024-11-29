@@ -272,8 +272,8 @@
     },
     "1095073|recompose>fbjs>isomorphic-fetch>node-fetch": {
       "decision": "ignore",
-      "madeAt": 1726135758808,
-      "expiresAt": 1728727690005
+      "madeAt": 1732885098196,
+      "expiresAt": 1735477047555
     },
     "1096525|@fellesdatakatalog/internal-header>@skatteetaten/frontend-components>axios": {
       "decision": "ignore",
@@ -282,13 +282,28 @@
     },
     "1097679|@fellesdatakatalog/internal-header>@skatteetaten/frontend-components>axios": {
       "decision": "ignore",
-      "madeAt": 1726135762230,
-      "expiresAt": 1728727690005
+      "madeAt": 1732885101140,
+      "expiresAt": 1735477047555
     },
     "1098681|lint-staged>micromatch": {
       "decision": "ignore",
-      "madeAt": 1726135755406,
-      "expiresAt": 1728727690005
+      "madeAt": 1732885085707,
+      "expiresAt": 1735477047555
+    },
+    "1100562|husky>execa>cross-spawn": {
+      "decision": "ignore",
+      "madeAt": 1732885089265,
+      "expiresAt": 1735477047555
+    },
+    "1100563|eslint>cross-spawn": {
+      "decision": "ignore",
+      "madeAt": 1732885094718,
+      "expiresAt": 1735477047555
+    },
+    "1100562|npm-run-all>cross-spawn": {
+      "decision": "ignore",
+      "madeAt": 1732885103785,
+      "expiresAt": 1735477047555
     }
   },
   "rules": {},

@@ -240,8 +240,11 @@ export const schema = Yup.object().shape({
         context.parent.id
           ? getRevisions(context.parent.id)
               .then(revisions => {
-                const latestPublishedRevision = revisions.find(
-                  rev => rev.erSistPublisert
+                const latestPublishedRevision = revisions.reduce(
+                  (prev, current) =>
+                    compareVersion(prev.versjonsnr, current.versjonsnr) < 0
+                      ? prev
+                      : current
                 );
                 return (
                   compareVersion(

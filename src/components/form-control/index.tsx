@@ -59,7 +59,6 @@ const FormControl = <V,>({
   const dispatch = useAppDispatch();
   const conceptForm = useAppSelector(state => state.conceptForm);
   const { concept } = conceptForm;
-  const erSistPublisert = concept?.erSistPublisert ?? false;
   const published = concept?.erPublisert ?? false;
   const isSaving = conceptForm.isSaving ?? false;
   const justChangedStatus = conceptForm.justChangedStatus ?? false;
@@ -109,7 +108,7 @@ const FormControl = <V,>({
   return concept ? (
     <SC.FormControl $isSticky={isSticky}>
       <SC.FormControlContent>
-        {isFormDirty && published && erSistPublisert && (
+        {isFormDirty && published && (
           <SC.Button onClick={onNewConceptRevision}>
             <SC.StatusDraftIcon />
             {localization.saveDraft}

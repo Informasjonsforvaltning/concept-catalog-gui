@@ -16,7 +16,6 @@ import { Can } from '../../../casl/Can';
 import { deepKeys } from '../../../lib/deep-keys';
 import { getTranslateText } from '../../../lib/translateText';
 import { localization } from '../../../lib/localization';
-import { authService } from '../../../services/auth-service';
 
 import { useAppSelector, useAppDispatch } from '../../../app/redux/hooks';
 import { setLanguage, toggleLanguage } from '../../../features/language';
@@ -154,7 +153,7 @@ export const FormConceptPure: FC<Props> = ({
   }, [concept]);
 
   const publisherId = concept?.ansvarligVirksomhet?.id;
-  const isReadOnly = authService.isReadOnlyUser(publisherId);
+  const isReadOnly = false;
 
   const [expandAll, setExpandAll] = useState(false);
   const [isExpandAllDirty, setExpandAllDirty] = useState(false);

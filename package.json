@@ -106,7 +106,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@svgr/webpack": "^6.5.1",
     "@testing-library/jest-dom": "^5.17.0",
-    "@types/enzyme": "^3.10.14",
+    "@types/enzyme": "^3.10.18",
     "@types/enzyme-adapter-react-16": "^1.0.7",
     "@types/jest": "^27.5.2",
     "@types/luxon": "^3.2.0",

@@ -52,7 +52,7 @@
     "@casl/react": "^1.0.4",
     "@fellesdatakatalog/button": "^0.2.10",
     "@fellesdatakatalog/external-footer": "^0.3.0",
-    "@fellesdatakatalog/icons": "^0.8.4",
+    "@fellesdatakatalog/icons": "^0.8.5",
     "@fellesdatakatalog/internal-header": "^0.8.0",
     "@fellesdatakatalog/link": "^0.2.15",
     "@fellesdatakatalog/theme": "^0.5.4",
